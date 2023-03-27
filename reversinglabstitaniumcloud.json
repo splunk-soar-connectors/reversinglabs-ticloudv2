@@ -1,7 +1,7 @@
 {
     "appid": "0fd5a550-35a4-4641-9d28-9237ec71cf3c",
     "name": "Reversinglabs TitaniumCloud",
-    "description": "ReversingLabs TitaniumCloud is a threat intelligence solution which increases detection, analysis, and response efficiency by identifying files from queries to an authoritative 10 billion global goodware and malware database. A powerful set of REST API query and feed functions deliver targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services.",
+    "description": "ReversingLabs TitaniumCloud is a threat intelligence solution which increases detection, analysis, and response efficiency by identifying files from queries to an authoritative 10 billion global goodware and malware database. A powerful set of REST API query and feed functions deliver targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services",
     "type": "reputation",
     "product_vendor": "Reversinglabs",
     "logo": "reversinglabstitaniumcloud.svg",
@@ -12,7 +12,7 @@
     "publisher": "ReversingLabs",
     "contributors": [
         {
-          "name": "ivukovicRL"
+            "name": "ivukovicRL"
         }
     ],
     "license": "Copyright (c) ReversingLabs, 2023",
@@ -20,15 +20,13 @@
     "utctime_updated": "2023-03-14T11:16:58.519975Z",
     "package_name": "phantom_reversinglabstitaniumcloud",
     "main_module": "reversinglabstitaniumcloud_connector.py",
-    "min_phantom_version": "5.5.0.108488",
+    "min_phantom_version": "5.5.0",
     "app_wizard_version": "1.0.0",
     "configuration": {
         "url": {
             "description": "TitaniumCloud URL",
             "data_type": "string",
             "required": true,
-            "value_list": [],
-            "default": "",
             "order": 0,
             "name": "url",
             "id": 0
@@ -37,8 +35,6 @@
             "description": "TitaniumCloud username",
             "data_type": "string",
             "required": true,
-            "value_list": [],
-            "default": "",
             "order": 1,
             "name": "username",
             "id": 1
@@ -47,8 +43,6 @@
             "description": "TitaniumCloud password",
             "data_type": "string",
             "required": true,
-            "value_list": [],
-            "default": "",
             "order": 2,
             "name": "password",
             "id": 2
@@ -59,7 +53,6 @@
             "action": "test connectivity",
             "identifier": "test_connectivity",
             "description": "Validate the asset configuration for connectivity using supplied configuration",
-            "verbose": "",
             "type": "test",
             "read_only": true,
             "parameters": {},
@@ -70,7 +63,6 @@
             "action": "yara create ruleset",
             "identifier": "yara_create_ruleset",
             "description": "TCA-0303 - Create a new YARA ruleset",
-            "verbose": "",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -78,10 +70,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -91,10 +79,6 @@
                     "description": "Stringified YARA ruleset / a Unicode string",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "ruleset_text",
                     "id": 2,
@@ -105,22 +89,24 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "ruleset_name",
+                    "column_name": "Ruleset Name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.ruleset_text",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "ruleset_text",
+                    "column_name": "Ruleset Text",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -144,7 +130,6 @@
             "action": "yara delete ruleset",
             "identifier": "yara_delete_ruleset",
             "description": "TCA-0303 - Delete YARA ruleset",
-            "verbose": "",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -152,10 +137,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -166,15 +147,18 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "ruleset_name",
+                    "column_name": "Ruleset Name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -198,18 +182,13 @@
             "action": "yara get ruleset info",
             "identifier": "yara_get_ruleset_info",
             "description": "TCA-0303 - Get YARA ruleset info",
-            "verbose": "Get information for a specific YARA ruleset or all YARA rulesets in the collection",
+            "verbose": "Get information for a specific YARA ruleset or all YARA rulesets in the collection.",
             "type": "generic",
             "read_only": false,
             "parameters": {
                 "ruleset_name": {
                     "description": "YARA ruleset name",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -220,15 +199,18 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "ruleset_name",
+                    "column_name": "Ruleset Name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -252,7 +234,7 @@
             "action": "yara get ruleset text",
             "identifier": "yara_get_ruleset_text",
             "description": "TCA-0303 - Get YARA ruleset text",
-            "verbose": "Get the text of a YARA ruleset",
+            "verbose": "Get the text of a YARA ruleset.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -260,10 +242,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -274,15 +252,18 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "ruleset_name",
+                    "column_name": "Ruleset Name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -306,7 +287,6 @@
             "action": "get yara matches",
             "identifier": "get_yara_matches",
             "description": "TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range",
-            "verbose": "",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -314,10 +294,6 @@
                     "description": "'utc' or 'timestamp'",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "time_format",
                     "id": 1,
@@ -327,10 +303,6 @@
                     "description": "'YYYY-MM-DDThh:mm:ss' or Unix timestamp string",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "time_value",
                     "id": 2,
@@ -341,22 +313,24 @@
                 {
                     "data_path": "action_result.parameter.time_format",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "time_format",
+                    "column_name": "Time Format",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.time_value",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "time_value",
+                    "column_name": "Time Value",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -380,7 +354,7 @@
             "action": "yara retro enable hunt",
             "identifier": "yara_retro_enable_hunt",
             "description": "TCA-0319 - Enable YARA retro hunt",
-            "verbose": "Enable the retro hunt for the specified ruleset that has been submitted to TitaniumCloud prior to deployment of YARA retro",
+            "verbose": "Enable the retro hunt for the specified ruleset that has been submitted to TitaniumCloud prior to deployment of YARA retro.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -388,10 +362,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -402,15 +372,18 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "ruleset_name",
+                    "column_name": "Ruleset Name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -434,7 +407,6 @@
             "action": "yara retro start hunt",
             "identifier": "yara_retro_start_hunt",
             "description": "TCA-0319 - Start YARA retro hunt for the specified ruleset",
-            "verbose": "",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -442,10 +414,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -456,15 +424,18 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "ruleset_name",
+                    "column_name": "Ruleset Name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -488,7 +459,6 @@
             "action": "yara retro check status",
             "identifier": "yara_retro_check_status",
             "description": "TCA-0319 - Check the retro hunt status for the specified ruleset",
-            "verbose": "",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -496,10 +466,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -510,15 +476,18 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "ruleset_name",
+                    "column_name": "Ruleset Name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -542,7 +511,6 @@
             "action": "yara retro cancel hunt",
             "identifier": "yara_retro_cancel_hunt",
             "description": "TCA-0319 - Cancel the retro hunt for the specified ruleset",
-            "verbose": "",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -550,10 +518,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -564,15 +528,18 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "ruleset_name",
+                    "column_name": "Ruleset Name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -596,7 +563,6 @@
             "action": "get yara retro matches",
             "identifier": "get_yara_retro_matches",
             "description": "TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range",
-            "verbose": "",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -604,10 +570,6 @@
                     "description": "'utc' or 'timestamp'",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "time_format",
                     "id": 1,
@@ -617,10 +579,6 @@
                     "description": "'YYYY-MM-DDThh:mm:ss' or Unix timestamp string",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "time_value",
                     "id": 2,
@@ -631,22 +589,24 @@
                 {
                     "data_path": "action_result.parameter.time_format",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "time_format",
+                    "column_name": "Time Format",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.time_value",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "time_value",
+                    "column_name": "Time Value",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -669,31 +629,23 @@
         {
             "action": "imphash similarity",
             "identifier": "imphash_similarity",
-            "description": "TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)",
-            "verbose": "Imphash Index provides a list of all available SHA1 hashes for files sharing the same import hash (imphash). An imphash is a hash calculated from a string which contains the libraries imported by a Windows Portable Executable (PE) file.",
+            "description": "TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (ImpHash)",
+            "verbose": "Imphash Index provides a list of all available SHA1 hashes for files sharing the same import hash (ImpHash). An ImpHash is a hash calculated from a string which contains the libraries imported by a Windows Portable Executable (PE) file.",
             "type": "generic",
             "read_only": false,
             "parameters": {
                 "imphash": {
-                    "description": "imphash",
+                    "description": "ImpHash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "imphash",
                     "id": 1,
                     "param_name": "imphash"
                 },
                 "limit": {
-                    "description": "maximum number of results",
+                    "description": "Maximum number of results",
                     "data_type": "numeric",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
                     "default": 5000,
                     "order": 1,
                     "name": "limit",
@@ -705,22 +657,24 @@
                 {
                     "data_path": "action_result.parameter.imphash",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "imphash",
+                    "column_name": "Imphash",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.limit",
                     "data_type": "numeric",
-                    "contains": [],
-                    "column_name": "limit",
+                    "column_name": "Limit",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -752,10 +706,6 @@
                     "description": "Advanced Search query",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "query",
                     "id": 1,
@@ -764,10 +714,6 @@
                 "limit": {
                     "description": "Maximum number of results",
                     "data_type": "numeric",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
                     "default": 5000,
                     "order": 1,
                     "name": "limit",
@@ -779,22 +725,24 @@
                 {
                     "data_path": "action_result.parameter.query",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "query",
+                    "column_name": "Query",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.limit",
                     "data_type": "numeric",
-                    "contains": [],
-                    "column_name": "limit",
+                    "column_name": "Limit",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -834,10 +782,6 @@
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash",
                     "id": 1,
@@ -848,15 +792,18 @@
                 {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "hash",
+                    "column_name": "Hash",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -888,7 +835,6 @@
             "action": "file reputation",
             "identifier": "file_reputation",
             "description": "TCA-0101 - Queries for file reputation info",
-            "verbose": "",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -903,8 +849,6 @@
                         "sha1",
                         "md5"
                     ],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash"
                 }
@@ -919,14 +863,18 @@
                         "sha1",
                         "md5"
                     ],
-                    "column_name": "hash",
+                    "column_name": "Hash",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -966,10 +914,6 @@
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash",
                     "id": 1,
@@ -980,15 +924,18 @@
                 {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "hash",
+                    "column_name": "Hash",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1028,10 +975,6 @@
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash",
                     "id": 1,
@@ -1040,10 +983,6 @@
                 "limit": {
                     "description": "Maximum number of results",
                     "data_type": "numeric",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
                     "default": 5000,
                     "order": 1,
                     "name": "limit",
@@ -1055,22 +994,24 @@
                 {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "hash",
+                    "column_name": "Hash",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.limit",
                     "data_type": "numeric",
-                    "contains": [],
-                    "column_name": "limit",
+                    "column_name": "Limit",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1102,7 +1043,6 @@
             "action": "url reputation",
             "identifier": "url_reputation",
             "description": "TCA-0403 Queries URL Threat Intelligence",
-            "verbose": "",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -1114,8 +1054,6 @@
                     "contains": [
                         "url"
                     ],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "url"
                 }
@@ -1127,14 +1065,18 @@
                     "contains": [
                         "url"
                     ],
-                    "column_name": "url",
+                    "column_name": "URL",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1174,10 +1116,6 @@
                     "description": "URL to analyze",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "url",
                     "id": 1,
@@ -1188,15 +1126,18 @@
                 {
                     "data_path": "action_result.parameter.url",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "url",
+                    "column_name": "URL",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1233,13 +1174,9 @@
             "read_only": false,
             "parameters": {
                 "uri": {
-                    "description": "uri",
+                    "description": "URI",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "uri",
                     "id": 1,
@@ -1250,15 +1187,18 @@
                 {
                     "data_path": "action_result.parameter.uri",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "uri",
+                    "column_name": "Uri",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1298,10 +1238,6 @@
                     "description": "Desired URI string",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "uri",
                     "id": 1,
@@ -1310,10 +1246,6 @@
                 "limit": {
                     "description": "Maximum number of results",
                     "data_type": "numeric",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
                     "default": 5000,
                     "order": 1,
                     "name": "limit",
@@ -1325,22 +1257,24 @@
                 {
                     "data_path": "action_result.parameter.uri",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "uri",
+                    "column_name": "Uri",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.limit",
                     "data_type": "numeric",
-                    "contains": [],
-                    "column_name": "limit",
+                    "column_name": "Limit",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1380,10 +1314,6 @@
                     "description": "Selected sample's SHA-1 hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "sha1",
                     "id": 1,
@@ -1393,10 +1323,6 @@
                     "description": "Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "platform",
                     "id": 2,
@@ -1407,22 +1333,24 @@
                 {
                     "data_path": "action_result.parameter.sha1",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "sha1",
+                    "column_name": "SHA1",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.platform",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "platform",
+                    "column_name": "Platform",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1458,10 +1386,6 @@
                     "description": "Selected sample's SHA-1 hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "sha1",
                     "id": 1,
@@ -1470,11 +1394,6 @@
                 "analysis_id": {
                     "description": "Return only the results of this analysis",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "analysis_id",
                     "id": 2,
@@ -1483,9 +1402,6 @@
                 "latest": {
                     "description": "Return only the latest analysis results",
                     "data_type": "boolean",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
                     "default": false,
                     "order": 2,
                     "name": "latest",
@@ -1497,29 +1413,30 @@
                 {
                     "data_path": "action_result.parameter.sha1",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "sha1",
+                    "column_name": "SHA1",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.analysis_id",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "analysis_id",
+                    "column_name": "Analysis ID",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.parameter.latest",
                     "data_type": "boolean",
-                    "contains": [],
-                    "column_name": "latest",
+                    "column_name": "Latest",
                     "column_order": 2
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 3
+                    "column_name": "Status",
+                    "column_order": 3,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1551,10 +1468,6 @@
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash"
                 }
@@ -1563,15 +1476,18 @@
                 {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "hash",
+                    "column_name": "Hash",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1595,7 +1511,6 @@
             "action": "upload file",
             "identifier": "upload_file",
             "description": "TCA-0202 - Upload file to TitaniumCloud",
-            "verbose": "",
             "type": "generic",
             "read_only": true,
             "parameters": {
@@ -1607,8 +1522,6 @@
                     "contains": [
                         "vault id"
                     ],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "vault_id",
                     "id": 1,
@@ -1617,17 +1530,15 @@
                 "file_name": {
                     "description": "Filename to use",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
                     "contains": [
                         "file name"
                     ],
-                    "value_list": [],
                     "default": "sample",
                     "order": 1,
                     "name": "file_name",
                     "id": 2,
-                    "param_name": "file_name"
+                    "param_name": "file_name",
+                    "primary": true
                 }
             },
             "output": [
@@ -1644,7 +1555,7 @@
                         "xls",
                         "ppt"
                     ],
-                    "column_name": "vault_id",
+                    "column_name": "Vault ID",
                     "column_order": 0
                 },
                 {
@@ -1653,14 +1564,18 @@
                     "contains": [
                         "file name"
                     ],
-                    "column_name": "file_name",
+                    "column_name": "File Name",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1684,7 +1599,6 @@
             "action": "get file",
             "identifier": "get_file",
             "description": "TCA-0201 - Download a sample from TitaniumCloud and add it to the vault",
-            "verbose": "",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -1698,8 +1612,6 @@
                         "sha1",
                         "sha256"
                     ],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash"
                 }
@@ -1713,14 +1625,18 @@
                         "sha1",
                         "sha256"
                     ],
-                    "column_name": "hash",
+                    "column_name": "Hash",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
