@@ -51,7 +51,7 @@ def new_delete(url, **kwargs):
 phantom.requests.delete = new_delete
 
 
-class ReversinglabstitaniumcloudConnector(BaseConnector):
+class ReversinglabsTitaniumCloudConnector(BaseConnector):
     ticloud_spex_url = "/api/spex/upload/"
     USER_AGENT = "ReversingLabs TitaniumCloud v1.0.0"
 
@@ -85,7 +85,7 @@ class ReversinglabstitaniumcloudConnector(BaseConnector):
 
     def __init__(self):
         # Call the BaseConnectors init first
-        super(ReversinglabstitaniumcloudConnector, self).__init__()
+        super(ReversinglabsTitaniumCloudConnector, self).__init__()
 
         self.ACTIONS = {
             self.ACTION_ID_TEST_CONNECTIVITY: self._handle_test_connectivity,
@@ -503,7 +503,7 @@ def main():
         in_json = f.read()
         in_json = json.loads(in_json)
 
-        connector = ReversinglabstitaniumcloudConnector()
+        connector = ReversinglabsTitaniumCloudConnector()
         connector.print_progress_message = True
 
         connector._handle_action(json.dumps(in_json), None)

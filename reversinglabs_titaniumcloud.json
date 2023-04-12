@@ -4,22 +4,22 @@
     "description": "ReversingLabs TitaniumCloud is a threat intelligence solution which increases detection, analysis, and response efficiency by identifying files from queries to an authoritative 10 billion global goodware and malware database. A powerful set of REST API query and feed functions deliver targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services.",
     "type": "reputation",
     "product_vendor": "Reversinglabs",
-    "logo": "reversinglabstitaniumcloud.svg",
-    "logo_dark": "reversinglabstitaniumcloud_dark.svg",
+    "logo": "reversinglabs_titaniumcloud.svg",
+    "logo_dark": "reversinglabs_titaniumcloud_dark.svg",
     "product_name": "TitaniumCloud",
     "python_version": "3",
     "product_version_regex": ".*",
     "publisher": "ReversingLabs",
     "contributors": [
         {
-          "name": "ivukovicRL"
+            "name": "ivukovicRL"
         }
     ],
     "license": "Copyright (c) ReversingLabs, 2023",
     "app_version": "1.0.0",
     "utctime_updated": "2023-03-14T11:16:58.519975Z",
     "package_name": "phantom_reversinglabstitaniumcloud",
-    "main_module": "reversinglabstitaniumcloud_connector.py",
+    "main_module": "reversinglabs_titaniumcloud_connector.py",
     "min_phantom_version": "5.5.0.108488",
     "app_wizard_version": "1.0.0",
     "configuration": {
@@ -35,20 +35,16 @@
         },
         "username": {
             "description": "TitaniumCloud username",
-            "data_type": "string",
+            "data_type": "password",
             "required": true,
-            "value_list": [],
-            "default": "",
             "order": 1,
             "name": "username",
             "id": 1
         },
         "password": {
             "description": "TitaniumCloud password",
-            "data_type": "string",
+            "data_type": "password",
             "required": true,
-            "value_list": [],
-            "default": "",
             "order": 2,
             "name": "password",
             "id": 2
@@ -133,6 +129,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -187,6 +187,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -241,6 +245,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -295,6 +303,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -369,6 +381,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -423,6 +439,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -477,6 +497,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -531,6 +555,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -585,6 +613,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -659,6 +691,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -733,10 +769,18 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
-                "type": "table"
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_titaniumcloud_views.imphash_similarity",
+                "title": "TitaniumCloud Imphash Similarity"
             },
             "versions": "EQ(*)"
         },
@@ -817,7 +861,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "views.advanced_search",
+                "view": "reversinglabs_titaniumcloud_views.advanced_search",
                 "title": "TitaniumCloud Advanced Search"
             },
             "versions": "EQ(*)"
@@ -879,7 +923,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "views.av_scanners",
+                "view": "reversinglabs_titaniumcloud_views.av_scanners",
                 "title": "TitaniumCloud AvScanners"
             },
             "versions": "EQ(*)"
@@ -949,7 +993,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "views.file_reputation",
+                "view": "reversinglabs_titaniumcloud_views.file_reputation",
                 "title": "TitaniumCloud File Reputation"
             },
             "versions": "EQ(*)"
@@ -1011,7 +1055,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "views.file_analysis",
+                "view": "reversinglabs_titaniumcloud_views.file_analysis",
                 "title": "TitaniumCloud File Analysis"
             },
             "versions": "EQ(*)"
@@ -1093,7 +1137,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "views.functional_similarity",
+                "view": "reversinglabs_titaniumcloud_views.functional_similarity",
                 "title": "TitaniumCloud RHA1 Functional Similarity"
             },
             "versions": "EQ(*)"
@@ -1157,7 +1201,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "views.url_reputation",
+                "view": "reversinglabs_titaniumcloud_views.url_reputation",
                 "title": "TitaniumCloud Url Reputation"
             },
             "versions": "EQ(*)"
@@ -1219,7 +1263,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "views.analyze_url",
+                "view": "reversinglabs_titaniumcloud_views.analyze_url",
                 "title": "TitaniumCloud Analyze Url"
             },
             "versions": "EQ(*)"
@@ -1281,7 +1325,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "views.uri_statistics",
+                "view": "reversinglabs_titaniumcloud_views.uri_statistics",
                 "title": "TitaniumCloud Uri Statistics"
             },
             "versions": "EQ(*)"
@@ -1363,7 +1407,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "views.uri_index",
+                "view": "reversinglabs_titaniumcloud_views.uri_index",
                 "title": "TitaniumCloud Uri Index"
             },
             "versions": "EQ(*)"
@@ -1435,13 +1479,17 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "views.submit_for_dynamic_analysis",
+                "view": "reversinglabs_titaniumcloud_views.submit_for_dynamic_analysis",
                 "title": "TitaniumCloud Submit For Dynamic Analysis"
             },
             "versions": "EQ(*)"
@@ -1532,10 +1580,18 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 }
             ],
             "render": {
-                "type": "table"
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_titaniumcloud_views.dynamic_analysis_results",
+                "title": "TitaniumCloud Get Dynamic Analysis Results"
             },
             "versions": "EQ(*)"
         },

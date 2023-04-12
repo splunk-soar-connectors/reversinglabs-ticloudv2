@@ -1,0 +1,159 @@
+{% extends 'widgets/widget_template.html' %}
+{% load custom_template %}
+{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
+background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
+{% block widget_content %}
+<style>
+    .widget-container {
+        width: 1170px !important;
+        height: 600px;
+    }
+
+    .c-app-run-widget {
+        height: 680px;
+        width: 100%;
+        position: relative;
+    }
+
+    .rl-table {
+        line-break: auto;
+    }
+
+    .rl-table thead th {
+        text-align: center;
+        font-size: 1.4rem;
+    }
+
+    .rl-table td {
+        padding: 7px;
+    }
+
+    .rl-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #rl-target {
+        padding-top: 0.5rem;
+        text-transform: initial;
+        font-size: 1.4rem;
+        font-weight: bold;
+        -moz-user-select: text;
+        -khtml-user-select: text;
+        -webkit-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+
+    .rl-table td:first-child {
+        color: #6c818b;
+        text-transform: uppercase;
+        font-weight: 500;
+        white-space: nowrap;
+        padding-left: 0.8rem;
+        padding-right: 2rem;
+        width: 11%;
+    }
+</style>
+<div class="rl-content">
+    {% if data.report_base == None %}
+    There is no rl object in the response JSON.
+    {% else %}
+    <table class="rl-table">
+        <thead>
+            <tr>
+                <th colspan="2">ReversingLabs URL Threat Intelligence for
+                    <div id="rl-target" class="main-grid">{{data.report_base.requested_url}}</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Classification</td>
+                <td>
+                    <span style="color:{{data.classification_color}};">{{data.classification}}</span>
+                </td>
+            </tr>
+            {% if data.report_base.analysis != None %}
+            <tr>
+                <td>First analysis</td>
+                <td>{{data.report_base.analysis.first_analysis}}</td>
+            </tr>
+            <tr>
+                <td>Analysis count</td>
+                <td>{{data.report_base.analysis.analysis_count}}</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th colspan="2">Last analysis</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Analysis ID</td>
+                <td>{{data.report_base.analysis.last_analysis.analysis_id}}</td>
+            </tr>
+            <tr>
+                <td>Analysis_time</td>
+                <td>{{data.report_base.analysis.last_analysis.analysis_time}}</td>
+            </tr>
+            <tr>
+                <td>Final URL</td>
+                <td>{{data.report_base.analysis.last_analysis.final_url}}</td>
+            </tr>
+            <tr>
+                <td>Availability status</td>
+                <td>{{data.report_base.analysis.last_analysis.availability_status}}</td>
+            </tr>
+            <tr>
+                <td>Domain</td>
+                <td>{{data.report_base.analysis.last_analysis.domain}}</td>
+            </tr>
+            <tr>
+                <td>Serving IP Address</td>
+                <td>{{data.report_base.analysis.last_analysis.serving_ip_address}}</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th colspan="2">Statistics</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span style="color:green;">KNOWN</span>
+                </td>
+                <td>{{data.report_base.analysis.statistics.known}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="color:orange;">SUSPICIOUS</span>
+                </td>
+                <td>{{data.report_base.analysis.statistics.suspicious}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="color:red;">MALICIOUS</span>
+                </td>
+                <td>{{data.report_base.analysis.statistics.malicious}}</td>
+            </tr>
+            <tr>
+                <td>UNKNOWN</td>
+                <td>{{data.report_base.analysis.statistics.unknown}}</td>
+            </tr>
+            <tr>
+                <td>TOTAL</td>
+                <td>{{data.report_base.analysis.statistics.total}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {% endif %}
+
+    {% endif %}
+
+    </font>
+</div>
+{% endblock %}
