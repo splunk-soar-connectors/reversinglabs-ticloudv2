@@ -1061,8 +1061,8 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "rha1 functional similarity",
-            "identifier": "rha1_functional_similarity",
+            "action": "functional similarity",
+            "identifier": "functional_similarity",
             "description": "TCA-0301 - Retrieve a list of functionally similar hashes to the provided one",
             "verbose": "Provides a list of SHA1 hashes of files that are functionally similar to the provided file (SHA1 hash) at the selected precision level.",
             "type": "generic",

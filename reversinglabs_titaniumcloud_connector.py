@@ -62,7 +62,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
     ACTION_ID_URI_STATISTICS = "uri_statistics"
     ACTION_ID_AV_SCANNERS = "av_scanners"
     ACTION_ID_FILE_ANALYSIS = "file_analysis"
-    ACTION_ID_RHA1_FUNCTIONAL_SIMILARITY = "rha1_functional_similarity"
+    ACTION_ID_FUNCTIONAL_SIMILARITY = "functional_similarity"
     ACTION_ID_URL_THREAT_INTELLIGENCE = "url_reputation"
     ACTION_ID_ANALYZE_URL = "analyze_url"
     ACTION_ID_URI_INDEX = "uri_index"
@@ -94,7 +94,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             self.ACTION_ID_URI_STATISTICS: self._handle_uri_statistics,
             self.ACTION_ID_AV_SCANNERS: self._handle_av_scanners,
             self.ACTION_ID_FILE_ANALYSIS: self._handle_file_analysis,
-            self.ACTION_ID_RHA1_FUNCTIONAL_SIMILARITY: self._handle_rha1_functional_similarity,
+            self.ACTION_ID_FUNCTIONAL_SIMILARITY: self._handle_functional_similarity,
             self.ACTION_ID_URL_THREAT_INTELLIGENCE: self._handle_url_reputation,
             self.ACTION_ID_ANALYZE_URL: self._handle_analyze_url,
             self.ACTION_ID_URI_INDEX: self._handle_uri_index,
@@ -168,7 +168,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             show_hashes_in_results=True
         )
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -187,7 +187,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             max_results=int(param.get("limit"))
         )
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         for result in response:
             action_result.add_data(result)
@@ -206,7 +206,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             uri_input=param.get("uri")
         )
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -221,7 +221,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = xref.get_scan_results(hash_input=param.get("hash"))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -236,11 +236,11 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = rldata.get_analysis_results(hash_input=param.get("hash"))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
-    def _handle_rha1_functional_similarity(self, action_result, param):
+    def _handle_functional_similarity(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
         similarity = RHA1FunctionalSimilarity(
@@ -253,7 +253,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             hash_input=param.get("hash"),
             max_results=param.get("limit"))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         for result in response:
             action_result.add_data(result)
@@ -269,7 +269,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = url_intelligence.get_url_report(url_input=param.get("url"))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -284,7 +284,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = analyze_url.submit_url(url_input=param.get("url"))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -302,7 +302,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             max_results=param.get("limit")
         )
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         for result in response:
             action_result.add_data(result)
@@ -321,7 +321,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             max_results=param.get("limit")
         )
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         for result in response:
             action_result.add_data(result)
@@ -340,7 +340,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             platform=param.get("platform")
         )
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -359,7 +359,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             analysis_id=param.get('analysis_id')
         )
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -374,7 +374,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = reanalyze.ranalyze_samples(sample_hashes=param.get("hash"))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
     def _handle_upload_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
@@ -403,7 +403,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
                 headers={'User-Agent': self.USER_AGENT, 'Content-Type': 'application/octet-stream'}
             )
 
-            self.debug_print("status_code", response.status_code)
+            self.debug_print("Executed", self.get_action_identifier())
 
             if response.status_code != 200:
                 raise Exception('Unable to upload file to TitaniumCloud. Status code: {0}'.format(response.status_code))
@@ -428,7 +428,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
                 headers={'User-Agent': self.USER_AGENT, 'Content-Type': 'application/octet-stream'}
             )
 
-            self.debug_print("status_code", response.status_code)
+            self.debug_print("Executed", self.get_action_identifier())
 
             if response.status_code != 200:
                 raise Exception('Unable to upload file meta to TitaniumCloud. Status code: {0}'.format(response.status_code))
@@ -444,7 +444,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = file_download.download_sample(hash_input=param.get("hash"))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         file_path = os.path.join(Vault.get_vault_tmp_dir(), param.get("hash"))
         with open(file_path, "wb") as file_obj:
@@ -465,7 +465,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = yara.create_ruleset(ruleset_name=param.get('ruleset_name'), ruleset_text=param.get('ruleset_text'))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -480,7 +480,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = yara.delete_ruleset(ruleset_name=param.get('ruleset_name'))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
     def _handle_yara_get_ruleset_info(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
@@ -493,7 +493,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = yara.get_ruleset_info(ruleset_name=param.get('ruleset_name'))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -508,7 +508,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = yara.get_ruleset_text(ruleset_name=param.get('ruleset_name'))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -523,7 +523,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = yara.yara_matches_feed(time_format=param.get('time_format'), time_value=param.get('time_value'))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -538,7 +538,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = yara_retro.enable_retro_hunt(ruleset_name=param.get('ruleset_name'))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -553,7 +553,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = yara_retro.start_retro_hunt(ruleset_name=param.get('ruleset_name'))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -568,7 +568,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = yara_retro.check_status(ruleset_name=param.get('ruleset_name'))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -583,7 +583,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = yara_retro.cancel_retro_hunt(ruleset_name=param.get('ruleset_name'))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
@@ -598,7 +598,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
         response = yara_retro.yara_retro_matches_feed(time_format=param.get('time_format'), time_value=param.get('time_value'))
 
-        self.debug_print("status_code", response.status_code)
+        self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
