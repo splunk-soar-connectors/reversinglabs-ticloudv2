@@ -95,14 +95,14 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             self.ACTION_ID_AV_SCANNERS: self._handle_av_scanners,
             self.ACTION_ID_FILE_ANALYSIS: self._handle_file_analysis,
             self.ACTION_ID_RHA1_FUNCTIONAL_SIMILARITY: self._handle_rha1_functional_similarity,
-            self.ACTION_ID_URL_THREAT_INTELLIGENCE: self._handle_url_threat_intelligence,
+            self.ACTION_ID_URL_THREAT_INTELLIGENCE: self._handle_url_reputation,
             self.ACTION_ID_ANALYZE_URL: self._handle_analyze_url,
             self.ACTION_ID_URI_INDEX: self._handle_uri_index,
             self.ACTION_ID_SUBMIT_FOR_DYNAMIC_ANALYSIS: self._handle_submit_for_dynamic_analysis,
-            self.ACTION_ID_DYNAMIC_ANALYSIS_RESULTS: self._handle_dynamic_analysis_results,
+            self.ACTION_ID_DYNAMIC_ANALYSIS_RESULTS: self._handle_get_report,
             self.ACTION_ID_REANALYZE_FILE: self._handle_reanalyze_file,
-            self.ACTION_ID_FILE_UPLOAD: self._handle_file_upload,
-            self.ACTION_ID_FILE_DOWNLOAD: self._handle_file_download,
+            self.ACTION_ID_FILE_UPLOAD: self._handle_upload_file,
+            self.ACTION_ID_FILE_DOWNLOAD: self._handle_get_file,
             self.ACTION_ID_IMPHASH_SIMILARITY: self._handle_imphash_similarity,
             self.ACTION_ID_YARA_CREATE_RULESET: self._handle_yara_create_ruleset,
             self.ACTION_ID_YARA_DELETE_RULESET: self._handle_yara_delete_ruleset,
@@ -258,7 +258,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         for result in response:
             action_result.add_data(result)
 
-    def _handle_url_threat_intelligence(self, action_result, param):
+    def _handle_url_reputation(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
         url_intelligence = URLThreatIntelligence(
@@ -344,7 +344,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
 
         action_result.add_data(response.json())
 
-    def _handle_dynamic_analysis_results(self, action_result, param):
+    def _handle_get_report(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
         sandbox = DynamicAnalysis(
@@ -376,7 +376,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
 
         self.debug_print("status_code", response.status_code)
 
-    def _handle_file_upload(self, action_result, param):
+    def _handle_upload_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
         file_vault_id = param["vault_id"]
@@ -433,7 +433,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             if response.status_code != 200:
                 raise Exception('Unable to upload file meta to TitaniumCloud. Status code: {0}'.format(response.status_code))
 
-    def _handle_file_download(self, action_result, param):
+    def _handle_get_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
         file_download = FileDownload(
