@@ -153,7 +153,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_file_reputation(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         file_reputation = FileReputation(
             host=self.ticloud_base_url,
@@ -173,7 +173,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_advanced_search(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         advanced_search = AdvancedSearch(
             host=self.ticloud_base_url,
@@ -193,7 +193,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             action_result.add_data(result)
 
     def _handle_uri_statistics(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         uri_statistics = URIStatistics(
             host=self.ticloud_base_url,
@@ -211,7 +211,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_av_scanners(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         xref = AVScanners(
             host=self.ticloud_base_url,
@@ -226,7 +226,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_file_analysis(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         rldata = FileAnalysis(
             host=self.ticloud_base_url,
@@ -241,7 +241,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_rha1_functional_similarity(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         similarity = RHA1FunctionalSimilarity(
             host=self.ticloud_base_url,
@@ -259,7 +259,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             action_result.add_data(result)
 
     def _handle_url_threat_intelligence(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         url_intelligence = URLThreatIntelligence(
             host=self.ticloud_base_url,
@@ -274,7 +274,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_analyze_url(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         analyze_url = AnalyzeURL(
             host=self.ticloud_base_url,
@@ -289,7 +289,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_uri_index(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         uri_index = URIIndex(
             host=self.ticloud_base_url,
@@ -308,7 +308,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             action_result.add_data(result)
 
     def _handle_imphash_similarity(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         imphash = ImpHashSimilarity(
             host=self.ticloud_base_url,
@@ -327,7 +327,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             action_result.add_data(result)
 
     def _handle_submit_for_dynamic_analysis(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         sandbox = DynamicAnalysis(
             host=self.ticloud_base_url,
@@ -345,7 +345,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_dynamic_analysis_results(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         sandbox = DynamicAnalysis(
             host=self.ticloud_base_url,
@@ -364,7 +364,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_reanalyze_file(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         reanalyze = ReanalyzeFile(
             host=self.ticloud_base_url,
@@ -377,7 +377,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         self.debug_print("status_code", response.status_code)
 
     def _handle_file_upload(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         file_vault_id = param["vault_id"]
         success, msg, files_array = vault.vault_info(container_id=self.get_container_id())
@@ -434,7 +434,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
                 raise Exception('Unable to upload file meta to TitaniumCloud. Status code: {0}'.format(response.status_code))
 
     def _handle_file_download(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         file_download = FileDownload(
             host=self.ticloud_base_url,
@@ -455,7 +455,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             raise Exception('Unable to store file in Vault. Error details: {0}'.format(msg))
 
     def _handle_yara_create_ruleset(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         yara = YARAHunting(
             host=self.ticloud_base_url,
@@ -470,7 +470,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_yara_delete_ruleset(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         yara = YARAHunting(
             host=self.ticloud_base_url,
@@ -483,7 +483,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         self.debug_print("status_code", response.status_code)
 
     def _handle_yara_get_ruleset_info(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         yara = YARAHunting(
             host=self.ticloud_base_url,
@@ -498,7 +498,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_yara_get_ruleset_text(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         yara = YARAHunting(
             host=self.ticloud_base_url,
@@ -513,7 +513,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_get_yara_matches(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         yara = YARAHunting(
             host=self.ticloud_base_url,
@@ -528,7 +528,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_yara_retro_enable_hunt(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         yara_retro = YARARetroHunting(
             host=self.ticloud_base_url,
@@ -543,7 +543,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_yara_retro_start_hunt(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         yara_retro = YARARetroHunting(
             host=self.ticloud_base_url,
@@ -558,7 +558,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_yara_retro_check_status(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         yara_retro = YARARetroHunting(
             host=self.ticloud_base_url,
@@ -573,7 +573,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_yara_retro_cancel_hunt(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         yara_retro = YARARetroHunting(
             host=self.ticloud_base_url,
@@ -588,7 +588,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_get_yara_retro_matches(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         yara_retro = YARARetroHunting(
             host=self.ticloud_base_url,
@@ -603,7 +603,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         action_result.add_data(response.json())
 
     def _handle_test_connectivity(self, action_result, param):
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.debug_print("Action handler", self.get_action_identifier())
 
         file_reputation = FileReputation(
             host=self.ticloud_base_url,
