@@ -711,7 +711,7 @@
             "read_only": false,
             "parameters": {
                 "imphash": {
-                    "description": "imphash",
+                    "description": "Imphash",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
@@ -724,7 +724,7 @@
                     "param_name": "imphash"
                 },
                 "limit": {
-                    "description": "maximum number of results",
+                    "description": "Maximum number of results",
                     "data_type": "numeric",
                     "required": false,
                     "primary": false,
@@ -1277,7 +1277,7 @@
             "read_only": false,
             "parameters": {
                 "uri": {
-                    "description": "uri",
+                    "description": "Uri",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
