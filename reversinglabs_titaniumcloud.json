@@ -55,7 +55,7 @@
             "action": "test connectivity",
             "identifier": "test_connectivity",
             "description": "Validate the asset configuration for connectivity using supplied configuration",
-            "verbose": "",
+            "verbose": "Validate the asset configuration for connectivity using supplied configuration.",
             "type": "test",
             "read_only": true,
             "parameters": {},
@@ -66,7 +66,7 @@
             "action": "yara create ruleset",
             "identifier": "yara_create_ruleset",
             "description": "TCA-0303 - Create a new YARA ruleset",
-            "verbose": "",
+            "verbose": "TCA-0303 - Create a new YARA ruleset.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -144,7 +144,7 @@
             "action": "yara delete ruleset",
             "identifier": "yara_delete_ruleset",
             "description": "TCA-0303 - Delete YARA ruleset",
-            "verbose": "",
+            "verbose": "TCA-0303 - Delete YARA ruleset.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -202,7 +202,7 @@
             "action": "yara get ruleset info",
             "identifier": "yara_get_ruleset_info",
             "description": "TCA-0303 - Get YARA ruleset info",
-            "verbose": "Get information for a specific YARA ruleset or all YARA rulesets in the collection",
+            "verbose": "TCA-0303 - Get information for a specific YARA ruleset or all YARA rulesets in the collection",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -260,7 +260,7 @@
             "action": "yara get ruleset text",
             "identifier": "yara_get_ruleset_text",
             "description": "TCA-0303 - Get YARA ruleset text",
-            "verbose": "Get the text of a YARA ruleset",
+            "verbose": "TCA-0303 - Get the text of a YARA ruleset.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -318,7 +318,7 @@
             "action": "get yara matches",
             "identifier": "get_yara_matches",
             "description": "TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range",
-            "verbose": "",
+            "verbose": "TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -396,7 +396,7 @@
             "action": "yara retro enable hunt",
             "identifier": "yara_retro_enable_hunt",
             "description": "TCA-0319 - Enable YARA retro hunt",
-            "verbose": "Enable the retro hunt for the specified ruleset that has been submitted to TitaniumCloud prior to deployment of YARA retro",
+            "verbose": "TCA-0319 - Enable the retro hunt for the specified ruleset that has been submitted to TitaniumCloud prior to deployment of YARA retro.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -454,7 +454,7 @@
             "action": "yara retro start hunt",
             "identifier": "yara_retro_start_hunt",
             "description": "TCA-0319 - Start YARA retro hunt for the specified ruleset",
-            "verbose": "",
+            "verbose": "TCA-0319 - Start YARA retro hunt for the specified ruleset.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -512,7 +512,7 @@
             "action": "yara retro check status",
             "identifier": "yara_retro_check_status",
             "description": "TCA-0319 - Check the retro hunt status for the specified ruleset",
-            "verbose": "",
+            "verbose": "TCA-0319 - Check the retro hunt status for the specified ruleset.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -570,7 +570,7 @@
             "action": "yara retro cancel hunt",
             "identifier": "yara_retro_cancel_hunt",
             "description": "TCA-0319 - Cancel the retro hunt for the specified ruleset",
-            "verbose": "",
+            "verbose": "TCA-0319 - Cancel the retro hunt for the specified ruleset.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -628,7 +628,7 @@
             "action": "get yara retro matches",
             "identifier": "get_yara_retro_matches",
             "description": "TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range",
-            "verbose": "",
+            "verbose": "TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -706,7 +706,7 @@
             "action": "imphash similarity",
             "identifier": "imphash_similarity",
             "description": "TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)",
-            "verbose": "Imphash Index provides a list of all available SHA1 hashes for files sharing the same import hash (imphash). An imphash is a hash calculated from a string which contains the libraries imported by a Windows Portable Executable (PE) file.",
+            "verbose": "TCA-0302 - Imphash Index provides a list of all available SHA1 hashes for files sharing the same import hash (imphash). An imphash is a hash calculated from a string which contains the libraries imported by a Windows Portable Executable (PE) file.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -788,7 +788,7 @@
             "action": "advanced search",
             "identifier": "advanced_search",
             "description": "TCA-0320 - Search for hashes using multi-part search criteria",
-            "verbose": "Search for hashes using multi-part search criteria. Supported criteria include more than 60 keywords, 35 antivirus vendors, 137 sample types and subtypes, and 283 tags that enable creating 510 unique search expressions with support for Boolean operators and case-insensitive wildcard matching. A number of search keywords support relational operators '<=' and '>='.",
+            "verbose": "TCA-0320 - Search for hashes using multi-part search criteria. Supported criteria include more than 60 keywords, 35 antivirus vendors, 137 sample types and subtypes, and 283 tags that enable creating 510 unique search expressions with support for Boolean operators and case-insensitive wildcard matching. A number of search keywords support relational operators '<=' and '>='.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -870,7 +870,7 @@
             "action": "av scanners",
             "identifier": "av_scanners",
             "description": "TCA-0103 - Retrieve AV Scanner data from TitaniumCloud",
-            "verbose": "Provides AV vendor cross-reference data for a desired sample from multiple AV scanners.",
+            "verbose": "TCA-0103 - Provides AV vendor cross-reference data for a desired sample from multiple AV scanners.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -932,7 +932,7 @@
             "action": "file reputation",
             "identifier": "file_reputation",
             "description": "TCA-0101 - Queries for file reputation info",
-            "verbose": "",
+            "verbose": "TCA-0101 - Queries for file reputation info.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -1002,7 +1002,7 @@
             "action": "file analysis",
             "identifier": "file_analysis",
             "description": "TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud",
-            "verbose": "Provides file analysis data on hashes. Metadata can include relevant portions of static analysis, AV scan information, file sources and any related IP/domain information.",
+            "verbose": "TCA-0104 - Provides file analysis data on hashes. Metadata can include relevant portions of static analysis, AV scan information, file sources and any related IP/domain information.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1064,7 +1064,7 @@
             "action": "functional similarity",
             "identifier": "functional_similarity",
             "description": "TCA-0301 - Retrieve a list of functionally similar hashes to the provided one",
-            "verbose": "Provides a list of SHA1 hashes of files that are functionally similar to the provided file (SHA1 hash) at the selected precision level.",
+            "verbose": "TCA-0301 - Provides a list of SHA1 hashes of files that are functionally similar to the provided file (SHA1 hash) at the selected precision level.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1145,8 +1145,8 @@
         {
             "action": "url reputation",
             "identifier": "url_reputation",
-            "description": "TCA-0403 Queries URL Threat Intelligence",
-            "verbose": "",
+            "description": "TCA-0403 - Queries URL Threat Intelligence",
+            "verbose": "TCA-0403 - Queries URL Threat Intelligence.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -1210,7 +1210,7 @@
             "action": "analyze url",
             "identifier": "analyze_url",
             "description": "TCA-0404 - Analyze a given URL",
-            "verbose": "This service allows users to submit a URL for analysis.",
+            "verbose": "TCA-0404 - This service allows users to submit a URL for analysis.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -1272,7 +1272,7 @@
             "action": "uri statistics",
             "identifier": "uri_statistics",
             "description": "TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI",
-            "verbose": "Provides the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI (domain, IP address, email or URL).",
+            "verbose": "TCA-0402 - Provides the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI (domain, IP address, email or URL).",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1334,7 +1334,7 @@
             "action": "uri index",
             "identifier": "uri_index",
             "description": "TCA-0401 - Retrieve a list of all available file hashes associated with a given URI",
-            "verbose": "Provides a list of all available file hashes associated with a given URI (domain, IP address, email or URL) regardless of file classification.",
+            "verbose": "TCA-0401 - Provides a list of all available file hashes associated with a given URI (domain, IP address, email or URL) regardless of file classification.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1416,7 +1416,7 @@
             "action": "submit for dynamic analysis",
             "identifier": "submit_for_dynamic_analysis",
             "description": "TCA-0207 - Submit an existing sample for dynamic analysis",
-            "verbose": "This service allows users to detonate a file in the ReversingLabs TitaniumCloud sandbox. To submit a file for analysis, it must exist in TitaniumCloud.",
+            "verbose": "TCA-0207 - This service allows users to detonate a file in the ReversingLabs TitaniumCloud sandbox. To submit a file for analysis, it must exist in TitaniumCloud.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1498,7 +1498,7 @@
             "action": "dynamic analysis results",
             "identifier": "get_report",
             "description": "TCA-0106 - Retrieve dynamic analysis results",
-            "verbose": "This service allows users to retrieve dynamic analysis results for a file that was submitted for dynamic analysis.",
+            "verbose": "TCA-0106 - This service allows users to retrieve dynamic analysis results for a file that was submitted for dynamic analysis.",
             "type": "generic",
             "read_only": true,
             "parameters": {
@@ -1599,7 +1599,7 @@
             "action": "reanalyze file",
             "identifier": "reanalyze_file",
             "description": "TCA-0205 - Reanalyze sample",
-            "verbose": "This query sends a sample with the requested hash for rescanning.",
+            "verbose": "TCA-0205 - This query sends a sample with the requested hash for rescanning.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1651,7 +1651,7 @@
             "action": "upload file",
             "identifier": "upload_file",
             "description": "TCA-0202 - Upload file to TitaniumCloud",
-            "verbose": "",
+            "verbose": "TCA-0202 - Upload file to TitaniumCloud.",
             "type": "generic",
             "read_only": true,
             "parameters": {
@@ -1739,8 +1739,8 @@
         {
             "action": "get file",
             "identifier": "get_file",
-            "description": "TCA-0201 - Download a sample from TitaniumCloud and add it to the vault",
-            "verbose": "",
+            "description": "TCA-0201 - Download a sample from TitaniumCloud",
+            "verbose": "TCA-0201 - Download a sample from TitaniumCloud and add it to the vault.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
