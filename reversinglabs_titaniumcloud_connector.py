@@ -372,7 +372,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        response = reanalyze.ranalyze_samples(sample_hashes=param.get("hash"))
+        reanalyze.ranalyze_samples(sample_hashes=param.get("hash"))
 
         self.debug_print("Executed", self.get_action_identifier())
 
@@ -478,7 +478,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        response = yara.delete_ruleset(ruleset_name=param.get('ruleset_name'))
+        yara.delete_ruleset(ruleset_name=param.get('ruleset_name'))
 
         self.debug_print("Executed", self.get_action_identifier())
 
