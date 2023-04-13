@@ -1,7 +1,7 @@
 {
     "appid": "0fd5a550-35a4-4641-9d28-9237ec71cf3c",
     "name": "Reversinglabs TitaniumCloud",
-    "description": "ReversingLabs TitaniumCloud is a threat intelligence solution which increases detection, analysis, and response efficiency by identifying files from queries to an authoritative 10 billion global goodware and malware database. A powerful set of REST API query and feed functions deliver targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services.",
+    "description": "App integrates with ReversingLabs TitaniumCloud APIs delivering targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services",
     "type": "reputation",
     "product_vendor": "Reversinglabs",
     "logo": "reversinglabs_titaniumcloud.svg",
@@ -202,7 +202,7 @@
             "action": "yara get ruleset info",
             "identifier": "yara_get_ruleset_info",
             "description": "TCA-0303 - Get YARA ruleset info",
-            "verbose": "TCA-0303 - Get information for a specific YARA ruleset or all YARA rulesets in the collection",
+            "verbose": "TCA-0303 - Get information for a specific YARA ruleset or all YARA rulesets in the collection.",
             "type": "generic",
             "read_only": false,
             "parameters": {
