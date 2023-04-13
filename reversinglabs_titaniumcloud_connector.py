@@ -154,7 +154,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
 
     def _handle_file_reputation(self, action_result, param):
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
-        
+
         file_reputation = FileReputation(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
@@ -167,9 +167,9 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             extended_results=True,
             show_hashes_in_results=True
         )
-        
+
         self.debug_print("status_code", response.status_code)
-        
+
         action_result.add_data(response.json())
 
     def _handle_advanced_search(self, action_result, param):
@@ -235,9 +235,9 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
             user_agent=self.USER_AGENT
         )
         response = rldata.get_analysis_results(hash_input=param.get("hash"))
-        
+
         self.debug_print("status_code", response.status_code)
-        
+
         action_result.add_data(response.json())
 
     def _handle_rha1_functional_similarity(self, action_result, param):
@@ -252,7 +252,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         response = similarity.get_similar_hashes_aggregated(
             hash_input=param.get("hash"),
             max_results=param.get("limit"))
-        
+
         self.debug_print("status_code", response.status_code)
 
         for result in response:
@@ -599,7 +599,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         response = yara_retro.yara_retro_matches_feed(time_format=param.get('time_format'), time_value=param.get('time_value'))
 
         self.debug_print("status_code", response.status_code)
-        
+
         action_result.add_data(response.json())
 
     def _handle_test_connectivity(self, action_result, param):
