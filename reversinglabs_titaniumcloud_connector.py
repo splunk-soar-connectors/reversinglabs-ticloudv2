@@ -1,9 +1,18 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-# -----------------------------------------
-# Phantom sample App Connector python file
-# -----------------------------------------
-
+# File: reversinglabstitaniumcloud_connector.py
+#
+# Copyright (c) ReversingLabs, 2023
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under
+# the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific language governing permissions
+# and limitations under the License.
+#
 # Python 3 Compatibility imports
 from __future__ import print_function, unicode_literals
 
@@ -613,7 +622,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
         )
 
         file_reputation.get_file_reputation(
-            hash_input="6a95d3d00267c9fd80bd42122738e726",
+            hash_input="6a95d3d00267c9fd80bd42122738e726",  # pragma: allowlist secret
             extended_results=True,
             show_hashes_in_results=False
         )
