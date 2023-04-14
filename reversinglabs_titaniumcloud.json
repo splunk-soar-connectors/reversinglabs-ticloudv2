@@ -20,15 +20,13 @@
     "utctime_updated": "2023-03-14T11:16:58.519975Z",
     "package_name": "phantom_reversinglabstitaniumcloud",
     "main_module": "reversinglabs_titaniumcloud_connector.py",
-    "min_phantom_version": "5.5.0.108488",
+    "min_phantom_version": "5.5.0",
     "app_wizard_version": "1.0.0",
     "configuration": {
         "url": {
             "description": "TitaniumCloud URL",
             "data_type": "string",
             "required": true,
-            "value_list": [],
-            "default": "",
             "order": 0,
             "name": "url",
             "id": 0
@@ -74,10 +72,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -87,10 +81,6 @@
                     "description": "Stringified YARA ruleset / a Unicode string",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "ruleset_text",
                     "id": 2,
@@ -101,14 +91,12 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "ruleset_name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.ruleset_text",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "ruleset_text",
                     "column_order": 1
                 },
@@ -116,7 +104,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -152,10 +144,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -166,7 +154,6 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "ruleset_name",
                     "column_order": 0
                 },
@@ -174,7 +161,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -209,11 +200,6 @@
                 "ruleset_name": {
                     "description": "YARA ruleset name",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -224,7 +210,6 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "ruleset_name",
                     "column_order": 0
                 },
@@ -232,7 +217,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -268,10 +257,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -282,7 +267,6 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "ruleset_name",
                     "column_order": 0
                 },
@@ -290,7 +274,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -326,10 +314,6 @@
                     "description": "'utc' or 'timestamp'",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "time_format",
                     "id": 1,
@@ -339,10 +323,6 @@
                     "description": "'YYYY-MM-DDThh:mm:ss' or Unix timestamp string",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "time_value",
                     "id": 2,
@@ -353,14 +333,12 @@
                 {
                     "data_path": "action_result.parameter.time_format",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "time_format",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.time_value",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "time_value",
                     "column_order": 1
                 },
@@ -368,7 +346,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -404,10 +386,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -418,7 +396,6 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "ruleset_name",
                     "column_order": 0
                 },
@@ -426,7 +403,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -462,10 +443,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -476,7 +453,6 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "ruleset_name",
                     "column_order": 0
                 },
@@ -484,7 +460,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -520,10 +500,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -534,7 +510,6 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "ruleset_name",
                     "column_order": 0
                 },
@@ -542,7 +517,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -578,10 +557,6 @@
                     "description": "YARA ruleset name",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "ruleset_name",
                     "id": 1,
@@ -592,7 +567,6 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "ruleset_name",
                     "column_order": 0
                 },
@@ -600,7 +574,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -636,10 +614,6 @@
                     "description": "'utc' or 'timestamp'",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "time_format",
                     "id": 1,
@@ -649,10 +623,6 @@
                     "description": "'YYYY-MM-DDThh:mm:ss' or Unix timestamp string",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "time_value",
                     "id": 2,
@@ -663,14 +633,12 @@
                 {
                     "data_path": "action_result.parameter.time_format",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "time_format",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.time_value",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "time_value",
                     "column_order": 1
                 },
@@ -678,7 +646,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -714,10 +686,6 @@
                     "description": "Imphash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "imphash",
                     "id": 1,
@@ -726,10 +694,6 @@
                 "limit": {
                     "description": "Maximum number of results",
                     "data_type": "numeric",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
                     "default": 5000,
                     "order": 1,
                     "name": "limit",
@@ -741,14 +705,12 @@
                 {
                     "data_path": "action_result.parameter.imphash",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "imphash",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.limit",
                     "data_type": "numeric",
-                    "contains": [],
                     "column_name": "limit",
                     "column_order": 1
                 },
@@ -756,7 +718,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -796,10 +762,6 @@
                     "description": "Advanced Search query",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "query",
                     "id": 1,
@@ -808,10 +770,6 @@
                 "limit": {
                     "description": "Maximum number of results",
                     "data_type": "numeric",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
                     "default": 5000,
                     "order": 1,
                     "name": "limit",
@@ -823,14 +781,12 @@
                 {
                     "data_path": "action_result.parameter.query",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "query",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.limit",
                     "data_type": "numeric",
-                    "contains": [],
                     "column_name": "limit",
                     "column_order": 1
                 },
@@ -838,7 +794,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -878,10 +838,6 @@
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash",
                     "id": 1,
@@ -892,7 +848,6 @@
                 {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "hash",
                     "column_order": 0
                 },
@@ -900,7 +855,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -947,8 +906,6 @@
                         "sha1",
                         "md5"
                     ],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash"
                 }
@@ -970,7 +927,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1010,10 +971,6 @@
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash",
                     "id": 1,
@@ -1024,7 +981,6 @@
                 {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "hash",
                     "column_order": 0
                 },
@@ -1032,7 +988,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1072,10 +1032,6 @@
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash",
                     "id": 1,
@@ -1084,10 +1040,6 @@
                 "limit": {
                     "description": "Maximum number of results",
                     "data_type": "numeric",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
                     "default": 5000,
                     "order": 1,
                     "name": "limit",
@@ -1099,14 +1051,12 @@
                 {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "hash",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.limit",
                     "data_type": "numeric",
-                    "contains": [],
                     "column_name": "limit",
                     "column_order": 1
                 },
@@ -1114,7 +1064,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1158,8 +1112,6 @@
                     "contains": [
                         "url"
                     ],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "url"
                 }
@@ -1178,7 +1130,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1218,10 +1174,6 @@
                     "description": "URL to analyze",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "url",
                     "id": 1,
@@ -1232,7 +1184,6 @@
                 {
                     "data_path": "action_result.parameter.url",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "url",
                     "column_order": 0
                 },
@@ -1240,7 +1191,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1280,10 +1235,6 @@
                     "description": "Uri",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "uri",
                     "id": 1,
@@ -1294,7 +1245,6 @@
                 {
                     "data_path": "action_result.parameter.uri",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "uri",
                     "column_order": 0
                 },
@@ -1302,7 +1252,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1342,10 +1296,6 @@
                     "description": "Desired URI string",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "uri",
                     "id": 1,
@@ -1354,10 +1304,6 @@
                 "limit": {
                     "description": "Maximum number of results",
                     "data_type": "numeric",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
                     "default": 5000,
                     "order": 1,
                     "name": "limit",
@@ -1369,14 +1315,12 @@
                 {
                     "data_path": "action_result.parameter.uri",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "uri",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.limit",
                     "data_type": "numeric",
-                    "contains": [],
                     "column_name": "limit",
                     "column_order": 1
                 },
@@ -1384,7 +1328,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1424,10 +1372,6 @@
                     "description": "Selected sample's SHA-1 hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "sha1",
                     "id": 1,
@@ -1437,10 +1381,6 @@
                     "description": "Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "platform",
                     "id": 2,
@@ -1451,14 +1391,12 @@
                 {
                     "data_path": "action_result.parameter.sha1",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "sha1",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.platform",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "platform",
                     "column_order": 1
                 },
@@ -1466,7 +1404,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1506,10 +1448,6 @@
                     "description": "Selected sample's SHA-1 hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "sha1",
                     "id": 1,
@@ -1518,11 +1456,6 @@
                 "analysis_id": {
                     "description": "Return only the results of this analysis",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "analysis_id",
                     "id": 2,
@@ -1531,9 +1464,6 @@
                 "latest": {
                     "description": "Return only the latest analysis results",
                     "data_type": "boolean",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
                     "default": false,
                     "order": 2,
                     "name": "latest",
@@ -1545,21 +1475,18 @@
                 {
                     "data_path": "action_result.parameter.sha1",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "sha1",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.analysis_id",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "analysis_id",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.parameter.latest",
                     "data_type": "boolean",
-                    "contains": [],
                     "column_name": "latest",
                     "column_order": 2
                 },
@@ -1567,7 +1494,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 3
+                    "column_order": 3,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1607,10 +1538,6 @@
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash"
                 }
@@ -1619,7 +1546,6 @@
                 {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "hash",
                     "column_order": 0
                 },
@@ -1627,7 +1553,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1663,8 +1593,6 @@
                     "contains": [
                         "vault id"
                     ],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "vault_id",
                     "id": 1,
@@ -1673,17 +1601,15 @@
                 "file_name": {
                     "description": "Filename to use",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
                     "contains": [
                         "file name"
                     ],
-                    "value_list": [],
                     "default": "sample",
                     "order": 1,
                     "name": "file_name",
                     "id": 2,
-                    "param_name": "file_name"
+                    "param_name": "file_name",
+                    "primary": true
                 }
             },
             "output": [
@@ -1716,7 +1642,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1754,8 +1684,6 @@
                         "sha1",
                         "sha256"
                     ],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "hash"
                 }
@@ -1776,7 +1704,11 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
