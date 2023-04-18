@@ -33,7 +33,7 @@
         },
         "username": {
             "description": "TitaniumCloud username",
-            "data_type": "password",
+            "data_type": "string",
             "required": true,
             "order": 1,
             "name": "username",
@@ -1526,7 +1526,6 @@
             "description": "TCA-0106 - Retrieve dynamic analysis results",
             "verbose": "TCA-0106 - This service allows users to retrieve dynamic analysis results for a file that was submitted for dynamic analysis.",
             "type": "generic",
-            "read_only": true,
             "parameters": {
                 "sha1": {
                     "description": "Selected sample's SHA-1 hash",
@@ -1679,7 +1678,6 @@
             "description": "TCA-0202 - Upload file to TitaniumCloud",
             "verbose": "TCA-0202 - Upload file to TitaniumCloud.",
             "type": "generic",
-            "read_only": true,
             "parameters": {
                 "vault_id": {
                     "description": "Vault ID of file to upload",
