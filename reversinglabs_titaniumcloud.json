@@ -89,6 +89,16 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
                     "column_name": "ruleset_name",
@@ -101,14 +111,12 @@
                     "column_order": 1
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2,
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -121,14 +129,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -156,12 +156,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.ruleset_name",
-                    "data_type": "string",
-                    "column_name": "ruleset_name",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -170,6 +164,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_type": "string",
+                    "column_name": "ruleset_name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -182,14 +190,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -216,12 +216,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.ruleset_name",
-                    "data_type": "string",
-                    "column_name": "ruleset_name",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -230,6 +224,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_type": "string",
+                    "column_name": "ruleset_name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -242,14 +250,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -277,12 +277,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.ruleset_name",
-                    "data_type": "string",
-                    "column_name": "ruleset_name",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -291,6 +285,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_type": "string",
+                    "column_name": "ruleset_name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -303,14 +311,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -347,6 +347,16 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
                     "data_path": "action_result.parameter.time_format",
                     "data_type": "string",
                     "column_name": "time_format",
@@ -359,14 +369,12 @@
                     "column_order": 1
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2,
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -379,14 +387,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -414,12 +414,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.ruleset_name",
-                    "data_type": "string",
-                    "column_name": "ruleset_name",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -428,6 +422,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_type": "string",
+                    "column_name": "ruleset_name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -440,14 +448,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -475,12 +475,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.ruleset_name",
-                    "data_type": "string",
-                    "column_name": "ruleset_name",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -489,6 +483,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_type": "string",
+                    "column_name": "ruleset_name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -501,14 +509,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -536,12 +536,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.ruleset_name",
-                    "data_type": "string",
-                    "column_name": "ruleset_name",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -550,6 +544,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_type": "string",
+                    "column_name": "ruleset_name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -562,14 +570,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -597,12 +597,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.ruleset_name",
-                    "data_type": "string",
-                    "column_name": "ruleset_name",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -611,6 +605,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_type": "string",
+                    "column_name": "ruleset_name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -623,14 +631,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -667,6 +667,16 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
                     "data_path": "action_result.parameter.time_format",
                     "data_type": "string",
                     "column_name": "time_format",
@@ -679,14 +689,12 @@
                     "column_order": 1
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2,
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -699,14 +707,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -743,6 +743,16 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
                     "data_path": "action_result.parameter.imphash",
                     "data_type": "string",
                     "column_name": "imphash",
@@ -755,14 +765,12 @@
                     "column_order": 1
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2,
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -775,14 +783,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -823,18 +823,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.query",
-                    "data_type": "string",
-                    "column_name": "query",
-                    "column_order": 0
-                },
-                {
-                    "data_path": "action_result.parameter.limit",
-                    "data_type": "numeric",
-                    "column_name": "limit",
-                    "column_order": 1
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -843,6 +831,26 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
+                    "data_type": "numeric",
+                    "column_name": "limit",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.query",
+                    "data_type": "string",
+                    "column_name": "query",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -855,14 +863,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -894,12 +894,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.hash",
-                    "data_type": "string",
-                    "column_name": "hash",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -908,6 +902,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.hash",
+                    "data_type": "string",
+                    "column_name": "hash",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -920,14 +928,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -964,6 +964,16 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
                     "contains": [
@@ -976,14 +986,12 @@
                     "column_order": 0
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1,
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -996,14 +1004,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1035,12 +1035,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.hash",
-                    "data_type": "string",
-                    "column_name": "hash",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -1049,6 +1043,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.hash",
+                    "data_type": "string",
+                    "column_name": "hash",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1061,14 +1069,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1109,6 +1109,16 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
                     "column_name": "hash",
@@ -1121,14 +1131,12 @@
                     "column_order": 1
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2,
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1141,14 +1149,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1182,6 +1182,16 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
                     "data_path": "action_result.parameter.url",
                     "data_type": "string",
                     "contains": [
@@ -1191,14 +1201,12 @@
                     "column_order": 0
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1,
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1211,14 +1219,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1250,12 +1250,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.url",
-                    "data_type": "string",
-                    "column_name": "url",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -1264,6 +1258,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.url",
+                    "data_type": "string",
+                    "column_name": "url",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1276,14 +1284,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1315,12 +1315,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.uri",
-                    "data_type": "string",
-                    "column_name": "uri",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -1329,6 +1323,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.uri",
+                    "data_type": "string",
+                    "column_name": "uri",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1341,14 +1349,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1389,18 +1389,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.uri",
-                    "data_type": "string",
-                    "column_name": "uri",
-                    "column_order": 0
-                },
-                {
-                    "data_path": "action_result.parameter.limit",
-                    "data_type": "numeric",
-                    "column_name": "limit",
-                    "column_order": 1
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -1409,6 +1397,26 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
+                    "data_type": "numeric",
+                    "column_name": "limit",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.uri",
+                    "data_type": "string",
+                    "column_name": "uri",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1421,14 +1429,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1469,18 +1469,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.sha1",
-                    "data_type": "string",
-                    "column_name": "sha1",
-                    "column_order": 0
-                },
-                {
-                    "data_path": "action_result.parameter.platform",
-                    "data_type": "string",
-                    "column_name": "platform",
-                    "column_order": 1
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -1489,6 +1477,26 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.platform",
+                    "data_type": "string",
+                    "column_name": "platform",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.sha1",
+                    "data_type": "string",
+                    "column_name": "sha1",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1501,14 +1509,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1557,10 +1557,14 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.sha1",
+                    "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "sha1",
-                    "column_order": 0
+                    "column_name": "status",
+                    "column_order": 3,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.analysis_id",
@@ -1575,14 +1579,18 @@
                     "column_order": 2
                 },
                 {
-                    "data_path": "action_result.status",
+                    "data_path": "action_result.parameter.sha1",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 3,
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
+                    "column_name": "sha1",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1595,14 +1603,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1632,12 +1632,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.hash",
-                    "data_type": "string",
-                    "column_name": "hash",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
@@ -1646,6 +1640,20 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.hash",
+                    "data_type": "string",
+                    "column_name": "hash",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1658,10 +1666,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1706,6 +1710,25 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.file_name",
+                    "data_type": "string",
+                    "contains": [
+                        "file name"
+                    ],
+                    "column_name": "file_name",
+                    "column_order": 1
+                },
+                {
                     "data_path": "action_result.parameter.vault_id",
                     "data_type": "string",
                     "contains": [
@@ -1722,23 +1745,12 @@
                     "column_order": 0
                 },
                 {
-                    "data_path": "action_result.parameter.file_name",
-                    "data_type": "string",
-                    "contains": [
-                        "file name"
-                    ],
-                    "column_name": "file_name",
-                    "column_order": 1
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2,
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1751,10 +1763,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
                 }
             ],
             "render": {
@@ -1786,6 +1794,16 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
                     "contains": [
@@ -1797,14 +1815,12 @@
                     "column_order": 0
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1,
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1817,10 +1833,6 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
                 }
             ],
             "render": {
