@@ -62,7 +62,7 @@ phantom.requests.delete = new_delete
 
 class ReversinglabsTitaniumCloudConnector(BaseConnector):
     ticloud_spex_url = "/api/spex/upload/"
-    USER_AGENT = "ReversingLabs TitaniumCloud v1.0.0"
+    USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloud v3.0.0"
 
     # The actions supported by this connector
     ACTION_ID_TEST_CONNECTIVITY = "test_connectivity"
