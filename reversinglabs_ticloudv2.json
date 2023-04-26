@@ -1,6 +1,6 @@
 {
     "appid": "0fd5a550-35a4-4641-9d28-9237ec71cf3c",
-    "name": "Reversinglabs TitaniumCloud V2",
+    "name": "Reversinglabs TitaniumCloud v2",
     "description": "App integrates with ReversingLabs TitaniumCloud APIs delivering targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services",
     "type": "reputation",
     "product_vendor": "Reversinglabs",
