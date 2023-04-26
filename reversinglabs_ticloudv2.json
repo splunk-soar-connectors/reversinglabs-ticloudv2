@@ -18,7 +18,7 @@
     "license": "Copyright (c) ReversingLabs, 2023",
     "app_version": "1.0.0",
     "utctime_updated": "2023-03-14T11:16:58.519975Z",
-    "package_name": "phantom_reversinglabstitaniumcloud",
+    "package_name": "phantom_reversinglabs_ticloudv2",
     "main_module": "reversinglabs_ticloudv2_connector.py",
     "min_phantom_version": "5.5.0",
     "app_wizard_version": "1.0.0",

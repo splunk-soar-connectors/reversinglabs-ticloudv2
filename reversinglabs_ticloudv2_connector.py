@@ -60,7 +60,7 @@ def new_delete(url, **kwargs):
 phantom.requests.delete = new_delete
 
 
-class ReversinglabsTitaniumCloudConnector(BaseConnector):
+class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ticloud_spex_url = "/api/spex/upload/"
     USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloud v1.0.0"
 
@@ -94,7 +94,7 @@ class ReversinglabsTitaniumCloudConnector(BaseConnector):
 
     def __init__(self):
         # Call the BaseConnectors init first
-        super(ReversinglabsTitaniumCloudConnector, self).__init__()
+        super(ReversinglabsTitaniumCloudV2Connector, self).__init__()
 
         self.ACTIONS = {
             self.ACTION_ID_TEST_CONNECTIVITY: self._handle_test_connectivity,
@@ -639,7 +639,7 @@ def main():
         in_json = f.read()
         in_json = json.loads(in_json)
 
-        connector = ReversinglabsTitaniumCloudConnector()
+        connector = ReversinglabsTitaniumCloudV2Connector()
         connector.print_progress_message = True
 
         connector._handle_action(json.dumps(in_json), None)
