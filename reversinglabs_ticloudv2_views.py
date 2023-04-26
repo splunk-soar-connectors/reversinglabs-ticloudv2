@@ -1,4 +1,4 @@
-# File: reversinglabs_titaniumcloud_views.py
+# File: reversinglabs_ticloudv2_views.py
 #
 # Copyright (c) ReversingLabs, 2023
 #
@@ -25,7 +25,7 @@ def file_reputation(provides, all_app_runs, context):
 
             context['data'] = data
 
-    return 'views/reversinglabs_file_reputation.html'
+    return 'views/reversinglabs_ticloudv2_file_reputation.html'
 
 
 def av_scanners(provides, all_app_runs, context):
@@ -38,7 +38,7 @@ def av_scanners(provides, all_app_runs, context):
 
             context['data'] = data
 
-    return 'views/reversinglabs_av_scanners.html'
+    return 'views/reversinglabs_ticloudv2_av_scanners.html'
 
 
 def file_analysis(provides, all_app_runs, context):
@@ -51,7 +51,7 @@ def file_analysis(provides, all_app_runs, context):
 
             context['data'] = data
 
-    return 'views/reversinglabs_file_analysis.html'
+    return 'views/reversinglabs_ticloudv2_file_analysis.html'
 
 
 def uri_statistics(provides, all_app_runs, context):
@@ -69,7 +69,7 @@ def uri_statistics(provides, all_app_runs, context):
 
             context['data'] = data
 
-    return 'views/reversinglabs_uri_statistics.html'
+    return 'views/reversinglabs_ticloudv2_uri_statistics.html'
 
 
 def url_reputation(provides, all_app_runs, context):
@@ -86,7 +86,7 @@ def url_reputation(provides, all_app_runs, context):
 
             context['data'] = data
 
-    return 'views/reversinglabs_url_reputation.html'
+    return 'views/reversinglabs_ticloudv2_url_reputation.html'
 
 
 def analyze_url(provides, all_app_runs, context):
@@ -99,7 +99,7 @@ def analyze_url(provides, all_app_runs, context):
 
             context['data'] = data
 
-    return 'views/reversinglabs_analyze_url.html'
+    return 'views/reversinglabs_ticloudv2_analyze_url.html'
 
 
 def submit_for_dynamic_analysis(provides, all_app_runs, context):
@@ -112,7 +112,7 @@ def submit_for_dynamic_analysis(provides, all_app_runs, context):
 
             context['data'] = data
 
-    return 'views/reversinglabs_submit_for_dynamic.html'
+    return 'views/reversinglabs_ticloudv2_submit_for_dynamic.html'
 
 
 def dynamic_analysis_results(provides, all_app_runs, context):
@@ -127,7 +127,7 @@ def dynamic_analysis_results(provides, all_app_runs, context):
             context['data'] = data
             context['param'] = result.get_param()
 
-    return 'views/reversinglabs_dynamic_analysis_results.html'
+    return 'views/reversinglabs_ticloudv2_dynamic_analysis_results.html'
 
 
 def advanced_search(provides, all_app_runs, context):
@@ -141,7 +141,7 @@ def advanced_search(provides, all_app_runs, context):
             context["data"] = data
             context['param'] = result.get_param()
 
-    return 'views/reversinglabs_advanced_search.html'
+    return 'views/reversinglabs_ticloudv2_advanced_search.html'
 
 
 def functional_similarity(provides, all_app_runs, context):
@@ -155,7 +155,7 @@ def functional_similarity(provides, all_app_runs, context):
             context["data"] = data
             context['param'] = result.get_param()
 
-    return 'views/reversinglabs_functional_similarity.html'
+    return 'views/reversinglabs_ticloudv2_functional_similarity.html'
 
 
 def imphash_similarity(provides, all_app_runs, context):
@@ -169,7 +169,7 @@ def imphash_similarity(provides, all_app_runs, context):
             context["data"] = data
             context['param'] = result.get_param()
 
-    return 'views/reversinglabs_imphash_similarity.html'
+    return 'views/reversinglabs_ticloudv2_imphash_similarity.html'
 
 
 def uri_index(provides, all_app_runs, context):
@@ -179,7 +179,7 @@ def uri_index(provides, all_app_runs, context):
             context['data'] = result.get_data()
             context['param'] = result.get_param()
 
-    return 'views/reversinglabs_uri_index.html'
+    return 'views/reversinglabs_ticloudv2_uri_index.html'
 
 
 def color_code_classification(classification):

@@ -4,8 +4,8 @@
     "description": "App integrates with ReversingLabs TitaniumCloud APIs delivering targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services",
     "type": "reputation",
     "product_vendor": "Reversinglabs",
-    "logo": "reversinglabs_titaniumcloud.svg",
-    "logo_dark": "reversinglabs_titaniumcloud_dark.svg",
+    "logo": "reversinglabs_ticloudv2.svg",
+    "logo_dark": "reversinglabs_ticloudv2_dark.svg",
     "product_name": "TitaniumCloud",
     "python_version": "3",
     "product_version_regex": ".*",
@@ -19,7 +19,7 @@
     "app_version": "1.0.0",
     "utctime_updated": "2023-03-14T11:16:58.519975Z",
     "package_name": "phantom_reversinglabstitaniumcloud",
-    "main_module": "reversinglabs_titaniumcloud_connector.py",
+    "main_module": "reversinglabs_ticloudv2_connector.py",
     "min_phantom_version": "5.5.0",
     "app_wizard_version": "1.0.0",
     "configuration": {
@@ -789,7 +789,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.imphash_similarity",
+                "view": "reversinglabs_ticloudv2_views.imphash_similarity",
                 "title": "TitaniumCloud Imphash Similarity"
             },
             "versions": "EQ(*)"
@@ -869,7 +869,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.advanced_search",
+                "view": "reversinglabs_ticloudv2_views.advanced_search",
                 "title": "TitaniumCloud Advanced Search"
             },
             "versions": "EQ(*)"
@@ -934,7 +934,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.av_scanners",
+                "view": "reversinglabs_ticloudv2_views.av_scanners",
                 "title": "TitaniumCloud AvScanners"
             },
             "versions": "EQ(*)"
@@ -1010,7 +1010,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.file_reputation",
+                "view": "reversinglabs_ticloudv2_views.file_reputation",
                 "title": "TitaniumCloud File Reputation"
             },
             "versions": "EQ(*)"
@@ -1075,7 +1075,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.file_analysis",
+                "view": "reversinglabs_ticloudv2_views.file_analysis",
                 "title": "TitaniumCloud File Analysis"
             },
             "versions": "EQ(*)"
@@ -1155,7 +1155,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.functional_similarity",
+                "view": "reversinglabs_ticloudv2_views.functional_similarity",
                 "title": "TitaniumCloud RHA1 Functional Similarity"
             },
             "versions": "EQ(*)"
@@ -1225,7 +1225,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.url_reputation",
+                "view": "reversinglabs_ticloudv2_views.url_reputation",
                 "title": "TitaniumCloud Url Reputation"
             },
             "versions": "EQ(*)"
@@ -1290,7 +1290,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.analyze_url",
+                "view": "reversinglabs_ticloudv2_views.analyze_url",
                 "title": "TitaniumCloud Analyze Url"
             },
             "versions": "EQ(*)"
@@ -1355,7 +1355,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.uri_statistics",
+                "view": "reversinglabs_ticloudv2_views.uri_statistics",
                 "title": "TitaniumCloud Uri Statistics"
             },
             "versions": "EQ(*)"
@@ -1435,7 +1435,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.uri_index",
+                "view": "reversinglabs_ticloudv2_views.uri_index",
                 "title": "TitaniumCloud Uri Index"
             },
             "versions": "EQ(*)"
@@ -1515,7 +1515,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.submit_for_dynamic_analysis",
+                "view": "reversinglabs_ticloudv2_views.submit_for_dynamic_analysis",
                 "title": "TitaniumCloud Submit For Dynamic Analysis"
             },
             "versions": "EQ(*)"
@@ -1609,7 +1609,7 @@
                 "type": "custom",
                 "width": 10,
                 "height": 5,
-                "view": "reversinglabs_titaniumcloud_views.dynamic_analysis_results",
+                "view": "reversinglabs_ticloudv2_views.dynamic_analysis_results",
                 "title": "TitaniumCloud Get Dynamic Analysis Results"
             },
             "versions": "EQ(*)"

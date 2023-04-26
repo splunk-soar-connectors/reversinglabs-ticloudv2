@@ -1,4 +1,4 @@
-<!-- File: reversinglabs_uri_index.html
+<!-- File: reversinglabs_ticloudv2_analyze_url.html
   Copyright (c) ReversingLabs, 2023
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -31,13 +31,9 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         line-break: auto;
     }
 
-    .rl-table th {
+    .rl-table thead th {
         text-align: center;
         font-size: 1.4rem;
-    }
-
-    .rl-table thead td {
-        padding: 7px;
     }
 
     .rl-table td {
@@ -47,12 +43,6 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
     .rl-content {
         display: flex;
         flex-direction: column;
-    }
-
-    .rl-results {
-        font-weight: normal;
-        font-size: small;
-        text-transform: lowercase;
     }
 
     #rl-target {
@@ -67,7 +57,6 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         user-select: text;
     }
 
-    /* Use only if first column is index */
     .rl-table td:first-child {
         color: #6c818b;
         text-transform: uppercase;
@@ -75,32 +64,32 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         white-space: nowrap;
         padding-left: 0.8rem;
         padding-right: 2rem;
-        width: 0;
+        width: 11%;
     }
 </style>
 <div class="rl-content">
+    {% if data.report_base == None %}
+    There is no rl object in the response JSON.
+    {% else %}
     <table class="rl-table">
         <thead>
             <tr>
-                <th colspan="2">
-                    ReversingLabs URI Index for
-                    <div id="rl-target" class="main-grid">{{param.uri}}</div>
-                    <div class="rl-results" style="padding-top:0.5rem;">{{results_found}}</div>
+                <th colspan="2">ReversingLabs TitaniumCloud Analyze URL for
+                    <div id="rl-target" class="main-grid">{{data.report_base.requested_url}}</div>
                 </th>
-            </tr>
-            <tr>
-                <th colspan="2"> SHA1</th>
             </tr>
         </thead>
         <tbody>
-            {% for x in data %}
             <tr>
-                <td>{{ forloop.counter}}.</td>
-                <td>{{ x }}</td>
+                <td>Status</td>
+                <td>{{data.report_base.status}}</td>
             </tr>
-            {% endfor %}
-
+            <tr>
+                <td>Analysis ID</td>
+                <td>{{data.report_base.analysis_id}}</td>
+            </tr>
         </tbody>
     </table>
+    {% endif %}
 </div>
 {% endblock %}

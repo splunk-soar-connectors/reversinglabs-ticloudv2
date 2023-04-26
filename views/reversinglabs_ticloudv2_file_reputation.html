@@ -1,4 +1,4 @@
-<!-- File: reversinglabs_url_reputation.html
+<!-- File: reversinglabs_ticloudv2_file_reputation.html
   Copyright (c) ReversingLabs, 2023
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
     }
 
     .rl-table {
-        line-break: auto;
+        line-break: anywhere;
     }
 
     .rl-table thead th {
@@ -57,6 +57,7 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         user-select: text;
     }
 
+
     .rl-table td:first-child {
         color: #6c818b;
         text-transform: uppercase;
@@ -68,14 +69,14 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
     }
 </style>
 <div class="rl-content">
-    {% if data.report_base == None %}
-    There is no rl object in the response JSON.
+    {% if data.malware_presence == None %}
+    There is no malware_presence object in the response JSON.
     {% else %}
     <table class="rl-table">
         <thead>
             <tr>
-                <th colspan="2">ReversingLabs URL Threat Intelligence for
-                    <div id="rl-target" class="main-grid">{{data.report_base.requested_url}}</div>
+                <th colspan="2">ReversingLabs TitaniumCloud File Reputation for
+                    <div id="rl-target" class="main-grid">{{data.malware_presence.sha1}}</span>
                 </th>
             </tr>
         </thead>
@@ -83,89 +84,62 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
             <tr>
                 <td>Classification</td>
                 <td>
-                    <span style="color:{{data.classification_color}};">{{data.classification}}</span>
+                    <span style="color:{{data.classification_color}};">{{data.malware_presence.status}}</span>
                 </td>
             </tr>
-            {% if data.report_base.analysis != None %}
             <tr>
-                <td>First analysis</td>
-                <td>{{data.report_base.analysis.first_analysis}}</td>
+                <td>Classification reason: </td>
+                <td> {{data.malware_presence.reason}}</td>
             </tr>
             <tr>
-                <td>Analysis count</td>
-                <td>{{data.report_base.analysis.analysis_count}}</td>
-            </tr>
-        </tbody>
-        <thead>
-            <tr>
-                <th colspan="2">Last analysis</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Analysis ID</td>
-                <td>{{data.report_base.analysis.last_analysis.analysis_id}}</td>
+                <td>First seen</td>
+                <td>{{data.malware_presence.first_seen}} </td>
             </tr>
             <tr>
-                <td>Analysis_time</td>
-                <td>{{data.report_base.analysis.last_analysis.analysis_time}}</td>
+                <td>Last seen</td>
+                <td>{{data.malware_presence.last_seen}} </td>
             </tr>
             <tr>
-                <td>Final URL</td>
-                <td>{{data.report_base.analysis.last_analysis.final_url}}</td>
+                <td>AV scanner hits / total number of scanners</td>
+                <td>{{data.malware_presence.scanner_match}} / {{data.malware_presence.scanner_count}} </td>
             </tr>
             <tr>
-                <td>Availability status</td>
-                <td>{{data.report_base.analysis.last_analysis.availability_status}}</td>
+                <td>AV scanner hit percentage</td>
+                <td>{{data.malware_presence.scanner_percent}}</td>
             </tr>
             <tr>
-                <td>Domain</td>
-                <td>{{data.report_base.analysis.last_analysis.domain}}</td>
+                <td>MD5 hash</td>
+                <td>{{data.malware_presence.md5}}</td>
             </tr>
             <tr>
-                <td>Serving IP Address</td>
-                <td>{{data.report_base.analysis.last_analysis.serving_ip_address}}</td>
-            </tr>
-        </tbody>
-        <thead>
-            <tr>
-                <th colspan="2">Statistics</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <span style="color:green;">KNOWN</span>
-                </td>
-                <td>{{data.report_base.analysis.statistics.known}}</td>
+                <td>SHA-1 hash</td>
+                <td>{{data.malware_presence.sha1}}</td>
             </tr>
             <tr>
-                <td>
-                    <span style="color:orange;">SUSPICIOUS</span>
-                </td>
-                <td>{{data.report_base.analysis.statistics.suspicious}}</td>
+                <td>SHA-256 hash</td>
+                <td>{{data.malware_presence.sha256}}</td>
+            </tr>
+            {% if data.malware_presence.status in "MALICIOUS,SUSPICIOUS" %}
+            <tr>
+                <td>Threat name</td>
+                <td>{{data.malware_presence.threat_name}}</td>
             </tr>
             <tr>
-                <td>
-                    <span style="color:red;">MALICIOUS</span>
-                </td>
-                <td>{{data.report_base.analysis.statistics.malicious}}</td>
+                <td>Threat level</td>
+                <td>{{data.malware_presence.threat_level}}</td>
             </tr>
+            {% elif data.malware_presence.status == "KNOWN" %}
             <tr>
-                <td>UNKNOWN</td>
-                <td>{{data.report_base.analysis.statistics.unknown}}</td>
+                <td>Trust factor</td>
+                <td>{{data.malware_presence.trust_factor}}</td>
             </tr>
+            {% endif %}
             <tr>
-                <td>TOTAL</td>
-                <td>{{data.report_base.analysis.statistics.total}}</td>
+                <td>Classification reason</td>
+                <td>{{data.malware_presence.reason}}</td>
             </tr>
-        </tbody>
     </table>
-
     {% endif %}
-
-    {% endif %}
-
-    </font>
 </div>
+
 {% endblock %}

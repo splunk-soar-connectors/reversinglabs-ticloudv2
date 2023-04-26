@@ -1,4 +1,4 @@
-# File: reversinglabstitaniumcloud_consts.py
+# File: reversinglabs_ticloudv2_consts.py
 #
 # Copyright (c) ReversingLabs, 2023
 #

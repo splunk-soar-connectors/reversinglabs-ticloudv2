@@ -1,4 +1,4 @@
-<!-- File: reversinglabs_file_analysis.html
+<!-- File: reversinglabs_ticloudv2_av_scanners.html
   Copyright (c) ReversingLabs, 2023
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -40,8 +40,6 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         padding: 7px;
     }
 
-    .rl-table td:first
-
     .rl-content {
         display: flex;
         flex-direction: column;
@@ -72,45 +70,40 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
 <div class="rl-content">
     {% if data.sample == None %}
     There is no sample object in the response JSON.
-    {% elif data.sample.analysis.entries|length == 0 %}
-    The entries list is empty
-    {% else%}
+    {% else %}
     <table class="rl-table">
         <thead>
             <tr>
-                <th colspan="2">ReversingLabs File Analysis for
+                <th colspan="2">
+                    ReversingLabs TitaniumCloud AV Scanner results for
                     <div id="rl-target" class="main-grid">{{data.sample.sha1}}</div>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>File type</td>
-                <td>{{data.sample.analysis.entries.0.tc_report.info.file.file_type}}</td>
+                <td>First scanned on</td>
+                <td>{{data.sample.first_scanned_on}}</td>
             </tr>
             <tr>
-                <td>File subtype</td>
-                <td> {{data.sample.analysis.entries.0.tc_report.info.file.file_subtype}}</td>
+                <td>First seen on</td>
+                <td> {{data.sample.first_seen_on}}</td>
             </tr>
             <tr>
-                <td>Sample type</td>
-                <td>{{data.sample.xref.sample_type}} </td>
+                <td>Last scanned on</td>
+                <td>{{data.sample.last_scanned_on}} </td>
+            </tr>
+            <tr>
+                <td>Last seen on</td>
+                <td>{{data.sample.last_seen_on}} </td>
             </tr>
             <tr>
                 <td>Sample size</td>
-                <td>{{data.sample.sample_size}} </td>
+                <td>{{data.sample.sample_size}}</td>
             </tr>
             <tr>
-                <td>Extended description</td>
-                <td>{{data.sample.analysis.entries.0.tc_report.story}} }} </td>
-            </tr>
-            <tr>
-                <td>First seen</td>
-                <td> {{data.sample.xref.first_seen}}</td>
-            </tr>
-            <tr>
-                <td>Last seen</td>
-                <td> {{data.sample.xref.last_seen}}</td>
+                <td>Sample type</td>
+                <td> {{data.sample.sample_type}}</td>
             </tr>
             <tr>
                 <td>MD5 hash</td>
@@ -132,18 +125,25 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
                 <td>SHA-384 hash</td>
                 <td> {{data.sample.sha384}}</td>
             </tr>
-            <tr>
-                <td>SSDEEP hash</td>
-                <td> {{data.sample.ssdeep}}</td>
-            </tr>
-            <tr>
-                <td>RIPEMD-160 hash</td>
-                <td> {{data.sample.ripemd160}}</td>
-            </tr>
         </tbody>
+        {% if data.sample.xref != None %}
+        <thead>
+            <tr>
+                <th colspan="2"> Scanner results</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in data.sample.xref.0.results %}
+            <tr>
+                <td>{{ x.scanner}}</td>
+                <td>{{ x.result }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% endif %}
     </table>
-    <br />
     {% endif %}
+
 </div>
 
 {% endblock %}

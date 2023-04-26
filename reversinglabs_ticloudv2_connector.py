@@ -1,4 +1,4 @@
-# File: reversinglabstitaniumcloud_connector.py
+# File: reversinglabs_ticloudv2_connector.py
 #
 # Copyright (c) ReversingLabs, 2023
 #

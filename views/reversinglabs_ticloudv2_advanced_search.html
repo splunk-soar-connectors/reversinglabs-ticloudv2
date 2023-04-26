@@ -1,4 +1,4 @@
-<!-- File: reversinglabs_analyze_url.html
+<!-- File: reversinglabs_ticloudv2_advanced_search.html
   Copyright (c) ReversingLabs, 2023
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         line-break: auto;
     }
 
-    .rl-table thead th {
+    .rl-table th {
         text-align: center;
         font-size: 1.4rem;
     }
@@ -45,16 +45,10 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         flex-direction: column;
     }
 
-    #rl-target {
-        padding-top: 0.5rem;
-        text-transform: initial;
-        font-size: 1.4rem;
-        font-weight: bold;
-        -moz-user-select: text;
-        -khtml-user-select: text;
-        -webkit-user-select: text;
-        -ms-user-select: text;
-        user-select: text;
+    .rl-results {
+        font-weight: normal;
+        font-size: small;
+        text-transform: lowercase;
     }
 
     .rl-table td:first-child {
@@ -64,32 +58,44 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         white-space: nowrap;
         padding-left: 0.8rem;
         padding-right: 2rem;
-        width: 11%;
+        width: 0%;
     }
 </style>
 <div class="rl-content">
-    {% if data.report_base == None %}
-    There is no rl object in the response JSON.
-    {% else %}
     <table class="rl-table">
         <thead>
             <tr>
-                <th colspan="2">ReversingLabs TitaniumCloud Analyze URL for
-                    <div id="rl-target" class="main-grid">{{data.report_base.requested_url}}</div>
+                <th colspan="7">ReversingLabs TitaniumCloud Advanced Search for<br />
+                    <div id="rl-target" class="main-grid">{{param.query}}</div>
+                    <span class="rl-results">{{results_found}}</span>
                 </th>
+            </tr>
+            <tr>
+                <th> </th>
+                <th> SHA1</th>
+                <th> Sample type</th>
+                <th> Threat name</th>
+                <th> Threat level</th>
+                <th> Trust factor</th>
+                <th> Classification</th>
             </tr>
         </thead>
         <tbody>
+            {% for x in data %}
             <tr>
-                <td>Status</td>
-                <td>{{data.report_base.status}}</td>
+                <td>{{ forloop.counter}}.</td>
+                <td>{{ x.sha1}}</td>
+                <td>{{ x.sampletype }}</td>
+                <td>{{ x.threatname }}</td>
+                <td>{{ x.threatlevel }}</td>
+                <td>{{ x.trustfactor }}</td>
+                <td>
+                    <span style="color:{{x.classification_color}};">{{ x.classification }}</span>
+                </td>
             </tr>
-            <tr>
-                <td>Analysis ID</td>
-                <td>{{data.report_base.analysis_id}}</td>
-            </tr>
+            {% endfor %}
+
         </tbody>
     </table>
-    {% endif %}
 </div>
 {% endblock %}

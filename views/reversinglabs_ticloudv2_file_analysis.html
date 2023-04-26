@@ -1,4 +1,4 @@
-<!-- File: reversinglabs_file_reputation.html
+<!-- File: reversinglabs_ticloudv2_file_analysis.html
   Copyright (c) ReversingLabs, 2023
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
     }
 
     .rl-table {
-        line-break: anywhere;
+        line-break: auto;
     }
 
     .rl-table thead th {
@@ -39,6 +39,8 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
     .rl-table td {
         padding: 7px;
     }
+
+    .rl-table td:first
 
     .rl-content {
         display: flex;
@@ -57,7 +59,6 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         user-select: text;
     }
 
-
     .rl-table td:first-child {
         color: #6c818b;
         text-transform: uppercase;
@@ -69,76 +70,79 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
     }
 </style>
 <div class="rl-content">
-    {% if data.malware_presence == None %}
-    There is no malware_presence object in the response JSON.
-    {% else %}
+    {% if data.sample == None %}
+    There is no sample object in the response JSON.
+    {% elif data.sample.analysis.entries|length == 0 %}
+    The entries list is empty
+    {% else%}
     <table class="rl-table">
         <thead>
             <tr>
-                <th colspan="2">ReversingLabs TitaniumCloud File Reputation for
-                    <div id="rl-target" class="main-grid">{{data.malware_presence.sha1}}</span>
+                <th colspan="2">ReversingLabs File Analysis for
+                    <div id="rl-target" class="main-grid">{{data.sample.sha1}}</div>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Classification</td>
-                <td>
-                    <span style="color:{{data.classification_color}};">{{data.malware_presence.status}}</span>
-                </td>
+                <td>File type</td>
+                <td>{{data.sample.analysis.entries.0.tc_report.info.file.file_type}}</td>
             </tr>
             <tr>
-                <td>Classification reason: </td>
-                <td> {{data.malware_presence.reason}}</td>
+                <td>File subtype</td>
+                <td> {{data.sample.analysis.entries.0.tc_report.info.file.file_subtype}}</td>
+            </tr>
+            <tr>
+                <td>Sample type</td>
+                <td>{{data.sample.xref.sample_type}} </td>
+            </tr>
+            <tr>
+                <td>Sample size</td>
+                <td>{{data.sample.sample_size}} </td>
+            </tr>
+            <tr>
+                <td>Extended description</td>
+                <td>{{data.sample.analysis.entries.0.tc_report.story}} }} </td>
             </tr>
             <tr>
                 <td>First seen</td>
-                <td>{{data.malware_presence.first_seen}} </td>
+                <td> {{data.sample.xref.first_seen}}</td>
             </tr>
             <tr>
                 <td>Last seen</td>
-                <td>{{data.malware_presence.last_seen}} </td>
-            </tr>
-            <tr>
-                <td>AV scanner hits / total number of scanners</td>
-                <td>{{data.malware_presence.scanner_match}} / {{data.malware_presence.scanner_count}} </td>
-            </tr>
-            <tr>
-                <td>AV scanner hit percentage</td>
-                <td>{{data.malware_presence.scanner_percent}}</td>
+                <td> {{data.sample.xref.last_seen}}</td>
             </tr>
             <tr>
                 <td>MD5 hash</td>
-                <td>{{data.malware_presence.md5}}</td>
+                <td> {{data.sample.md5}}</td>
             </tr>
             <tr>
                 <td>SHA-1 hash</td>
-                <td>{{data.malware_presence.sha1}}</td>
+                <td> {{data.sample.sha1}}</td>
             </tr>
             <tr>
                 <td>SHA-256 hash</td>
-                <td>{{data.malware_presence.sha256}}</td>
-            </tr>
-            {% if data.malware_presence.status in "MALICIOUS,SUSPICIOUS" %}
-            <tr>
-                <td>Threat name</td>
-                <td>{{data.malware_presence.threat_name}}</td>
+                <td> {{data.sample.sha256}}</td>
             </tr>
             <tr>
-                <td>Threat level</td>
-                <td>{{data.malware_presence.threat_level}}</td>
+                <td>SHA-512 hash</td>
+                <td> {{data.sample.sha512}}</td>
             </tr>
-            {% elif data.malware_presence.status == "KNOWN" %}
             <tr>
-                <td>Trust factor</td>
-                <td>{{data.malware_presence.trust_factor}}</td>
+                <td>SHA-384 hash</td>
+                <td> {{data.sample.sha384}}</td>
             </tr>
-            {% endif %}
             <tr>
-                <td>Classification reason</td>
-                <td>{{data.malware_presence.reason}}</td>
+                <td>SSDEEP hash</td>
+                <td> {{data.sample.ssdeep}}</td>
             </tr>
+            <tr>
+                <td>RIPEMD-160 hash</td>
+                <td> {{data.sample.ripemd160}}</td>
+            </tr>
+        </tbody>
     </table>
+    <br />
     {% endif %}
 </div>
 
