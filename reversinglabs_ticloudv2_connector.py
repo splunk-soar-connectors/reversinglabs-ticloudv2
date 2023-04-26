@@ -408,7 +408,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
                 ),
                 auth=(self.ticloud_username, self.ticloud_password),
                 data=payload,
-                verify=True,
+                verify=True,  # nosemgrep
                 headers={'User-Agent': self.USER_AGENT, 'Content-Type': 'application/octet-stream'}
             )
 
@@ -433,7 +433,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
                 ),
                 auth=(self.ticloud_username, self.ticloud_password),
                 data=meta_xml,
-                verify=True,
+                verify=True,  # nosemgrep
                 headers={'User-Agent': self.USER_AGENT, 'Content-Type': 'application/octet-stream'}
             )
 
@@ -632,6 +632,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
 def main():
     import argparse
+    import sys
 
     argparser = argparse.ArgumentParser()
     args = argparser.parse_args()
@@ -643,7 +644,7 @@ def main():
         connector.print_progress_message = True
 
         connector._handle_action(json.dumps(in_json), None)
-    exit(0)
+    sys.exit(0)
 
 
 if __name__ == '__main__':
