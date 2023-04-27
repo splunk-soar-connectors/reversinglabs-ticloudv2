@@ -4,8 +4,8 @@
     "description": "App integrates with ReversingLabs TitaniumCloud APIs delivering targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services",
     "type": "reputation",
     "product_vendor": "Reversinglabs",
-    "logo": "reversinglabs_ticloudv2.svg",
-    "logo_dark": "reversinglabs_ticloudv2_dark.svg",
+    "logo": "logo_reversinglabs_ticloudv2.svg",
+    "logo_dark": "logo_reversinglabs_ticloudv2_dark.svg",
     "product_name": "TitaniumCloud",
     "python_version": "3",
     "product_version_regex": ".*",
@@ -21,6 +21,7 @@
     "package_name": "phantom_reversinglabs_ticloudv2",
     "main_module": "reversinglabs_ticloudv2_connector.py",
     "min_phantom_version": "5.5.0",
+    "fips_compliant": false,
     "app_wizard_version": "1.0.0",
     "configuration": {
         "url": {
