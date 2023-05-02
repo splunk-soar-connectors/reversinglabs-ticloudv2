@@ -1,0 +1,145 @@
+<!-- File: reversinglabs_ticloudv2_file_reputation.html
+  Copyright (c) ReversingLabs, 2023
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+either express or implied. See the License for the specific language governing permissions
+and limitations under the License.
+-->
+
+{% extends 'widgets/widget_template.html' %}
+{% load custom_template %}
+{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
+background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
+{% block widget_content %}
+<style>
+    .widget-container {
+        width: 1170px !important;
+        height: 600px;
+    }
+
+    .c-app-run-widget {
+        height: 680px;
+        width: 100%;
+        position: relative;
+    }
+
+    .rl-table {
+        line-break: anywhere;
+    }
+
+    .rl-table thead th {
+        text-align: center;
+        font-size: 1.4rem;
+    }
+
+    .rl-table td {
+        padding: 7px;
+    }
+
+    .rl-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #rl-target {
+        padding-top: 0.5rem;
+        text-transform: initial;
+        font-size: 1.4rem;
+        font-weight: bold;
+        -moz-user-select: text;
+        -khtml-user-select: text;
+        -webkit-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+
+
+    .rl-table td:first-child {
+        color: #6c818b;
+        text-transform: uppercase;
+        font-weight: 500;
+        white-space: nowrap;
+        padding-left: 0.8rem;
+        padding-right: 2rem;
+        width: 11%;
+    }
+</style>
+<div class="rl-content">
+    {% if data.malware_presence == None %}
+    There is no malware_presence object in the response JSON.
+    {% else %}
+    <table class="rl-table">
+        <thead>
+            <tr>
+                <th colspan="2">ReversingLabs TitaniumCloud File Reputation for
+                    <div id="rl-target" class="main-grid">{{data.malware_presence.sha1}}</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Classification</td>
+                <td>
+                    <span style="color:{{data.classification_color}};">{{data.malware_presence.status}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Classification reason: </td>
+                <td> {{data.malware_presence.reason}}</td>
+            </tr>
+            <tr>
+                <td>First seen</td>
+                <td>{{data.malware_presence.first_seen}} </td>
+            </tr>
+            <tr>
+                <td>Last seen</td>
+                <td>{{data.malware_presence.last_seen}} </td>
+            </tr>
+            <tr>
+                <td>AV scanner hits / total number of scanners</td>
+                <td>{{data.malware_presence.scanner_match}} / {{data.malware_presence.scanner_count}} </td>
+            </tr>
+            <tr>
+                <td>AV scanner hit percentage</td>
+                <td>{{data.malware_presence.scanner_percent}}</td>
+            </tr>
+            <tr>
+                <td>MD5 hash</td>
+                <td>{{data.malware_presence.md5}}</td>
+            </tr>
+            <tr>
+                <td>SHA-1 hash</td>
+                <td>{{data.malware_presence.sha1}}</td>
+            </tr>
+            <tr>
+                <td>SHA-256 hash</td>
+                <td>{{data.malware_presence.sha256}}</td>
+            </tr>
+            {% if data.malware_presence.status in "MALICIOUS,SUSPICIOUS" %}
+            <tr>
+                <td>Threat name</td>
+                <td>{{data.malware_presence.threat_name}}</td>
+            </tr>
+            <tr>
+                <td>Threat level</td>
+                <td>{{data.malware_presence.threat_level}}</td>
+            </tr>
+            {% elif data.malware_presence.status == "KNOWN" %}
+            <tr>
+                <td>Trust factor</td>
+                <td>{{data.malware_presence.trust_factor}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Classification reason</td>
+                <td>{{data.malware_presence.reason}}</td>
+            </tr>
+    </table>
+    {% endif %}
+</div>
+
+{% endblock %}
