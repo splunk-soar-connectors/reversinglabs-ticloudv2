@@ -1235,7 +1235,7 @@
             "action": "get downloaded files",
             "identifier": "get_url_downloaded_files",
             "description": "TCA - 0403 - Get files downloaded from url",
-            "verbose": "Accepts a URL string and returns a list of downloaded files aggregated through multiple pages of results",
+            "verbose": "Accepts a URL string and returns a list of downloaded files aggregated through multiple pages of results.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1411,7 +1411,7 @@
             "action": "get latest url analysis feed",
             "identifier": "get_latest_url_analysis_feed",
             "description": "TCA - 0403 - Get latest url analysis feed",
-            "verbose": "Returns the latest URL analyses reports aggregated as list",
+            "verbose": "Returns the latest URL analyses reports aggregated as list.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1489,7 +1489,7 @@
             "action": "get url analysis feed from date",
             "identifier": "get_url_analysis_feed_from_date",
             "description": "TCA - 0403 - Get url analysis feed from date",
-            "verbose": "verbose",
+            "verbose": "Accepts time format and a start time and returns URL analyses reports from that defined time onward aggregated as a list.",
             "type": "generic",
             "read_only": false,
             "parameters": {
