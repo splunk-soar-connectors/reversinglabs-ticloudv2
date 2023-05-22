@@ -91,6 +91,9 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_YARA_RETRO_CHECK_STATUS = "yara_retro_check_status"
     ACTION_ID_YARA_RETRO_CANCEL_HUNT = "yara_retro_cancel_hunt"
     ACTION_ID_GET_YARA_RETRO_MATCHES = "get_yara_retro_matches"
+    ACTION_ID_GET_URL_DOWNLOADED_FILES = "get_url_downloaded_files"
+    ACTION_ID_GET_LATEST_URL_ANALYSIS_FEED = "get_latest_url_analysis_feed"
+    ACTION_ID_GET_URL_ANALYSIS_FEED_FROM_DATE = "get_url_analysis_feed_from_date"
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -123,6 +126,9 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_YARA_RETRO_CHECK_STATUS: self._handle_yara_retro_check_status,
             self.ACTION_ID_YARA_RETRO_CANCEL_HUNT: self._handle_yara_retro_cancel_hunt,
             self.ACTION_ID_GET_YARA_RETRO_MATCHES: self._handle_get_yara_retro_matches,
+            self.ACTION_ID_GET_URL_DOWNLOADED_FILES: self._handle_get_url_downloaded_files,
+            self.ACTION_ID_GET_LATEST_URL_ANALYSIS_FEED: self._handle_get_latest_url_analysis_feed,
+            self.ACTION_ID_GET_URL_ANALYSIS_FEED_FROM_DATE: self._handle_get_url_analysis_feed_from_date
         }
 
         self._state = None
@@ -281,6 +287,71 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
+
+    def _handle_get_url_downloaded_files(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        url_intelligence = URLThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        response = url_intelligence.get_downloaded_files_aggregated(
+            url_input=param.get("url"),
+            extended=param.get("extended"),
+            classification=param.get("classification"),
+            last_analysis=param.get("last_analysis"),
+            analysis_id=param.get("analysis_id"),
+            results_per_page=param.get("results_per_page"),
+            max_results=param.get("max_results")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+
+        for x in response:
+            action_result.add_data(x)
+
+    def _handle_get_latest_url_analysis_feed(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        url_intelligence = URLThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        response = url_intelligence.get_latest_url_analysis_feed_aggregated(
+            results_per_page=param.get("results_per_page"),
+            max_results=param.get("max_results")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+
+        for x in response:
+            action_result.add_data(x)
+
+    def _handle_get_url_analysis_feed_from_date(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        url_intelligence = URLThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = url_intelligence.get_url_analysis_feed_from_date_aggregated(
+            time_format=param.get("time_format"),
+            start_time=param.get("start_time"),
+            results_per_page=param.get("results_per_page"),
+            max_results=param.get("max_results")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+
+        for x in response:
+            action_result.add_data(x)
 
     def _handle_analyze_url(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
