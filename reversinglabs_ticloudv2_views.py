@@ -89,6 +89,38 @@ def url_reputation(provides, all_app_runs, context):
     return 'views/reversinglabs_ticloudv2_url_reputation.html'
 
 
+def url_downloaded_files(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            context['data'] = result.get_data()
+            for x in context['data']:
+                x["classification_color"] = color_code_classification(x.get("classification").upper())
+
+            context['param'] = result.get_param()
+
+    return 'views/reversinglabs_ticloudv2_url_downloaded_files.html'
+
+
+def latest_url_analysis_feed(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            context['data'] = result.get_data()
+
+        context['param'] = result.get_param()
+
+    return 'views/reversinglabs_ticloudv2_url_analysis_feed.html'
+
+
+def url_analysis_feed_from_date(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            context['data'] = result.get_data()
+
+        context['param'] = result.get_param()
+
+    return 'views/reversinglabs_ticloudv2_url_analysis_feed.html'
+
+
 def analyze_url(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
