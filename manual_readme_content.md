@@ -38,6 +38,9 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [file analysis](#action-file-analysis) - TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud  
 [functional similarity](#action-functional-similarity) - TCA-0301 - Retrieve a list of functionally similar hashes to the provided one  
 [url reputation](#action-url-reputation) - TCA-0403 - Queries URL Threat Intelligence  
+[get downloaded files](#action-get-downloaded-files) - TCA - 0403 - Get files downloaded from url  
+[get latest url analysis feed](#action-get-latest-url-analysis-feed) - TCA - 0403 - Get latest url analysis feed  
+[get url analysis feed from date](#action-get-url-analysis-feed-from-date) - TCA - 0403 - Get url analysis feed from date  
 [analyze url](#action-analyze-url) - TCA-0404 - Analyze a given URL  
 [uri statistics](#action-uri-statistics) - TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI  
 [uri index](#action-uri-index) - TCA-0401 - Retrieve a list of all available file hashes associated with a given URI  
@@ -481,6 +484,92 @@ action_result.status | string |  |   success or failed
 action_result.parameter.url | string |  `url`  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |    
+
+## action: 'get downloaded files'
+TCA - 0403 - Get files downloaded from url
+
+Type: **generic**  
+Read only: **False**
+
+Accepts a URL string and returns a list of downloaded files aggregated through multiple pages of results.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**url** |  required  | URL string | string | 
+**extended** |  optional  | Return extended report | boolean | 
+**classification** |  optional  | Return only files of this classification | string | 
+**last_analysis** |  optional  | Return only files from the last analysis | boolean | 
+**analysis_id** |  optional  | Return only files from this analysis | string | 
+**results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
+**max_results** |  optional  | Maximum results to be returned in the list | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.url | string |  |  
+action_result.parameter.extended | boolean |  |  
+action_result.parameter.classification | string |  |  
+action_result.parameter.last_analysis | boolean |  |  
+action_result.parameter.analysis_id | string |  |  
+action_result.parameter.results_per_page | numeric |  |  
+action_result.parameter.max_results | numeric |  |  
+action_result.status | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |    
+
+## action: 'get latest url analysis feed'
+TCA - 0403 - Get latest url analysis feed
+
+Type: **generic**  
+Read only: **False**
+
+Returns the latest URL analyses reports aggregated as list.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
+**max_results** |  optional  | Maximum results to be returned in the list | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.results_per_page | numeric |  |  
+action_result.parameter.max_results | numeric |  |  
+action_result.status | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |    
+
+## action: 'get url analysis feed from date'
+TCA - 0403 - Get url analysis feed from date
+
+Type: **generic**  
+Read only: **False**
+
+Accepts time format and a start time and returns URL analyses reports from that defined time onward aggregated as a list.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**time_format** |  required  | Possible values: 'utc' or 'timestamp' | string | 
+**start_time** |  required  | Time from which to retrieve results onwards | string | 
+**results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
+**max_results** |  optional  | Maximum results to be returned in the list | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.time_format | string |  |  
+action_result.parameter.start_time | string |  |  
+action_result.parameter.results_per_page | numeric |  |  
+action_result.parameter.max_results | numeric |  |  
+action_result.status | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
