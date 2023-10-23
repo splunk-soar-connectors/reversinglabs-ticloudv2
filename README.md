@@ -2,7 +2,7 @@
 # Reversinglabs TitaniumCloud v2
 
 Publisher: ReversingLabs  
-Connector Version: 1.1.0  
+Connector Version: 1.2.0  
 Product Vendor: Reversinglabs  
 Product Name: TitaniumCloud  
 Product Version Supported (regex): ".\*"  
@@ -21,8 +21,6 @@ App integrates with ReversingLabs TitaniumCloud APIs delivering targeted file an
 [comment]: # "either express or implied. See the License for the specific language governing permissions"
 [comment]: # "and limitations under the License."
 [comment]: # ""
-
-
 
 ### Configuration Variables
 The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a TitaniumCloud asset in SOAR.
@@ -52,9 +50,6 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [file analysis](#action-file-analysis) - TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud  
 [functional similarity](#action-functional-similarity) - TCA-0301 - Retrieve a list of functionally similar hashes to the provided one  
 [url reputation](#action-url-reputation) - TCA-0403 - Queries URL Threat Intelligence  
-[get downloaded files](#action-get-downloaded-files) - TCA - 0403 - Get files downloaded from url  
-[get latest url analysis feed](#action-get-latest-url-analysis-feed) - TCA - 0403 - Get latest url analysis feed  
-[get url analysis feed from date](#action-get-url-analysis-feed-from-date) - TCA - 0403 - Get url analysis feed from date  
 [analyze url](#action-analyze-url) - TCA-0404 - Analyze a given URL  
 [uri statistics](#action-uri-statistics) - TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI  
 [uri index](#action-uri-index) - TCA-0401 - Retrieve a list of all available file hashes associated with a given URI  
@@ -63,6 +58,10 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [reanalyze file](#action-reanalyze-file) - TCA-0205 - Reanalyze sample  
 [upload file](#action-upload-file) - TCA-0202 - Upload file to TitaniumCloud  
 [get file](#action-get-file) - TCA-0201 - Download a sample from TitaniumCloud  
+[get network reputation](#action-get-network-reputation) - TCA-0407 - Get reputation of a requested URL, domain or IP address  
+[get list user overrides](#action-get-list-user-overrides) - TCA-0408 - Get user URL classification overrides  
+[get list user overrides aggregated](#action-get-list-user-overrides-aggregated) - TCA-0408 -  Get user URL classification overrides aggregated  
+[network reputation user override](#action-network-reputation-user-override) - TCA-0408 - Override user network location reputation  
 
 ## action: 'test connectivity'
 Validate the asset configuration for connectivity using supplied configuration
@@ -95,7 +94,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
 action_result.parameter.ruleset_text | string |  |  
 action_result.data | string |  |  
@@ -120,7 +119,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -144,7 +143,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -168,7 +167,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -193,7 +192,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.time_format | string |  |  
 action_result.parameter.time_value | string |  |  
 action_result.data | string |  |  
@@ -218,7 +217,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -242,7 +241,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -266,7 +265,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -290,7 +289,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -315,7 +314,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.time_format | string |  |  
 action_result.parameter.time_value | string |  |  
 action_result.data | string |  |  
@@ -341,7 +340,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.imphash | string |  |  
 action_result.parameter.limit | numeric |  |  
 action_result.data | string |  |  
@@ -367,7 +366,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.limit | numeric |  |  
 action_result.parameter.query | string |  |  
 action_result.data | string |  |  
@@ -392,7 +391,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.hash | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -416,7 +415,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.hash | string |  `hash`  `sha256`  `sha1`  `md5`  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -440,7 +439,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.hash | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -465,7 +464,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.hash | string |  |  
 action_result.parameter.limit | numeric |  |  
 action_result.data | string |  |  
@@ -490,96 +489,10 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.url | string |  `url`  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'get downloaded files'
-TCA - 0403 - Get files downloaded from url
-
-Type: **generic**  
-Read only: **False**
-
-Accepts a URL string and returns a list of downloaded files aggregated through multiple pages of results.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**url** |  required  | URL string | string | 
-**extended** |  optional  | Return extended report | boolean | 
-**classification** |  optional  | Return only files of this classification | string | 
-**last_analysis** |  optional  | Return only files from the last analysis | boolean | 
-**analysis_id** |  optional  | Return only files from this analysis | string | 
-**results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
-**max_results** |  optional  | Maximum results to be returned in the list | numeric | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.parameter.url | string |  |  
-action_result.parameter.extended | boolean |  |  
-action_result.parameter.classification | string |  |  
-action_result.parameter.last_analysis | boolean |  |  
-action_result.parameter.analysis_id | string |  |  
-action_result.parameter.results_per_page | numeric |  |  
-action_result.parameter.max_results | numeric |  |  
-action_result.status | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'get latest url analysis feed'
-TCA - 0403 - Get latest url analysis feed
-
-Type: **generic**  
-Read only: **False**
-
-Returns the latest URL analyses reports aggregated as list.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
-**max_results** |  optional  | Maximum results to be returned in the list | numeric | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.parameter.results_per_page | numeric |  |  
-action_result.parameter.max_results | numeric |  |  
-action_result.status | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'get url analysis feed from date'
-TCA - 0403 - Get url analysis feed from date
-
-Type: **generic**  
-Read only: **False**
-
-Accepts time format and a start time and returns URL analyses reports from that defined time onward aggregated as a list.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**time_format** |  required  | Possible values: 'utc' or 'timestamp' | string | 
-**start_time** |  required  | Time from which to retrieve results onwards | string | 
-**results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
-**max_results** |  optional  | Maximum results to be returned in the list | numeric | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.parameter.time_format | string |  |  
-action_result.parameter.start_time | string |  |  
-action_result.parameter.results_per_page | numeric |  |  
-action_result.parameter.max_results | numeric |  |  
-action_result.status | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
@@ -600,7 +513,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.url | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -624,7 +537,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.uri | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -649,7 +562,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.limit | numeric |  |  
 action_result.parameter.uri | string |  |  
 action_result.data | string |  |  
@@ -675,7 +588,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.platform | string |  |  
 action_result.parameter.sha1 | string |  |  
 action_result.data | string |  |  
@@ -702,7 +615,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.analysis_id | string |  |  
 action_result.parameter.latest | boolean |  |  
 action_result.parameter.sha1 | string |  |  
@@ -728,7 +641,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.hash | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -753,7 +666,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.file_name | string |  `file name`  |  
 action_result.parameter.vault_id | string |  `pe file`  `pdf`  `flash`  `apk`  `jar`  `doc`  `xls`  `ppt`  |  
 action_result.data | string |  |  
@@ -778,10 +691,100 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
+action_result.status | string |  |   success or failed 
 action_result.parameter.hash | string |  `md5`  `sha1`  `sha256`  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |  
+
+## action: 'get network reputation'
+TCA-0407 - Get reputation of a requested URL, domain or IP address
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0407 - Get reputation of a requested URL, domain or IP address
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**network_locations** |  required  | domain, url or ip | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.network_locations | string |  | 92.123.37.9 or multiple separated by space (92.123.37.9 reversinglabs.com)
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+
+## action: 'get list user overrides'
+TCA-0408 - Get user URL classification overrides
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0408 - Get user URL classification overrides
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**next_page_sha1** |  optional  | Optional parameter used for pagination | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.next_page_sha1 | string |  | 23e725d8923bf46bb776f15f26f410f829b75e7f
+action_result.message | string |  | 
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+
+## action: 'get list user overrides aggregated'
+TCA-0408 - Get user URL classification overrides aggregated
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0408 - Get user URL classification overrides aggregated
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**max_results** |  optional  |  | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.max_results | numeric |  | 50
+action_result.message | string |  | 
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'network reputation user override'
+TCA-0408 - Override user network location reputation
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0408 - Override user network location reputation
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**override_list** |  required  | Network Reputation User Override | string | 
+**remove_overrides_list** |  optional  | List of network locations whose classification override needs to be removed | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.override_list | string |  | { "network_location": "http://example.com", "type": "url", "classification": "malicious", "categories": ["phishing"] } 
+action_result.parameter.remove_overrides_list | string |  | { "network_location": "http://example.com", "type": "url" } 
+action_result.message | string |  | 
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 

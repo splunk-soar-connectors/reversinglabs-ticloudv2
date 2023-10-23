@@ -8,11 +8,11 @@
 #
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, software distributed under
-# the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-# either express or implied. See the License for the specific language governing permissions
-# and limitations under the License.
-#
+# Unless required by applicable law or agreed to in writing, software distributed 
+# under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
+# CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+# specific language governing permissions and limitations under the License.
+
 
 def file_reputation(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
@@ -88,18 +88,15 @@ def url_reputation(provides, all_app_runs, context):
 
     return 'views/reversinglabs_ticloudv2_url_reputation.html'
 
-
 def url_downloaded_files(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
             context['data'] = result.get_data()
             for x in context['data']:
-                x["classification_color"] = color_code_classification(x.get("classification").upper())
+                x["classification_color"] = color_code_classification(x.get("classification").upper()) 
 
             context['param'] = result.get_param()
-
     return 'views/reversinglabs_ticloudv2_url_downloaded_files.html'
-
 
 def latest_url_analysis_feed(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
@@ -110,16 +107,14 @@ def latest_url_analysis_feed(provides, all_app_runs, context):
 
     return 'views/reversinglabs_ticloudv2_url_analysis_feed.html'
 
-
 def url_analysis_feed_from_date(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
             context['data'] = result.get_data()
 
-        context['param'] = result.get_param()
+        context['param'] = result.get_param()   
 
     return 'views/reversinglabs_ticloudv2_url_analysis_feed.html'
-
 
 def analyze_url(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
@@ -212,6 +207,55 @@ def uri_index(provides, all_app_runs, context):
             context['param'] = result.get_param()
 
     return 'views/reversinglabs_ticloudv2_uri_index.html'
+
+
+def network_reputation(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            data = {}
+            
+            entries = result.get_data()[0].get("rl", {}).get("entries")
+            data["entries"] = entries 
+            
+            context["data"] = data
+    
+    return 'views/reversinglabs_ticloudv2_network_reputation_view.html'
+
+def list_user_overrides(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            data = {}
+            
+            user_override = result.get_data()[0].get("rl", {}).get("user_override")
+            data["user_override"] = user_override;
+            
+            context["data"] = data
+    
+    return 'views/reversinglabs_ticloudv2_list_user_overrides_view.html'
+
+def list_user_overrides_aggregated(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            data = {}
+            
+            network_locations = result.get_data()[0]
+            data["network_locations"] = network_locations;
+            
+            context["data"] = data
+    
+    return 'views/reversinglabs_ticloudv2_list_user_overrides_aggregated_view.html'
+
+def network_reputation_user_override(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            data = {}
+            
+            user_override = result.get_data()[0].get("rl", {}).get("user_override")
+            data["user_override"] = user_override;
+            
+            context["data"] = data
+    
+    return 'views/reversinglabs_ticloudv2_network_reputation_user_override_view.html'
 
 
 def color_code_classification(classification):
