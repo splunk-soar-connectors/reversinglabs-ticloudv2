@@ -1489,7 +1489,7 @@
             "action": "get url analysis feed from date",
             "identifier": "get_url_analysis_feed_from_date",
             "description": "TCA - 0403 - Get url analysis feed from date",
-            "verbose": "verbose",
+            "verbose": "Accepts time format and a start time and returns URL analyses report from that defined time onward aggregated as a list",
             "type": "generic",
             "read_only": false,
             "parameters": {
