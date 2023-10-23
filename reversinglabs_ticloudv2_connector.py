@@ -27,8 +27,8 @@ from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 from phantom.vault import Vault
 from ReversingLabs.SDK.ticloud import (AdvancedSearch, AnalyzeURL, AVScanners, DynamicAnalysis, FileAnalysis, FileDownload, FileReputation,
-                                       ImpHashSimilarity, ReanalyzeFile, RHA1FunctionalSimilarity, URIIndex, URIStatistics,
-                                       URLThreatIntelligence, YARAHunting, YARARetroHunting, NetworkReputation, NetworkReputationUserOverride)
+                                       ImpHashSimilarity, NetworkReputation, NetworkReputationUserOverride, ReanalyzeFile,
+                                       RHA1FunctionalSimilarity, URIIndex, URIStatistics, URLThreatIntelligence, YARAHunting, YARARetroHunting)
 
 # Our helper lib reversinglabs-sdk-py3 internally utilizes pypi requests (with named parameters) which is shadowed by Phantom
 # requests (which has renamed parameters (url>>uri), hence this workarounds
