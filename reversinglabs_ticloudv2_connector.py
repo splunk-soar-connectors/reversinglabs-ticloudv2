@@ -98,7 +98,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_GET_LIST_USER_OVERRIDES = "get_list_user_overrides"
     ACTION_ID_GET_LIST_USER_OVERRIDES_AGGREGATED = "get_list_user_overrides_aggregated"
     ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE = "network_reputation_user_override"
-    
+
     def __init__(self):
         # Call the BaseConnectors init first
         super(ReversinglabsTitaniumCloudV2Connector, self).__init__()
@@ -318,7 +318,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         for x in response:
             action_result.add_data(x)
-       
+
     def _handle_get_latest_url_analysis_feed(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -357,7 +357,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         for x in response:
             action_result.add_data(x)
-    
+
     def _handle_analyze_url(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -686,75 +686,75 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
-        
+
     def _handle_get_network_reputation(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         network_reputation = NetworkReputation(
-            host = self.ticloud_base_url,
-            username = self.ticloud_username,
-            password = self.ticloud_password,
-            user_agent = self.USER_AGENT
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
         )
-        
+
         response = network_reputation.get_network_reputation(
-            network_locations = list(param.get("network_locations").split())
+            network_locations=list(param.get("network_locations").split())
         )
-        
+
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
-        
+
     def _handle_get_list_user_overrides(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         list_user_override = NetworkReputationUserOverride(
-            host = self.ticloud_base_url,
-            username = self.ticloud_username,
-            password = self.ticloud_password,
-            user_agent = self.USER_AGENT
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
         )
-        
+
         response = list_user_override.list_overrides(
-            next_page_sha1 = param.get("next_page_sha1")
+            next_page_sha1=param.get("next_page_sha1")
         )
-        
+
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
-        
+
     def _handle_get_list_user_overrides_aggregated(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         override_list = NetworkReputationUserOverride(
-            host = self.ticloud_base_url,
-            username = self.ticloud_username,
-            password = self.ticloud_password,
-            user_agent = self.USER_AGENT
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
         )
-        
+
         response = override_list.list_overrides_aggregated(
-            max_results = param.get("max_results")
+            max_results=param.get("max_results")
         )
-        
+
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response)
-        
+
     def _handle_network_reputation_user_override(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         override_list = NetworkReputationUserOverride(
-            host = self.ticloud_base_url,
-            username = self.ticloud_username,
-            password = self.ticloud_password,
-            user_agent = self.USER_AGENT
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
         )
-        
+
         list_override = [json.loads(param.get("override_list"))]
-        
+
         response = override_list.reputation_override(
-            override_list = list_override,
-            remove_overrides_list = []
+            override_list=list_override,
+            remove_overrides_list=[]
         )
-        
+
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
 
