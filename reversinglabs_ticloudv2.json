@@ -1235,7 +1235,7 @@
             "action": "get downloaded files",
             "identifier": "get_url_downloaded_files",
             "description": "TCA - 0403 - Get files downloaded from url",
-            "verbose": "Accepts a URL string and returns a list of downloaded files aggregated through multiple pages of results",
+            "verbose": "Accepts a URL string and returns a list of downloaded files aggregated through multiple pages of results.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1411,7 +1411,7 @@
             "action": "get latest url analysis feed",
             "identifier": "get_latest_url_analysis_feed",
             "description": "TCA - 0403 - Get latest url analysis feed",
-            "verbose": "Returns the latest URL analyses reports aggregated as list",
+            "verbose": "Returns the latest URL analyses reports aggregated as list.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1489,7 +1489,7 @@
             "action": "get url analysis feed from date",
             "identifier": "get_url_analysis_feed_from_date",
             "description": "TCA - 0403 - Get url analysis feed from date",
-            "verbose": "Accepts time format and a start time and returns URL analyses report from that defined time onward aggregated as a list",
+            "verbose": "Accepts time format and a start time and returns URL analyses report from that defined time onward aggregated as a list.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -2217,7 +2217,7 @@
             "action": "get network reputation",
             "identifier": "get_network_reputation",
             "description": "Network Reputation API",
-            "verbose": "Service provides information regarding the reputation of a requested URL, domain, or IP address",
+            "verbose": "Service provides information regarding the reputation of a requested URL, domain, or IP address.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -2275,7 +2275,7 @@
             "action": "get list user overrides",
             "identifier": "get_list_user_overrides",
             "description": "List User Overrides",
-            "verbose": "The Network Reputation User Override service enables URL classification overrides. Any URL can be overridden to malicious, suspicious, or known",
+            "verbose": "The Network Reputation User Override service enables URL classification overrides. Any URL can be overridden to malicious, suspicious, or known.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -2330,13 +2330,13 @@
         {
             "action": "get list user overrides aggregated",
             "identifier": "get_list_user_overrides_aggregated",
-            "description": "Returns a list of overrides that the user has made.",
-            "verbose": "This API automatically handles paging and returns a list of results instead of a Response object",
+            "description": "Returns a list of overrides that the user has made",
+            "verbose": "This API automatically handles paging and returns a list of results instead of a Response object.",
             "type": "generic",
             "read_only": false,
             "parameters": {
                 "max_results": {
-                    "description": "maximum number of results to be returned in the list",
+                    "description": "Maximum number of results to be returned in the list",
                     "data_type": "numeric",
                     "required": false,
                     "primary": false,
@@ -2387,12 +2387,12 @@
             "action": "network reputation user override",
             "identifier": "network_reputation_user_override",
             "description": "Network Reputation User Override",
-            "verbose": "The Network Reputation User Override service enables URL classification overrides",
+            "verbose": "The Network Reputation User Override service enables URL classification overrides.",
             "type": "generic",
             "read_only": false,
             "parameters": {
                 "override_list": {
-                    "description": "a list of network locations whose classification needs to be overriden",
+                    "description": "List of network locations whose classification needs to be overriden",
                     "data_type": "string",
                     "required": true,
                     "primary": false,
@@ -2403,7 +2403,7 @@
                     "name": "override_list"
                 },
                 "remove_overrides_list": {
-                    "description": "a list of network locations whose classification override needs to be removed",
+                    "description": "List of network locations whose classification override needs to be removed",
                     "data_type": "string",
                     "required": false,
                     "primary": false,
