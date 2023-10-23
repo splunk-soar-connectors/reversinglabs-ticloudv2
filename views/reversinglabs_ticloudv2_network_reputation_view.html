@@ -182,9 +182,6 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
               var ReputationUndetected{{ forloop.counter }} = document.getElementById("repUndetected-{{ forloop.counter }}").outerText;
               var RepData{{ forloop.counter }} = [ReputationTotal{{ forloop.counter }}, ReputationClean{{ forloop.counter }}, ReputationMalicious{{ forloop.counter }}, ReputationUndetected{{ forloop.counter }}];  
                
-              console.log("Before any function!");  
-              console.log(RepData{{ forloop.counter }});
-                
               var endpoint{{ forloop.counter }} = window.location.href;
               $.ajax({ 
                   method: "GET", 
@@ -201,8 +198,6 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
                   var labels = data.labels; 
                   var chartLabel = data.chartLabel; 
                   var ctx = document.getElementById(id).getContext('2d');
-                  console.log("drawBarGraph function!");  
-                  console.log(RepData{{ forloop.counter }});
                   var myChart{{ forloop.counter }} = new Chart(ctx, {
                     type: 'bar',
                     data: { 
