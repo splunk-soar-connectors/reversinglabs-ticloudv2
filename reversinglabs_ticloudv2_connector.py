@@ -27,8 +27,8 @@ from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 from phantom.vault import Vault
 from ReversingLabs.SDK.ticloud import (AdvancedSearch, AnalyzeURL, AVScanners, DynamicAnalysis, FileAnalysis, FileDownload, FileReputation,
-                                       ImpHashSimilarity, ReanalyzeFile, RHA1FunctionalSimilarity, URIIndex, URIStatistics,
-                                       URLThreatIntelligence, YARAHunting, YARARetroHunting)
+                                       ImpHashSimilarity, NetworkReputation, NetworkReputationUserOverride, ReanalyzeFile,
+                                       RHA1FunctionalSimilarity, URIIndex, URIStatistics, URLThreatIntelligence, YARAHunting, YARARetroHunting)
 
 # Our helper lib reversinglabs-sdk-py3 internally utilizes pypi requests (with named parameters) which is shadowed by Phantom
 # requests (which has renamed parameters (url>>uri), hence this workarounds
@@ -62,7 +62,7 @@ phantom.requests.delete = new_delete
 
 class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ticloud_spex_url = "/api/spex/upload/"
-    USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloud v1.0.0"
+    USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloudv2 v1.2.0"
 
     # The actions supported by this connector
     ACTION_ID_TEST_CONNECTIVITY = "test_connectivity"
@@ -91,6 +91,13 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_YARA_RETRO_CHECK_STATUS = "yara_retro_check_status"
     ACTION_ID_YARA_RETRO_CANCEL_HUNT = "yara_retro_cancel_hunt"
     ACTION_ID_GET_YARA_RETRO_MATCHES = "get_yara_retro_matches"
+    ACTION_ID_GET_URL_DOWNLOADED_FILES = "get_url_downloaded_files"
+    ACTION_ID_GET_LATEST_URL_ANALYSIS_FEED = "get_latest_url_analysis_feed"
+    ACTION_ID_GET_URL_ANALYSIS_FEED_FROM_DATE = "get_url_analysis_feed_from_date"
+    ACTION_ID_GET_NETWORK_REPUTATION = "get_network_reputation"
+    ACTION_ID_GET_LIST_USER_OVERRIDES = "get_list_user_overrides"
+    ACTION_ID_GET_LIST_USER_OVERRIDES_AGGREGATED = "get_list_user_overrides_aggregated"
+    ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE = "network_reputation_user_override"
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -123,6 +130,13 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_YARA_RETRO_CHECK_STATUS: self._handle_yara_retro_check_status,
             self.ACTION_ID_YARA_RETRO_CANCEL_HUNT: self._handle_yara_retro_cancel_hunt,
             self.ACTION_ID_GET_YARA_RETRO_MATCHES: self._handle_get_yara_retro_matches,
+            self.ACTION_ID_GET_URL_DOWNLOADED_FILES: self._handle_get_url_downloaded_files,
+            self.ACTION_ID_GET_LATEST_URL_ANALYSIS_FEED: self._handle_get_latest_url_analysis_feed,
+            self.ACTION_ID_GET_URL_ANALYSIS_FEED_FROM_DATE: self._handle_get_url_analysis_feed_from_date,
+            self.ACTION_ID_GET_NETWORK_REPUTATION: self._handle_get_network_reputation,
+            self.ACTION_ID_GET_LIST_USER_OVERRIDES: self._handle_get_list_user_overrides,
+            self.ACTION_ID_GET_LIST_USER_OVERRIDES_AGGREGATED: self._handle_get_list_user_overrides_aggregated,
+            self.ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE: self._handle_network_reputation_user_override
         }
 
         self._state = None
@@ -281,6 +295,68 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
+
+    def _handle_get_url_downloaded_files(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        url_intelligence = URLThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        response = url_intelligence.get_downloaded_files_aggregated(
+            url_input=param.get("url"),
+            extended=param.get("extended"),
+            classification=param.get("classification"),
+            last_analysis=param.get("last_analysis"),
+            analysis_id=param.get("analysis_id"),
+            results_per_page=param.get("results_per_page"),
+            max_results=param.get("max_results")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        for x in response:
+            action_result.add_data(x)
+
+    def _handle_get_latest_url_analysis_feed(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        url_intelligence = URLThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        response = url_intelligence.get_latest_url_analysis_feed_aggregated(
+            results_per_page=param.get("results_per_page"),
+            max_results=param.get("max_results")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        for x in response:
+            action_result.add_data(x)
+
+    def _handle_get_url_analysis_feed_from_date(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        url_intelligence = URLThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = url_intelligence.get_url_analysis_feed_from_date_aggregated(
+            time_format=param.get("time_format"),
+            start_time=param.get("start_time"),
+            results_per_page=param.get("results_per_page"),
+            max_results=param.get("max_results")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        for x in response:
+            action_result.add_data(x)
 
     def _handle_analyze_url(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
@@ -609,6 +685,77 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         self.debug_print("Executed", self.get_action_identifier())
 
+        action_result.add_data(response.json())
+
+    def _handle_get_network_reputation(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        network_reputation = NetworkReputation(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = network_reputation.get_network_reputation(
+            network_locations=list(param.get("network_locations").split())
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json())
+
+    def _handle_get_list_user_overrides(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        list_user_override = NetworkReputationUserOverride(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = list_user_override.list_overrides(
+            next_page_sha1=param.get("next_page_sha1")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json())
+
+    def _handle_get_list_user_overrides_aggregated(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        override_list = NetworkReputationUserOverride(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = override_list.list_overrides_aggregated(
+            max_results=param.get("max_results")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response)
+
+    def _handle_network_reputation_user_override(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        override_list = NetworkReputationUserOverride(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        list_override = [json.loads(param.get("override_list"))]
+
+        response = override_list.reputation_override(
+            override_list=list_override,
+            remove_overrides_list=[]
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
 
     def _handle_test_connectivity(self, action_result, param):

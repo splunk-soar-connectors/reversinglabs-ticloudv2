@@ -12,12 +12,12 @@
     "publisher": "ReversingLabs",
     "contributors": [
         {
-            "name": "ivukovicRL"
+            "name": "DinkoReversingLabs"
         }
     ],
     "license": "Copyright (c) ReversingLabs, 2023",
-    "app_version": "1.0.1",
-    "utctime_updated": "2023-03-14T11:16:58.519975Z",
+    "app_version": "1.2.0",
+    "utctime_updated": "2023-10-20T11:31:29.572259Z",
     "package_name": "phantom_reversinglabs_ticloudv2",
     "main_module": "reversinglabs_ticloudv2_connector.py",
     "min_phantom_version": "5.5.0",
@@ -1232,6 +1232,378 @@
             "versions": "EQ(*)"
         },
         {
+            "action": "get downloaded files",
+            "identifier": "get_url_downloaded_files",
+            "description": "TCA - 0403 - Get files downloaded from url",
+            "verbose": "Accepts a URL string and returns a list of downloaded files aggregated through multiple pages of results.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "url": {
+                    "description": "URL string",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 0,
+                    "name": "url",
+                    "id": 1,
+                    "param_name": "url"
+                },
+                "extended": {
+                    "description": "Return extended report",
+                    "data_type": "boolean",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "default": true,
+                    "order": 1,
+                    "name": "extended",
+                    "id": 2,
+                    "param_name": "extended"
+                },
+                "classification": {
+                    "description": "Return only files of this classification",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 2,
+                    "name": "classification",
+                    "id": 3,
+                    "param_name": "classification"
+                },
+                "last_analysis": {
+                    "description": "Return only files from the last analysis",
+                    "data_type": "boolean",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "default": false,
+                    "order": 3,
+                    "name": "last_analysis",
+                    "id": 4,
+                    "param_name": "last_analysis"
+                },
+                "analysis_id": {
+                    "description": "Return only files from this analysis",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 4,
+                    "name": "analysis_id",
+                    "id": 5,
+                    "param_name": "analysis_id"
+                },
+                "results_per_page": {
+                    "description": "Number of results to be returned in one page, maximum value is 1000",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": 1000,
+                    "order": 5,
+                    "name": "results_per_page",
+                    "id": 6,
+                    "param_name": "results_per_page"
+                },
+                "max_results": {
+                    "description": "Maximum results to be returned in the list",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": 5000,
+                    "order": 6,
+                    "name": "max_results",
+                    "id": 7,
+                    "param_name": "max_results"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.url",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "url",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.parameter.extended",
+                    "data_type": "boolean",
+                    "contains": [],
+                    "column_name": "extended",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.classification",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "classification",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.parameter.last_analysis",
+                    "data_type": "boolean",
+                    "contains": [],
+                    "column_name": "last_analysis",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.parameter.analysis_id",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "analysis_id",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "action_result.parameter.results_per_page",
+                    "data_type": "numeric",
+                    "contains": [],
+                    "column_name": "results_per_page",
+                    "column_order": 5
+                },
+                {
+                    "data_path": "action_result.parameter.max_results",
+                    "data_type": "numeric",
+                    "contains": [],
+                    "column_name": "max_results",
+                    "column_order": 6
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 7
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.url_downloaded_files",
+                "title": "TitaniumCloud Url Downloaded Files"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get latest url analysis feed",
+            "identifier": "get_latest_url_analysis_feed",
+            "description": "TCA - 0403 - Get latest url analysis feed",
+            "verbose": "Returns the latest URL analyses reports aggregated as list.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "results_per_page": {
+                    "description": "Number of results to be returned in one page, maximum value is 1000",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": 1000,
+                    "order": 0,
+                    "name": "results_per_page",
+                    "id": 1,
+                    "param_name": "results_per_page"
+                },
+                "max_results": {
+                    "description": "Maximum results to be returned in the list",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": 5000,
+                    "order": 1,
+                    "name": "max_results",
+                    "id": 2,
+                    "param_name": "max_results"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.results_per_page",
+                    "data_type": "numeric",
+                    "contains": [],
+                    "column_name": "results_per_page",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.parameter.max_results",
+                    "data_type": "numeric",
+                    "contains": [],
+                    "column_name": "max_results",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.latest_url_analysis_feed",
+                "title": "TitaniumCloud Latest Url Analysis Feed"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get url analysis feed from date",
+            "identifier": "get_url_analysis_feed_from_date",
+            "description": "TCA - 0403 - Get url analysis feed from date",
+            "verbose": "Accepts time format and a start time and returns URL analyses report from that defined time onward aggregated as a list.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "time_format": {
+                    "description": "Possible values: 'utc' or 'timestamp'",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "timestamp",
+                    "order": 0,
+                    "name": "time_format",
+                    "id": 1,
+                    "param_name": "time_format"
+                },
+                "start_time": {
+                    "description": "Time from which to retrieve results onwards",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 1,
+                    "name": "start_time",
+                    "id": 2,
+                    "param_name": "start_time"
+                },
+                "results_per_page": {
+                    "description": "Number of results to be returned in one page, maximum value is 1000",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": 1000,
+                    "order": 2,
+                    "name": "results_per_page",
+                    "id": 3,
+                    "param_name": "results_per_page"
+                },
+                "max_results": {
+                    "description": "Maximum results to be returned in the list",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": 5000,
+                    "order": 3,
+                    "name": "max_results",
+                    "id": 4,
+                    "param_name": "max_results"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.time_format",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "time_format",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.parameter.start_time",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "start_time",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.results_per_page",
+                    "data_type": "numeric",
+                    "contains": [],
+                    "column_name": "results_per_page",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.parameter.max_results",
+                    "data_type": "numeric",
+                    "contains": [],
+                    "column_name": "max_results",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.url_analysis_feed_from_date",
+                "title": "TitaniumCloud Url Analysis Feed From Date"
+            },
+            "versions": "EQ(*)"
+        },
+        {
             "action": "analyze url",
             "identifier": "analyze_url",
             "description": "TCA-0404 - Analyze a given URL",
@@ -1840,6 +2212,250 @@
                 "type": "table"
             },
             "versions": "EQ(*)"
+        },
+        {
+            "action": "get network reputation",
+            "identifier": "get_network_reputation",
+            "description": "Network Reputation API",
+            "verbose": "Service provides information regarding the reputation of a requested URL, domain, or IP address.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "network_locations": {
+                    "description": "Network location to check (URL,DNS,IP)",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 0,
+                    "name": "network_locations",
+                    "id": 1,
+                    "param_name": "network_locations"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.network_locations",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "network_locations",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.network_reputation",
+                "title": "TitaniumCloud Network Reputation"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get list user overrides",
+            "identifier": "get_list_user_overrides",
+            "description": "List User Overrides",
+            "verbose": "The Network Reputation User Override service enables URL classification overrides. Any URL can be overridden to malicious, suspicious, or known.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "next_page_sha1": {
+                    "description": "Optional parameter used for pagination",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 0,
+                    "name": "next_page_sha1"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.next_page_sha1",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "next_page_sha1",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.list_user_overrides",
+                "title": "TitaniumCloud List User Overrides"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get list user overrides aggregated",
+            "identifier": "get_list_user_overrides_aggregated",
+            "description": "Returns a list of overrides that the user has made",
+            "verbose": "This API automatically handles paging and returns a list of results instead of a Response object.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "max_results": {
+                    "description": "Maximum number of results to be returned in the list",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 0,
+                    "name": "max_results"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.max_results",
+                    "data_type": "numeric",
+                    "contains": [],
+                    "column_name": "max_results",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.list_user_overrides_aggregated",
+                "title": "TitaniumCloud List User Overrides Aggregated"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "network reputation user override",
+            "identifier": "network_reputation_user_override",
+            "description": "Network Reputation User Override",
+            "verbose": "The Network Reputation User Override service enables URL classification overrides.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "override_list": {
+                    "description": "List of network locations whose classification needs to be overriden",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 0,
+                    "name": "override_list"
+                },
+                "remove_overrides_list": {
+                    "description": "List of network locations whose classification override needs to be removed",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 1,
+                    "name": "remove_overrides_list"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.override_list",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "override_list",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.parameter.remove_overrides_list",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "remove_overrides_list",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.network_reputation_user_override",
+                "title": "TitaniumCloud Network Reputation User Overrides"
+            },
+            "versions": "EQ(*)"
         }
     ],
     "custom_made": true,
@@ -1867,7 +2483,7 @@
             },
             {
                 "module": "reversinglabs_sdk_py3",
-                "input_file": "wheels/py3/reversinglabs_sdk_py3-2.1.1-py3-none-any.whl"
+                "input_file": "wheels/py3/reversinglabs_sdk_py3-2.3.0-py3-none-any.whl"
             },
             {
                 "module": "urllib3",

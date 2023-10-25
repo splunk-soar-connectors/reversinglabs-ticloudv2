@@ -1,4 +1,4 @@
-<!-- File: reversinglabs_ticloudv2_dynamic_analysis_results.html
+<!-- File: reversinglabs_ticloud_list_user_override_view.html
   Copyright (c) ReversingLabs, 2023
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         border-bottom: 0px;
         background-color: #e83849 !important;
     }
-    
+      
     .widget-container {
         width: 1170px !important;
         height: 600px;
@@ -58,6 +58,11 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         display: flex;
         flex-direction: column;
     }
+    
+    .blank-row {
+        height: 2rem !important;
+        background-color: #e83849 !important;
+    }
 
     #rl-target {
         padding-top: 0.5rem;
@@ -71,6 +76,16 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         user-select: text;
     }
 
+    .rl-block {
+        display: block;
+    }
+
+    .rl-sub-head {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    
     .rl-table td:first-child {
         color: #6c818b;
         text-transform: uppercase;
@@ -80,74 +95,27 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         padding-right: 2rem;
         width: 11%;
     }
-
 </style>
 <div class="rl-content">
-    {% if data.report_base == None %}
-    There is no rl object in the response JSON.
+    {% if data.user_override == None %}
+        There is no overrides for network locations object in the response JSON.
     {% else %}
     <table class="rl-table">
         <thead>
-            <tr>
-                <th colspan="2">ReversingLabs dynamic analysis for
-                    <div id="rl-target" class="main-grid">{{data.report_base.requested_hash}}</div></th>
-            </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Classification</td>
-                <td>
-                    <span style="color:{{data.classification_color}};">{{data.report_base.report.classification}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>MD5</td>
-                <td>{{data.report_base.report.md5}}</td>
-            </tr>
-            <tr>
-                <td>SHA-1</td>
-                <td>{{data.report_base.report.sha1}}</td>
-            </tr>
-            <tr>
-                <td>SHA-256</td>
-                <td>{{data.report_base.report.sha256}}</td>
-            </tr>
-            {% if param.latest == True or param.analysis_id != None%}
-            <tr>
-                <td>Analysis ID</td>
-                <td>{{data.report_base.report.analysis_id}}</td>
-            </tr>
-            <tr>
-                <td>Analysis time</td>
-                <td>{{data.report_base.report.analysis_time}}</td>
-            </tr>
-            <tr>
-                <td>Analysis duration</td>
-                <td>{{data.report_base.report.analysis_duration}}</td>
-            </tr>
-            <tr>
-                <td>Platform</td>
-                <td>{{data.report_base.report.platform}}</td>
-            </tr>
-            {% else %}
-            <tr>
-                <td>First Analysis</td>
-                <td>{{data.report_base.report.first_analysis}}</td>
-            </tr>
-            <tr>
-                <td>Last Analysis</td>
-                <td>{{data.report_base.report.last_analysis}}</td>
-            </tr>
-            <tr>
-                <td>Platforms</td>
-                <td>
-                {% for x in data.report_base.report.platforms %}
-                   {{x}} <br/>
-                {% endfor %}
-                </td>
-            </tr>
-            {% endif %}
-    </table>
+            {% for net_loc in data.user_override.network_locations %}
+                <tr>
+                    <td>Network location</td> 
+                    <td> {{net_loc.network_location}}</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td> {{net_loc.type}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+     </table>
     {% endif %}
 </div>
 {% endblock %}
