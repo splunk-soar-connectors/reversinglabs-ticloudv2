@@ -224,19 +224,6 @@ def network_reputation(provides, all_app_runs, context):
     return 'views/reversinglabs_ticloudv2_network_reputation_view.html'
 
 
-def list_user_overrides(provides, all_app_runs, context):
-    for summary, action_results in all_app_runs:
-        for result in action_results:
-            data = {}
-
-            user_override = result.get_data()[0].get("rl", {}).get("user_override")
-            data["user_override"] = user_override
-
-            context["data"] = data
-
-    return 'views/reversinglabs_ticloudv2_list_user_overrides_view.html'
-
-
 def list_user_overrides_aggregated(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
