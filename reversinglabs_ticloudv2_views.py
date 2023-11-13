@@ -214,14 +214,12 @@ def uri_index(provides, all_app_runs, context):
 
 
 def network_reputation(provides, all_app_runs, context):
+
     for summary, action_results in all_app_runs:
         for result in action_results:
-            data = {}
+            context['data'] = result.get_data()
 
-            entries = result.get_data()[0].get("rl", {}).get("entries")
-            data["entries"] = entries
-
-            context["data"] = data
+        context['param'] = result.get_param()
 
     return 'views/reversinglabs_ticloudv2_network_reputation_view.html'
 

@@ -29,16 +29,10 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         border-bottom: 0px;
         background-color: #e83849 !important;
     }
-      
-    .widget-container {
-        width: 1170px !important;
-        height: 600px;
-    }
     
-    .container {
-        display: inline-block;
-        padding: 30px;
-        max-width: 100%;
+    .widget-container {
+        width: 1470px !important;
+        height: 600px;
     }
 
     .c-app-run-widget {
@@ -49,9 +43,11 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
 
     .rl-table {
         line-break: anywhere;
+        float: left;
+        width: 65%;
     }
 
-    .rl-table thead th {
+    .rl-table th {
         text-align: center;
         font-size: 1.4rem;
     }
@@ -60,30 +56,25 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         padding: 7px;
     }
 
-    .max-width50 {
-        max-width: 50%;
-    }
-    
     .rl-content {
         display: block;
         flex-direction: column;
     }
-    
-    .float-right {
-        float: right;
+
+    .rl-results {
+        font-weight: normal;
+        font-size: small;
+        text-transform: lowercase;
     }
-    
-    .float-left {
-        float: left;
-    }
-    
-    .pad30 {
-        padding: 30px;
-    }
-    
-    .blank-row {
-        height: 2rem !important;
-        background-color: #e83849 !important;
+
+    .rl-table td:first-child {
+        color: #6c818b;
+        text-transform: uppercase;
+        font-weight: 500;
+        white-space: nowrap;
+        padding-left: 0.8rem;
+        padding-right: 2rem;
+        width: 0;
     }
 
     #rl-target {
@@ -97,139 +88,127 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         -ms-user-select: text;
         user-select: text;
     }
-
-    .rl-block {
-        display: block;
-    }
-
-    .rl-sub-head {
-        text-align: center;
-        font-size: 2rem;
-        font-weight: bold;
+    
+    .container {
+        display: inline-block;
+        padding: 30px;
+        max-width: 100%;
     }
     
-    .rl-table td:first-child {
-        color: #6c818b;
-        text-transform: uppercase;
-        font-weight: 500;
-        white-space: nowrap;
-        padding-left: 0.8rem;
-        padding-right: 2rem;
-        width: 11%;
+    .chartjs {
+        height: 300px; 
+        width: 35%;
+        margin-top: 15px;
+        float: right;
     }
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
-<script
-    src="https://code.jquery.com/jquery-3.6.4.min.js"
-    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-    crossorigin="anonymous">
-</script>
 
 <div class="rl-content">
-    {% if data.entries == None %}
-        There is no network location object in the response JSON.
-    {% else %}
-            {% for net_loc in data.entries %}
-       <div class="container">
-            <table class="rl-table max-width50 float-left">
-                <thead>
-                </thead>
-                <tbody>
+    {% for x in data %}
+    <div class="container">
+        <table class="rl-table">
+            <thead>
                 <tr>
-                    <td class="rl-sub-head" colspan="2">ReversingLabs Network Reputation for {{net_loc.type}}</td>
+                    <td>Requested Network Location</td>
+                    <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ x.requested_network_location }}' }], 0, {{ container.id }}, null, false);">{{ x.requested_network_location }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
                 </tr>
-                <tr>
-                    <td>Requested network location</td> 
-                    <td> {{net_loc.requested_network_location}}</td>
-                </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td>Type</td>
-                    <td> {{net_loc.type}}</td>
+                    <td>{{ x.type }}</td>
                 </tr>
                 <tr>
-                    <td>Associated malware</td>
-                    <td> {{net_loc.associated_malware}}</td>
+                    <td>Last Seen</td>
+                    <td>{{ x.last_seen }}</td>
                 </tr>
                 <tr>
-                    <td>First seen</td>
-                    <td> {{net_loc.first_seen}}</td>
+                    <td>First Seen</td>
+                    <td>{{ x.first_seen }}</td>
                 </tr>
                 <tr>
-                    <td>Last seen</td>
-                    <td> {{net_loc.last_seen}}</td>
+                    <td>Associated Malware</td>
+                    <td>{{ x.associated_malware }}</td>
                 </tr>
                 <tr>
-                    <td>Third party reputations</td>
-                    <td>
-                        <span class="rl-block">Total: </span><span id="repTotal-{{ forloop.counter }}">{{net_loc.third_party_reputations.total}}</span>
-                        <span class="rl-block">Clean: </span><span id="repClean-{{ forloop.counter }}">{{net_loc.third_party_reputations.clean}}</span>
-                        <span class="rl-block">Malicious: </span><span id="repMalicious-{{ forloop.counter }}">{{net_loc.third_party_reputations.malicious}}</span>
-                        <span class="rl-block">Undetected: </span><span id="repUndetected-{{ forloop.counter }}">{{net_loc.third_party_reputations.undetected}}</span>
-                    </td>
+                    <td>Total</td>
+                    <td id="repTotal-{{ forloop.counter }}">{{ x.third_party_reputations.total }}</td>
                 </tr>
-                <tr class="blank-row">
-                    <td colspan="2"></td>
+                <tr>
+                    <td>Clean</td>
+                    <td id="repClean-{{ forloop.counter }}">{{ x.third_party_reputations.clean }}</td>
                 </tr>
-            </tbody>     
-         </table>
-         <canvas class="max-width50 float-right pad30" id="myChartBar-{{ forloop.counter }}"></canvas>
+                <tr>
+                    <td>Malicious</td>
+                    <td id="repMalicious-{{ forloop.counter }}">{{ x.third_party_reputations.malicious }}</td>
+                </tr>
+                <tr>
+                    <td>Undetected</td>
+                    <td id="repUndetected-{{ forloop.counter }}">{{ x.third_party_reputations.undetected }}</td> 
+                </tr>             
+            </tbody>
+        </table>
+        <div class="pad30 chartjs">
+            <canvas id="myChartBar-{{ forloop.counter }}"></canvas>
         </div>
-        <script>
-              var ReputationTotal{{ forloop.counter }} = document.getElementById("repTotal-{{ forloop.counter }}").outerText;
-              var ReputationClean{{ forloop.counter }} = document.getElementById("repClean-{{ forloop.counter }}").outerText;
-              var ReputationMalicious{{ forloop.counter }} = document.getElementById("repMalicious-{{ forloop.counter }}").outerText;
-              var ReputationUndetected{{ forloop.counter }} = document.getElementById("repUndetected-{{ forloop.counter }}").outerText;
-              var RepData{{ forloop.counter }} = [ReputationTotal{{ forloop.counter }}, ReputationClean{{ forloop.counter }}, ReputationMalicious{{ forloop.counter }}, ReputationUndetected{{ forloop.counter }}];  
+    </div>
+    <script>
+        var ReputationTotal{{ forloop.counter }} = document.getElementById("repTotal-{{ forloop.counter }}").outerText;
+        var ReputationClean{{ forloop.counter }} = document.getElementById("repClean-{{ forloop.counter }}").outerText;
+        var ReputationMalicious{{ forloop.counter }} = document.getElementById("repMalicious-{{ forloop.counter }}").outerText;
+        var ReputationUndetected{{ forloop.counter }} = document.getElementById("repUndetected-{{ forloop.counter }}").outerText;
+        var RepData{{ forloop.counter }} = [ReputationTotal{{ forloop.counter }}, ReputationClean{{ forloop.counter }}, ReputationMalicious{{ forloop.counter }}, ReputationUndetected{{ forloop.counter }}];  
                
-              var endpoint{{ forloop.counter }} = window.location.href;
-              $.ajax({ 
-                  method: "GET", 
-                  url: endpoint{{ forloop.counter }}, 
-                  success: function(data) {  
-                    drawBarGraph{{ forloop.counter }}(data, 'myChartBar-{{ forloop.counter }}');
-                  }, 
-                  error: function(error_data) { 
-                    console.log(error_data); 
-                  } 
-              })
+        var endpoint{{ forloop.counter }} = window.location.href;
+        $.ajax({ 
+            method: "GET", 
+            url: endpoint{{ forloop.counter }}, 
+            success: function(data) {  
+                drawBarGraph{{ forloop.counter }}(data, 'myChartBar-{{ forloop.counter }}');
+            }, 
+            error: function(error_data) { 
+                console.log(error_data); 
+            } 
+        })
     
-              function drawBarGraph{{ forloop.counter }}(data, id) { 
-                  var labels = data.labels; 
-                  var chartLabel = data.chartLabel; 
-                  var ctx = document.getElementById(id).getContext('2d');
-                  var myChart{{ forloop.counter }} = new Chart(ctx, {
-                    type: 'bar',
-                    data: { 
-                      labels: ['Total', 'Clean', 'Malicious', 'Undetected'],
-                      datasets: [{
-                          label: '# of reputations',
-                          data: RepData{{ forloop.counter }},
-                          borderColor: [
-                              '#afc7d7', 
-                              '#ffde83',
-                              '#f6143f',
-                              '#ffde83'
-                          ],
-                          backgroundColor: [
-                              '#afc7d7', 
-                              '#ffde83',
-                              '#f6143f',
-                              '#ffde83'
-                          ],
-                          borderWidth: 1
-                      }]
-                    },
-                    options: {
+        function drawBarGraph{{ forloop.counter }}(data, id) { 
+            var labels = data.labels; 
+            var chartLabel = data.chartLabel; 
+            var ctx = document.getElementById(id).getContext('2d');
+            var myChart{{ forloop.counter }} = new Chart(ctx, {
+                type: 'bar',
+                data: { 
+                    labels: ['Total', 'Clean', 'Malicious', 'Undetected'],
+                    datasets: [{
+                        label: '# of reputations',
+                        data: RepData{{ forloop.counter }},
+                              borderColor: [
+                               '#afc7d7', 
+                               '#ffde83',
+                               '#f6143f',
+                               '#ffde83'
+                              ],
+                              backgroundColor: [
+                               '#afc7d7', 
+                               '#ffde83',
+                               '#f6143f',
+                               '#ffde83'
+                              ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
                     indexAxis: 'y',
                     maintainAspectRatio: false,
+                    responsive: true,
                     offset: false
                 }
-              }); 
-            }
-            </script>      
+            }); 
+        }
+    </script>     
     {% endfor %}
-    {% endif %}
 </div>
-
 {% endblock %}
