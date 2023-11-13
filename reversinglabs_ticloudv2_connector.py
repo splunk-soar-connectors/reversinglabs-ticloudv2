@@ -723,7 +723,9 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         )
 
         self.debug_print("Executed", self.get_action_identifier())
-        action_result.add_data(response.json())
+        action_result.add_data(response.json()["rl"])
+        
+        return action_result.get_status()
 
     def _handle_get_list_user_overrides_aggregated(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
