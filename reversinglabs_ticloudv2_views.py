@@ -13,10 +13,6 @@
 # CONDITIONS OF ANY KIND, either express or implied. See the License for the
 # specific language governing permissions and limitations under the License.
 
-import logging
-
-logger = logging.getLogger(__name__)
-
 def file_reputation(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
@@ -106,7 +102,6 @@ def url_downloaded_files(provides, all_app_runs, context):
 def latest_url_analysis_feed(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
-            #logger.warning(result.get_data())
             context['data'] = result.get_data()
             context['param'] = result.get_param()
 
@@ -217,13 +212,13 @@ def uri_index(provides, all_app_runs, context):
 
 
 def network_reputation(provides, all_app_runs, context):
-    
+
     for summary, action_results in all_app_runs:
         for result in action_results:
             context['data'] = result.get_data()
-            
+
         context['param'] = result.get_param()
-    
+
     return 'views/reversinglabs_ticloudv2_network_reputation_view.html'
 
 

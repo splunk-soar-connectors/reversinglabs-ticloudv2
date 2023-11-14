@@ -6,7 +6,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0 
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software distributed under
 # the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
@@ -53,6 +53,7 @@ old_delete = phantom.requests.delete
 
 def new_delete(url, **kwargs):
     return old_delete(url, **kwargs)
+
 
 phantom.requests.delete = new_delete
 
@@ -333,7 +334,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         for x in response:
             action_result.add_data(x)
-            
+
         self.debug_print("ACTION RESULT DATA:", action_result)
 
     def _handle_get_url_analysis_feed_from_date(self, action_result, param):
@@ -688,23 +689,23 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
     def _handle_get_network_reputation(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         network_reputation = NetworkReputation(
-            host = self.ticloud_base_url,
-            username = self.ticloud_username,
-            password = self.ticloud_password,
-            user_agent = self.USER_AGENT
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
         )
-        
+
         response = network_reputation.get_network_reputation(
-            network_locations = list(param.get("network_locations").split())
+            network_locations=list(param.get("network_locations").split())
         )
 
         self.debug_print("Executed", self.get_action_identifier())
-        
+
         for x in response.json()["rl"]["entries"]:
             action_result.add_data(x)
-        
+
         return action_result.get_status()
 
     def _handle_get_list_user_overrides(self, action_result, param):
