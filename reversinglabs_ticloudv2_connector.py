@@ -40,7 +40,6 @@ def new_get(url, **kwargs):
 
 
 phantom.requests.get = new_get
-
 old_post = phantom.requests.post
 
 
@@ -49,7 +48,6 @@ def new_post(url, **kwargs):
 
 
 phantom.requests.post = new_post
-
 old_delete = phantom.requests.delete
 
 
@@ -62,7 +60,7 @@ phantom.requests.delete = new_delete
 
 class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ticloud_spex_url = "/api/spex/upload/"
-    USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloudv2 v1.2.0"
+    USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloudv2 v1.2.1"
 
     # The actions supported by this connector
     ACTION_ID_TEST_CONNECTIVITY = "test_connectivity"
@@ -336,6 +334,8 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         for x in response:
             action_result.add_data(x)
+
+        self.debug_print("ACTION RESULT DATA:", action_result)
 
     def _handle_get_url_analysis_feed_from_date(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
@@ -702,7 +702,11 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         )
 
         self.debug_print("Executed", self.get_action_identifier())
-        action_result.add_data(response.json())
+
+        for x in response.json()["rl"]["entries"]:
+            action_result.add_data(x)
+
+        return action_result.get_status()
 
     def _handle_get_list_user_overrides(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
@@ -719,7 +723,9 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         )
 
         self.debug_print("Executed", self.get_action_identifier())
-        action_result.add_data(response.json())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
 
     def _handle_get_list_user_overrides_aggregated(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
