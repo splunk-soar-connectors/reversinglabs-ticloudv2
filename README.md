@@ -2,7 +2,7 @@
 # Reversinglabs TitaniumCloud v2
 
 Publisher: ReversingLabs  
-Connector Version: 1.2.0  
+Connector Version: 1.2.1  
 Product Vendor: Reversinglabs  
 Product Name: TitaniumCloud  
 Product Version Supported (regex): ".\*"  
@@ -1656,12 +1656,20 @@ Service provides information regarding the reputation of a requested URL, domain
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**network_locations** |  required  | Network location to check (URL,DNS,IP) | string | 
+**network_locations** |  required  | Network location to check (URL,DNS,IP) | string |  `domain`  `url`  `ip` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.parameter.network_locations | string |  |  
+action_result.data.\*.requested_network_location | string |  `domain`  `url`  `ip`  |  
+action_result.data.\*.type | string |  |  
+action_result.data.\*.last_seen | string |  |  
+action_result.data.\*.first_seen | string |  |  
+action_result.data.\*.associated_malware | string |  |  
+action_result.data.\*.third_party_reputations.total | string |  |  
+action_result.data.\*.third_party_reputations.clean | string |  |  
+action_result.data.\*.third_party_reputations.malicious | string |  |  
+action_result.data.\*.third_party_reputations.undetected | string |  |  
 action_result.status | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
@@ -1678,12 +1686,13 @@ The Network Reputation User Override service enables URL classification override
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**next_page_sha1** |  optional  | Optional parameter used for pagination | string | 
+**next_page_sha1** |  optional  | Optional parameter used for pagination | string |  `sha1` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.parameter.next_page_sha1 | string |  |  
+action_result.data.\*.user_override.network_locations.\*.network_location | string |  `url`  `domain`  `ip`  |  
+action_result.data.\*.user_override.network_locations.\*.type | string |  `url`  `domain`  `ip`  |  
 action_result.status | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
@@ -1705,7 +1714,8 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.parameter.max_results | numeric |  |  
+action_result.data.\*.\*.network_location | string |  `url`  `domain`  `ip`  |  
+action_result.data.\*.\*.type | string |  `url`  `domain`  `ip`  |  
 action_result.status | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
