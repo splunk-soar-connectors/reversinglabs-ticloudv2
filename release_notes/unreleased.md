@@ -5,4 +5,5 @@
     * Removed duplicate jQuery reference in network reputation view
 
 * Enhancements:
-    * unified CSS style in widget and custom views
+    * Unified CSS style in widget and custom views
+    * Updated ReversingLabs branding

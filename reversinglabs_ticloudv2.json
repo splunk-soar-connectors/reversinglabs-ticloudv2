@@ -2322,7 +2322,9 @@
                     "data_type": "string",
                     "required": false,
                     "primary": false,
-                    "contains": [],
+                    "contains": [
+                        "sha1"
+                    ],
                     "value_list": [],
                     "default": "",
                     "order": 0,
@@ -2331,37 +2333,30 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.next_page_sha1",
+                    "data_path": "action_result.data.*.user_override.network_locations.*.network_location",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "next_page_sha1",
+                    "contains": [
+                        "url",
+                        "domain",
+                        "ip"
+                    ],
+                    "column_name": "network_location",
                     "column_order": 0
                 },
                 {
-                    "data_path": "action_result.status",
+                    "data_path": "action_result.data.*.user_override.network_locations.*.type",
                     "data_type": "string",
-                    "column_name": "status",
+                    "contains": [
+                        "url",
+                        "domain",
+                        "ip"
+                    ],
+                    "column_name": "type",
                     "column_order": 1
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
                 }
             ],
             "render": {
-                "type": "custom",
-                "width": 10,
-                "height": 5,
-                "view": "reversinglabs_ticloudv2_views.list_user_overrides",
-                "title": "TitaniumCloud List User Overrides"
+                "type": "table"
             },
             "versions": "EQ(*)"
         },
@@ -2387,37 +2382,30 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.max_results",
-                    "data_type": "numeric",
-                    "contains": [],
-                    "column_name": "max_results",
+                    "data_path": "action_result.data.*.*.network_location",
+                    "data_type": "string",
+                    "contains": [
+                        "url",
+                        "domain",
+                        "ip"
+                    ],
+                    "column_name": "network_location",
                     "column_order": 0
                 },
                 {
-                    "data_path": "action_result.status",
+                    "data_path": "action_result.data.*.*.type",
                     "data_type": "string",
-                    "column_name": "status",
+                    "contains": [
+                        "url",
+                        "domain",
+                        "ip"
+                    ],
+                    "column_name": "type",
                     "column_order": 1
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
                 }
             ],
             "render": {
-                "type": "custom",
-                "width": 10,
-                "height": 5,
-                "view": "reversinglabs_ticloudv2_views.list_user_overrides_aggregated",
-                "title": "TitaniumCloud List User Overrides Aggregated"
+                "type": "table"
             },
             "versions": "EQ(*)"
         },
