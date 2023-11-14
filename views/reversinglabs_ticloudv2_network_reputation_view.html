@@ -77,6 +77,16 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         float: right;
     }
 
+    .malicious {
+        font-weight: bold;
+        color: #f6143f;
+    }
+    
+    .not-malicious {
+        font-weight: bold;
+        color: #ffde83;
+    }
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
@@ -106,7 +116,11 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
                 </tr>
                 <tr>
                     <td>Associated Malware</td>
-                    <td>{{ x.associated_malware }}</td>
+                    {% if x.associated_malware == True %}
+                        <td class="malicious">{{ x.associated_malware }}</td>
+                    {% else %}
+                        <td class="not-malicious">{{ x.associated_malware }}</td>
+                    {% endif %}
                 </tr>
                 <tr>
                     <td>Total</td>

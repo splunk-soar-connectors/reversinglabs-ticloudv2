@@ -704,8 +704,6 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         
         for x in response.json()["rl"]["entries"]:
             action_result.add_data(x)
-        #for x in response:
-        #    action_result.add_data(x)
         
         return action_result.get_status()
 
