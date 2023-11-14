@@ -2,7 +2,7 @@
 # Reversinglabs TitaniumCloud v2
 
 Publisher: ReversingLabs  
-Connector Version: 1.2.0  
+Connector Version: 1.2.1  
 Product Vendor: Reversinglabs  
 Product Name: TitaniumCloud  
 Product Version Supported (regex): ".\*"  
