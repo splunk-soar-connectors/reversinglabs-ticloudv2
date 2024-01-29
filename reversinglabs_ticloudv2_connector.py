@@ -18,6 +18,7 @@ from __future__ import print_function, unicode_literals
 
 import json
 import os
+import re
 
 # Phantom App imports
 import phantom.app as phantom
@@ -480,11 +481,21 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             user_agent=self.USER_AGENT
         )
         
-        response = sandbox.get_dynamic_analysis_results(
-            url=param.get("url"),
-            latest=param.get('latest'),
-            analysis_id=param.get('analysis_id')
-        )
+        url_input=param.get("url")
+        
+        # check if user provided sha1
+        if re.match(r'^[a-fA-F0-9]*$', url_input):
+            response = sandbox.get_dynamic_analysis_results(
+                url_sha1=url_input,
+                latest=param.get('latest'),
+                analysis_id=param.get('analysis_id')
+            )
+        else:
+            response = sandbox.get_dynamic_analysis_results(
+                url=param.get("url"),
+                latest=param.get('latest'),
+                analysis_id=param.get('analysis_id')
+            )
 
         self.debug_print("Executed", self.get_action_identifier())                              
         action_result.add_data(response.json())
