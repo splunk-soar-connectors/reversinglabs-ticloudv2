@@ -123,10 +123,18 @@ and limitations under the License.
     {% else %}
     <table class="rl-table">
         <thead>
+            {% if data.report_base.requested_sha1_url != None%}
             <tr>
-                <th colspan="2">ReversingLabs dynamic analysis for File
-                    <div id="rl-target" class="main-grid">{{data.report_base.requested_hash}}</div></th>
+                <th colspan="2">ReversingLabs dynamic analysis for URL    
+                    <div id="rl-target" class="main-grid">{{data.report_base.requested_sha1_url}}</div></th>           
             </tr>
+            {% endif %}
+            {% if data.report_base.requested_base64_url != None%}
+            <tr>
+                <th colspan="2">ReversingLabs dynamic analysis for URL    
+                    <div id="rl-target" class="main-grid">{{data.report_base.requested_base64_url}}</div></th>           
+            </tr>
+            {% endif %}
         </thead>
         <tbody>
             <tr>
@@ -135,22 +143,18 @@ and limitations under the License.
                     <b><span style="color:{{data.classification_color}};">{{data.report_base.report.classification}}</span></b>
                 </td>
             </tr>
+            {% if data.report_base.requested_sha1_url != None%}
             <tr>
-                <td>Requested SHA1 of file</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.report_base.requested_hash }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.requested_hash }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
+                <td>Requested SHA1 of url</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.report_base.requested_sha1_url }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.requested_sha1_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
+            {% endif %}
+            {% if data.report_base.requested_base64_url != None%}
             <tr>
-                <td>MD5</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['md5'], 'value': '{{ data.report_base.report.md5 }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.report.md5 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
+                <td>Requested Base64 of url</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['base64'], 'value': '{{ data.report_base.requested_base64_url }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.requested_base64_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
-            <tr>
-                <td>SHA-1</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.report_base.report.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.report.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
-            </tr>
-            <tr>
-                <td>SHA-256</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ data.report_base.report.sha256 }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.report.sha256 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
-            </tr>
+            {% endif %}
             {% if param.latest == True or param.analysis_id != None%}
             <tr>
                 <td>Analysis ID</td>
@@ -207,7 +211,7 @@ and limitations under the License.
                     </div>
                 </td>
             </tr>
-            <tr>  
+            <tr>
                 <td colspan="2">
                     {% for y in data.report_base.report.dropped_files %}
                     <div id="{{y.sha1}}" class="tabcontent">
@@ -524,8 +528,8 @@ and limitations under the License.
             </tr>
         </tbody>
     </table>
+    </div>
     {% endif %}
-</div>
 <script>
     function openPopup(evt, sha1) {
         var i, tabcontent, tablinks;

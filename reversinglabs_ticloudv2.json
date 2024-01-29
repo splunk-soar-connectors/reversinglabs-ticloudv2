@@ -15,8 +15,8 @@
             "name": "DinkoReversingLabs"
         }
     ],
-    "license": "Copyright (c) ReversingLabs, 2023",
-    "app_version": "1.2.1",
+    "license": "Copyright (c) ReversingLabs, 2024",
+    "app_version": "1.2.2",
     "utctime_updated": "2023-11-10T13:13:00.593313Z",
     "package_name": "phantom_reversinglabs_ticloudv2",
     "main_module": "reversinglabs_ticloudv2_connector.py",
@@ -220,17 +220,29 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1,
+                    "column_order": 3,
                     "example_values": [
                         "success",
                         "failed"
                     ]
                 },
                 {
-                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_path": "action_result.data.*.ruleset_name",
                     "data_type": "string",
-                    "column_name": "ruleset_name",
+                    "column_name": "ruleset name",
                     "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.valid",
+                    "data_type": "string",
+                    "column_name": "valid",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.data.*.approved",
+                    "data_type": "string",
+                    "column_name": "approved",
+                    "column_order": 2
                 },
                 {
                     "data_path": "action_result.data",
@@ -290,8 +302,14 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "column_name": "ruleset_name",
+                    "column_name": "ruleset name",
                     "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.text",
+                    "data_type": "string",
+                    "column_name": "text",
+                    "column_order": 1
                 },
                 {
                     "data_path": "action_result.data",
@@ -427,7 +445,7 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "column_name": "ruleset_name",
+                    "column_name": "ruleset name",
                     "column_order": 0
                 },
                 {
@@ -479,7 +497,7 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1,
+                    "column_order": 2,
                     "example_values": [
                         "success",
                         "failed"
@@ -488,8 +506,14 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "column_name": "ruleset_name",
+                    "column_name": "ruleset name",
                     "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.ruleset_sha1",
+                    "data_type": "string",
+                    "column_name": "ruleset sha1",
+                    "column_order": 1
                 },
                 {
                     "data_path": "action_result.data",
@@ -549,8 +573,44 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "column_name": "ruleset_name",
+                    "column_name": "ruleset name",
                     "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.retro_status",
+                    "data_type": "string",
+                    "column_name": "retro status",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.data.*.start_time",
+                    "data_type": "string",
+                    "column_name": "start time",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.finish_time",
+                    "data_type": "string",
+                    "column_name": "finish time",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.data.*.reason",
+                    "data_type": "string",
+                    "column_name": "reason",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "action_result.data.*.progress",
+                    "data_type": "string",
+                    "column_name": "progress",
+                    "column_order": 5
+                },
+                {
+                    "data_path": "action_result.data.*.estimated_finish_time",
+                    "data_type": "string",
+                    "column_name": "estimated finish time",
+                    "column_order": 6
                 },
                 {
                     "data_path": "action_result.data",
@@ -601,7 +661,7 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 1,
+                    "column_order": 2,
                     "example_values": [
                         "success",
                         "failed"
@@ -610,8 +670,14 @@
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
-                    "column_name": "ruleset_name",
+                    "column_name": "ruleset name",
                     "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.ruleset_sha1",
+                    "data_type": "string",
+                    "column_name": "ruleset sha1",
+                    "column_order": 1
                 },
                 {
                     "data_path": "action_result.data",
@@ -671,23 +737,35 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 2,
+                    "column_order": 4,
                     "example_values": [
                         "success",
                         "failed"
                     ]
                 },
                 {
-                    "data_path": "action_result.parameter.time_format",
+                    "data_path": "action_result.data.*.rl.feed.name",
                     "data_type": "string",
-                    "column_name": "time_format",
+                    "column_name": "Name",
                     "column_order": 0
                 },
                 {
-                    "data_path": "action_result.parameter.time_value",
+                    "data_path": "action_result.data.*.rl.feed.time_range.from",
                     "data_type": "string",
-                    "column_name": "time_value",
+                    "column_name": "Time range From",
                     "column_order": 1
+                },
+                {
+                    "data_path": "action_result.data.*.rl.feed.time_range.to",
+                    "data_type": "string",
+                    "column_name": "Time range to",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.rl.feed.last_timestamp",
+                    "data_type": "string",
+                    "column_name": "Last timestamp",
+                    "column_order": 3
                 },
                 {
                     "data_path": "action_result.data",
@@ -720,13 +798,17 @@
             "identifier": "imphash_similarity",
             "description": "TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)",
             "verbose": "TCA-0302 - Imphash Index provides a list of all available SHA1 hashes for files sharing the same import hash (imphash). An imphash is a hash calculated from a string which contains the libraries imported by a Windows Portable Executable (PE) file.",
-            "type": "generic",
-            "read_only": false,
+            "type": "investigate",
+            "read_only": true,
             "parameters": {
                 "imphash": {
                     "description": "Imphash",
                     "data_type": "string",
                     "required": true,
+                    "primary": true,
+                    "contains": [
+                      "hash"
+                    ],
                     "order": 0,
                     "name": "imphash",
                     "id": 1,
@@ -880,13 +962,19 @@
             "identifier": "av_scanners",
             "description": "TCA-0103 - Retrieve AV Scanner data from TitaniumCloud",
             "verbose": "TCA-0103 - Provides AV vendor cross-reference data for a desired sample from multiple AV scanners.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "hash": {
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
+                    "primary": true,
+                    "contains": [
+                      "sha1",
+                      "sha256",
+                      "md5"
+                    ],
                     "order": 0,
                     "name": "hash",
                     "id": 1,
@@ -1021,13 +1109,20 @@
             "identifier": "file_analysis",
             "description": "TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud",
             "verbose": "TCA-0104 - Provides file analysis data on hashes. Metadata can include relevant portions of static analysis, AV scan information, file sources and any related IP/domain information.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "hash": {
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
+                    "primary": true,
+                    "contains": [
+                      "sha1",
+                      "sha256",
+                      "md5",
+                      "vauld id"
+                    ],
                     "order": 0,
                     "name": "hash",
                     "id": 1,
@@ -1086,13 +1181,17 @@
             "identifier": "functional_similarity",
             "description": "TCA-0301 - Retrieve a list of functionally similar hashes to the provided one",
             "verbose": "TCA-0301 - Provides a list of SHA1 hashes of files that are functionally similar to the provided file (SHA1 hash) at the selected precision level.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "hash": {
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
+                    "primary": true,
+                    "contains": [
+                      "sha1"
+                    ],
                     "order": 0,
                     "name": "hash",
                     "id": 1,
@@ -1244,7 +1343,9 @@
                     "data_type": "string",
                     "required": true,
                     "primary": true,
-                    "contains": [],
+                    "contains": [
+                      "url"
+                    ],
                     "value_list": [],
                     "default": "",
                     "order": 0,
@@ -1615,6 +1716,10 @@
                     "description": "URL to analyze",
                     "data_type": "string",
                     "required": true,
+                    "primary": true,
+                    "contains": [
+                      "url"
+                    ],
                     "order": 0,
                     "name": "url",
                     "id": 1,
@@ -1673,13 +1778,17 @@
             "identifier": "uri_statistics",
             "description": "TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI",
             "verbose": "TCA-0402 - Provides the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI (domain, IP address, email or URL).",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "uri": {
                     "description": "Uri",
                     "data_type": "string",
                     "required": true,
+                    "primary": true,
+                    "contains": [
+                      "sha1"
+                    ],
                     "order": 0,
                     "name": "uri",
                     "id": 1,
@@ -1745,6 +1854,11 @@
                     "description": "Desired URI string",
                     "data_type": "string",
                     "required": true,
+                    "primary": true,
+                    "contains": [
+                      "url",
+                      "domain"
+                    ],
                     "order": 0,
                     "name": "uri",
                     "id": 1,
@@ -1818,13 +1932,18 @@
             "identifier": "submit_for_dynamic_analysis",
             "description": "TCA-0207 - Submit an existing sample for dynamic analysis",
             "verbose": "TCA-0207 - This service allows users to detonate a file in the ReversingLabs TitaniumCloud sandbox. To submit a file for analysis, it must exist in TitaniumCloud.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "sha1": {
                     "description": "Selected sample's SHA-1 hash",
                     "data_type": "string",
                     "required": true,
+                    "primary": true,
+                    "contains": [
+                      "sha1",
+                      "vault id"
+                    ],
                     "order": 0,
                     "name": "sha1",
                     "id": 1,
@@ -1894,17 +2013,96 @@
             "versions": "EQ(*)"
         },
         {
+            "action": "submit url for dynamic analysis",
+            "identifier": "submit_url_for_dynamic_analysis",
+            "description": "TCA-0207 - Submit an url sample for dynamic analysis",
+            "verbose": "TCA-0207 - This service allows users to analyze a url in the ReversingLabs TitaniumCloud sandbox. To submit an url for analysis, it must exist in TitaniumCloud.",
+            "type": "investigate",
+            "read_only": false,
+            "parameters": {
+                "url": {
+                    "description": "Selected sample's url string",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [
+                        "url",
+                        "domain"
+                    ],
+                    "order": 0,
+                    "name": "url",
+                    "id": 1,
+                    "param_name": "url"
+                },
+                "platform": {
+                    "description": "Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options",
+                    "data_type": "string",
+                    "required": true,
+                    "order": 1,
+                    "name": "platform",
+                    "id": 2,
+                    "param_name": "platform"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.data.*.rl.url",
+                    "data_type": "string",
+                    "contains": [
+                        "url"
+                    ],
+                    "column_name": "url",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.rl.sha1",
+                    "data_type": "string",
+                    "contains": [
+                        "sha1"
+                    ],
+                    "column_name": "sha1",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.data.*.rl.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.rl.url_base64",
+                    "data_type": "string",
+                    "column_name": "url base64",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.data.*.rl.analysis_id",
+                    "data_type": "string",
+                    "column_name": "analysis id",
+                    "column_order": 4
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
             "action": "dynamic analysis results",
             "identifier": "get_report",
             "description": "TCA-0106 - Retrieve dynamic analysis results",
             "verbose": "TCA-0106 - This service allows users to retrieve dynamic analysis results for a file that was submitted for dynamic analysis.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "sha1": {
                     "description": "Selected sample's SHA-1 hash",
                     "data_type": "string",
                     "required": true,
+                    "primary": true,
+                    "contains": [
+                      "sha1"
+                    ],
                     "order": 0,
                     "name": "sha1",
                     "id": 1,
@@ -1988,17 +2186,86 @@
             "versions": "EQ(*)"
         },
         {
+            "action": "dynamic url analysis results",
+            "identifier": "get_url_report",
+            "description": "TCA-0106 - Retrieve dynamic analysis results for url",
+            "verbose": "TCA-0106 - This service allows users to retrieve dynamic analysis results for an url that was submitted for dynamic analysis.",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "url": {
+                    "description": "Provide one of the following: sha1, base64 or url",
+                    "data_type": "string",
+                    "primary": true,
+                    "contains": [
+                        "sha1",
+                        "url"
+                    ],
+                    "required": true,
+                    "order": 0,
+                    "name": "url",
+                    "id": 1,
+                    "param_name": "url_sha1"
+                },
+                "analysis_id": {
+                    "description": "Return only the results of this analysis",
+                    "data_type": "string",
+                    "order": 1,
+                    "name": "analysis_id",
+                    "id": 2,
+                    "param_name": "analysis_id"
+                },
+                "latest": {
+                    "description": "Return only the latest analysis results",
+                    "data_type": "boolean",
+                    "default": false,
+                    "order": 2,
+                    "name": "latest",
+                    "id": 3,
+                    "param_name": "latest"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.analysis_id",
+                    "data_type": "string",
+                    "column_name": "Analysis id",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.0.requested_sha1_url",
+                    "data_type": "string",
+                    "column_name": "Requested SHA1",
+                    "column_order": 1
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.dynamic_url_analysis_results",
+                "title": "TitaniumCloud Get Dynamic Analysis Results for URL"
+            },
+            "versions": "EQ(*)"
+        },
+        {
             "action": "reanalyze file",
             "identifier": "reanalyze_file",
             "description": "TCA-0205 - Reanalyze sample",
             "verbose": "TCA-0205 - This query sends a sample with the requested hash for rescanning.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "hash": {
                     "description": "File hash",
                     "data_type": "string",
                     "required": true,
+                    "primary": true,
+                    "contains": [
+                      "md5",
+                      "sha1",
+                      "sha256"
+                    ],
                     "order": 0,
                     "name": "hash"
                 }
@@ -2218,14 +2485,14 @@
             "identifier": "get_network_reputation",
             "description": "Network Reputation API",
             "verbose": "Service provides information regarding the reputation of a requested URL, domain, or IP address.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "network_locations": {
                     "description": "Network location to check (URL,DNS,IP)",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
+                    "primary": true,
                     "contains": [
                         "domain",
                         "url",
@@ -2240,65 +2507,6 @@
                 }
             },
             "output": [
-                {
-                    "data_path": "action_result.data.*.requested_network_location",
-                    "data_type": "string",
-                    "contains": [
-                        "domain",
-                        "url",
-                        "ip"
-                    ],
-                    "column_name": "network_location",
-                    "column_order": 0
-                },
-                {
-                    "data_path": "action_result.data.*.type",
-                    "data_type": "string",
-                    "column_name": "type",
-                    "column_order": 1
-                },
-                {
-                    "data_path": "action_result.data.*.last_seen",
-                    "data_type": "string",
-                    "column_name": "last seen",
-                    "column_order": 2
-                },
-                {
-                    "data_path": "action_result.data.*.first_seen",
-                    "data_type": "string",
-                    "column_name": "first seen",
-                    "column_order": 3
-                },
-                {
-                    "data_path": "action_result.data.*.associated_malware",
-                    "data_type": "string",
-                    "column_name": "associated malware",
-                    "column_order": 4
-                },
-                {
-                    "data_path": "action_result.data.*.third_party_reputations.total",
-                    "data_type": "string",
-                    "column_name": "total",
-                    "column_order": 5
-                },
-                {
-                    "data_path": "action_result.data.*.third_party_reputations.clean",
-                    "data_type": "string",
-                    "column_name": "clean",
-                    "column_order": 6
-                },
-                {
-                    "data_path": "action_result.data.*.third_party_reputations.malicious",
-                    "data_type": "string",
-                    "column_name": "malicious",
-                    "column_order": 7
-                },
-                {
-                    "data_path": "action_result.data.*.third_party_reputations.undetected",
-                    "data_type": "string",
-                    "column_name": "undetected",
-                    "column_order": 8
-                },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
@@ -2560,7 +2768,7 @@
             },
             {
                 "module": "reversinglabs_sdk_py3",
-                "input_file": "wheels/py3/reversinglabs_sdk_py3-2.3.0-py3-none-any.whl"
+                "input_file": "wheels/py3/reversinglabs_sdk_py3-2.4.1-py3-none-any.whl"
             },
             {
                 "module": "urllib3",
