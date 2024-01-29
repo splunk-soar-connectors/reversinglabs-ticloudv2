@@ -741,7 +741,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
     def _handle_get_network_reputation(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-
+        
         network_reputation = NetworkReputation(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
@@ -757,7 +757,14 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         for x in response.json()["rl"]["entries"]:
             action_result.add_data(x)
-
+            
+        # Using appname+unique_id from config
+        app_config = self.get_config()
+        
+        # pass valies into summary to extract from view
+        extra_data = {'directory': app_config["directory"]}
+        action_result.set_summary(extra_data)
+        
         return action_result.get_status()
 
     def _handle_get_list_user_overrides(self, action_result, param):
