@@ -151,12 +151,29 @@ def dynamic_analysis_results(provides, all_app_runs, context):
 
             report_base = result.get_data()[0].get("rl", {})
             data["report_base"] = report_base
-            data["classification_color"] = color_code_classification(report_base.get("report").get("classification", "UNKNOWN"))
+            data["classification_color"] = color_code_classification(report_base.get("report").get("classification", "NO_THREATS_FOUND"))
 
             context['data'] = data
             context['param'] = result.get_param()
 
     return 'views/reversinglabs_ticloudv2_dynamic_analysis_results.html'
+
+
+def dynamic_url_analysis_results(provides, all_app_runs, context):
+    
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            
+            data = {}
+
+            report_base = result.get_data()[0].get("rl", {})
+            data["report_base"] = report_base
+            data["classification_color"] = color_code_classification(report_base.get("report").get("classification", "NO_THREATS_FOUND"))
+
+            context['data'] = data
+            context['param'] = result.get_param()
+            
+    return 'views/reversinglabs_ticloudv2_dynamic_url_analysis_results.html'
 
 
 def advanced_search(provides, all_app_runs, context):
@@ -192,8 +209,6 @@ def imphash_similarity(provides, all_app_runs, context):
         for result in action_results:
             context['results_found'] = f"Results found: {str(len(result.get_data()))}"
             data = result.get_data()
-            # for x in data:
-            #     x["classification_color"] = color_code_classification(x.get("classification").upper())
 
             context["data"] = data
             context['param'] = result.get_param()
@@ -212,12 +227,12 @@ def uri_index(provides, all_app_runs, context):
 
 
 def network_reputation(provides, all_app_runs, context):
-
+   
     for summary, action_results in all_app_runs:
         for result in action_results:
             context['data'] = result.get_data()
-
-        context['param'] = result.get_param()
+            context['param'] = result.get_param()
+            context['summary'] = result.get_summary()
 
     return 'views/reversinglabs_ticloudv2_network_reputation_view.html'
 
@@ -242,7 +257,7 @@ def color_code_classification(classification):
         color = "red"
     elif classification == 'SUSPICIOUS':
         color = "orange"
-    elif classification == 'KNOWN' or classification == "CLEAN":
+    elif classification == 'KNOWN' or classification == "CLEAN" or classification == "NO_THREATS_FOUND":
         color = "green"
 
     return color

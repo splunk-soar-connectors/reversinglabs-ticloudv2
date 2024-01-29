@@ -60,7 +60,7 @@ phantom.requests.delete = new_delete
 
 class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ticloud_spex_url = "/api/spex/upload/"
-    USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloudv2 v1.2.1"
+    USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloudv2 v1.2.2"
 
     # The actions supported by this connector
     ACTION_ID_TEST_CONNECTIVITY = "test_connectivity"
@@ -74,7 +74,9 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_ANALYZE_URL = "analyze_url"
     ACTION_ID_URI_INDEX = "uri_index"
     ACTION_ID_SUBMIT_FOR_DYNAMIC_ANALYSIS = "submit_for_dynamic_analysis"
+    ACTION_ID_SUBMIT_URL_FOR_DYNAMIC_ANALYSIS = "submit_url_for_dynamic_analysis"
     ACTION_ID_DYNAMIC_ANALYSIS_RESULTS = "get_report"
+    ACTION_ID_DYNAMIC_URL_ANALYSIS_RESULTS = "get_url_report"
     ACTION_ID_REANALYZE_FILE = "reanalyze_file"
     ACTION_ID_FILE_UPLOAD = "upload_file"
     ACTION_ID_FILE_DOWNLOAD = "get_file"
@@ -113,7 +115,9 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_ANALYZE_URL: self._handle_analyze_url,
             self.ACTION_ID_URI_INDEX: self._handle_uri_index,
             self.ACTION_ID_SUBMIT_FOR_DYNAMIC_ANALYSIS: self._handle_submit_for_dynamic_analysis,
+            self.ACTION_ID_SUBMIT_URL_FOR_DYNAMIC_ANALYSIS: self._handle_submit_url_for_dynamic_analysis,            
             self.ACTION_ID_DYNAMIC_ANALYSIS_RESULTS: self._handle_get_report,
+            self.ACTION_ID_DYNAMIC_URL_ANALYSIS_RESULTS: self._handle_get_url_report,
             self.ACTION_ID_REANALYZE_FILE: self._handle_reanalyze_file,
             self.ACTION_ID_FILE_UPLOAD: self._handle_upload_file,
             self.ACTION_ID_FILE_DOWNLOAD: self._handle_get_file,
@@ -429,6 +433,24 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    def _handle_submit_url_for_dynamic_analysis(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        sandbox = DynamicAnalysis(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        response = sandbox.detonate_url(
+            url_string=param.get("url"),
+            platform=param.get("platform")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+               
+        action_result.add_data(response.json())
+
     def _handle_get_report(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -445,7 +467,26 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         )
 
         self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json())
 
+    def _handle_get_url_report(self, action_result, param):
+                                     
+        self.debug_print("Action handler", self.get_action_identifier())
+        
+        sandbox = DynamicAnalysis(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        
+        response = sandbox.get_dynamic_analysis_results(
+            url=param.get("url"),
+            latest=param.get('latest'),
+            analysis_id=param.get('analysis_id')
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())                              
         action_result.add_data(response.json())
 
     def _handle_reanalyze_file(self, action_result, param):
