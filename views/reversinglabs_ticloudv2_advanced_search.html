@@ -89,8 +89,8 @@ and limitations under the License.
         <tbody>
             {% for x in data %}
             <tr>
-                <td>{{ forloop.counter}}.</td>
-                <td>{{ x.sha1}}</td>
+                <td>{{ forloop.counter }}.</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ x.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ x.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
                 <td>{{ x.sampletype }}</td>
                 <td>{{ x.threatname }}</td>
                 <td>{{ x.threatlevel }}</td>
@@ -100,7 +100,6 @@ and limitations under the License.
                 </td>
             </tr>
             {% endfor %}
-
         </tbody>
     </table>
 </div>
