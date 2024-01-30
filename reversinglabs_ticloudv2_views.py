@@ -168,11 +168,18 @@ def dynamic_url_analysis_results(provides, all_app_runs, context):
 
             report_base = result.get_data()[0].get("rl", {})
             data["report_base"] = report_base
-            data["classification_color"] = color_code_classification(report_base.get("report").get("classification", "NO_THREATS_FOUND"))
+            # Color code for general report
+            data["classification_color"] = color_code_classification(report_base.get("report").get("classification"))
+            
+            # Color code for each dropped file entry
+            dropped_files = report_base.get("report").get("dropped_files")
+            for df in dropped_files:
+                data["classification_color_dropped_files"] = color_code_classification(df.get("classification"))
 
             context['data'] = data
             context['param'] = result.get_param()
             
+    
     return 'views/reversinglabs_ticloudv2_dynamic_url_analysis_results.html'
 
 
