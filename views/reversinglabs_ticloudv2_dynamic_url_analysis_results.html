@@ -143,6 +143,10 @@ and limitations under the License.
                     <b><span style="color:{{data.classification_color}};">{{data.report_base.report.classification}}</span></b>
                 </td>
             </tr>
+            <tr>
+                <td>Classification version</td>
+                <td>{{data.report_base.report.classification_version}}</td>
+            </tr>
             {% if data.report_base.requested_sha1_url != None%}
             <tr>
                 <td>Requested SHA1 of url</td>
@@ -241,6 +245,15 @@ and limitations under the License.
                                     <td>sample type</td>
                                     <td>{{y.sample_type}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{z.analysis_id}}</td>
+                                    <td>{{z.classification}}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                                 <tr>
                                     <td>sample classification</td>
                                     <td><b><span style="color:{{data.classification_color}};">{{y.classification}}</span></b></td>
@@ -325,6 +338,14 @@ and limitations under the License.
                                     <td>risk factor</td>
                                     <td>{{y.risk_factor}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    {% for z in y.analysis_ids %}
+                                    <td>{{ z }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -367,6 +388,14 @@ and limitations under the License.
                                     <td>process id</td>
                                     <td>{{y.process_id}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{ z }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -402,6 +431,14 @@ and limitations under the License.
                                     <td>destination port</td>
                                     <td>{{y.destination_port}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{ z }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -437,6 +474,14 @@ and limitations under the License.
                                     <td>destination port</td>
                                     <td>{{y.destination_port}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{ z }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -468,6 +513,14 @@ and limitations under the License.
                                     <td>source</td>
                                     <td>{{y.source}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{ z }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -503,6 +556,14 @@ and limitations under the License.
                                     <td>process id</td>
                                     <td>{{y.process_id}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{ z }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
