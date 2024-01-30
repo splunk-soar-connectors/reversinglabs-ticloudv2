@@ -123,13 +123,13 @@ and limitations under the License.
     {% else %}
     <table class="rl-table">
         <thead>
-            {% if data.report_base.requested_sha1_url != None%}
+            {% if data.report_base.requested_sha1_url != None %}
             <tr>
                 <th colspan="2">ReversingLabs dynamic analysis for URL    
                     <div id="rl-target" class="main-grid">{{data.report_base.requested_sha1_url}}</div></th>           
             </tr>
             {% endif %}
-            {% if data.report_base.requested_base64_url != None%}
+            {% if data.report_base.requested_base64_url != None %}
             <tr>
                 <th colspan="2">ReversingLabs dynamic analysis for URL    
                     <div id="rl-target" class="main-grid">{{data.report_base.requested_base64_url}}</div></th>           
@@ -143,17 +143,19 @@ and limitations under the License.
                     <b><span style="color:{{data.classification_color}};">{{data.report_base.report.classification}}</span></b>
                 </td>
             </tr>
+            {% if data.report_base.report.classification_version %}
             <tr>
                 <td>Classification version</td>
                 <td>{{data.report_base.report.classification_version}}</td>
             </tr>
-            {% if data.report_base.requested_sha1_url != None%}
+            {% endif %}
+            {% if data.report_base.requested_sha1_url != None %}
             <tr>
                 <td>Requested SHA1 of url</td>
                 <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.report_base.requested_sha1_url }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.requested_sha1_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             {% endif %}
-            {% if data.report_base.requested_base64_url != None%}
+            {% if data.report_base.requested_base64_url != None %}
             <tr>
                 <td>Requested Base64 of url</td>
                 <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['base64'], 'value': '{{ data.report_base.requested_base64_url }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.requested_base64_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
@@ -237,10 +239,12 @@ and limitations under the License.
                                     <td>file name</td>
                                     <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['file name'], 'value': '{{ y.file_name }}' }], 0, {{ container.id }}, null, false);">{{ y.file_name }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
                                 </tr>
+                                {% if y.file_path %}
                                 <tr>
                                     <td>file path</td>
                                     <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['file path'], 'value': '{{ y.file_path }}' }], 0, {{ container.id }}, null, false);">{{ y.file_path }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
                                 </tr>
+                                {% endif %}
                                 <tr>
                                     <td>sample type</td>
                                     <td>{{y.sample_type}}</td>
