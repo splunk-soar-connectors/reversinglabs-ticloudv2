@@ -178,6 +178,22 @@ and limitations under the License.
                 <td>Platform</td>
                 <td>{{data.report_base.report.platform}}</td>
             </tr>
+            {% if data.report_base.report.browser %}
+            <tr>
+                <td>Browser</td>
+                <td>{{data.report_base.report.browser}}</td>
+            </tr>
+            {% endif %}
+            {% if data.report_base.report.configuration %}
+            <tr>
+                <td>Configuration</td>
+                <td>{{data.report_base.report.configuration}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Risk score</td>
+                <td>{{data.report_base.report.risk_score}}</td>
+            </tr>
             {% else %}
             <tr>
                 <td>First Analysis</td>
@@ -195,15 +211,23 @@ and limitations under the License.
                 {% endfor %}
                 </td>
             </tr>
+            {% if data.report_base.report.browser %}
+            <tr>
+                <td>Browser</td>
+                <td>{{data.report_base.report.browser}}</td>
+            </tr>
             {% endif %}
+            {% if data.report_base.report.configuration %}
             <tr>
                 <td>Configuration</td>
                 <td>{{data.report_base.report.configuration}}</td>
             </tr>
+            {% endif %}
             <tr>
                 <td>Risk score</td>
                 <td>{{data.report_base.report.risk_score}}</td>
             </tr>
+            {% endif %}
             {% if data.report_base.report.dropped_files %}
             <tr>
                 <td colspan="2" class="rl-text-center">Dropped files</td>
@@ -575,22 +599,30 @@ and limitations under the License.
                 </td>
             </tr>
             {% endif %}
+            {% if data.report_base.report.pcap %}
             <tr>
                 <td>Pcap</td>
                 <td><a class="rl-link" href="{{data.report_base.report.pcap}}" download>Download link</a></td>
             </tr>
+            {% endif %}
+            {% if data.report_base.report.screenshots %}
             <tr>
                 <td>Screenshot</td>
                 <td><a class="rl-link" href="{{data.report_base.report.screenshots}}" download>Download link</a></td>
             </tr>
+            {% endif %}
+            {% if data.report_base.report.memory_strings %}
             <tr>
                 <td>Memory strings</td>
                 <td><a class="rl-link" href="{{data.report_base.report.memory_strings}}" download>Download link</a></td>
             </tr>
+            {% endif %}
+            {% if data.report_base.report.dropped_files_url %}
             <tr>
                 <td>Dropped Files URL</td>
                 <td><a class="rl-link" href="{{data.report_base.report.dropped_files_url}}" download>Download link</a></td>
             </tr>
+            {% endif %}
         </tbody>
     </table>
     </div>
