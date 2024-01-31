@@ -4,7 +4,7 @@
     * submit url for dynamic analysis - TCA - 0207 - Submit an url sample for dynamic analysis 
 
 * Updated ReversingLabs SDK library version:
-    * reversinglabs_sdk_py3-2.3.0 upgraded to reversinglabs_sdk_py3-2.4.1
+    * reversinglabs_sdk_py3-2.3.0 upgraded to reversinglabs_sdk_py3-2.4.2
 
 * Bug fixes:
     * Applied fixes to the data rendering on executed action within application widget in investigation pane across actions
