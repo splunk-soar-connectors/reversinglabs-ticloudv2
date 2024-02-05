@@ -160,30 +160,30 @@ def dynamic_analysis_results(provides, all_app_runs, context):
 
 
 def dynamic_url_analysis_results(provides, all_app_runs, context):
-    
+
     for summary, action_results in all_app_runs:
         for result in action_results:
-            
+
             data = result.get_data()[0].get("rl", {})
 
             # Color code for general report
             data["classification_color"] = color_code_classification(data.get("report").get("classification"))
-            
+
             # Color code for each dropped file entry
             dropped_files = data.get("report").get("dropped_files")
-            
+
             for df in dropped_files:
                 df["classification_color_dropped_files"] = color_code_classification(df.get("classification"))
-                
+
                 # get color coding for entries in merged report
                 if df.get("analysis_ids"):
                     analysis_ids = df.get("analysis_ids")
                     for an_id in analysis_ids:
                         an_id["classification_color_dropped_files_merged"] = color_code_classification(an_id.get("classification"))
-            
+
             context['data'] = data
             context['param'] = result.get_param()
-    
+
     return 'views/reversinglabs_ticloudv2_dynamic_url_analysis_results.html'
 
 
@@ -238,7 +238,7 @@ def uri_index(provides, all_app_runs, context):
 
 
 def network_reputation(provides, all_app_runs, context):
-   
+
     for summary, action_results in all_app_runs:
         for result in action_results:
             context['data'] = result.get_data()
