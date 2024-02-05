@@ -118,98 +118,132 @@ and limitations under the License.
 
 </style>
 <div class="rl-content">
-    {% if data.report_base == None %}
+    {% if data == None %}
         There is no rl object in the response JSON.
     {% else %}
     <table class="rl-table">
         <thead>
+            {% if data.requested_sha1_url != None %}
             <tr>
-                <th colspan="2">ReversingLabs dynamic analysis for File
-                    <div id="rl-target" class="main-grid">{{data.report_base.requested_hash}}</div></th>
+                <th colspan="2">ReversingLabs dynamic analysis for URL    
+                    <div id="rl-target" class="main-grid">{{data.requested_sha1_url}}</div></th>           
             </tr>
+            {% endif %}
+            {% if data.requested_base64_url != None %}
+            <tr>
+                <th colspan="2">ReversingLabs dynamic analysis for URL    
+                    <div id="rl-target" class="main-grid">{{data.requested_base64_url}}</div></th>           
+            </tr>
+            {% endif %}
         </thead>
         <tbody>
             <tr>
                 <td>Classification</td>
                 <td>
-                    <b><span style="color:{{data.classification_color}};">{{data.report_base.report.classification}}</span></b>
+                    <b><span style="color:{{data.classification_color}};">{{data.report.classification}}</span></b>
                 </td>
             </tr>
+            {% if data.report.classification_version %}
             <tr>
-                <td>Requested SHA1 of file</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.report_base.requested_hash }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.requested_hash }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
+                <td>Classification version</td>
+                <td>{{data.report.classification_version}}</td>
             </tr>
+            {% endif %}
+            {% if data.requested_sha1_url != None %}
             <tr>
-                <td>MD5</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['md5'], 'value': '{{ data.report_base.report.md5 }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.report.md5 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
+                <td>Requested SHA1 of url</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.requested_sha1_url }}' }], 0, {{ container.id }}, null, false);">{{ data.requested_sha1_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
+            {% endif %}
+            {% if data.requested_base64_url != None %}
             <tr>
-                <td>SHA-1</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.report_base.report.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.report.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
+                <td>Requested Base64 of url</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['base64'], 'value': '{{ data.requested_base64_url }}' }], 0, {{ container.id }}, null, false);">{{ data.requested_base64_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
-            <tr>
-                <td>SHA-256</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ data.report_base.report.sha256 }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.report.sha256 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
-            </tr>
+            {% endif %}
             {% if param.latest == True or param.analysis_id != None%}
             <tr>
                 <td>Analysis ID</td>
-                <td>{{data.report_base.report.analysis_id}}</td>
+                <td>{{data.report.analysis_id}}</td>
             </tr>
             <tr>
                 <td>Analysis time</td>
-                <td>{{data.report_base.report.analysis_time}}</td>
+                <td>{{data.report.analysis_time}}</td>
             </tr>
             <tr>
                 <td>Analysis duration</td>
-                <td>{{data.report_base.report.analysis_duration}}</td>
+                <td>{{data.report.analysis_duration}}</td>
             </tr>
             <tr>
                 <td>Platform</td>
-                <td>{{data.report_base.report.platform}}</td>
+                <td>{{data.report.platform}}</td>
+            </tr>
+            {% if data.report.browser %}
+            <tr>
+                <td>Browser</td>
+                <td>{{data.report.browser}}</td>
+            </tr>
+            {% endif %}
+            {% if data.report.configuration %}
+            <tr>
+                <td>Configuration</td>
+                <td>{{data.report.configuration}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Risk score</td>
+                <td>{{data.report.risk_score}}</td>
             </tr>
             {% else %}
             <tr>
                 <td>First Analysis</td>
-                <td>{{data.report_base.report.first_analysis}}</td>
+                <td>{{data.report.first_analysis}}</td>
             </tr>
             <tr>
                 <td>Last Analysis</td>
-                <td>{{data.report_base.report.last_analysis}}</td>
+                <td>{{data.report.last_analysis}}</td>
             </tr>
             <tr>
                 <td>Platforms</td>
                 <td>
-                {% for x in data.report_base.report.platforms %}
+                {% for x in data.report.platforms %}
                    {{x}} <br/>
                 {% endfor %}
                 </td>
             </tr>
+            {% if data.report.browser %}
+            <tr>
+                <td>Browser</td>
+                <td>{{data.report.browser}}</td>
+            </tr>
             {% endif %}
+            {% if data.report.configuration %}
             <tr>
                 <td>Configuration</td>
-                <td>{{data.report_base.report.configuration}}</td>
+                <td>{{data.report.configuration}}</td>
             </tr>
+            {% endif %}
             <tr>
                 <td>Risk score</td>
-                <td>{{data.report_base.report.risk_score}}</td>
+                <td>{{data.report.risk_score}}</td>
             </tr>
-            {% if data.report_base.report.dropped_files %}
+            {% endif %}
+            {% if data.report.dropped_files %}
             <tr>
                 <td colspan="2" class="rl-text-center">Dropped files</td>
             </tr>
             <tr>
                 <td colspan="2">
                     <div class="tab">
-                    {% for y in data.report_base.report.dropped_files %}
+                    {% for y in data.report.dropped_files %}
                         <button class="tablinks" onclick="openPopup(event, '{{y.sha1}}')">{{y.file_name}}</button>    
                     {% endfor %}  
                     </div>
                 </td>
             </tr>
-            <tr>  
+            <tr>
                 <td colspan="2">
-                    {% for y in data.report_base.report.dropped_files %}
+                    {% for y in data.report.dropped_files %}
                     <div id="{{y.sha1}}" class="tabcontent">
                         <table>
                             <tbody>
@@ -229,17 +263,31 @@ and limitations under the License.
                                     <td>file name</td>
                                     <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['file name'], 'value': '{{ y.file_name }}' }], 0, {{ container.id }}, null, false);">{{ y.file_name }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
                                 </tr>
+                                {% if y.file_path %}
                                 <tr>
                                     <td>file path</td>
                                     <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['file path'], 'value': '{{ y.file_path }}' }], 0, {{ container.id }}, null, false);">{{ y.file_path }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
                                 </tr>
+                                {% endif %}
                                 <tr>
                                     <td>sample type</td>
                                     <td>{{y.sample_type}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{z.analysis_id}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Classification</td>
+                                    <td><b><span style="color:{{z.classification_color_dropped_files_merged}};">{{z.classification}}</span></b></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                                 <tr>
                                     <td>sample classification</td>
-                                    <td><b><span style="color:{{data.classification_color}};">{{y.classification}}</span></b></td>
+                                    <td><b><span style="color:{{y.classification_color_dropped_files}};">{{y.classification}}</span></b></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -248,14 +296,14 @@ and limitations under the License.
                 </td>
             </tr>
             {% endif %}
-            {% if data.report_base.report.snort_alerts %}
+            {% if data.report.snort_alerts %}
             <tr>
                 <td colspan="2" class="rl-text-center">Snort alerts</td>
             </tr>
             <tr>
                 <td colspan="2">
                     <div class="tab">
-                    {% for y in data.report_base.report.snort_alerts %}
+                    {% for y in data.report.snort_alerts %}
                         <button class="tablinks" onclick="openPopup(event, '{{y.rule}}')">{{y.destination_ip}}</button>    
                     {% endfor %}  
                     </div>
@@ -263,7 +311,7 @@ and limitations under the License.
             </tr>
             <tr>
                 <td colspan="2">
-                    {% for y in data.report_base.report.snort_alerts %}
+                    {% for y in data.report.snort_alerts %}
                     <div id="{{y.rule}}" class="tabcontent">
                         <table>
                             <tbody>
@@ -290,14 +338,14 @@ and limitations under the License.
                 </td>
             </tr>
             {% endif %}
-            {% if data.report_base.report.signatures %}
+            {% if data.report.signatures %}
             <tr>
                 <td colspan="2" class="rl-text-center">Signatures</td>
             </tr>
             <tr>
                 <td colspan="2">
                     <div class="tab">
-                    {% for y in data.report_base.report.signatures %}
+                    {% for y in data.report.signatures %}
                         <button class="tablinks" onclick="openPopup(event, '{{y.sig_id}}')">{{y.sig_id}}</button>    
                     {% endfor %}  
                     </div>
@@ -305,7 +353,7 @@ and limitations under the License.
             </tr>
             <tr>
                 <td colspan="2">
-                    {% for y in data.report_base.report.signatures %}
+                    {% for y in data.report.signatures %}
                     <div id="{{y.sig_id}}" class="tabcontent">
                         <table>
                             <tbody>
@@ -321,6 +369,14 @@ and limitations under the License.
                                     <td>risk factor</td>
                                     <td>{{y.risk_factor}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    {% for z in y.analysis_ids %}
+                                    <td>{{ z }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -331,11 +387,11 @@ and limitations under the License.
             <tr>
                 <td colspan="2" class="rl-text-center">Network</td>
             </tr>
-            {% if data.report_base.report.network.dns %}
+            {% if data.report.network.dns %}
             <tr>
                 <td colspan="2">
                     <div class="tab">
-                    {% for y in data.report_base.report.network.dns %}
+                    {% for y in data.report.network.dns %}
                         <button class="tablinks" onclick="openPopup(event, 'dns-{{ forloop.counter }}')">DNS {{ forloop.counter }}</button>    
                     {% endfor %}  
                     </div>
@@ -343,7 +399,7 @@ and limitations under the License.
             </tr>
             <tr>
                 <td colspan="2">
-                    {% for y in data.report_base.report.network.dns %}
+                    {% for y in data.report.network.dns %}
                     <div id="dns-{{ forloop.counter }}" class="tabcontent">
                         <table>
                             <tbody>
@@ -363,6 +419,14 @@ and limitations under the License.
                                     <td>process id</td>
                                     <td>{{y.process_id}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{ z }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -370,11 +434,11 @@ and limitations under the License.
                 </td>
             </tr>
             {% endif %}
-            {% if data.report_base.report.network.tcp %}
+            {% if data.report.network.tcp %}
             <tr>
                 <td colspan="2">
                     <div class="tab">
-                    {% for y in data.report_base.report.network.tcp %}
+                    {% for y in data.report.network.tcp %}
                         <button class="tablinks" onclick="openPopup(event, 'tcp-{{ forloop.counter }}')">TCP {{ forloop.counter }}</button>    
                     {% endfor %}  
                     </div>
@@ -382,7 +446,7 @@ and limitations under the License.
             </tr>
             <tr>
                 <td colspan="2">
-                    {% for y in data.report_base.report.network.tcp %}
+                    {% for y in data.report.network.tcp %}
                     <div id="tcp-{{ forloop.counter }}" class="tabcontent">
                         <table>
                             <tbody>
@@ -398,6 +462,14 @@ and limitations under the License.
                                     <td>destination port</td>
                                     <td>{{y.destination_port}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{ z }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -405,11 +477,11 @@ and limitations under the License.
                 </td>
             </tr>
             {% endif %}
-            {% if data.report_base.report.network.udp %}
+            {% if data.report.network.udp %}
             <tr>
                 <td colspan="2">
                     <div class="tab">
-                    {% for y in data.report_base.report.network.udp %}
+                    {% for y in data.report.network.udp %}
                         <button class="tablinks" onclick="openPopup(event, 'udp-{{ forloop.counter }}')">UDP {{ forloop.counter }}</button>    
                     {% endfor %}  
                     </div>
@@ -417,7 +489,7 @@ and limitations under the License.
             </tr>
             <tr>
                 <td colspan="2">
-                    {% for y in data.report_base.report.network.udp %}
+                    {% for y in data.report.network.udp %}
                     <div id="udp-{{ forloop.counter }}" class="tabcontent">
                         <table>
                             <tbody>
@@ -433,6 +505,14 @@ and limitations under the License.
                                     <td>destination port</td>
                                     <td>{{y.destination_port}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{ z }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -440,11 +520,11 @@ and limitations under the License.
                 </td>
             </tr>
             {% endif %}
-            {% if data.report_base.report.network.url %}
+            {% if data.report.network.url %}
             <tr>
                 <td colspan="2">
                     <div class="tab">
-                    {% for y in data.report_base.report.network.url %}
+                    {% for y in data.report.network.url %}
                         <button class="tablinks" onclick="openPopup(event, 'url-{{ forloop.counter }}')">URL {{ forloop.counter }}</button>    
                     {% endfor %}  
                     </div>
@@ -452,7 +532,7 @@ and limitations under the License.
             </tr>
             <tr>
                 <td colspan="2">
-                    {% for y in data.report_base.report.network.url %}
+                    {% for y in data.report.network.url %}
                     <div id="url-{{ forloop.counter }}" class="tabcontent">
                         <table>
                             <tbody>
@@ -464,6 +544,14 @@ and limitations under the License.
                                     <td>source</td>
                                     <td>{{y.source}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{ z }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -471,11 +559,11 @@ and limitations under the License.
                 </td>
             </tr>
             {% endif %}
-            {% if data.report_base.report.network.http %}
+            {% if data.report.network.http %}
             <tr>
                 <td colspan="2">
                     <div class="tab">
-                    {% for y in data.report_base.report.network.http %}
+                    {% for y in data.report.network.http %}
                         <button class="tablinks" onclick="openPopup(event, 'http-{{ forloop.counter }}')">HTTP {{ forloop.counter }}</button>    
                     {% endfor %}  
                     </div>
@@ -483,7 +571,7 @@ and limitations under the License.
             </tr>
             <tr>
                 <td colspan="2">
-                    {% for y in data.report_base.report.network.http %}
+                    {% for y in data.report.network.http %}
                     <div id="http-{{ forloop.counter }}" class="tabcontent">
                         <table>
                             <tbody>
@@ -499,6 +587,14 @@ and limitations under the License.
                                     <td>process id</td>
                                     <td>{{y.process_id}}</td>
                                 </tr>
+                                {% if y.analysis_ids %}
+                                {% for z in y.analysis_ids %}
+                                <tr>
+                                    <td>Analysis id</td>
+                                    <td>{{ z }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -506,26 +602,34 @@ and limitations under the License.
                 </td>
             </tr>
             {% endif %}
+            {% if data.report.pcap %}
             <tr>
                 <td>Pcap</td>
-                <td><a class="rl-link" href="{{data.report_base.report.pcap}}" download>Download link</a></td>
+                <td><a class="rl-link" href="{{data.report.pcap}}" download>Download link</a> (Note: This link expires in 60 minutes; refresh or regenerate for a new one after expiry!)</td>
             </tr>
+            {% endif %}
+            {% if data.report.screenshots %}
             <tr>
                 <td>Screenshot</td>
-                <td><a class="rl-link" href="{{data.report_base.report.screenshots}}" download>Download link</a></td>
+                <td><a class="rl-link" href="{{data.report.screenshots}}" download>Download link</a> (Note: This link expires in 60 minutes; refresh or regenerate for a new one after expiry!)</td>
             </tr>
+            {% endif %}
+            {% if data.report.memory_strings %}
             <tr>
                 <td>Memory strings</td>
-                <td><a class="rl-link" href="{{data.report_base.report.memory_strings}}" download>Download link</a></td>
+                <td><a class="rl-link" href="{{data.report.memory_strings}}" download>Download link</a> (Note: This link expires in 60 minutes; refresh or regenerate for a new one after expiry!)</td>
             </tr>
+            {% endif %}
+            {% if data.report.dropped_files_url %}
             <tr>
                 <td>Dropped Files URL</td>
-                <td><a class="rl-link" href="{{data.report_base.report.dropped_files_url}}" download>Download link</a></td>
+                <td><a class="rl-link" href="{{data.report.dropped_files_url}}" download>Download link</a> (Note: This link expires in 60 minutes; refresh or regenerate for a new one after expiry!)</td>
             </tr>
+            {% endif %}
         </tbody>
     </table>
+    </div>
     {% endif %}
-</div>
 <script>
     function openPopup(evt, sha1) {
         var i, tabcontent, tablinks;

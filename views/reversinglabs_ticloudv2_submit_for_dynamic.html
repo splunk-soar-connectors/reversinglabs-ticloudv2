@@ -1,3 +1,9 @@
+{% extends 'widgets/widget_template.html' %}
+{% load custom_template %}
+{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
+background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
+{% block widget_content %}
+
 <!-- File: reversinglabs_ticloudv2_submit_for_dynamic.html
   Copyright (c) ReversingLabs, 2023
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -10,15 +16,9 @@ either express or implied. See the License for the specific language governing p
 and limitations under the License.
 -->
 
-{% extends 'widgets/widget_template.html' %}
-{% load custom_template %}
-{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
-background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
-{% block widget_content %}
 <style>
     
     .widget-container {
-        width: 1170px !important;
         height: 600px;
     }
 
@@ -84,6 +84,10 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
             <tr>
                 <td>Status</td>
                 <td>{{data.report_base.status}}</td>
+            </tr>
+            <tr>
+                <td>Requested SHA1 of file</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.report_base.requested_hash }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.requested_hash }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             <tr>
                 <td>Analysis ID</td>
