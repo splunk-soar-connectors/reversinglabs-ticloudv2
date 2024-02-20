@@ -1,3 +1,9 @@
+{% extends 'widgets/widget_template.html' %}
+{% load custom_template %}
+{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
+background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
+{% block widget_content %}
+
 <!-- File: reversinglabs_ticloudv2_advanced_search.html
   Copyright (c) ReversingLabs, 2023
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -10,15 +16,9 @@ either express or implied. See the License for the specific language governing p
 and limitations under the License.
 -->
 
-{% extends 'widgets/widget_template.html' %}
-{% load custom_template %}
-{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
-background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
-{% block widget_content %}
 <style>
     
     .widget-container {
-        width: 1170px !important;
         height: 600px;
     }
 
@@ -89,8 +89,8 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
         <tbody>
             {% for x in data %}
             <tr>
-                <td>{{ forloop.counter}}.</td>
-                <td>{{ x.sha1}}</td>
+                <td>{{ forloop.counter }}.</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ x.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ x.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
                 <td>{{ x.sampletype }}</td>
                 <td>{{ x.threatname }}</td>
                 <td>{{ x.threatlevel }}</td>
@@ -100,7 +100,6 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
                 </td>
             </tr>
             {% endfor %}
-
         </tbody>
     </table>
 </div>

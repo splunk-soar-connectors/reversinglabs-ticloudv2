@@ -1,3 +1,9 @@
+{% extends 'widgets/widget_template.html' %}
+{% load custom_template %}
+{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
+background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
+{% block widget_content %}
+
 <!-- File: reversinglabs_ticloudv2_file_analysis.html
   Copyright (c) ReversingLabs, 2023
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -10,15 +16,9 @@ either express or implied. See the License for the specific language governing p
 and limitations under the License.
 -->
 
-{% extends 'widgets/widget_template.html' %}
-{% load custom_template %}
-{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
-background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
-{% block widget_content %}
 <style>
     
     .widget-container {
-        width: 1170px !important;
         height: 600px;
     }
 
@@ -103,7 +103,7 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
             </tr>
             <tr>
                 <td>Extended description</td>
-                <td>{{data.sample.analysis.entries.0.tc_report.story}} }} </td>
+                <td>{{ data.sample.analysis.entries.0.tc_report.story }} </td>
             </tr>
             <tr>
                 <td>First seen</td>
@@ -115,15 +115,15 @@ background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo
             </tr>
             <tr>
                 <td>MD5 hash</td>
-                <td> {{data.sample.md5}}</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['md5'], 'value': '{{ data.sample.md5 }}' }], 0, {{ container.id }}, null, false);">{{ data.sample.md5 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             <tr>
                 <td>SHA-1 hash</td>
-                <td> {{data.sample.sha1}}</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.sample.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ data.sample.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             <tr>
                 <td>SHA-256 hash</td>
-                <td> {{data.sample.sha256}}</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ data.sample.sha256 }}' }], 0, {{ container.id }}, null, false);">{{ data.sample.sha256 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             <tr>
                 <td>SHA-512 hash</td>

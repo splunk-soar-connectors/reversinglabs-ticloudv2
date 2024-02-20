@@ -2,16 +2,16 @@
 # Reversinglabs TitaniumCloud v2
 
 Publisher: ReversingLabs  
-Connector Version: 1.2.1  
+Connector Version: 1.3.0  
 Product Vendor: Reversinglabs  
 Product Name: TitaniumCloud  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 5.5.0  
+Minimum Product Version: 6.1.1  
 
 App integrates with ReversingLabs TitaniumCloud APIs delivering targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services
 
 [comment]: # " File: README.md"
-[comment]: # "  Copyright (c) ReversingLabs, 2023"
+[comment]: # "  Copyright (c) ReversingLabs, 2024"
 [comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
 [comment]: # "you may not use this file except in compliance with the License."
 [comment]: # "You may obtain a copy of the License at"
@@ -57,7 +57,9 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [uri statistics](#action-uri-statistics) - TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI  
 [uri index](#action-uri-index) - TCA-0401 - Retrieve a list of all available file hashes associated with a given URI  
 [submit for dynamic analysis](#action-submit-for-dynamic-analysis) - TCA-0207 - Submit an existing sample for dynamic analysis  
-[dynamic analysis results](#action-dynamic-analysis-results) - TCA-0106 - Retrieve dynamic analysis results  
+[submit url for dynamic analysis](#action-submit-url-for-dynamic-analysis) - TCA-0207 - Submit an existing url sample for dynamic analysis  
+[dynamic analysis results](#action-dynamic-analysis-results) - TCA-0106 - Retrieve a file dynamic analysis results  
+[dynamic url analysis results](#action-dynamic-url-analysis-results) - TCA-0106 - Retrieve an url dynamic analysis results  
 [reanalyze file](#action-reanalyze-file) - TCA-0205 - Reanalyze sample  
 [upload file](#action-upload-file) - TCA-0202 - Upload file to TitaniumCloud  
 [get file](#action-get-file) - TCA-0201 - Download a sample from TitaniumCloud  
@@ -147,7 +149,9 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success or failed 
-action_result.parameter.ruleset_name | string |  |  
+action_result.data.*.ruleset_name | string |  |  
+action_result.data.*.valid | string |  |  
+action_result.data.*.approved | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -172,6 +176,7 @@ DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
+action_result.data.*.text | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -246,6 +251,7 @@ DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
+action_result.data.*.ruleset_sha1 | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -270,6 +276,12 @@ DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
+action_result.data.*.retro_status | string |  |  
+action_result.data.*.start_time | string |  |  
+action_result.data.*.finish_time | string |  |  
+action_result.data.*.reason | string |  |  
+action_result.data.*.progress | string |  |  
+action_result.data.*.estimated_finish_time | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -294,6 +306,7 @@ DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
+action_result.data.*.ruleset_sha1 | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -318,8 +331,10 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success or failed 
-action_result.parameter.time_format | string |  |  
-action_result.parameter.time_value | string |  |  
+action_result.data.*.rl.feed.name | string |  |  
+action_result.data.*.rl.feed.time_range.from | string |  |  
+action_result.data.*.rl.feed.time_range.to | string |  |  
+action_result.data.*.rl.feed.last_timestamp | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -329,15 +344,15 @@ summary.total_objects_successful | numeric |  |
 ## action: 'imphash similarity'
 TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)
 
-Type: **generic**  
-Read only: **False**
+Type: **investigate**  
+Read only: **True**
 
 TCA-0302 - Imphash Index provides a list of all available SHA1 hashes for files sharing the same import hash (imphash). An imphash is a hash calculated from a string which contains the libraries imported by a Windows Portable Executable (PE) file.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**imphash** |  required  | Imphash | string | 
+**imphash** |  required  | Imphash | string | `hash`
 **limit** |  optional  | Maximum number of results | numeric | 
 
 #### Action Output
@@ -381,7 +396,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'av scanners'
 TCA-0103 - Retrieve AV Scanner data from TitaniumCloud
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0103 - Provides AV vendor cross-reference data for a desired sample from multiple AV scanners.
@@ -389,7 +404,7 @@ TCA-0103 - Provides AV vendor cross-reference data for a desired sample from mul
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**hash** |  required  | File hash | string | 
+**hash** |  required  | File hash | string | `sha1` `sha256` `md5` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -429,7 +444,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'file analysis'
 TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0104 - Provides file analysis data on hashes. Metadata can include relevant portions of static analysis, AV scan information, file sources and any related IP/domain information.
@@ -437,7 +452,7 @@ TCA-0104 - Provides file analysis data on hashes. Metadata can include relevant 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**hash** |  required  | File hash | string | 
+**hash** |  required  | File hash | string | `sha1` `sha256` `md5` `vault id` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -453,7 +468,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'functional similarity'
 TCA-0301 - Retrieve a list of functionally similar hashes to the provided one
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0301 - Provides a list of SHA1 hashes of files that are functionally similar to the provided file (SHA1 hash) at the selected precision level.
@@ -461,7 +476,7 @@ TCA-0301 - Provides a list of SHA1 hashes of files that are functionally similar
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**hash** |  required  | File hash | string | 
+**hash** |  required  | File hash | string | `sha1` 
 **limit** |  optional  | Maximum number of results | numeric | 
 
 #### Action Output
@@ -597,7 +612,7 @@ TCA-0404 - This service allows users to submit a URL for analysis.
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**url** |  required  | URL to analyze | string | 
+**url** |  required  | URL to analyze | string | `url` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -621,7 +636,7 @@ TCA-0402 - Provides the number of MALICIOUS, SUSPICIOUS and KNOWN files associat
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**uri** |  required  | Uri | string | 
+**uri** |  required  | Uri | string | `sha1` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -645,7 +660,7 @@ TCA-0401 - Provides a list of all available file hashes associated with a given 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**uri** |  required  | Desired URI string | string | 
+**uri** |  required  | Desired URI string | string | `url` `domain` 
 **limit** |  optional  | Maximum number of results | numeric | 
 
 #### Action Output
@@ -663,7 +678,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'submit for dynamic analysis'
 TCA-0207 - Submit an existing sample for dynamic analysis
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0207 - This service allows users to detonate a file in the ReversingLabs TitaniumCloud sandbox. To submit a file for analysis, it must exist in TitaniumCloud.
@@ -671,7 +686,7 @@ TCA-0207 - This service allows users to detonate a file in the ReversingLabs Tit
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**sha1** |  required  | Selected sample's SHA-1 hash | string | 
+**sha1** |  required  | Selected sample's SHA-1 hash | string | `sha1` `vault id` 
 **platform** |  required  | Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options | string | 
 
 #### Action Output
@@ -686,6 +701,29 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
 
+## action: 'submit url for dynamic analysis'
+TCA-0207 - Submit an existing URL sample for dynamic analysis
+
+Type: **investigate**  
+Read only: **False**
+
+TCA-0207 - This service allows users to detonate an URL in the ReversingLabs TitaniumCloud sandbox. To submit an url for analysis, it must exist in TitaniumCloud.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**sha1** |  required  | Selected sample's url string | string | `url` `domain` 
+**platform** |  required  | Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.rl.url | string | url |  
+action_result.data.*.rl.sha1 | string | sha1 |  
+action_result.data.*.rl.status | string |  |  
+action_result.data.*.rl.url_base64 | string |  |  
+action_result.data.*.rl.analysis_id | string |  |  
+
 ## action: 'dynamic analysis results'
 TCA-0106 - Retrieve dynamic analysis results
 
@@ -697,7 +735,7 @@ TCA-0106 - This service allows users to retrieve dynamic analysis results for a 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**sha1** |  required  | Selected sample's SHA-1 hash | string | 
+**sha1** |  required  | Selected sample's SHA-1 hash | string | `sha1` 
 **analysis_id** |  optional  | Return only the results of this analysis | string | 
 **latest** |  optional  | Return only the latest analysis results | boolean | 
 
@@ -714,10 +752,31 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
 
+## action: 'dynamic url analysis results'
+TCA-0106 - Retrieve dynamic analysis results for url
+
+Type: **investigate**  
+Read only: **true**
+
+TCA-0106 - This service allows users to retrieve dynamic analysis results for an url that was submitted for dynamic analysis.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**url** |  required  | Provide one of the following: sha1, base64 or url | string | `sha1` `url` | 
+**analysis_id** |  optional  | Return only the results of this analysis | string | 
+**latest** |  optional  | Return only the latest analysis results | boolean | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.analysis_id | string |  |  
+action_result.parameter.data.0.requested_sha1_url | string |  |  
+
 ## action: 'reanalyze file'
 TCA-0205 - Reanalyze sample
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0205 - This query sends a sample with the requested hash for rescanning.
@@ -791,21 +850,20 @@ summary.total_objects_successful | numeric |  |
 ## action: 'get network reputation'
 TCA-0407 - Get reputation of a requested URL, domain or IP address
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
-TCA-0407 - Get reputation of a requested URL, domain or IP address
+Service provides information regarding the reputation of a requested URL, domain or IP address.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**network_locations** |  required  | domain, url or ip | string | 
+**network_locations** |  required  | domain, url or ip | string | `domain` `url` `ip` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success or failed 
-action_result.parameter.network_locations | string |  | 92.123.37.9 or multiple separated by space (92.123.37.9 reversinglabs.com)
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |  
@@ -821,13 +879,14 @@ TCA-0408 - Get user URL classification overrides
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**next_page_sha1** |  optional  | Optional parameter used for pagination | string | 
+**next_page_sha1** |  optional  | Optional parameter used for pagination | string | `sha1` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
+action_result.data.*.user_override.network_locations.*.network_location | string | `url` `domain` `ip` |  
+action_result.data.*.user_override.network_locations.*.type | string | `url` `domain` `ip` |  
 action_result.status | string |  |   success or failed 
-action_result.parameter.next_page_sha1 | string |  | 23e725d8923bf46bb776f15f26f410f829b75e7f
 action_result.message | string |  | 
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |  
@@ -838,7 +897,7 @@ TCA-0408 - Get user URL classification overrides aggregated
 Type: **generic**  
 Read only: **False**
 
-TCA-0408 - Get user URL classification overrides aggregated
+This API automatically handles paging and returns a list of results instead of a Response object.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
@@ -848,8 +907,9 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.max_results | numeric |  | 50
+action_result.data.*.*.network_location | string | `url` `domain` `ip` |  
+action_result.data.*.*.type | string | `url` `domain` `ip` |  
+action_result.status | string |  | success or failed 
 action_result.message | string |  | 
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  | 
@@ -860,13 +920,13 @@ TCA-0408 - Override user network location reputation
 Type: **generic**  
 Read only: **False**
 
-TCA-0408 - Override user network location reputation
+The Network Reputation User OVerride service enables URL classification overrides
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**override_list** |  required  | Network Reputation User Override | string | 
-**remove_overrides_list** |  optional  | List of network locations whose classification override needs to be removed | string | 
+**override_list** |  required  | List of network locations which classification needs to be overriden | string | 
+**remove_overrides_list** |  optional  | List of network locations which classification override needs to be removed | string | 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -914,7 +974,9 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [uri statistics](#action-uri-statistics) - TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI  
 [uri index](#action-uri-index) - TCA-0401 - Retrieve a list of all available file hashes associated with a given URI  
 [submit for dynamic analysis](#action-submit-for-dynamic-analysis) - TCA-0207 - Submit an existing sample for dynamic analysis  
+[submit url for dynamic analysis](#action-submit-url-for-dynamic-analysis) - TCA-0207 - Submit an url sample for dynamic analysis  
 [dynamic analysis results](#action-dynamic-analysis-results) - TCA-0106 - Retrieve dynamic analysis results  
+[dynamic url analysis results](#action-dynamic-url-analysis-results) - TCA-0106 - Retrieve dynamic analysis results for url  
 [reanalyze file](#action-reanalyze-file) - TCA-0205 - Reanalyze sample  
 [upload file](#action-upload-file) - TCA-0202 - Upload file to TitaniumCloud  
 [get file](#action-get-file) - TCA-0201 - Download a sample from TitaniumCloud  
@@ -1004,7 +1066,9 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success  failed 
-action_result.parameter.ruleset_name | string |  |  
+action_result.data.\*.ruleset_name | string |  |  
+action_result.data.\*.valid | string |  |  
+action_result.data.\*.approved | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -1027,8 +1091,9 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
 action_result.parameter.ruleset_name | string |  |  
+action_result.data.\*.text | string |  |  
+action_result.status | string |  |   success  failed 
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -1103,6 +1168,7 @@ DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success  failed 
 action_result.parameter.ruleset_name | string |  |  
+action_result.data.\*.ruleset_sha1 | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -1125,8 +1191,14 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |   success  failed 
 action_result.parameter.ruleset_name | string |  |  
+action_result.data.\*.retro_status | string |  |  
+action_result.data.\*.start_time | string |  |  
+action_result.data.\*.finish_time | string |  |  
+action_result.data.\*.reason | string |  |  
+action_result.data.\*.progress | string |  |  
+action_result.data.\*.estimated_finish_time | string |  |  
+action_result.status | string |  |   success  failed 
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -1151,6 +1223,7 @@ DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success  failed 
 action_result.parameter.ruleset_name | string |  |  
+action_result.data.\*.ruleset_sha1 | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -1175,8 +1248,10 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success  failed 
-action_result.parameter.time_format | string |  |  
-action_result.parameter.time_value | string |  |  
+action_result.data.\*.rl.feed.name | string |  |  
+action_result.data.\*.rl.feed.time_range.from | string |  |  
+action_result.data.\*.rl.feed.time_range.to | string |  |  
+action_result.data.\*.rl.feed.last_timestamp | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
@@ -1186,15 +1261,15 @@ summary.total_objects_successful | numeric |  |
 ## action: 'imphash similarity'
 TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)
 
-Type: **generic**  
-Read only: **False**
+Type: **investigate**  
+Read only: **True**
 
 TCA-0302 - Imphash Index provides a list of all available SHA1 hashes for files sharing the same import hash (imphash). An imphash is a hash calculated from a string which contains the libraries imported by a Windows Portable Executable (PE) file.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**imphash** |  required  | Imphash | string | 
+**imphash** |  required  | Imphash | string |  `hash` 
 **limit** |  optional  | Maximum number of results | numeric | 
 
 #### Action Output
@@ -1238,7 +1313,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'av scanners'
 TCA-0103 - Retrieve AV Scanner data from TitaniumCloud
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0103 - Provides AV vendor cross-reference data for a desired sample from multiple AV scanners.
@@ -1246,7 +1321,7 @@ TCA-0103 - Provides AV vendor cross-reference data for a desired sample from mul
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**hash** |  required  | File hash | string | 
+**hash** |  required  | File hash | string |  `sha1`  `sha256`  `md5` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -1286,7 +1361,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'file analysis'
 TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0104 - Provides file analysis data on hashes. Metadata can include relevant portions of static analysis, AV scan information, file sources and any related IP/domain information.
@@ -1294,7 +1369,7 @@ TCA-0104 - Provides file analysis data on hashes. Metadata can include relevant 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**hash** |  required  | File hash | string | 
+**hash** |  required  | File hash | string |  `sha1`  `sha256`  `md5`  `vauld id` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -1310,7 +1385,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'functional similarity'
 TCA-0301 - Retrieve a list of functionally similar hashes to the provided one
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0301 - Provides a list of SHA1 hashes of files that are functionally similar to the provided file (SHA1 hash) at the selected precision level.
@@ -1318,7 +1393,7 @@ TCA-0301 - Provides a list of SHA1 hashes of files that are functionally similar
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**hash** |  required  | File hash | string | 
+**hash** |  required  | File hash | string |  `sha1` 
 **limit** |  optional  | Maximum number of results | numeric | 
 
 #### Action Output
@@ -1368,7 +1443,7 @@ Accepts a URL string and returns a list of downloaded files aggregated through m
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**url** |  required  | URL string | string | 
+**url** |  required  | URL string | string |  `url` 
 **extended** |  optional  | Return extended report | boolean | 
 **classification** |  optional  | Return only files of this classification | string | 
 **last_analysis** |  optional  | Return only files from the last analysis | boolean | 
@@ -1454,7 +1529,7 @@ TCA-0404 - This service allows users to submit a URL for analysis.
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**url** |  required  | URL to analyze | string | 
+**url** |  required  | URL to analyze | string |  `url` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -1470,7 +1545,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'uri statistics'
 TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0402 - Provides the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI (domain, IP address, email or URL).
@@ -1478,7 +1553,7 @@ TCA-0402 - Provides the number of MALICIOUS, SUSPICIOUS and KNOWN files associat
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**uri** |  required  | Uri | string | 
+**uri** |  required  | Uri | string |  `sha1` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -1502,7 +1577,7 @@ TCA-0401 - Provides a list of all available file hashes associated with a given 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**uri** |  required  | Desired URI string | string | 
+**uri** |  required  | Desired URI string | string |  `url`  `domain` 
 **limit** |  optional  | Maximum number of results | numeric | 
 
 #### Action Output
@@ -1520,7 +1595,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'submit for dynamic analysis'
 TCA-0207 - Submit an existing sample for dynamic analysis
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0207 - This service allows users to detonate a file in the ReversingLabs TitaniumCloud sandbox. To submit a file for analysis, it must exist in TitaniumCloud.
@@ -1528,7 +1603,7 @@ TCA-0207 - This service allows users to detonate a file in the ReversingLabs Tit
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**sha1** |  required  | Selected sample's SHA-1 hash | string | 
+**sha1** |  required  | Selected sample's SHA-1 hash | string |  `sha1`  `vault id` 
 **platform** |  required  | Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options | string | 
 
 #### Action Output
@@ -1543,10 +1618,38 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
 
+## action: 'submit url for dynamic analysis'
+TCA-0207 - Submit an url sample for dynamic analysis
+
+Type: **investigate**  
+Read only: **False**
+
+TCA-0207 - This service allows users to analyze a url in the ReversingLabs TitaniumCloud sandbox. To submit an url for analysis, it must exist in TitaniumCloud.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**url** |  required  | Selected sample's url string | string |  `url`  `domain` 
+**platform** |  required  | Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.\*.rl.url | string |  `url`  |  
+action_result.data.\*.rl.sha1 | string |  `sha1`  |  
+action_result.data.\*.rl.status | string |  |  
+action_result.data.\*.rl.url_base64 | string |  |  
+action_result.data.\*.rl.analysis_id | string |  |  
+action_result.status | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |    
+
 ## action: 'dynamic analysis results'
 TCA-0106 - Retrieve dynamic analysis results
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0106 - This service allows users to retrieve dynamic analysis results for a file that was submitted for dynamic analysis.
@@ -1554,7 +1657,7 @@ TCA-0106 - This service allows users to retrieve dynamic analysis results for a 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**sha1** |  required  | Selected sample's SHA-1 hash | string | 
+**sha1** |  required  | Selected sample's SHA-1 hash | string |  `sha1` 
 **analysis_id** |  optional  | Return only the results of this analysis | string | 
 **latest** |  optional  | Return only the latest analysis results | boolean | 
 
@@ -1571,10 +1674,36 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
 
+## action: 'dynamic url analysis results'
+TCA-0106 - Retrieve dynamic analysis results for url
+
+Type: **investigate**  
+Read only: **True**
+
+TCA-0106 - This service allows users to retrieve dynamic analysis results for an url that was submitted for dynamic analysis.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**url** |  required  | Provide one of the following: sha1, base64 or url | string |  `sha1`  `url` 
+**analysis_id** |  optional  | Return only the results of this analysis | string | 
+**latest** |  optional  | Return only the latest analysis results | boolean | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.analysis_id | string |  |  
+action_result.data.0.requested_sha1_url | string |  |  
+action_result.status | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |    
+
 ## action: 'reanalyze file'
 TCA-0205 - Reanalyze sample
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0205 - This query sends a sample with the requested hash for rescanning.
@@ -1582,7 +1711,7 @@ TCA-0205 - This query sends a sample with the requested hash for rescanning.
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**hash** |  required  | File hash | string | 
+**hash** |  required  | File hash | string |  `md5`  `sha1`  `sha256` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -1648,7 +1777,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'get network reputation'
 Network Reputation API
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 Service provides information regarding the reputation of a requested URL, domain, or IP address.
@@ -1661,15 +1790,6 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.data.\*.requested_network_location | string |  `domain`  `url`  `ip`  |  
-action_result.data.\*.type | string |  |  
-action_result.data.\*.last_seen | string |  |  
-action_result.data.\*.first_seen | string |  |  
-action_result.data.\*.associated_malware | string |  |  
-action_result.data.\*.third_party_reputations.total | string |  |  
-action_result.data.\*.third_party_reputations.clean | string |  |  
-action_result.data.\*.third_party_reputations.malicious | string |  |  
-action_result.data.\*.third_party_reputations.undetected | string |  |  
 action_result.status | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
