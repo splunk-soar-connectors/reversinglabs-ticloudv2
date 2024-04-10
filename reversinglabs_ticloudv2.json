@@ -342,7 +342,7 @@
             "identifier": "get_yara_matches",
             "description": "TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range",
             "verbose": "TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "time_format": {
@@ -418,7 +418,7 @@
             "identifier": "yara_retro_enable_hunt",
             "description": "TCA-0319 - Enable YARA retro hunt",
             "verbose": "TCA-0319 - Enable the retro hunt for the specified ruleset that has been submitted to TitaniumCloud prior to deployment of YARA retro.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "ruleset_name": {
@@ -479,7 +479,7 @@
             "identifier": "yara_retro_start_hunt",
             "description": "TCA-0319 - Start YARA retro hunt for the specified ruleset",
             "verbose": "TCA-0319 - Start YARA retro hunt for the specified ruleset.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "ruleset_name": {
@@ -710,7 +710,7 @@
             "identifier": "get_yara_retro_matches",
             "description": "TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range",
             "verbose": "TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "time_format": {
@@ -882,7 +882,7 @@
             "identifier": "advanced_search",
             "description": "TCA-0320 - Search for hashes using multi-part search criteria",
             "verbose": "TCA-0320 - Search for hashes using multi-part search criteria. Supported criteria include more than 60 keywords, 35 antivirus vendors, 137 sample types and subtypes, and 283 tags that enable creating 510 unique search expressions with support for Boolean operators and case-insensitive wildcard matching. A number of search keywords support relational operators '<=' and '>='.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "query": {
@@ -1335,7 +1335,7 @@
             "identifier": "get_url_downloaded_files",
             "description": "TCA - 0403 - Get files downloaded from url",
             "verbose": "Accepts a URL string and returns a list of downloaded files aggregated through multiple pages of results.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "url": {
@@ -1847,7 +1847,7 @@
             "identifier": "uri_index",
             "description": "TCA-0401 - Retrieve a list of all available file hashes associated with a given URI",
             "verbose": "TCA-0401 - Provides a list of all available file hashes associated with a given URI (domain, IP address, email or URL) regardless of file classification.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "uri": {
