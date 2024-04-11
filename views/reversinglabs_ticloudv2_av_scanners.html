@@ -108,23 +108,23 @@ and limitations under the License.
             </tr>
             <tr>
                 <td>MD5 hash</td>
-                <td> {{data.sample.md5}}</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['md5'], 'value': '{{ data.sample.md5 }}' }], 0, {{ container.id }}, null, false);">{{data.sample.md5}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             <tr>
                 <td>SHA-1 hash</td>
-                <td> {{data.sample.sha1}}</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.sample.sha1 }}' }], 0, {{ container.id }}, null, false);">{{data.sample.sha1}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             <tr>
                 <td>SHA-256 hash</td>
-                <td> {{data.sample.sha256}}</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ data.sample.sha256 }}' }], 0, {{ container.id }}, null, false);">{{data.sample.sha256}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             <tr>
                 <td>SHA-512 hash</td>
-                <td> {{data.sample.sha512}}</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha512'], 'value': '{{ data.sample.sha512 }}' }], 0, {{ container.id }}, null, false);">{{data.sample.sha512}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             <tr>
                 <td>SHA-384 hash</td>
-                <td> {{data.sample.sha384}}</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha384'], 'value': '{{ data.sample.sha384 }}' }], 0, {{ container.id }}, null, false);">{{data.sample.sha384}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
         </tbody>
         {% if data.sample.xref != None %}
@@ -136,8 +136,8 @@ and limitations under the License.
         <tbody>
             {% for x in data.sample.xref.0.results %}
             <tr>
-                <td>{{ x.scanner}}</td>
-                <td>{{ x.result }}</td>
+                <td>{{ x.scanner }}</td>
+                <td style="color: red;">{{ x.result }}</td>
             </tr>
             {% endfor %}
         </tbody>
