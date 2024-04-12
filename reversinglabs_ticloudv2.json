@@ -1608,7 +1608,7 @@
                     "param_name": "time_format"
                 },
                 "start_time": {
-                    "description": "Time from which to retrieve results onwards",
+                    "description": "Time from which to retrieve results onwards. Needs to be less than 90 days from now",
                     "data_type": "string",
                     "required": true,
                     "primary": false,
