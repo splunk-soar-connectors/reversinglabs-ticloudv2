@@ -178,6 +178,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
+    # TCA-0101
     def _handle_file_reputation(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -198,6 +199,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0320
     def _handle_advanced_search(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -218,6 +220,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for result in response:
             action_result.add_data(result)
 
+    # TCA-0402
     def _handle_uri_statistics(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -236,6 +239,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0103
     def _handle_av_scanners(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -251,6 +255,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0207
     def _handle_file_analysis(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -266,6 +271,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0301
     def _handle_functional_similarity(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -284,6 +290,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for result in response:
             action_result.add_data(result)
 
+    # TCA-0403
     def _handle_url_reputation(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -299,6 +306,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0403
     def _handle_get_url_downloaded_files(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -322,6 +330,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for x in response:
             action_result.add_data(x)
 
+    # TCA-0403
     def _handle_get_latest_url_analysis_feed(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -342,6 +351,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         self.debug_print("ACTION RESULT DATA:", action_result)
 
+    # TCA-0403
     def _handle_get_url_analysis_feed_from_date(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -363,6 +373,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for x in response:
             action_result.add_data(x)
 
+    # TCA-0404
     def _handle_analyze_url(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -378,6 +389,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0401 
     def _handle_uri_index(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -397,6 +409,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for result in response:
             action_result.add_data(result)
 
+    # TCA-0302
     def _handle_imphash_similarity(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -416,6 +429,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for result in response:
             action_result.add_data(result)
 
+    # TCA-0106
     def _handle_submit_for_dynamic_analysis(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -434,6 +448,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0106
     def _handle_submit_url_for_dynamic_analysis(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -452,6 +467,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0207
     def _handle_get_report(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -470,6 +486,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
 
+    # TCA-0207
     def _handle_get_url_report(self, action_result, param):
 
         self.debug_print("Action handler", self.get_action_identifier())
@@ -500,6 +517,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
 
+    # TCA-0205 
     def _handle_reanalyze_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -513,6 +531,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         self.debug_print("Executed", self.get_action_identifier())
 
+    # TCA-0202
     def _handle_upload_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -570,6 +589,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             if response.status_code != 200:
                 raise Exception('Unable to upload file meta to TitaniumCloud. Status code: {0}'.format(response.status_code))
 
+    # TCA-0201 
     def _handle_get_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -591,6 +611,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         if not success:
             raise Exception('Unable to store file in Vault. Error details: {0}'.format(msg))
 
+    # TCA-0303
     def _handle_yara_create_ruleset(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -606,6 +627,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0303
     def _handle_yara_delete_ruleset(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -619,6 +641,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         self.debug_print("Executed", self.get_action_identifier())
 
+    # TCA-0303
     def _handle_yara_get_ruleset_info(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -634,6 +657,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0303
     def _handle_yara_get_ruleset_text(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -649,6 +673,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0303
     def _handle_get_yara_matches(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -664,6 +689,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0319
     def _handle_yara_retro_enable_hunt(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -679,6 +705,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0319
     def _handle_yara_retro_start_hunt(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -694,6 +721,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0319
     def _handle_yara_retro_check_status(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -709,6 +737,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0319
     def _handle_yara_retro_cancel_hunt(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -724,6 +753,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0319
     def _handle_get_yara_retro_matches(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -739,6 +769,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0407
     def _handle_get_network_reputation(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -767,6 +798,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.get_status()
 
+    # TCA-0408
     def _handle_get_list_user_overrides(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -786,6 +818,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.get_status()
 
+    # TCA-0408
     def _handle_get_list_user_overrides_aggregated(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -803,6 +836,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response)
 
+    # TCA-0408
     def _handle_network_reputation_user_override(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
