@@ -75,35 +75,35 @@ and limitations under the License.
     }
 </style>
 <div class="rl-content">
-    <table class="rl-table">
-        <thead>
-            <tr>
-                <th colspan="5">ReversingLabs TitaniumCLoud Url Analysis Feed<br/>
-                    {% if  param.time_format != None %}
-                    <div id="rl-target" class="main-grid">{{param.time_format}}: {{param.start_time}}</div>
-                    {% endif %}
-                    <div class="rl-results" style="padding-top:0.5rem;">Results found: {{data|length}}</div>
-            </tr>
-            <tr>
-                <th> </th>
-                <th> Url</th>
-                <th> Analysis id</th>
-                <th> Analysis time</th>
-                <th> Availability status</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for x in data %}
-            <tr>
-                <td>{{ forloop.counter}}.</td>
-                <td>{{ x.url}} </td>
-                <td>{{ x.analysis_id }}</td>
-                <td>{{ x.analysis_time }}</td>
-                <td>{{ x.availability_status }}</td>
-            </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
+  <table class="rl-table">
+    <thead>
+      <tr>
+        <th colspan="5">ReversingLabs TitaniumCLoud Url Analysis Feed<br/>
+          {% if  param.time_format != None %}
+            <div id="rl-target" class="main-grid">{{param.time_format}}: {{param.start_time}}</div>
+          {% endif %}
+           <div class="rl-results" style="padding-top:0.5rem;">Results found: {{data|length}}</div>
+        </th>
+      </tr>
+      <tr>
+        <th> </th>
+        <th> Url</th>
+        <th> Analysis id</th>
+        <th> Analysis time</th>
+        <th> Availability status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for x in data %}
+        <tr>
+          <td>{{ forloop.counter }}.</td>
+          <td style="width: 65%;"><a href="javascript:;" onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ x.url }}' }], 0, {{ container.id }}, null, false);">{{ x.url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
+          <td>{{ x.analysis_id }}</td>
+          <td>{{ x.analysis_time }}</td>
+          <td>{{ x.availability_status }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}
