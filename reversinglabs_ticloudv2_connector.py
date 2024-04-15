@@ -527,7 +527,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        reanalyze.ranalyze_samples(sample_hashes=param.get("hash"))
+        reanalyze.renalyze_samples(sample_hashes=param.get("hash"))
 
         self.debug_print("Executed", self.get_action_identifier())
 
