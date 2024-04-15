@@ -2719,7 +2719,7 @@
             "read_only": false,
             "parameters": {
                 "override_list": {
-                    "description": "List of network locations whose classification needs to be overriden",
+                    "description": "List of network locations whose classification needs to be overriden structured in JSON format. Visit documentation for guidance",
                     "data_type": "string",
                     "required": true,
                     "primary": false,
@@ -2730,7 +2730,7 @@
                     "name": "override_list"
                 },
                 "remove_overrides_list": {
-                    "description": "List of network locations whose classification override needs to be removed",
+                    "description": "List of network locations whose classification override needs to be removed structured in JSON format. Visit documentation for guidance",
                     "data_type": "string",
                     "required": false,
                     "primary": false,
