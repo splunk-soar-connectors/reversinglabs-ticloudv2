@@ -23,6 +23,7 @@ import re
 # Phantom App imports
 import phantom.app as phantom
 import requests
+from urllib.parse import urlparse
 from phantom import vault
 from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
@@ -547,9 +548,16 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         with open(file["path"], "rb") as file_handle:
             payload = file_handle.read()
 
+            parse_url = urlparse(self.ticloud_base_url)
+
+            if (parse_url.scheme):
+                base_url_with_schema=self.ticloud_base_url
+            else:
+                base_url_with_schema="https://"+self.ticloud_base_url
+
             response = requests.post(
                 url="{base_url}{ticloud_spex_url}{file_sha1}".format(
-                    base_url=self.ticloud_base_url,
+                    base_url=base_url_with_schema,
                     ticloud_spex_url=self.ticloud_spex_url,
                     file_sha1=file["metadata"]["sha1"]
                 ),
@@ -574,7 +582,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
             response = requests.post(
                 url="{base_url}{ticloud_spex_url}{file_sha1}/meta".format(
-                    base_url=self.ticloud_base_url,
+                    base_url=base_url_with_schema,
                     ticloud_spex_url=self.ticloud_spex_url,
                     file_sha1=file["metadata"]["sha1"],
                 ),
