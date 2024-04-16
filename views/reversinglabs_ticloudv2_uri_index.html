@@ -79,29 +79,29 @@ and limitations under the License.
         width: 0;
     }
 </style>
-<div class="rl-content">
-    <table class="rl-table">
-        <thead>
-            <tr>
-                <th colspan="2">
-                    ReversingLabs URI Index for
-                    <div id="rl-target" class="main-grid">{{param.uri}}</div>
-                    <div class="rl-results" style="padding-top:0.5rem;">{{results_found}}</div>
-                </th>
-            </tr>
-            <tr>
-                <th colspan="2"> SHA1</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for x in data %}
-            <tr>
-                <td>{{ forloop.counter}}.</td>
-                <td>{{ x }}</td>
-            </tr>
-            {% endfor %}
 
-        </tbody>
-    </table>
+<div class="rl-content">
+  <table class="rl-table">
+    <thead>
+      <tr>
+        <th colspan="2">
+          ReversingLabs URI Index for
+          <div id="rl-target" class="main-grid"><a href="javascript:;" onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ param.uri }}' }], 0, {{ container.id }}, null, false);">{{ param.uri }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></div>
+          <div class="rl-results" style="padding-top:0.5rem;">{{results_found}}</div>
+        </th>
+      </tr>
+      <tr>
+        <th colspan="2"> List of available SHA1 hashes associated with the requested URI</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for x in data %}
+        <tr>
+          <td>{{ forloop.counter}}.</td>
+          <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ x }}' }], 0, {{ container.id }}, null, false);">{{ x }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}
