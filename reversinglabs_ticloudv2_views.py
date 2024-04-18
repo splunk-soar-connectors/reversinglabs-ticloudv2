@@ -83,6 +83,7 @@ def url_reputation(provides, all_app_runs, context):
             data["classification"] = classification
             data["classification_color"] = color_code_classification(classification)
 
+            context['summary'] = result.get_summary()            
             context['data'] = data
 
     return 'views/reversinglabs_ticloudv2_url_reputation.html'

@@ -303,6 +303,13 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         )
         response = url_intelligence.get_url_report(url_input=param.get("url"))
 
+        # Using appname+unique_id from config
+        app_config = self.get_config()
+
+        # pass valies into summary to extract from view
+        extra_data = {'directory': app_config["directory"]}
+        action_result.set_summary(extra_data)
+
         self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
