@@ -1786,9 +1786,6 @@
                     "data_type": "string",
                     "required": true,
                     "primary": true,
-                    "contains": [
-                      "sha1"
-                    ],
                     "order": 0,
                     "name": "uri",
                     "id": 1,
