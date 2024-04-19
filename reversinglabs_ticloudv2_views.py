@@ -262,6 +262,19 @@ def network_reputation_user_override(provides, all_app_runs, context):
     return 'views/reversinglabs_ticloudv2_network_reputation_user_override_view.html'
 
 
+def file_reputation_user_overrides(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            data = {}
+
+            user_override = result.get_data()[0].get("rl", {}).get("user_override")
+            data["user_override"] = user_override
+
+            context["data"] = data
+
+    return 'views/reversinglabs_ticloudv2_file_reputation_user_overrides.html'
+
+
 def color_code_classification(classification):
     color = ""
     classification = classification.upper()

@@ -29,8 +29,9 @@ from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 from phantom.vault import Vault
 from ReversingLabs.SDK.ticloud import (AdvancedSearch, AnalyzeURL, AVScanners, DynamicAnalysis, FileAnalysis, FileDownload, FileReputation,
-                                       ImpHashSimilarity, NetworkReputation, NetworkReputationUserOverride, ReanalyzeFile,
-                                       RHA1FunctionalSimilarity, URIIndex, URIStatistics, URLThreatIntelligence, YARAHunting, YARARetroHunting)
+                                       FileReputationUserOverride, ImpHashSimilarity, NetworkReputation, NetworkReputationUserOverride,
+                                       ReanalyzeFile, RHA1FunctionalSimilarity, URIIndex, URIStatistics, URLThreatIntelligence, 
+                                       YARAHunting, YARARetroHunting)
 
 # Our helper lib reversinglabs-sdk-py3 internally utilizes pypi requests (with named parameters) which is shadowed by Phantom
 # requests (which has renamed parameters (url>>uri), hence this workarounds
@@ -100,6 +101,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_GET_LIST_USER_OVERRIDES = "get_list_user_overrides"
     ACTION_ID_GET_LIST_USER_OVERRIDES_AGGREGATED = "get_list_user_overrides_aggregated"
     ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE = "network_reputation_user_override"
+    ACTION_ID_FILE_REPUTATION_USER_OVERRIDE = "file_reputation_user_override"
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -140,7 +142,8 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_GET_NETWORK_REPUTATION: self._handle_get_network_reputation,
             self.ACTION_ID_GET_LIST_USER_OVERRIDES: self._handle_get_list_user_overrides,
             self.ACTION_ID_GET_LIST_USER_OVERRIDES_AGGREGATED: self._handle_get_list_user_overrides_aggregated,
-            self.ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE: self._handle_network_reputation_user_override
+            self.ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE: self._handle_network_reputation_user_override,
+            self.ACTION_ID_FILE_REPUTATION_USER_OVERRIDE: self._handle_file_reputation_user_override
         }
 
         self._state = None
@@ -867,6 +870,33 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         response = override_list.reputation_override(
             override_list=list_override,
             remove_overrides_list=[]
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json())
+
+    # TCA-0102
+    def _handle_file_reputation_user_override(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        overrides_list = FileReputationUserOverride(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        list_override = [json.loads(param.get("override_samples"))]
+        remove_list_check = param.get("remove_overrides")
+        
+        if remove_list_check is None:
+            remove_list=[]
+        else:
+            remove_list = [json.loads(param.get("remove_overrides"))]
+        
+        response = overrides_list.override_classification(
+            override_samples=list_override,
+            remove_override=remove_list
         )
 
         self.debug_print("Executed", self.get_action_identifier())
