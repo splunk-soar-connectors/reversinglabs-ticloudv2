@@ -866,10 +866,16 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         )
 
         list_override = [json.loads(param.get("override_list"))]
-
+        remove_list_check = param.get("remove_overrides_list")
+        
+        if remove_list_check is None:
+            remove_list=[]
+        else:
+            remove_list = [json.loads(param.get("remove_overrides_list"))]
+        
         response = override_list.reputation_override(
             override_list=list_override,
-            remove_overrides_list=[]
+            remove_overrides_list=remove_list
         )
 
         self.debug_print("Executed", self.get_action_identifier())
