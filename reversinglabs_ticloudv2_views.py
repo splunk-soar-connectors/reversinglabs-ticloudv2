@@ -275,6 +275,17 @@ def file_reputation_user_overrides(provides, all_app_runs, context):
     return 'views/reversinglabs_ticloudv2_file_reputation_user_overrides.html'
 
 
+def list_active_file_overrides(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            
+            context['data'] = result.get_data()[0].get("user_override").get("hash_values")
+            context['results_found'] = f"Results found: {str(len(context['data']))}"
+            context['param'] = result.get_param()
+
+    return 'views/reversinglabs_ticloudv2_list_active_file_user_overrides.html'
+
+
 def color_code_classification(classification):
     color = ""
     classification = classification.upper()

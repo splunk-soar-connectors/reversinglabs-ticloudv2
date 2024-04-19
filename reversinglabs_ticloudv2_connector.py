@@ -102,6 +102,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_GET_LIST_USER_OVERRIDES_AGGREGATED = "get_list_user_overrides_aggregated"
     ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE = "network_reputation_user_override"
     ACTION_ID_FILE_REPUTATION_USER_OVERRIDE = "file_reputation_user_override"
+    ACTION_ID_LIST_ACTIVE_FILE_REPUTATION_USER_OVERRIDE = "list_active_file_reputation_user_overrides"
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -143,7 +144,8 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_GET_LIST_USER_OVERRIDES: self._handle_get_list_user_overrides,
             self.ACTION_ID_GET_LIST_USER_OVERRIDES_AGGREGATED: self._handle_get_list_user_overrides_aggregated,
             self.ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE: self._handle_network_reputation_user_override,
-            self.ACTION_ID_FILE_REPUTATION_USER_OVERRIDE: self._handle_file_reputation_user_override
+            self.ACTION_ID_FILE_REPUTATION_USER_OVERRIDE: self._handle_file_reputation_user_override,
+            self.ACTION_ID_LIST_ACTIVE_FILE_REPUTATION_USER_OVERRIDE: self._handle_list_active_file_reputation_user_overrides
         }
 
         self._state = None
@@ -907,6 +909,27 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
+
+    # TCA-0102
+    def _handle_list_active_file_reputation_user_overrides(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        list_user_override = FileReputationUserOverride(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = list_user_override.list_active_overrides(
+            hash_type=param.get("hash_type"),
+            start_hash=param.get("start_hash")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
 
     def _handle_test_connectivity(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())

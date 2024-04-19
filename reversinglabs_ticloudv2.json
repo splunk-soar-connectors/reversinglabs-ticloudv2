@@ -2850,6 +2850,82 @@
                 "title": "TitaniumCloud File Reputation User Overrides"
             },
             "versions": "EQ(*)"
+        },
+        {
+            "action": "list active file reputation user overrides",
+            "identifier": "list_active_file_reputation_user_overrides",
+            "description": "List Active File Reputation User Overrides",
+            "verbose": "The File Reputation User Override service enables sample classification overrides. Any sample can be overridden to malicious, suspicious, or known.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "hash_type": {
+                    "description": "Required parameter that defines the type of hash",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "value_list": [
+                        "sha1",
+                        "sha256",
+                        "md5"
+                    ],
+                    "default": "sha1",
+                    "order": 0,
+                    "name": "hash_type"
+                },
+                "start_hash": {
+                    "description": "When this parameter is present, the API will return up to 1000 hashes with a classification override starting from the start_hash value",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "contains": [
+                        "sha1",
+                        "sha256",
+                        "md5"
+                    ],
+                    "default": "",
+                    "order": 1,
+                    "name": "start_hash"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.data.*.user_override.hash_values",
+                    "data_type": "string",
+                    "contains": [
+                        "sha1",
+                        "sha256",
+                        "md5"
+                    ],
+                    "column_name": "Hash Values",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.list_active_file_overrides",
+                "title": "List Active File User Overrides"
+            },
+            "versions": "EQ(*)"
         }
     ],
     "custom_made": true,
