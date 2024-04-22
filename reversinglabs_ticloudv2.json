@@ -3198,6 +3198,63 @@
                 "title": "TitaniumCloud API Usage"
             },
             "versions": "EQ(*)"
+        },
+        {
+            "action": "customer yara api usage",
+            "identifier": "customer_yara_api_usage",
+            "description": "Check Monthly usage of ReversingLabs API",
+            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "format": {
+                    "description": "Specify the response format. Supported values are xml and json. The default is JSON.",
+                    "data_type": "string",
+                    "value_list": [
+                        "json"
+                    ],
+                    "default": "json",
+                    "required": false,
+                    "primary": false,
+                    "order": 0,
+                    "name": "format"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.data.*.product",
+                    "data_type": "string",
+                    "column_name": "Product",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.number_of_active_rulesets",
+                    "data_type": "string",
+                    "column_name": "Number of Active Rulesets",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
         }
     ],
     "custom_made": true,
