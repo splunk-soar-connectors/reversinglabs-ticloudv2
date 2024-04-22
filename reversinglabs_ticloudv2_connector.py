@@ -105,6 +105,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_LIST_ACTIVE_FILE_REPUTATION_USER_OVERRIDE = "list_active_file_reputation_user_overrides"
     ACTION_ID_CUSTOMER_DAILY_USAGE = "customer_daily_usage"
     ACTION_ID_CUSTOMER_MONTHLY_USAGE = "customer_monthly_usage"
+    ACTION_ID_CUSTOMER_MONTHRANGE_USAGE = "customer_monthrange_usage"
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -149,7 +150,8 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_FILE_REPUTATION_USER_OVERRIDE: self._handle_file_reputation_user_override,
             self.ACTION_ID_LIST_ACTIVE_FILE_REPUTATION_USER_OVERRIDE: self._handle_list_active_file_reputation_user_overrides,
             self.ACTION_ID_CUSTOMER_DAILY_USAGE: self._handle_customer_daily_usage,
-            self.ACTION_ID_CUSTOMER_MONTHLY_USAGE: self._handle_customer_monthly_usage
+            self.ACTION_ID_CUSTOMER_MONTHLY_USAGE: self._handle_customer_monthly_usage,
+            self.ACTION_ID_CUSTOMER_MONTHRANGE_USAGE: self._handle_customer_monthrange_usage
         }
 
         self._state = None
@@ -991,6 +993,28 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         
         response = customer_usage.monthly_usage(
             single_month=param.get("month"),
+            whole_company=param.get("company")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    #TCA-9999
+    def _handle_customer_monthrange_usage(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+        
+        customer_usage = CustomerUsage(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        
+        response = customer_usage.monthly_usage(
+            from_month=param.get("from_month"),
+            to_month=param.get("to_month"),
             whole_company=param.get("company")
         )
 
