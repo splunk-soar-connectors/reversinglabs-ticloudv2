@@ -3037,30 +3037,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.data.*.usage_reports.*.date",
-                    "data_type": "string",
-                    "column_name": "Date",
-                    "column_order": 0
-                },
-                {
-                    "data_path": "action_result.data.*.usage_reports.*.usage_report.*.product",
-                    "data_type": "string",
-                    "column_name": "Product",
-                    "column_order": 1
-                },
-                {
-                    "data_path": "action_result.data.*.usage_reports.*.usage_report.*.number_of_queries",
-                    "data_type": "string",
-                    "column_name": "Number of Queries",
-                    "column_order": 2
-                },
-                {
-                    "data_path": "action_result.data.*.usage_reports.*.usage_report.*.used_bytes",
-                    "data_type": "string",
-                    "column_name": "Used bytes (optional)",
-                    "column_order": 3
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status"
