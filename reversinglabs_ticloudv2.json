@@ -3000,6 +3000,92 @@
                 "type": "table"
             },
             "versions": "EQ(*)"
+        },
+        {
+            "action": "customer dayrange usage",
+            "identifier": "customer_dayrange_usage",
+            "description": "Check ReversingLabs API usage for specified time range (in days)",
+            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "from_date": {
+                    "description": "Specifies the from date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM-DD format.",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "order": 0,
+                    "name": "from_date"
+                },
+                "to_date": {
+                    "description": "Specifies the to date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM-DD format.",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "order": 1,
+                    "name": "to_date"
+                },
+                "company": {
+                    "description": "When this parameter is checked, the API will return usage for all accounts within the company",
+                    "data_type": "boolean",
+                    "required": false,
+                    "param_name": "Company",
+                    "default": false,
+                    "order": 2,
+                    "name": "company"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.data.*.usage_reports.*.date",
+                    "data_type": "string",
+                    "column_name": "Date",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.usage_reports.*.usage_report.*.product",
+                    "data_type": "string",
+                    "column_name": "Product",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.data.*.usage_reports.*.usage_report.*.number_of_queries",
+                    "data_type": "string",
+                    "column_name": "Number of Queries",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.usage_reports.*.usage_report.*.used_bytes",
+                    "data_type": "string",
+                    "column_name": "Used bytes (optional)",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.customer_dayrange_usage",
+                "title": "TitaniumCloud API Usage"
+            },
+            "versions": "EQ(*)"
         }
     ],
     "custom_made": true,

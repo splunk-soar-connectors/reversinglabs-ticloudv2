@@ -286,6 +286,16 @@ def list_active_file_overrides(provides, all_app_runs, context):
     return 'views/reversinglabs_ticloudv2_list_active_file_user_overrides.html'
 
 
+def customer_dayrange_usage(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            
+            context['data'] = result.get_data()[0].get("usage_reports")
+            context['param'] = result.get_param()
+
+    return 'views/reversinglabs_ticloudv2_customer_dayrange_usage.html'
+
+
 def color_code_classification(classification):
     color = ""
     classification = classification.upper()

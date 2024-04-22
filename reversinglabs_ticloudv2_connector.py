@@ -954,6 +954,28 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.get_status()
 
+    # TCA-9999
+    def _handle_customer_dayrange_usage(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+        
+        customer_usage = CustomerUsage(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        
+        response = customer_usage.daily_usage(
+            from_date=param.get("from_date"),
+            to_date=param.get("to_date"),
+            whole_company=param.get("company")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
     def _handle_test_connectivity(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
