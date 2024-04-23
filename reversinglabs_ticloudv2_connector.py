@@ -106,6 +106,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_CUSTOMER_DAILY_USAGE = "customer_daily_usage"
     ACTION_ID_CUSTOMER_MONTHLY_USAGE = "customer_monthly_usage"
     ACTION_ID_CUSTOMER_MONTHRANGE_USAGE = "customer_monthrange_usage"
+    ACTION_ID_CUSTOMER_DAYRANGE_USAGE = "customer_dayrange_usage"
     ACTION_ID_CUSTOMER_YARA_API_USAGE = "customer_yara_api_usage"
     ACTION_ID_CUSTOMER_QUOTA_LIMITS = "customer_quota_limits"
 
@@ -154,6 +155,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_CUSTOMER_DAILY_USAGE: self._handle_customer_daily_usage,
             self.ACTION_ID_CUSTOMER_MONTHLY_USAGE: self._handle_customer_monthly_usage,
             self.ACTION_ID_CUSTOMER_MONTHRANGE_USAGE: self._handle_customer_monthrange_usage,
+            self.ACTION_ID_CUSTOMER_DAYRANGE_USAGE: self._handle_customer_dayrange_usage,
             self.ACTION_ID_CUSTOMER_YARA_API_USAGE: self._handle_customer_yara_api_usage,
             self.ACTION_ID_CUSTOMER_QUOTA_LIMITS: self._handle_customer_quota_limits
         }
