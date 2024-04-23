@@ -163,14 +163,15 @@ and limitations under the License.
     
     var AvScannerCount = {{data.malware_presence.scanner_count}};
     var AvScannerMatch = {{data.malware_presence.scanner_match}};
-    var CountData = [AvScannerCount, AvScannerMatch];                
+    var AvScannerNotMatch = AvScannerCount - AvScannerMatch;
+    var CountData = [AvScannerNotMatch, AvScannerMatch];                
     var endpoint = window.location.href;
     const ctx = document.getElementById('myChart');
     
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['AV Count','AV Match'],
+            labels: ['AV Undetected','AV Detected'],
             datasets: [{
                 label: '# of AV',
                 data: CountData,
