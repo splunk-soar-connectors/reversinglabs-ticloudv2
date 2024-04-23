@@ -348,6 +348,11 @@
                 "time_format": {
                     "description": "'utc' or 'timestamp'",
                     "data_type": "string",
+                    "value_list": [
+                        "timestamp",
+                        "utc"
+                    ],
+                    "default": "timestamp",
                     "required": true,
                     "order": 0,
                     "name": "time_format",
@@ -716,6 +721,11 @@
                 "time_format": {
                     "description": "'utc' or 'timestamp'",
                     "data_type": "string",
+                    "value_list": [
+                        "timestamp",
+                        "utc"
+                    ],
+                    "default": "timestamp",
                     "required": true,
                     "order": 0,
                     "name": "time_format",
@@ -1599,9 +1609,12 @@
                     "data_type": "string",
                     "required": true,
                     "primary": false,
-                    "contains": [],
-                    "value_list": [],
+                    "value_list": [
+                        "timestamp",
+                        "utc"
+                    ],
                     "default": "timestamp",
+                    "contains": [],
                     "order": 0,
                     "name": "time_format",
                     "id": 1,
