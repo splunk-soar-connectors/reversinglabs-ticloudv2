@@ -3255,6 +3255,78 @@
                 "type": "table"
             },
             "versions": "EQ(*)"
+        },
+        {
+            "action": "customer quota limits",
+            "identifier": "customer_quota_limits",
+            "description": "Returns current quota limits for APIs accessible to the authenticated user or users belonging to the authenticated user's company.",
+            "verbose": "API allows ReversingLabs customers to track quota limits of TitaniumCloud services provisioned to all accounts in a company",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "company": {
+                    "description": "When this parameter is checked, the API will return quota limits for all accounts within the company",
+                    "data_type": "boolean",
+                    "required": false,
+                    "param_name": "Company",
+                    "default": false,
+                    "order": 1,
+                    "name": "company"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.data.*.limits.*.limit",
+                    "data_type": "numeric",
+                    "column_name": "Limit",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.limits.*.limit_type",
+                    "data_type": "string",
+                    "column_name": "Limit Type",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.data.*.limits.*.limit_exceeded",
+                    "data_type": "boolean",
+                    "column_name": "Limit exceeded",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.limits.*.products",
+                    "data_type": "string",
+                    "column_name": "Products",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.data.*.limits.*.users",
+                    "data_type": "string",
+                    "column_name": "Users",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
         }
     ],
     "custom_made": true,
