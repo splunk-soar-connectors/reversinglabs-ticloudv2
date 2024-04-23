@@ -213,8 +213,14 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             show_hashes_in_results=True
         )
 
-        self.debug_print("Executed", self.get_action_identifier())
+        # Using appname+unique_id from config
+        app_config = self.get_config()
 
+        # pass values into summary to extract from view
+        extra_data = {'directory': app_config["directory"]}
+        action_result.set_summary(extra_data)
+
+        self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
 
     # TCA-0320
@@ -323,7 +329,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         # Using appname+unique_id from config
         app_config = self.get_config()
 
-        # pass valies into summary to extract from view
+        # pass values into summary to extract from view
         extra_data = {'directory': app_config["directory"]}
         action_result.set_summary(extra_data)
 

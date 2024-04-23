@@ -23,6 +23,7 @@ def file_reputation(provides, all_app_runs, context):
             data["classification_color"] = color_code_classification(malware_presence.get("status").upper())
 
             context['data'] = data
+            context['summary'] = result.get_summary()
 
     return 'views/reversinglabs_ticloudv2_file_reputation.html'
 
