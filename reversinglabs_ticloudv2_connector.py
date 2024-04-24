@@ -279,7 +279,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
-    # TCA-0207
+    # TCA-0104
     def _handle_file_analysis(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -460,7 +460,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for result in response:
             action_result.add_data(result)
 
-    # TCA-0106
+    # TCA-0106 and TCA-0207
     def _handle_submit_for_dynamic_analysis(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -479,7 +479,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
-    # TCA-0106
+    # TCA-0106 and TCA_0207
     def _handle_submit_url_for_dynamic_analysis(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
