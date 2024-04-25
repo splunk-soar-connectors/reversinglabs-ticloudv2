@@ -145,14 +145,48 @@ and limitations under the License.
                 <td>Classification</td>
                 <td style="color:{{item.classification_color}}">{{item.classification}}</td>
             </tr>
+            {% if item.threat_level %}
             <tr>
                 <td>Threat Level</td>
                 <td>{{item.threat_level}}</td>
             </tr>
+            {% endif %}
+            {% if item.trust_factor %}
             <tr>
                 <td>Trust Factor</td>
                 <td>{{item.trust_factor}}</td>
             </tr>
+            {% endif %}
+            {% if item.threat_name %}
+            <tr>
+                <td>Threat Name</td>
+                <td>{{item.threat_name}}</td>
+            </tr>
+            {% endif %}
+            {% if item.malware_type %}
+            <tr>
+                <td>Malware Type</td>
+                <td>{{item.malware_type}}</td>
+            </tr>
+            {% endif %}
+            {% if item.malware_family %}
+            <tr>
+                <td>Malware Family</td>
+                <td>{{item.malware_family}}</td>
+            </tr>
+            {% endif %}
+            {% if item.platform %}
+            <tr>
+                <td>Platform</td>
+                <td>{{item.platform}}</td>
+            </tr>
+            {% endif %}
+            {% if item.subplatform %}
+            <tr>
+                <td>Subplatform</td>
+                <td>{{item.subplatform}}</td>
+            </tr>
+            {% endif %}
             <tr>
                 <td>First Download</td>
                 <td>{{item.first_download}}</td>
