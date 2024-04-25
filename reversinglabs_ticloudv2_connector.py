@@ -110,6 +110,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_CUSTOMER_YARA_API_USAGE = "customer_yara_api_usage"
     ACTION_ID_CUSTOMER_QUOTA_LIMITS = "customer_quota_limits"
     ACTION_ID_GET_DOMAIN_REPORT = "get_domain_report"
+    ACTION_ID_GET_DOMAIN_DOWNLOADED_FILES = "get_domain_downloaded_files"
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -159,7 +160,8 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_CUSTOMER_DAYRANGE_USAGE: self._handle_customer_dayrange_usage,
             self.ACTION_ID_CUSTOMER_YARA_API_USAGE: self._handle_customer_yara_api_usage,
             self.ACTION_ID_CUSTOMER_QUOTA_LIMITS: self._handle_customer_quota_limits,
-            self.ACTION_ID_GET_DOMAIN_REPORT: self._handle_get_domain_report
+            self.ACTION_ID_GET_DOMAIN_REPORT: self._handle_get_domain_report,
+            self.ACTION_ID_GET_DOMAIN_DOWNLOADED_FILES: self._handle_get_domain_downloaded_files
         }
 
         self._state = None
@@ -1096,6 +1098,29 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         # pass valies into summary to extract from view
         extra_data = {'directory': app_config["directory"]}
         action_result.set_summary(extra_data)
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0405
+    def _handle_get_domain_downloaded_files(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+        
+        downloaded_files = DomainThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        
+        response = downloaded_files.get_downloaded_files(
+            domain=param.get("domain"),
+            extended=param.get("extended"),
+            results_per_page=param.get("limit"),
+            classification=param.get("classification")
+        )
 
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json()["rl"])

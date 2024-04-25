@@ -3404,6 +3404,89 @@
                 "title": "Domain Report"
             },
             "versions": "EQ(*)"
+        },
+        {
+            "action": "get domain downloaded files",
+            "identifier": "get_domain_downloaded_files",
+            "description": "Retrieve a list of files downloaded from the submitted domain",
+            "verbose": "The response will contain metadata for files downloaded from the submitted domain. Empty fields are not included in the response.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "domain": {
+                    "description": "The domain for which to retrieve the downloaded files",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [
+                        "domain"
+                    ],
+                    "order": 0,
+                    "name": "domain"
+                },
+                "extended": {
+                    "description": "Chose whether you want extended result data set",
+                    "data_type": "boolean",
+                    "required": false,
+                    "primary": false,
+                    "default": true,
+                    "order": 1,
+                    "name": "extended",
+                    "param_name": "extended"
+                },
+                "limit": {
+                    "description": "The number of files to return in the response. Default is 1000",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "default": 1000,
+                    "order": 2,
+                    "name": "limit",
+                    "param_name": "limit"
+                },
+                "classification": {
+                    "description": "Return only samples that match the requested classification for given domain",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "value_list": [
+                        "known",
+                        "suspicious",
+                        "malicious",
+                        "unknown"
+                    ],
+                    "order": 3,
+                    "name": "classification",
+                    "param_name": "classification"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.domain_downloaded_files",
+                "title": "Domain Downloaded Files Report"
+            },
+            "versions": "EQ(*)"
         }
     ],
     "custom_made": true,
