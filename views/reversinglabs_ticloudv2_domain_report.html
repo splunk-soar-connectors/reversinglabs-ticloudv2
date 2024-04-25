@@ -111,9 +111,12 @@ and limitations under the License.
     <table class="rl-table">
         <thead>
             <tr>
-                <th colspan="2">TitaniumCloud Get Domain Report for
-                    <div id="rl-target" class="main-grid">{{data.report_base.requested_domain}}</div>
-                </th>
+              <th colspan="2">TitaniumCloud Get Domain Report for
+                <div id="rl-target" class="main-grid">
+                  <a href="javascript:;" onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{data.report_base.requested_domain}}' }], 0, {{ container.id }}, null, false);">{{data.report_base.requested_domain}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+                  </a>
+                </div>
+              </th>
             </tr>
         </thead>
         <tbody>
