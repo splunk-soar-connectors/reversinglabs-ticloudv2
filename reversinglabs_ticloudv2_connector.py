@@ -28,10 +28,10 @@ from phantom import vault
 from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 from phantom.vault import Vault
-from ReversingLabs.SDK.ticloud import (AdvancedSearch, AnalyzeURL, AVScanners, CustomerUsage, DynamicAnalysis, FileAnalysis, FileDownload,
-                                       FileReputation, FileReputationUserOverride, ImpHashSimilarity, NetworkReputation,
-                                       NetworkReputationUserOverride, ReanalyzeFile, RHA1FunctionalSimilarity, URIIndex, URIStatistics,
-                                       URLThreatIntelligence, YARAHunting, YARARetroHunting)
+from ReversingLabs.SDK.ticloud import (AdvancedSearch, AnalyzeURL, AVScanners, CustomerUsage, DomainThreatIntelligence, DynamicAnalysis,
+                                       FileAnalysis, FileDownload, FileReputation, FileReputationUserOverride, ImpHashSimilarity,
+                                       NetworkReputation, NetworkReputationUserOverride, ReanalyzeFile, RHA1FunctionalSimilarity,
+                                       URIIndex, URIStatistics, URLThreatIntelligence, YARAHunting, YARARetroHunting)
 
 # Our helper lib reversinglabs-sdk-py3 internally utilizes pypi requests (with named parameters) which is shadowed by Phantom
 # requests (which has renamed parameters (url>>uri), hence this workarounds
@@ -109,6 +109,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_CUSTOMER_DAYRANGE_USAGE = "customer_dayrange_usage"
     ACTION_ID_CUSTOMER_YARA_API_USAGE = "customer_yara_api_usage"
     ACTION_ID_CUSTOMER_QUOTA_LIMITS = "customer_quota_limits"
+    ACTION_ID_GET_DOMAIN_REPORT = "get_domain_report"
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -157,7 +158,8 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_CUSTOMER_MONTHRANGE_USAGE: self._handle_customer_monthrange_usage,
             self.ACTION_ID_CUSTOMER_DAYRANGE_USAGE: self._handle_customer_dayrange_usage,
             self.ACTION_ID_CUSTOMER_YARA_API_USAGE: self._handle_customer_yara_api_usage,
-            self.ACTION_ID_CUSTOMER_QUOTA_LIMITS: self._handle_customer_quota_limits
+            self.ACTION_ID_CUSTOMER_QUOTA_LIMITS: self._handle_customer_quota_limits,
+            self.ACTION_ID_GET_DOMAIN_REPORT: self._handle_get_domain_report
         }
 
         self._state = None
@@ -1067,6 +1069,33 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         response = customer_usage.quota_limits(
             whole_company=param.get("company")
         )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0405
+    def _handle_get_domain_report(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+        
+        domain_report = DomainThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        
+        response = domain_report.get_domain_report(
+            domain=param.get("domain")
+        )
+        
+        # Using appname+unique_id from config
+        app_config = self.get_config()
+
+        # pass valies into summary to extract from view
+        extra_data = {'directory': app_config["directory"]}
+        action_result.set_summary(extra_data)
 
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json()["rl"])
