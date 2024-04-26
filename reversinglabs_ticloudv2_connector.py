@@ -111,6 +111,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_CUSTOMER_QUOTA_LIMITS = "customer_quota_limits"
     ACTION_ID_GET_DOMAIN_REPORT = "get_domain_report"
     ACTION_ID_GET_DOMAIN_DOWNLOADED_FILES = "get_domain_downloaded_files"
+    ACTION_ID_GET_URLS_FROM_DOMAIN = "get_urls_from_domain"
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -161,7 +162,8 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_CUSTOMER_YARA_API_USAGE: self._handle_customer_yara_api_usage,
             self.ACTION_ID_CUSTOMER_QUOTA_LIMITS: self._handle_customer_quota_limits,
             self.ACTION_ID_GET_DOMAIN_REPORT: self._handle_get_domain_report,
-            self.ACTION_ID_GET_DOMAIN_DOWNLOADED_FILES: self._handle_get_domain_downloaded_files
+            self.ACTION_ID_GET_DOMAIN_DOWNLOADED_FILES: self._handle_get_domain_downloaded_files,
+            self.ACTION_ID_GET_URLS_FROM_DOMAIN: self._handle_get_urls_from_domain
         }
 
         self._state = None
@@ -1120,6 +1122,26 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             extended=param.get("extended"),
             results_per_page=param.get("limit"),
             classification=param.get("classification")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    def _handle_get_urls_from_domain(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+        
+        domain = DomainThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        
+        response = domain.urls_from_domain(
+            domain=param.get("domain"),
+            results_per_page=param.get("limit")
         )
 
         self.debug_print("Executed", self.get_action_identifier())
