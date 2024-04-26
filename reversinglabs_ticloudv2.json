@@ -3581,6 +3581,14 @@
                     "order": 0,
                     "name": "domain"
                 },
+                "page": {
+                    "description": "String representing a page of results",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "order": 1,
+                    "name": "page"
+                },
                 "limit": {
                     "description": "The number of files to return in the response. Default is 1000",
                     "data_type": "numeric",

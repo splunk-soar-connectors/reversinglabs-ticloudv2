@@ -1166,6 +1166,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         
         response = resolutions.domain_to_ip_resolutions(
             domain=param.get("domain"),
+            page_string=param.get("page"),
             results_per_page=param.get("limit")
         )
 
