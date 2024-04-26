@@ -113,6 +113,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_GET_DOMAIN_DOWNLOADED_FILES = "get_domain_downloaded_files"
     ACTION_ID_GET_URLS_FROM_DOMAIN = "get_urls_from_domain"
     ACTION_ID_GET_RESOLUTIONS_FROM_DOMAIN = "get_resolutions_from_domain"
+    ACTION_ID_GET_RELATED_DOMAINS = "get_related_domains"
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -165,7 +166,8 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_GET_DOMAIN_REPORT: self._handle_get_domain_report,
             self.ACTION_ID_GET_DOMAIN_DOWNLOADED_FILES: self._handle_get_domain_downloaded_files,
             self.ACTION_ID_GET_URLS_FROM_DOMAIN: self._handle_get_urls_from_domain,
-            self.ACTION_ID_GET_RESOLUTIONS_FROM_DOMAIN: self._handle_get_resolutions_from_domain
+            self.ACTION_ID_GET_RESOLUTIONS_FROM_DOMAIN: self._handle_get_resolutions_from_domain,
+            self.ACTION_ID_GET_RELATED_DOMAINS: self._handle_get_related_domains
         }
 
         self._state = None
@@ -1174,6 +1176,29 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         action_result.add_data(response.json()["rl"])
 
         return action_result.get_status()
+
+    # TCA-0405
+    def _handle_get_related_domains(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+        
+        domains = DomainThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+        
+        response = domains.related_domains(
+            domain=param.get("domain"),
+            page_string=param.get("page"),
+            results_per_page=param.get("limit")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
 
     def _handle_test_connectivity(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
