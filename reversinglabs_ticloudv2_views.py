@@ -344,6 +344,25 @@ def domain_downloaded_files(provides, all_app_runs, context):
     return 'views/reversinglabs_ticloudv2_domain_downloaded_files.html'
 
 
+def ip_report(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            data = {}
+            
+            report_base = result.get_data()[0]
+            data["report_base"] = report_base
+            
+            reputations = result.get_data()[0].get("third_party_reputations", {}).get("sources")
+            for x in reputations:
+                x["classification_color"] = color_code_classification(x.get("detection").upper())
+            
+            context['data'] = data
+            context['param'] = result.get_param()
+            context['summary'] = result.get_summary()
+
+    return 'views/reversinglabs_ticloudv2_ip_report.html'
+
+
 def color_code_classification(classification):
     color = ""
     classification = classification.upper()

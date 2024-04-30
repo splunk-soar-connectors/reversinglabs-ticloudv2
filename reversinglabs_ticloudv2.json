@@ -3742,6 +3742,54 @@
                 "type": "table"
             },
             "versions": "EQ(*)"
+        },
+        {
+            "action": "get ip report",
+            "identifier": "get_ip_report",
+            "description": "API returns threat intelligence data for the submitted ip address",
+            "verbose": "The report contains IP reputation from various reputation sources, classification statistics for files downloaded from the IP, and the top threats hosted on the submitted IP",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "ip_address": {
+                    "description": "The IP address for which to retrieve the report",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [
+                        "ip"
+                    ],
+                    "order": 0,
+                    "name": "ip_address"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "reversinglabs_ticloudv2_views.ip_report",
+                "title": "IP Report"
+            },
+            "versions": "EQ(*)"
         }
     ],
     "custom_made": true,
