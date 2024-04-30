@@ -3530,12 +3530,18 @@
                 {
                     "data_path": "action_result.data.*.requested_domain",
                     "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ],
                     "column_name": "Domain",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.data.*.urls.*.url",
                     "data_type": "string",
+                    "contains": [
+                        "url"
+                    ],
                     "column_name": "Url",
                     "column_order": 1
                 },
@@ -3604,6 +3610,9 @@
                 {
                     "data_path": "action_result.data.*.requested_domain",
                     "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ],
                     "column_name": "Domain",
                     "column_order": 0
                 },
@@ -3696,12 +3705,18 @@
                 {
                     "data_path": "action_result.data.*.requested_domain",
                     "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ],
                     "column_name": "Domain",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.data.*.related_domains.*.domain",
                     "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ],
                     "column_name": "Related domain",
                     "column_order": 1
                 },
