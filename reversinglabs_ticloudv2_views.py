@@ -363,6 +363,24 @@ def ip_report(provides, all_app_runs, context):
     return 'views/reversinglabs_ticloudv2_ip_report.html'
 
 
+def ip_downloaded_files(provides, all_app_runs, context):
+    for summary, action_results in all_app_runs:
+        for result in action_results:
+            data = {}
+            
+            report_base = result.get_data()[0]
+            data["report_base"] = report_base
+            
+            downloaded_files = result.get_data()[0].get("downloaded_files", {})
+            for x in downloaded_files:
+                x["classification_color"] = color_code_classification(x.get("classification").upper())
+            
+            context['data'] = data
+            context['param'] = result.get_param()
+
+    return 'views/reversinglabs_ticloudv2_ip_downloaded_files.html'
+
+
 def color_code_classification(classification):
     color = ""
     classification = classification.upper()
