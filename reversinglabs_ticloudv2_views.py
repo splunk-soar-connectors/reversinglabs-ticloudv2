@@ -174,14 +174,15 @@ def dynamic_url_analysis_results(provides, all_app_runs, context):
             # Color code for each dropped file entry
             dropped_files = data.get("report").get("dropped_files")
 
-            for df in dropped_files:
-                df["classification_color_dropped_files"] = color_code_classification(df.get("classification"))
+            if dropped_files is not None:
+                for df in dropped_files:
+                    df["classification_color_dropped_files"] = color_code_classification(df.get("classification"))
 
-                # get color coding for entries in merged report
-                if df.get("analysis_ids"):
-                    analysis_ids = df.get("analysis_ids")
-                    for an_id in analysis_ids:
-                        an_id["classification_color_dropped_files_merged"] = color_code_classification(an_id.get("classification"))
+                    # get color coding for entries in merged report
+                    if df.get("analysis_ids"):
+                        analysis_ids = df.get("analysis_ids")
+                        for an_id in analysis_ids:
+                            an_id["classification_color_dropped_files_merged"] = color_code_classification(an_id.get("classification"))
 
             context['data'] = data
             context['param'] = result.get_param()
@@ -316,8 +317,10 @@ def domain_report(provides, all_app_runs, context):
             data["report_base"] = report_base
             
             reputations = result.get_data()[0].get("third_party_reputations", {}).get("sources")
-            for x in reputations:
-                x["classification_color"] = color_code_classification(x.get("detection").upper())
+
+            if reputations is not None:
+                for x in reputations:
+                    x["classification_color"] = color_code_classification(x.get("detection").upper())
             
             context['data'] = data
             context['param'] = result.get_param()
@@ -335,8 +338,10 @@ def domain_downloaded_files(provides, all_app_runs, context):
             data["report_base"] = report_base
             
             downloaded_files = result.get_data()[0].get("downloaded_files", {})
-            for x in downloaded_files:
-                x["classification_color"] = color_code_classification(x.get("classification").upper())
+
+            if downloaded_files is not None:
+                for x in downloaded_files:
+                    x["classification_color"] = color_code_classification(x.get("classification").upper())
             
             context['data'] = data
             context['param'] = result.get_param()
@@ -353,8 +358,10 @@ def ip_report(provides, all_app_runs, context):
             data["report_base"] = report_base
             
             reputations = result.get_data()[0].get("third_party_reputations", {}).get("sources")
-            for x in reputations:
-                x["classification_color"] = color_code_classification(x.get("detection").upper())
+
+            if reputations is not None:
+                for x in reputations:
+                    x["classification_color"] = color_code_classification(x.get("detection").upper())
             
             context['data'] = data
             context['param'] = result.get_param()
@@ -372,8 +379,10 @@ def ip_downloaded_files(provides, all_app_runs, context):
             data["report_base"] = report_base
             
             downloaded_files = result.get_data()[0].get("downloaded_files", {})
-            for x in downloaded_files:
-                x["classification_color"] = color_code_classification(x.get("classification").upper())
+
+            if downloaded_files is not None:
+                for x in downloaded_files:
+                    x["classification_color"] = color_code_classification(x.get("classification").upper())
             
             context['data'] = data
             context['param'] = result.get_param()
