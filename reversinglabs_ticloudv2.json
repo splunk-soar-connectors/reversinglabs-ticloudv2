@@ -3497,7 +3497,7 @@
             "read_only": false,
             "parameters": {
                 "domain": {
-                    "description": "The domain for which to retrieve the downloaded files",
+                    "description": "The domain for which to retrieve the resolved IP addresses",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
