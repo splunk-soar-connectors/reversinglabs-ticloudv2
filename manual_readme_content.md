@@ -51,7 +51,7 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [get resolutions from ip](#action-get-resolutions-from-ip) - TCA-0406 - API provides a list of IP-to-domain mappings for the requested IP address 
 [get url analysis feed from date](#action-get-url-analysis-feed-from-date) - TCA-0403 - Get url analysis feed from date  
 [get urls from domain](#action-get-urls-from-domain) - TCA-0405 - API provides a list of URLs associated with the requested domain 
-[get urls from ip](#action-get-urls-from-ip) - TODO
+[get urls from ip](#action-get-urls-from-ip) - TCA-0406 - API provides a list of URLs associated with the requested IP address
 [get yara matches](#action-get-yara-matches) - TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range  
 [get yara retro matches](#action-get-yara-retro-matches) - TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range  
 [imphash similarity](#action-imphash-similarity) - TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)  
@@ -523,6 +523,21 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 **results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
 **max_results** |  optional  | Maximum results to be returned in the list | numeric | 
 
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.url | string |  |  
+action_result.parameter.extended | boolean |  |  
+action_result.parameter.classification | string |  |  
+action_result.parameter.last_analysis | boolean |  |  
+action_result.parameter.analysis_id | string |  |  
+action_result.parameter.results_per_page | numeric |  |  
+action_result.parameter.max_results | numeric |  |  
+action_result.status | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
 ## action: 'get file'
 TCA-0201 - Download a sample from TitaniumCloud
 
@@ -817,44 +832,318 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  | 
 
+## action: 'get urls from ip'
+TCA - 0406 - API provides a list of URLs associated with the requested IP address.    
 
+Type: **investigate**  
+Read only: **False**
 
+TCA - 0406 - API provides a list of URLs associated with the requested IP address.
 
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**ip_address** |  required  | The IP for which to retrieve the domain resolutions  | string | `ip` 
+**page** |  optional  | String representing a page of results | string | 
+**limit** |  optional  | The number of files to return in the response. Default is 1000 | numeric | 
 
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.requested_ip | string | `ip` |  
+action_result.data.*.urls.*.url | string | `url` |  
+action_result.status | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## action: 'yara create ruleset'
-TCA-0303 - Create a new YARA ruleset
+## action: 'get yara matches'
+TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range
 
 Type: **generic**  
 Read only: **False**
 
-TCA-0303 - Create a new YARA ruleset.
+TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**time_format** |  required  | 'utc' or 'timestamp' | string | 
+**time_value** |  required  | 'YYYY-MM-DDThh:mm:ss' or Unix timestamp string | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.time_format | string |  |  
+action_result.parameter.time_value | string |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'get yara retro matches'
+TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**time_format** |  required  | 'utc' or 'timestamp' | string | 
+**time_value** |  required  | 'YYYY-MM-DDThh:mm:ss' or Unix timestamp string | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.data.*.rl.feed.name | string |  |  
+action_result.data.*.rl.feed.time_range.from | string |  |  
+action_result.data.*.rl.feed.time_range.to | string |  |  
+action_result.data.*.rl.feed.last_timestamp | string |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'imphash similarity'
+TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)
+
+Type: **investigate**  
+Read only: **True**
+
+TCA-0302 - Imphash Index provides a list of all available SHA1 hashes for files sharing the same import hash (imphash). An imphash is a hash calculated from a string which contains the libraries imported by a Windows Portable Executable (PE) file.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**imphash** |  required  | Imphash | string | `hash`
+**limit** |  optional  | Maximum number of results | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.imphash | string |  |  
+action_result.parameter.limit | numeric |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |
+
+## TODO
+## END TODO
+
+## action: 'network reputation user override'
+TCA-0408 - Override user network location reputation
+
+Type: **generic**  
+Read only: **False**
+
+The Network Reputation User OVerride service enables URL classification overrides
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**override_list** |  required  | List of network locations which classification needs to be overriden | string | 
+**remove_overrides_list** |  optional  | List of network locations which classification override needs to be removed | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.override_list | string |  | { "network_location": "http://example.com", "type": "url", "classification": "malicious", "categories": ["phishing"] } 
+action_result.parameter.remove_overrides_list | string |  | { "network_location": "http://example.com", "type": "url" } 
+action_result.message | string |  | 
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'reanalyze file'
+TCA-0205 - Reanalyze sample
+
+Type: **investigate**  
+Read only: **False**
+
+TCA-0205 - This query sends a sample with the requested hash for rescanning.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**hash** |  required  | File hash | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.hash | string |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'submit for dynamic analysis'
+TCA-0207 - Submit an existing sample for dynamic analysis
+
+Type: **investigate**  
+Read only: **False**
+
+TCA-0207 - This service allows users to detonate a file in the ReversingLabs TitaniumCloud sandbox. To submit a file for analysis, it must exist in TitaniumCloud.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**sha1** |  required  | Selected sample's SHA-1 hash | string | `sha1` `vault id` 
+**platform** |  required  | Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.platform | string |  |  
+action_result.parameter.sha1 | string |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+
+## action: 'submit url for dynamic analysis'
+TCA-0207 - Submit an existing URL sample for dynamic analysis
+
+Type: **investigate**  
+Read only: **False**
+
+TCA-0207 - This service allows users to detonate an URL in the ReversingLabs TitaniumCloud sandbox. To submit an url for analysis, it must exist in TitaniumCloud.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**sha1** |  required  | Selected sample's url string | string | `url` `domain` 
+**platform** |  required  | Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.rl.url | string | url |  
+action_result.data.*.rl.sha1 | string | sha1 |  
+action_result.data.*.rl.status | string |  |  
+action_result.data.*.rl.url_base64 | string |  |  
+action_result.data.*.rl.analysis_id | string |  |
+
+## action: 'upload file'
+TCA-0202 - Upload file to TitaniumCloud
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0202 - Upload file to TitaniumCloud.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**vault_id** |  required  | Vault ID of file to upload | string |  `vault id` 
+**file_name** |  optional  | Filename to use | string |  `file name` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.file_name | string |  `file name`  |  
+action_result.parameter.vault_id | string |  `pe file`  `pdf`  `flash`  `apk`  `jar`  `doc`  `xls`  `ppt`  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+
+## action: 'uri index'
+TCA-0401 - Retrieve a list of all available file hashes associated with a given URI
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0401 - Provides a list of all available file hashes associated with a given URI (domain, IP address, email or URL) regardless of file classification.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**uri** |  required  | Desired URI string | string | `url` `domain` 
+**limit** |  optional  | Maximum number of results | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.limit | numeric |  |  
+action_result.parameter.uri | string |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'uri statistics'
+TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0402 - Provides the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI (domain, IP address, email or URL).
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**uri** |  required  | Uri | string | `sha1` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.uri | string |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'url reputation'
+TCA-0403 - Queries URL Threat Intelligence
+
+Type: **investigate**  
+Read only: **True**
+
+TCA-0403 - Queries URL Threat Intelligence.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**url** |  required  | URL to query | string |  `url` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.url | string |  `url`  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+
+## action: 'yara create ruleset'
+TCA-0304 - Create a new YARA ruleset
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0304 - Create a new YARA ruleset.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
@@ -896,7 +1185,7 @@ action_result.data | string |  |
 action_result.summary | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
+summary.total_objects_successful | numeric |  |
 
 ## action: 'yara get ruleset info'
 TCA-0303 - Get YARA ruleset info
@@ -947,33 +1236,62 @@ action_result.data | string |  |
 action_result.summary | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
+summary.total_objects_successful | numeric |  |  
 
-## action: 'get yara matches'
-TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range
+## action: 'yara retro cancel hunt'
+TCA-0319 - Cancel the retro hunt for the specified ruleset
 
 Type: **generic**  
 Read only: **False**
 
-TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range.
+TCA-0319 - Cancel the retro hunt for the specified ruleset.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**time_format** |  required  | 'utc' or 'timestamp' | string | 
-**time_value** |  required  | 'YYYY-MM-DDThh:mm:ss' or Unix timestamp string | string | 
+**ruleset_name** |  required  | YARA ruleset name | string | 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string |  |   success or failed 
-action_result.parameter.time_format | string |  |  
-action_result.parameter.time_value | string |  |  
+action_result.parameter.ruleset_name | string |  |  
+action_result.data.*.ruleset_sha1 | string |  |  
 action_result.data | string |  |  
 action_result.summary | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
+
+## action: 'yara retro check status'
+TCA-0319 - Check the retro hunt status for the specified ruleset
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0319 - Check the retro hunt status for the specified ruleset.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**ruleset_name** |  required  | YARA ruleset name | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.ruleset_name | string |  |  
+action_result.data.*.retro_status | string |  |  
+action_result.data.*.start_time | string |  |  
+action_result.data.*.finish_time | string |  |  
+action_result.data.*.reason | string |  |  
+action_result.data.*.progress | string |  |  
+action_result.data.*.estimated_finish_time | string |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
 
 ## action: 'yara retro enable hunt'
 TCA-0319 - Enable YARA retro hunt
@@ -1023,349 +1341,3 @@ action_result.summary | string |  |
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
-
-## action: 'yara retro check status'
-TCA-0319 - Check the retro hunt status for the specified ruleset
-
-Type: **generic**  
-Read only: **False**
-
-TCA-0319 - Check the retro hunt status for the specified ruleset.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**ruleset_name** |  required  | YARA ruleset name | string | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.ruleset_name | string |  |  
-action_result.data.*.retro_status | string |  |  
-action_result.data.*.start_time | string |  |  
-action_result.data.*.finish_time | string |  |  
-action_result.data.*.reason | string |  |  
-action_result.data.*.progress | string |  |  
-action_result.data.*.estimated_finish_time | string |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'yara retro cancel hunt'
-TCA-0319 - Cancel the retro hunt for the specified ruleset
-
-Type: **generic**  
-Read only: **False**
-
-TCA-0319 - Cancel the retro hunt for the specified ruleset.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**ruleset_name** |  required  | YARA ruleset name | string | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.ruleset_name | string |  |  
-action_result.data.*.ruleset_sha1 | string |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'get yara retro matches'
-TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range
-
-Type: **generic**  
-Read only: **False**
-
-TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**time_format** |  required  | 'utc' or 'timestamp' | string | 
-**time_value** |  required  | 'YYYY-MM-DDThh:mm:ss' or Unix timestamp string | string | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.data.*.rl.feed.name | string |  |  
-action_result.data.*.rl.feed.time_range.from | string |  |  
-action_result.data.*.rl.feed.time_range.to | string |  |  
-action_result.data.*.rl.feed.last_timestamp | string |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'imphash similarity'
-TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)
-
-Type: **investigate**  
-Read only: **True**
-
-TCA-0302 - Imphash Index provides a list of all available SHA1 hashes for files sharing the same import hash (imphash). An imphash is a hash calculated from a string which contains the libraries imported by a Windows Portable Executable (PE) file.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**imphash** |  required  | Imphash | string | `hash`
-**limit** |  optional  | Maximum number of results | numeric | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.imphash | string |  |  
-action_result.parameter.limit | numeric |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-   
-
- 
-
-   
-
-   
-
-## action: 'url reputation'
-TCA-0403 - Queries URL Threat Intelligence
-
-Type: **investigate**  
-Read only: **True**
-
-TCA-0403 - Queries URL Threat Intelligence.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**url** |  required  | URL to query | string |  `url` 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.url | string |  `url`  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.parameter.url | string |  |  
-action_result.parameter.extended | boolean |  |  
-action_result.parameter.classification | string |  |  
-action_result.parameter.last_analysis | boolean |  |  
-action_result.parameter.analysis_id | string |  |  
-action_result.parameter.results_per_page | numeric |  |  
-action_result.parameter.max_results | numeric |  |  
-action_result.status | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-   
-
-   
-
-  
-
-## action: 'uri statistics'
-TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI
-
-Type: **generic**  
-Read only: **False**
-
-TCA-0402 - Provides the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI (domain, IP address, email or URL).
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**uri** |  required  | Uri | string | `sha1` 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.uri | string |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'uri index'
-TCA-0401 - Retrieve a list of all available file hashes associated with a given URI
-
-Type: **generic**  
-Read only: **False**
-
-TCA-0401 - Provides a list of all available file hashes associated with a given URI (domain, IP address, email or URL) regardless of file classification.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**uri** |  required  | Desired URI string | string | `url` `domain` 
-**limit** |  optional  | Maximum number of results | numeric | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.limit | numeric |  |  
-action_result.parameter.uri | string |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'submit for dynamic analysis'
-TCA-0207 - Submit an existing sample for dynamic analysis
-
-Type: **investigate**  
-Read only: **False**
-
-TCA-0207 - This service allows users to detonate a file in the ReversingLabs TitaniumCloud sandbox. To submit a file for analysis, it must exist in TitaniumCloud.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**sha1** |  required  | Selected sample's SHA-1 hash | string | `sha1` `vault id` 
-**platform** |  required  | Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options | string | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.platform | string |  |  
-action_result.parameter.sha1 | string |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'submit url for dynamic analysis'
-TCA-0207 - Submit an existing URL sample for dynamic analysis
-
-Type: **investigate**  
-Read only: **False**
-
-TCA-0207 - This service allows users to detonate an URL in the ReversingLabs TitaniumCloud sandbox. To submit an url for analysis, it must exist in TitaniumCloud.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**sha1** |  required  | Selected sample's url string | string | `url` `domain` 
-**platform** |  required  | Selected platform on which the analysis will be performed. See TCA-0207 API documentation for available options | string | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.data.*.rl.url | string | url |  
-action_result.data.*.rl.sha1 | string | sha1 |  
-action_result.data.*.rl.status | string |  |  
-action_result.data.*.rl.url_base64 | string |  |  
-action_result.data.*.rl.analysis_id | string |  |  
-
-  
-
- 
-
-## action: 'reanalyze file'
-TCA-0205 - Reanalyze sample
-
-Type: **investigate**  
-Read only: **False**
-
-TCA-0205 - This query sends a sample with the requested hash for rescanning.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**hash** |  required  | File hash | string | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.hash | string |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'upload file'
-TCA-0202 - Upload file to TitaniumCloud
-
-Type: **generic**  
-Read only: **False**
-
-TCA-0202 - Upload file to TitaniumCloud.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**vault_id** |  required  | Vault ID of file to upload | string |  `vault id` 
-**file_name** |  optional  | Filename to use | string |  `file name` 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.file_name | string |  `file name`  |  
-action_result.parameter.vault_id | string |  `pe file`  `pdf`  `flash`  `apk`  `jar`  `doc`  `xls`  `ppt`  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
- 
-
- 
-
-
-## action: 'network reputation user override'
-TCA-0408 - Override user network location reputation
-
-Type: **generic**  
-Read only: **False**
-
-The Network Reputation User OVerride service enables URL classification overrides
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**override_list** |  required  | List of network locations which classification needs to be overriden | string | 
-**remove_overrides_list** |  optional  | List of network locations which classification override needs to be removed | string | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.override_list | string |  | { "network_location": "http://example.com", "type": "url", "classification": "malicious", "categories": ["phishing"] } 
-action_result.parameter.remove_overrides_list | string |  | { "network_location": "http://example.com", "type": "url" } 
-action_result.message | string |  | 
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  | 
