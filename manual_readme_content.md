@@ -24,11 +24,11 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [advanced search](#action-advanced-search) - TCA-0320 - Search for hashes using multi-part search criteria  
 [analyze url](#action-analyze-url) - TCA-0404 - Analyze a given URL  
 [av scanners](#action-av-scanners) - TCA-0103 - Retrieve AV Scanner data from TitaniumCloud  
-[customer daily usage](#action-customer-daily-usage) - TODO
-[customer dayrange usage](#action-customer-dayrange-usage) - TODO
-[customer month range usage](#action-customer-month-range-usage) - TODO
-[customer monthly usage](#action-customer-monthly-usage) - TODO
-[customer quota limits](#action-customer-quota-limits) - TODO
+[customer daily usage](#action-customer-daily-usage) - TCA-9999 - Check daily usage of ReversingLabs API
+[customer dayrange usage](#action-customer-dayrange-usage) - TCA-9999 - Check ReversingLabs API usage for specified time range (in days)
+[customer month range usage](#action-customer-month-range-usage) - TCA-9999 - Check ReversingLabs API usage for specified time range (in months)
+[customer monthly usage](#action-customer-monthly-usage) - TCA-9999 - Check Monthly usage of ReversingLabs API
+[customer quota limits](#action-customer-quota-limits) - TCA-9999 - Returns current quota limits for APIs accessible to the authenticated user or users belonging to the authenticated user's company.
 [customer yara api usage](#action-customer-yara-api-usage) - TODO
 [dynamic analysis results](#action-dynamic-analysis-results) - TCA-0106 - Retrieve a file dynamic analysis results  
 [dynamic url analysis results](#action-dynamic-url-analysis-results) - TCA-0106 - Retrieve an url dynamic analysis results  
@@ -187,6 +187,79 @@ action_result.status | string |  |   success or failed
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  | 
+
+## action: 'customer dayrange usage'
+TCA-9999 - Check ReversingLabs API usage for specified time range (in days)
+
+Type: **generic**  
+Read only: **False**
+
+TCA-9999 - API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**from_date** |  required  | Specifies the from date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM-DD format. | string | | 
+**to_date** |  required  | Specifies the to date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM-DD format. | string | | 
+**company** | optional | When this parameter is checked, the API will return usage for all accounts within the company | string | |
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'customer month range usage'
+TCA-9999 - Check ReversingLabs API usage for specified time range (in months)
+
+Type: **generic**  
+Read only: **False**
+
+TCA-9999 - API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**from_month** |  required  | Specifies the from date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM format. | string | | 
+**to_month** |  required  | Specifies the to date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM format. | string | | 
+**company** | optional | When this parameter is checked, the API will return usage for all accounts within the company | string | |
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'customer monthly usage'
+TCA-9999 - Check Monthly usage of ReversingLabs API
+
+Type: **generic**  
+Read only: **False**
+
+TCA-9999 - API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**month** |  required  | Specifies the month for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM format. | string | | 
+**company** | optional | When this parameter is checked, the API will return usage for all accounts within the company | string | |
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.month | string | | YYYY-MM
+action_result.data.*.usage_report.*.product | string | | 
+action_result.data.*.usage_report.*.number_of_queries | string | |
+action_result.data.*.usage_report.*.used_bytes | string | |
+action_result.status | string |  |  success or failed 
+action_result.message | string |  |  |
+summary.total_objects | numeric |  | |
+summary.total_objects_successful | numeric |  | | 
+
 
 
 
