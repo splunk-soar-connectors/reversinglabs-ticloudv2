@@ -3231,8 +3231,8 @@
         {
             "action": "customer yara api usage",
             "identifier": "customer_yara_api_usage",
-            "description": "Check Monthly usage of ReversingLabs API",
-            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company",
+            "description": "Check Yara usage on ReversingLabs API",
+            "verbose": "This query returns information about the number of active YARA rulesets for the TitaniumCloud account that sent the request.",
             "type": "generic",
             "read_only": false,
             "parameters": {
