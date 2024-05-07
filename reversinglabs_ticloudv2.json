@@ -3891,7 +3891,7 @@
             "read_only": false,
             "parameters": {
                 "ip_address": {
-                    "description": "The IP address for which to retrieve the downloaded files",
+                    "description": "The IP for which to retrieve the domain resolutions.",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
