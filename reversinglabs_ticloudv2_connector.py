@@ -19,18 +19,18 @@ from __future__ import print_function, unicode_literals
 import json
 import os
 import re
+from urllib.parse import urlparse
 
 # Phantom App imports
 import phantom.app as phantom
 import requests
-from urllib.parse import urlparse
 from phantom import vault
 from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 from phantom.vault import Vault
 from ReversingLabs.SDK.ticloud import (AdvancedSearch, AnalyzeURL, AVScanners, CustomerUsage, DomainThreatIntelligence, DynamicAnalysis,
                                        FileAnalysis, FileDownload, FileReputation, FileReputationUserOverride, ImpHashSimilarity,
-                                       IPThreatIntelligence, NetworkReputation, NetworkReputationUserOverride, ReanalyzeFile, 
+                                       IPThreatIntelligence, NetworkReputation, NetworkReputationUserOverride, ReanalyzeFile,
                                        RHA1FunctionalSimilarity, URIIndex, URIStatistics, URLThreatIntelligence, YARAHunting, YARARetroHunting)
 
 # Our helper lib reversinglabs-sdk-py3 internally utilizes pypi requests (with named parameters) which is shadowed by Phantom
@@ -438,7 +438,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
-    # TCA-0401 
+    # TCA-0401
     def _handle_uri_index(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -566,7 +566,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
 
-    # TCA-0205 
+    # TCA-0205
     def _handle_reanalyze_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -599,9 +599,9 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             parse_url = urlparse(self.ticloud_base_url)
 
             if (parse_url.scheme):
-                base_url_with_schema=self.ticloud_base_url
+                base_url_with_schema = self.ticloud_base_url
             else:
-                base_url_with_schema="https://"+self.ticloud_base_url
+                base_url_with_schema = "https://"+self.ticloud_base_url
 
             response = requests.post(
                 url="{base_url}{ticloud_spex_url}{file_sha1}".format(
@@ -645,7 +645,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             if response.status_code != 200:
                 raise Exception('Unable to upload file meta to TitaniumCloud. Status code: {0}'.format(response.status_code))
 
-    # TCA-0201 
+    # TCA-0201
     def _handle_get_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -905,12 +905,12 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         list_override = [json.loads(param.get("override_list"))]
         remove_list_check = param.get("remove_overrides_list")
-        
+
         if remove_list_check is None:
-            remove_list=[]
+            remove_list = []
         else:
             remove_list = [json.loads(param.get("remove_overrides_list"))]
-        
+
         response = override_list.reputation_override(
             override_list=list_override,
             remove_overrides_list=remove_list
@@ -932,12 +932,12 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         list_override = [json.loads(param.get("override_samples"))]
         remove_list_check = param.get("remove_overrides")
-        
+
         if remove_list_check is None:
-            remove_list=[]
+            remove_list = []
         else:
             remove_list = [json.loads(param.get("remove_overrides"))]
-        
+
         response = overrides_list.override_classification(
             override_samples=list_override,
             remove_override=remove_list
@@ -967,17 +967,17 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.get_status()
 
-    #TCA-9999
+    # TCA-9999
     def _handle_customer_daily_usage(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         customer_usage = CustomerUsage(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = customer_usage.daily_usage(
             single_date=param.get("date"),
             whole_company=param.get("company")
@@ -991,14 +991,14 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     # TCA-9999
     def _handle_customer_dayrange_usage(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         customer_usage = CustomerUsage(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = customer_usage.daily_usage(
             from_date=param.get("from_date"),
             to_date=param.get("to_date"),
@@ -1010,17 +1010,17 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.get_status()
 
-    #TCA-9999
+    # TCA-9999
     def _handle_customer_monthly_usage(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         customer_usage = CustomerUsage(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = customer_usage.monthly_usage(
             single_month=param.get("month"),
             whole_company=param.get("company")
@@ -1031,17 +1031,17 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.get_status()
 
-    #TCA-9999
+    # TCA-9999
     def _handle_customer_monthrange_usage(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         customer_usage = CustomerUsage(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = customer_usage.monthly_usage(
             from_month=param.get("from_month"),
             to_month=param.get("to_month"),
@@ -1053,17 +1053,17 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.get_status()
 
-    #TCA-9999
+    # TCA-9999
     def _handle_customer_yara_api_usage(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         customer_usage = CustomerUsage(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = customer_usage.active_yara_rulesets()
 
         self.debug_print("Executed", self.get_action_identifier())
@@ -1071,17 +1071,17 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.get_status()
 
-    #TCA-9999
+    # TCA-9999
     def _handle_customer_quota_limits(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         customer_usage = CustomerUsage(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = customer_usage.quota_limits(
             whole_company=param.get("company")
         )
@@ -1094,18 +1094,18 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     # TCA-0405
     def _handle_get_domain_report(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         domain_report = DomainThreatIntelligence(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = domain_report.get_domain_report(
             domain=param.get("domain")
         )
-        
+
         # Using appname+unique_id from config
         app_config = self.get_config()
 
@@ -1121,14 +1121,14 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     # TCA-0405
     def _handle_get_domain_downloaded_files(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         downloaded_files = DomainThreatIntelligence(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = downloaded_files.get_downloaded_files(
             domain=param.get("domain"),
             extended=param.get("extended"),
@@ -1144,14 +1144,14 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     # TCA-0405
     def _handle_get_urls_from_domain(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         domain = DomainThreatIntelligence(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = domain.urls_from_domain(
             domain=param.get("domain"),
             page_string=param.get("page"),
@@ -1166,14 +1166,14 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     # TCA-0405
     def _handle_get_resolutions_from_domain(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         resolutions = DomainThreatIntelligence(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = resolutions.domain_to_ip_resolutions(
             domain=param.get("domain"),
             page_string=param.get("page"),
@@ -1188,14 +1188,14 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     # TCA-0405
     def _handle_get_related_domains(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         domains = DomainThreatIntelligence(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = domains.related_domains(
             domain=param.get("domain"),
             page_string=param.get("page"),
@@ -1210,18 +1210,18 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     # TCA-0406
     def _handle_get_ip_report(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         ip_report = IPThreatIntelligence(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = ip_report.get_ip_report(
             ip_address=param.get("ip_address")
         )
-        
+
         # Using appname+unique_id from config
         app_config = self.get_config()
 
@@ -1237,14 +1237,14 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     # TCA-0406
     def _handle_get_ip_downloaded_files(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         downloaded_files = IPThreatIntelligence(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = downloaded_files.get_downloaded_files(
             ip_address=param.get("ip_address"),
             extended=param.get("extended"),
@@ -1261,14 +1261,14 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     # TCA-0406
     def _handle_get_urls_from_ip(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         ip_urls = IPThreatIntelligence(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = ip_urls.urls_from_ip(
             ip_address=param.get("ip_address"),
             page_string=param.get("page"),
@@ -1283,14 +1283,14 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     # TCA-0406
     def _handle_get_resolutions_from_ip(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
-        
+
         resolutions = IPThreatIntelligence(
             host=self.ticloud_base_url,
             username=self.ticloud_username,
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        
+
         response = resolutions.ip_to_domain_resolutions(
             ip_address=param.get("ip_address"),
             page_string=param.get("page"),

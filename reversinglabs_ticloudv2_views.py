@@ -84,7 +84,7 @@ def url_reputation(provides, all_app_runs, context):
             data["classification"] = classification
             data["classification_color"] = color_code_classification(classification)
 
-            context['summary'] = result.get_summary()            
+            context['summary'] = result.get_summary()
             context['data'] = data
 
     return 'views/reversinglabs_ticloudv2_url_reputation.html'
@@ -280,7 +280,7 @@ def file_reputation_user_overrides(provides, all_app_runs, context):
 def list_active_file_overrides(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
-            
+
             context['data'] = result.get_data()[0].get("user_override").get("hash_values")
             context['results_found'] = f"Results found: {str(len(context['data']))}"
             context['param'] = result.get_param()
@@ -291,7 +291,7 @@ def list_active_file_overrides(provides, all_app_runs, context):
 def customer_dayrange_usage(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
-            
+
             context['data'] = result.get_data()[0].get("usage_reports")
             context['param'] = result.get_param()
 
@@ -301,7 +301,7 @@ def customer_dayrange_usage(provides, all_app_runs, context):
 def customer_monthrange_usage(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
-            
+
             context['data'] = result.get_data()[0].get("usage_reports")
             context['param'] = result.get_param()
 
@@ -312,16 +312,16 @@ def domain_report(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
             data = {}
-            
+
             report_base = result.get_data()[0]
             data["report_base"] = report_base
-            
+
             reputations = result.get_data()[0].get("third_party_reputations", {}).get("sources")
 
             if reputations is not None:
                 for x in reputations:
                     x["classification_color"] = color_code_classification(x.get("detection").upper())
-            
+
             context['data'] = data
             context['param'] = result.get_param()
             context['summary'] = result.get_summary()
@@ -333,16 +333,16 @@ def domain_downloaded_files(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
             data = {}
-            
+
             report_base = result.get_data()[0]
             data["report_base"] = report_base
-            
+
             downloaded_files = result.get_data()[0].get("downloaded_files", {})
 
             if downloaded_files is not None:
                 for x in downloaded_files:
                     x["classification_color"] = color_code_classification(x.get("classification").upper())
-            
+
             context['data'] = data
             context['param'] = result.get_param()
 
@@ -353,16 +353,16 @@ def ip_report(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
             data = {}
-            
+
             report_base = result.get_data()[0]
             data["report_base"] = report_base
-            
+
             reputations = result.get_data()[0].get("third_party_reputations", {}).get("sources")
 
             if reputations is not None:
                 for x in reputations:
                     x["classification_color"] = color_code_classification(x.get("detection").upper())
-            
+
             context['data'] = data
             context['param'] = result.get_param()
             context['summary'] = result.get_summary()
@@ -374,16 +374,16 @@ def ip_downloaded_files(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
             data = {}
-            
+
             report_base = result.get_data()[0]
             data["report_base"] = report_base
-            
+
             downloaded_files = result.get_data()[0].get("downloaded_files", {})
 
             if downloaded_files is not None:
                 for x in downloaded_files:
                     x["classification_color"] = color_code_classification(x.get("classification").upper())
-            
+
             context['data'] = data
             context['param'] = result.get_param()
 
