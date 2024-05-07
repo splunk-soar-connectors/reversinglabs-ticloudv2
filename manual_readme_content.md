@@ -46,11 +46,11 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [get list user overrides](#action-get-list-user-overrides) - TCA-0408 - Get user URL classification overrides  
 [get list user overrides aggregated](#action-get-list-user-overrides-aggregated) - TCA-0408 -  Get user URL classification overrides aggregated  
 [get network reputation](#action-get-network-reputation) - TCA-0407 - Get reputation of a requested URL, domain or IP address  
-[get related domains](#action-get-related-domains) - TODO
-[get resolutions from domain](#action-get-resolutions-from-domains) - TODO
-[get resolutions from ip](#action-get-resolutions-from-ip) - TODO
-[get url analysis feed from date](#action-get-url-analysis-feed-from-date) - TCA - 0403 - Get url analysis feed from date  
-[get urls from domain](#action-get-urls-from-domain) - TODO
+[get related domains](#action-get-related-domains) - TCA-0405 - API provides a list of domains that have the same top parent domain as the requested domain
+[get resolutions from domain](#action-get-resolutions-from-domains) - TCA-0405 - API provides a list of domain-to-IP mappings for the requested domain
+[get resolutions from ip](#action-get-resolutions-from-ip) - TCA-0406 - API provides a list of IP-to-domain mappings for the requested IP address 
+[get url analysis feed from date](#action-get-url-analysis-feed-from-date) - TCA-0403 - Get url analysis feed from date  
+[get urls from domain](#action-get-urls-from-domain) - TCA-0405 - API provides a list of URLs associated with the requested domain 
 [get urls from ip](#action-get-urls-from-ip) - TODO
 [get yara matches](#action-get-yara-matches) - TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range  
 [get yara retro matches](#action-get-yara-retro-matches) - TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range  
@@ -593,6 +593,237 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  | 
 
+## action: 'get latest url analysis feed'
+TCA - 0403 - Get latest url analysis feed
+
+Type: **generic**  
+Read only: **False**
+
+Returns the latest URL analyses reports aggregated as list.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
+**max_results** |  optional  | Maximum results to be returned in the list | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.results_per_page | numeric |  |  
+action_result.parameter.max_results | numeric |  |  
+action_result.status | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'get list user overrides'
+TCA-0408 - Get user URL classification overrides
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0408 - Get user URL classification overrides
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**next_page_sha1** |  optional  | Optional parameter used for pagination | string | `sha1` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.user_override.network_locations.*.network_location | string | `url` `domain` `ip` |  
+action_result.data.*.user_override.network_locations.*.type | string | `url` `domain` `ip` |  
+action_result.status | string |  |   success or failed 
+action_result.message | string |  | 
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+
+## action: 'get list user overrides aggregated'
+TCA-0408 - Get user URL classification overrides aggregated
+
+Type: **generic**  
+Read only: **False**
+
+This API automatically handles paging and returns a list of results instead of a Response object.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**max_results** |  optional  |  | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.*.network_location | string | `url` `domain` `ip` |  
+action_result.data.*.*.type | string | `url` `domain` `ip` |  
+action_result.status | string |  | success or failed 
+action_result.message | string |  | 
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'get network reputation'
+TCA-0407 - Get reputation of a requested URL, domain or IP address
+
+Type: **investigate**  
+Read only: **False**
+
+Service provides information regarding the reputation of a requested URL, domain or IP address.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**network_locations** |  required  | domain, url or ip | string | `domain` `url` `ip` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'get related domains'
+TCA - 0405 - API provides a list of domains that have the same top parent domain as the requested domain
+
+Type: **investigate**  
+Read only: **False**
+
+TCA - 0405 - API provides a list of domains that have the same top parent domain as the requested domain. If the requested domain is a top parent domain, the API will return all subdomains.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**domain** |  required  | The domain for which to retrieve the downloaded files | string | `domain` 
+**page** |  optional  | String representing a page of results | string | 
+**limit** |  optional  | The number of files to return in the response. Default is 1000 | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.requested_domain | string | `domain` |  
+action_result.data.*.related_domains.*.domain | string | `domain` |  
+action_result.status | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'get resolutions from domain'
+TCA - 0405 - API provides a list of domain-to-IP mappings for the requested domain
+
+Type: **investigate**  
+Read only: **False**
+
+TCA - 0405 - API provides a list of domain-to-IP mappings for the requested domain.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**domain** |  required  | The domain for which to retrieve the domain to IP mappings | string | `domain` 
+**page** |  optional  | String representing a page of results | string | 
+**limit** |  optional  | The number of files to return in the response. Default is 1000 | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.requested_domain | string | `domain` |  
+action_result.data.*.resolutions.*.record_type | string |  |  
+action_result.data.*.resolutions.*.answer | string |  |  
+action_result.data.*.resolutions.*.last_resolution_time | string |  |  
+action_result.data.*.resolutions.*.provider | string |  |  
+action_result.status | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'get resolutions from ip'
+TCA - 0406 - API provides a list of IP-to-domain mappings for the requested IP address
+
+Type: **investigate**  
+Read only: **False**
+
+TCA - 0406 - API provides a list of IP-to-domain mappings for the requested IP address  
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**ip_address** |  required  | The IP address for which to retrieve resolutions | string | `ip` 
+**page** |  optional  | String representing a page of results | string | 
+**limit** |  optional  | The number of files to return in the response. Default is 1000 | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.requested_ip | string | `ip` |  
+action_result.data.*.resolutions.*.host_name | string | `domain` |  
+action_result.data.*.resolutions.*.last_resolution_time | string |  |  
+action_result.data.*.resolutions.*.provider | string |  |  
+action_result.status | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'get url analysis feed from date'
+TCA - 0403 - Get url analysis feed from date
+
+Type: **generic**  
+Read only: **False**
+
+Accepts time format and a start time and returns URL analyses reports from that defined time onward aggregated as a list.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**time_format** |  required  | Possible values: 'utc' or 'timestamp' | string | 
+**start_time** |  required  | Time from which to retrieve results onwards | string | 
+**results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
+**max_results** |  optional  | Maximum results to be returned in the list | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.time_format | string |  |  
+action_result.parameter.start_time | string |  |  
+action_result.parameter.results_per_page | numeric |  |  
+action_result.parameter.max_results | numeric |  |  
+action_result.status | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'get urls from domain'
+TCA - 0405 - API provides a list of URLs associated with the requested domain.  
+
+Type: **investigate**  
+Read only: **False**
+
+TCA - 0405 - API provides a list of URLs associated with the requested domain.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**domain** |  required  | The domain for which to retrieve the resolved IP addresses | string | `domain` 
+**page** |  optional  | String representing a page of results | string | 
+**limit** |  optional  | The number of files to return in the response. Default is 1000 | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.requested_domain | string | `domain` |  
+action_result.data.*.urls.*.url | string | `url` |  
+action_result.status | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+
+
+
+
+
+
+
 
 
 
@@ -951,57 +1182,9 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
 
-## action: 'get latest url analysis feed'
-TCA - 0403 - Get latest url analysis feed
+   
 
-Type: **generic**  
-Read only: **False**
-
-Returns the latest URL analyses reports aggregated as list.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
-**max_results** |  optional  | Maximum results to be returned in the list | numeric | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.parameter.results_per_page | numeric |  |  
-action_result.parameter.max_results | numeric |  |  
-action_result.status | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'get url analysis feed from date'
-TCA - 0403 - Get url analysis feed from date
-
-Type: **generic**  
-Read only: **False**
-
-Accepts time format and a start time and returns URL analyses reports from that defined time onward aggregated as a list.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**time_format** |  required  | Possible values: 'utc' or 'timestamp' | string | 
-**start_time** |  required  | Time from which to retrieve results onwards | string | 
-**results_per_page** |  optional  | Number of results to be returned in one page, maximum value is 1000 | numeric | 
-**max_results** |  optional  | Maximum results to be returned in the list | numeric | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.parameter.time_format | string |  |  
-action_result.parameter.start_time | string |  |  
-action_result.parameter.results_per_page | numeric |  |  
-action_result.parameter.max_results | numeric |  |  
-action_result.status | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
+   
 
   
 
@@ -1160,72 +1343,8 @@ summary.total_objects_successful | numeric |  |
 
  
 
-## action: 'get network reputation'
-TCA-0407 - Get reputation of a requested URL, domain or IP address
+ 
 
-Type: **investigate**  
-Read only: **False**
-
-Service provides information regarding the reputation of a requested URL, domain or IP address.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**network_locations** |  required  | domain, url or ip | string | `domain` `url` `ip` 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |  
-
-## action: 'get list user overrides'
-TCA-0408 - Get user URL classification overrides
-
-Type: **generic**  
-Read only: **False**
-
-TCA-0408 - Get user URL classification overrides
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**next_page_sha1** |  optional  | Optional parameter used for pagination | string | `sha1` 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.data.*.user_override.network_locations.*.network_location | string | `url` `domain` `ip` |  
-action_result.data.*.user_override.network_locations.*.type | string | `url` `domain` `ip` |  
-action_result.status | string |  |   success or failed 
-action_result.message | string |  | 
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |  
-
-## action: 'get list user overrides aggregated'
-TCA-0408 - Get user URL classification overrides aggregated
-
-Type: **generic**  
-Read only: **False**
-
-This API automatically handles paging and returns a list of results instead of a Response object.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**max_results** |  optional  |  | numeric | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.data.*.*.network_location | string | `url` `domain` `ip` |  
-action_result.data.*.*.type | string | `url` `domain` `ip` |  
-action_result.status | string |  | success or failed 
-action_result.message | string |  | 
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  | 
 
 ## action: 'network reputation user override'
 TCA-0408 - Override user network location reputation
