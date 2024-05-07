@@ -21,40 +21,58 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions  
 [test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration  
+[advanced search](#action-advanced-search) - TCA-0320 - Search for hashes using multi-part search criteria  
+[analyze url](#action-analyze-url) - TCA-0404 - Analyze a given URL  
+[av scanners](#action-av-scanners) - TCA-0103 - Retrieve AV Scanner data from TitaniumCloud  
+[customer daily usage](#action-customer-daily-usage) - TODO
+[customer dayrange usage](#action-customer-dayrange-usage) - TODO
+[customer month range usage](#action-customer-month-range-usage) - TODO
+[customer monthly usage](#action-customer-monthly-usage) - TODO
+[customer quota limits](#action-customer-quota-limits) - TODO
+[customer yara api usage](#action-customer-yara-api-usage) - TODO
+[dynamic analysis results](#action-dynamic-analysis-results) - TCA-0106 - Retrieve a file dynamic analysis results  
+[dynamic url analysis results](#action-dynamic-url-analysis-results) - TCA-0106 - Retrieve an url dynamic analysis results  
+[file analysis](#action-file-analysis) - TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud  
+[file reputation](#action-file-reputation) - TCA-0101 - Queries for file reputation info  
+[file reputation user override](#action-file-reputation-user-override) - TODO
+[functional similarity](#action-functional-similarity) - TCA-0301 - Retrieve a list of functionally similar hashes to the provided one  
+[get domain downloaded files](#action-get-domain-downloaded-files) - TODO
+[get domain report](#action-get-domain-report) - TODO
+[get downloaded files](#action-get-downloaded-files) - TCA-0403 - Get files downloaded from url  
+[get file](#action-get-file) - TCA-0201 - Download a sample from TitaniumCloud  
+[get ip downloaded files](#action-get-ip-downloaded-files) - TODO
+[get ip report](#action-get-ip-report) - TODO
+[get latest url analysis feed](#action-get-latest-url-analysis-feed) - TCA - 0403 - Get latest url analysis feed  
+[get list user overrides](#action-get-list-user-overrides) - TCA-0408 - Get user URL classification overrides  
+[get list user overrides aggregated](#action-get-list-user-overrides-aggregated) - TCA-0408 -  Get user URL classification overrides aggregated  
+[get network reputation](#action-get-network-reputation) - TCA-0407 - Get reputation of a requested URL, domain or IP address  
+[get related domains](#action-get-related-domains) - TODO
+[get resolutions from domain](#action-get-resolutions-from-domains) - TODO
+[get resolutions from ip](#action-get-resolutions-from-ip) - TODO
+[get url analysis feed from date](#action-get-url-analysis-feed-from-date) - TCA - 0403 - Get url analysis feed from date  
+[get urls from domain](#action-get-urls-from-domain) - TODO
+[get urls from ip](#action-get-urls-from-ip) - TODO
+[get yara matches](#action-get-yara-matches) - TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range  
+[get yara retro matches](#action-get-yara-retro-matches) - TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range  
+[imphash similarity](#action-imphash-similarity) - TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)  
+[list active file reputation user overrides](#action-list-active-file-reputation-user-overrides) - TODO
+[network reputation user override](#action-network-reputation-user-override) - TCA-0408 - Override user network location reputation  
+[reanalyze file](#action-reanalyze-file) - TCA-0205 - Reanalyze sample  
+[submit for dynamic analysis](#action-submit-for-dynamic-analysis) - TCA-0207 - Submit an existing sample for dynamic analysis  
+[submit url for dynamic analysis](#action-submit-url-for-dynamic-analysis) - TCA-0207 - Submit an existing url sample for dynamic analysis  
+[upload file](#action-upload-file) - TCA-0202 - Upload file to TitaniumCloud  
+[uri index](#action-uri-index) - TCA-0401 - Retrieve a list of all available file hashes associated with a given URI  
+[uri statistics](#action-uri-statistics) - TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI  
+[url reputation](#action-url-reputation) - TCA-0403 - Queries URL Threat Intelligence  
 [yara create ruleset](#action-yara-create-ruleset) - TCA-0303 - Create a new YARA ruleset  
 [yara delete ruleset](#action-yara-delete-ruleset) - TCA-0303 - Delete YARA ruleset  
 [yara get ruleset info](#action-yara-get-ruleset-info) - TCA-0303 - Get YARA ruleset info  
 [yara get ruleset text](#action-yara-get-ruleset-text) - TCA-0303 - Get YARA ruleset text  
-[get yara matches](#action-get-yara-matches) - TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range  
 [yara retro enable hunt](#action-yara-retro-enable-hunt) - TCA-0319 - Enable YARA retro hunt  
 [yara retro start hunt](#action-yara-retro-start-hunt) - TCA-0319 - Start YARA retro hunt for the specified ruleset  
 [yara retro check status](#action-yara-retro-check-status) - TCA-0319 - Check the retro hunt status for the specified ruleset  
 [yara retro cancel hunt](#action-yara-retro-cancel-hunt) - TCA-0319 - Cancel the retro hunt for the specified ruleset  
-[get yara retro matches](#action-get-yara-retro-matches) - TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range  
-[imphash similarity](#action-imphash-similarity) - TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)  
-[advanced search](#action-advanced-search) - TCA-0320 - Search for hashes using multi-part search criteria  
-[av scanners](#action-av-scanners) - TCA-0103 - Retrieve AV Scanner data from TitaniumCloud  
-[file reputation](#action-file-reputation) - TCA-0101 - Queries for file reputation info  
-[file analysis](#action-file-analysis) - TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud  
-[functional similarity](#action-functional-similarity) - TCA-0301 - Retrieve a list of functionally similar hashes to the provided one  
-[url reputation](#action-url-reputation) - TCA-0403 - Queries URL Threat Intelligence  
-[get downloaded files](#action-get-downloaded-files) - TCA - 0403 - Get files downloaded from url  
-[get latest url analysis feed](#action-get-latest-url-analysis-feed) - TCA - 0403 - Get latest url analysis feed  
-[get url analysis feed from date](#action-get-url-analysis-feed-from-date) - TCA - 0403 - Get url analysis feed from date  
-[analyze url](#action-analyze-url) - TCA-0404 - Analyze a given URL  
-[uri statistics](#action-uri-statistics) - TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI  
-[uri index](#action-uri-index) - TCA-0401 - Retrieve a list of all available file hashes associated with a given URI  
-[submit for dynamic analysis](#action-submit-for-dynamic-analysis) - TCA-0207 - Submit an existing sample for dynamic analysis  
-[submit url for dynamic analysis](#action-submit-url-for-dynamic-analysis) - TCA-0207 - Submit an existing url sample for dynamic analysis  
-[dynamic analysis results](#action-dynamic-analysis-results) - TCA-0106 - Retrieve a file dynamic analysis results  
-[dynamic url analysis results](#action-dynamic-url-analysis-results) - TCA-0106 - Retrieve an url dynamic analysis results  
-[reanalyze file](#action-reanalyze-file) - TCA-0205 - Reanalyze sample  
-[upload file](#action-upload-file) - TCA-0202 - Upload file to TitaniumCloud  
-[get file](#action-get-file) - TCA-0201 - Download a sample from TitaniumCloud  
-[get network reputation](#action-get-network-reputation) - TCA-0407 - Get reputation of a requested URL, domain or IP address  
-[get list user overrides](#action-get-list-user-overrides) - TCA-0408 - Get user URL classification overrides  
-[get list user overrides aggregated](#action-get-list-user-overrides-aggregated) - TCA-0408 -  Get user URL classification overrides aggregated  
-[network reputation user override](#action-network-reputation-user-override) - TCA-0408 - Override user network location reputation  
+
 
 ## action: 'test connectivity'
 Validate the asset configuration for connectivity using supplied configuration
@@ -69,6 +87,115 @@ No parameters are required for this action
 
 #### Action Output
 No Output  
+
+## action: 'advanced search'
+TCA-0320 - Search for hashes using multi-part search criteria
+
+Type: **investigate**  
+Read only: **False**
+
+TCA-0320 - Search for hashes using multi-part search criteria. Supported criteria include more than 60 keywords, 35 antivirus vendors, 137 sample types and subtypes, and 283 tags that enable creating 510 unique search expressions with support for Boolean operators and case-insensitive wildcard matching. A number of search keywords support relational operators '<=' and '>='.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**query** |  required  | Advanced Search query | string | 
+**limit** |  optional  | Maximum number of results | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.limit | numeric |  |  
+action_result.parameter.query | string |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+
+## action: 'analyze url'
+TCA-0404 - Analyze a given URL
+
+Type: **investigate**  
+Read only: **False**
+
+TCA-0404 - This service allows users to submit a URL for analysis.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**url** |  required  | URL to analyze | string | `url` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.url | string |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+
+## action: 'av scanners'
+TCA-0103 - Retrieve AV Scanner data from TitaniumCloud
+
+Type: **investigate**  
+Read only: **False**
+
+TCA-0103 - Provides AV vendor cross-reference data for a desired sample from multiple AV scanners.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**hash** |  required  | File hash | string | `sha1` `sha256` `md5` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string |  |   success or failed 
+action_result.parameter.hash | string |  |  
+action_result.data | string |  |  
+action_result.summary | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+## action: 'customer daily usage'
+TCA-9999 - Check daily usage of ReversingLabs API
+
+Type: **generic**  
+Read only: **False**
+
+TCA-9999 - API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**date** |  required  | Specifies the date for which customer usage information should be returned | string | | 
+**company** | optional | When this parameter is checked, the API will return usage for all accounts within the company | string | |
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.date | Date | | YYYY-MM-DD
+action_result.data.*.usage_report.*.product | string | |
+action_result.data.*.usage_report.*.number_of_queries | string | |
+action_result.data.*.usage_report.*.used_bytes | string | |
+action_result.status | string |  |   success or failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  | 
+
+
+
+
+
+
+
+
+
 
 ## action: 'yara create ruleset'
 TCA-0303 - Create a new YARA ruleset
@@ -355,55 +482,7 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
 
-## action: 'advanced search'
-TCA-0320 - Search for hashes using multi-part search criteria
-
-Type: **generic**  
-Read only: **False**
-
-TCA-0320 - Search for hashes using multi-part search criteria. Supported criteria include more than 60 keywords, 35 antivirus vendors, 137 sample types and subtypes, and 283 tags that enable creating 510 unique search expressions with support for Boolean operators and case-insensitive wildcard matching. A number of search keywords support relational operators '<=' and '>='.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**query** |  required  | Advanced Search query | string | 
-**limit** |  optional  | Maximum number of results | numeric | 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.limit | numeric |  |  
-action_result.parameter.query | string |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
-
-## action: 'av scanners'
-TCA-0103 - Retrieve AV Scanner data from TitaniumCloud
-
-Type: **investigate**  
-Read only: **False**
-
-TCA-0103 - Provides AV vendor cross-reference data for a desired sample from multiple AV scanners.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**hash** |  required  | File hash | string | `sha1` `sha256` `md5` 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.hash | string |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
+   
 
 ## action: 'file reputation'
 TCA-0101 - Queries for file reputation info
@@ -589,29 +668,7 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
 
-## action: 'analyze url'
-TCA-0404 - Analyze a given URL
-
-Type: **investigate**  
-Read only: **False**
-
-TCA-0404 - This service allows users to submit a URL for analysis.
-
-#### Action Parameters
-PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
---------- | -------- | ----------- | ---- | --------
-**url** |  required  | URL to analyze | string | `url` 
-
-#### Action Output
-DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
---------- | ---- | -------- | --------------
-action_result.status | string |  |   success or failed 
-action_result.parameter.url | string |  |  
-action_result.data | string |  |  
-action_result.summary | string |  |  
-action_result.message | string |  |  
-summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |    
+  
 
 ## action: 'uri statistics'
 TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI
