@@ -930,8 +930,13 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             user_agent=self.USER_AGENT
         )
 
-        list_override = [json.loads(param.get("override_samples"))]
+        list_override_check = param.get("override_samples")
         remove_list_check = param.get("remove_overrides")
+
+        if list_override_check is None:
+            list_override = []
+        else:
+            list_override = [json.loads(param.get("override_samples"))]
 
         if remove_list_check is None:
             remove_list = []

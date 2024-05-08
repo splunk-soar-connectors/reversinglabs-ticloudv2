@@ -2821,7 +2821,7 @@
                 "override_samples": {
                     "description": "List of samples to override structured in JSON format. Visit documentation for guidance.",
                     "data_type": "string",
-                    "required": true,
+                    "required": false,
                     "primary": false,
                     "default": "",
                     "order": 0,
