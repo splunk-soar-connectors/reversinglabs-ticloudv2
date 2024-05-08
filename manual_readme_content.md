@@ -55,7 +55,7 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [get yara matches](#action-get-yara-matches) - TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range  
 [get yara retro matches](#action-get-yara-retro-matches) - TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range  
 [imphash similarity](#action-imphash-similarity) - TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)  
-[list active file reputation user overrides](#action-list-active-file-reputation-user-overrides) - TODO
+[list active file reputation user overrides](#action-list-active-file-reputation-user-overrides) - TCA-0102 - List Active File Reputation User Overrides
 [network reputation user override](#action-network-reputation-user-override) - TCA-0408 - Override user network location reputation  
 [reanalyze file](#action-reanalyze-file) - TCA-0205 - Reanalyze sample  
 [submit for dynamic analysis](#action-submit-for-dynamic-analysis) - TCA-0207 - Submit an existing sample for dynamic analysis  
@@ -937,8 +937,28 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |
 
-## TODO
-## END TODO
+## action: 'list active file reputation user overrides'
+TCA-0102 - List Active File Reputation User Overrides
+
+Type: **generic**  
+Read only: **False**
+
+TCA-0102 - The File Reputation User Override service enables sample classification overrides. Any sample can be overridden to malicious, suspicious, or known.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**hash_type** |  required  | Required parameter that defines the type of hash | string | `sha1` `sha256` `md5`
+**start_hash** |  optional  | When this parameter is present, the API will return up to 1000 hashes with a classification override starting from the start_hash value | string | `sha1` `sha256` `md5` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.data.*.user_override.hash_values | string | `sha1` `sha256` `md5` |
+action_result.status | string |  |   success or failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |
 
 ## action: 'network reputation user override'
 TCA-0408 - Override user network location reputation
