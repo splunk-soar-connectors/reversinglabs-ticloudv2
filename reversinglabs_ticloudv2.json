@@ -288,7 +288,7 @@
                     "param_name": "ruleset_name"
                 }
             },
-            "output": [ 
+            "output": [
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
@@ -564,7 +564,7 @@
                     "param_name": "ruleset_name"
                 }
             },
-            "output": [ 
+            "output": [
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
@@ -2579,7 +2579,7 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status"
-                }, 
+                },
                 {
                     "data_path": "action_result.message",
                     "data_type": "string"
