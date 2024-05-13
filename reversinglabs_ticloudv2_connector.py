@@ -601,7 +601,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             if (parse_url.scheme):
                 base_url_with_schema = self.ticloud_base_url
             else:
-                base_url_with_schema = "https://"+self.ticloud_base_url
+                base_url_with_schema = "https://" + self.ticloud_base_url
 
             response = requests.post(
                 url="{base_url}{ticloud_spex_url}{file_sha1}".format(
