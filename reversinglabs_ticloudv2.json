@@ -2960,7 +2960,7 @@
             "action": "customer daily usage",
             "identifier": "customer_daily_usage",
             "description": "Check daily usage of ReversingLabs API",
-            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company",
+            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -3034,7 +3034,7 @@
             "action": "customer dayrange usage",
             "identifier": "customer_dayrange_usage",
             "description": "Check ReversingLabs API usage for specified time range (in days)",
-            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company",
+            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -3096,7 +3096,7 @@
             "action": "customer monthly usage",
             "identifier": "customer_monthly_usage",
             "description": "Check Monthly usage of ReversingLabs API",
-            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company",
+            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -3170,7 +3170,7 @@
             "action": "customer month range usage",
             "identifier": "customer_monthrange_usage",
             "description": "Check ReversingLabs API usage for specified time range (in months)",
-            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company",
+            "verbose": "API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -3289,17 +3289,17 @@
             "action": "customer quota limits",
             "identifier": "customer_quota_limits",
             "description": "Returns current quota limits for APIs accessible to the authenticated user or users belonging to the authenticated user's company.",
-            "verbose": "API allows ReversingLabs customers to track quota limits of TitaniumCloud services provisioned to all accounts in a company",
+            "verbose": "API allows ReversingLabs customers to track quota limits of TitaniumCloud services provisioned to all accounts in a company.",
             "type": "generic",
             "read_only": false,
             "parameters": {
                 "company": {
-                    "description": "When this parameter is checked, the API will return quota limits for all accounts within the company",
+                    "description": "When this parameter is checked, the API will return quota limits for all accounts within the company.",
                     "data_type": "boolean",
                     "required": false,
                     "param_name": "Company",
                     "default": false,
-                    "order": 1,
+                    "order": 0,
                     "name": "company"
                 }
             },
@@ -3361,7 +3361,7 @@
             "action": "get domain report",
             "identifier": "get_domain_report",
             "description": "API returns threat intelligence data for the submitted domain",
-            "verbose": "The report contains domain reputation from various reputation sources, classification statistics for files downloaded from the domain, the most common threats found on the domain DNS information about the domain, and parent domain information",
+            "verbose": "The report contains domain reputation from various reputation sources, classification statistics for files downloaded from the domain, the most common threats found on the domain DNS information about the domain, and parent domain information.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -3492,7 +3492,7 @@
             "action": "get urls from domain",
             "identifier": "get_urls_from_domain",
             "description": "API provides a list of URLs associated with the requested domain",
-            "verbose": "API provides a list of URLs associated with the requested domain",
+            "verbose": "API provides a list of URLs associated with the requested domain.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -3572,7 +3572,7 @@
             "action": "get resolutions from domain",
             "identifier": "get_resolutions_from_domain",
             "description": "API provides a list of domain-to-IP mappings for the requested domain",
-            "verbose": "API provides a list of domain-to-IP mappings for the requested domain",
+            "verbose": "API provides a list of domain-to-IP mappings for the requested domain.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -3667,7 +3667,7 @@
             "action": "get related domains",
             "identifier": "get_related_domains",
             "description": "API provides a list of domains that have the same top parent domain as the requested domain",
-            "verbose": "API provides a list of domains that have the same top parent domain as the requested domain. If the requested domain is a top parent domain, the API will return all subdomains",
+            "verbose": "API provides a list of domains that have the same top parent domain as the requested domain. If the requested domain is a top parent domain, the API will return all subdomains.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -3747,7 +3747,7 @@
             "action": "get ip report",
             "identifier": "get_ip_report",
             "description": "API returns threat intelligence data for the submitted ip address",
-            "verbose": "The report contains IP reputation from various reputation sources, classification statistics for files downloaded from the IP, and the top threats hosted on the submitted IP",
+            "verbose": "The report contains IP reputation from various reputation sources, classification statistics for files downloaded from the IP, and the top threats hosted on the submitted IP.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -3886,7 +3886,7 @@
             "action": "get urls from ip",
             "identifier": "get_urls_from_ip",
             "description": "API provides a list of URLs associated with the requested IP address",
-            "verbose": "API provides a list of URLs associated with the requested IP address",
+            "verbose": "API provides a list of URLs associated with the requested IP address.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -3966,7 +3966,7 @@
             "action": "get resolutions from ip",
             "identifier": "get_resolutions_from_ip",
             "description": "API provides a list of IP-to-domain mappings for the requested IP address",
-            "verbose": "API provides a list of IP-to-domain mappings for the requested IP address",
+            "verbose": "API provides a list of IP-to-domain mappings for the requested IP address.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
