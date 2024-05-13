@@ -2819,7 +2819,7 @@
             "read_only": false,
             "parameters": {
                 "override_samples": {
-                    "description": "List of samples to override structured in JSON format. Visit documentation for guidance.",
+                    "description": "List of samples to override structured in JSON format. Visit documentation for guidance",
                     "data_type": "string",
                     "required": false,
                     "primary": false,
@@ -3039,7 +3039,7 @@
             "read_only": false,
             "parameters": {
                 "from_date": {
-                    "description": "Specifies the from date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM-DD format.",
+                    "description": "Specifies the from date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM-DD format",
                     "data_type": "string",
                     "required": true,
                     "primary": false,
@@ -3047,7 +3047,7 @@
                     "name": "from_date"
                 },
                 "to_date": {
-                    "description": "Specifies the to date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM-DD format.",
+                    "description": "Specifies the to date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM-DD format",
                     "data_type": "string",
                     "required": true,
                     "primary": false,
@@ -3101,7 +3101,7 @@
             "read_only": false,
             "parameters": {
                 "month": {
-                    "description": "Specifies the month for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM format.",
+                    "description": "Specifies the month for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM format",
                     "data_type": "string",
                     "required": true,
                     "primary": false,
@@ -3175,7 +3175,7 @@
             "read_only": false,
             "parameters": {
                 "from_month": {
-                    "description": "Specifies the from date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM format.",
+                    "description": "Specifies the from date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM format",
                     "data_type": "string",
                     "required": true,
                     "primary": false,
@@ -3183,7 +3183,7 @@
                     "name": "from_month"
                 },
                 "to_month": {
-                    "description": "Specifies the to date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM format.",
+                    "description": "Specifies the to date for which customer usage information should be returned. Users can submit one value per request in the YYYY-MM format",
                     "data_type": "string",
                     "required": true,
                     "primary": false,
@@ -3237,7 +3237,7 @@
             "read_only": false,
             "parameters": {
                 "format": {
-                    "description": "Specify the response format. Supported values are xml and json. The default is JSON.",
+                    "description": "Specify the response format. Supported values are xml and json. The default is JSON",
                     "data_type": "string",
                     "value_list": [
                         "json"
@@ -3288,13 +3288,13 @@
         {
             "action": "customer quota limits",
             "identifier": "customer_quota_limits",
-            "description": "Returns current quota limits for APIs accessible to the authenticated user or users belonging to the authenticated user's company.",
+            "description": "Returns current quota limits for APIs accessible to the authenticated user or users belonging to the authenticated user's company",
             "verbose": "API allows ReversingLabs customers to track quota limits of TitaniumCloud services provisioned to all accounts in a company.",
             "type": "generic",
             "read_only": false,
             "parameters": {
                 "company": {
-                    "description": "When this parameter is checked, the API will return quota limits for all accounts within the company.",
+                    "description": "When this parameter is checked, the API will return quota limits for all accounts within the company",
                     "data_type": "boolean",
                     "required": false,
                     "param_name": "Company",
@@ -3891,7 +3891,7 @@
             "read_only": false,
             "parameters": {
                 "ip_address": {
-                    "description": "The IP for which to retrieve the domain resolutions.",
+                    "description": "The IP for which to retrieve the domain resolutions",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
