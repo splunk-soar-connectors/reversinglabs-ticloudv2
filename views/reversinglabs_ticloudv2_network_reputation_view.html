@@ -17,7 +17,7 @@ and limitations under the License.
 -->
 
 <style>
-    
+
     .widget-container {
         width: 1170px !important;
         height: 600px;
@@ -76,15 +76,15 @@ and limitations under the License.
         -ms-user-select: text;
         user-select: text;
     }
-    
+
     .container {
         display: inline-block;
         padding: 30px;
         max-width: 100%;
     }
-    
+
     .chartjs {
-        height: 300px; 
+        height: 300px;
         width: 35%;
         margin-top: 15px;
         float: right;
@@ -94,7 +94,7 @@ and limitations under the License.
         font-weight: bold;
         color: #f6143f;
     }
-    
+
     .not-malicious {
         font-weight: bold;
         color: #ffde83;
@@ -106,7 +106,7 @@ and limitations under the License.
 
 
 <div class="rl-content">
-    
+
     {% for x in data %}
     <div class="container">
         <table class="rl-table">
@@ -151,8 +151,8 @@ and limitations under the License.
                 </tr>
                 <tr>
                     <td>Undetected</td>
-                    <td id="repUndetected-{{ forloop.counter }}">{{ x.third_party_reputations.undetected }}</td> 
-                </tr>             
+                    <td id="repUndetected-{{ forloop.counter }}">{{ x.third_party_reputations.undetected }}</td>
+                </tr>
             </tbody>
         </table>
         <div class="pad30 chartjs">
@@ -164,39 +164,39 @@ and limitations under the License.
         var ReputationClean{{ forloop.counter }} = document.getElementById("repClean-{{ forloop.counter }}").outerText;
         var ReputationMalicious{{ forloop.counter }} = document.getElementById("repMalicious-{{ forloop.counter }}").outerText;
         var ReputationUndetected{{ forloop.counter }} = document.getElementById("repUndetected-{{ forloop.counter }}").outerText;
-        var RepData{{ forloop.counter }} = [ReputationTotal{{ forloop.counter }}, ReputationClean{{ forloop.counter }}, ReputationMalicious{{ forloop.counter }}, ReputationUndetected{{ forloop.counter }}];  
-               
+        var RepData{{ forloop.counter }} = [ReputationTotal{{ forloop.counter }}, ReputationClean{{ forloop.counter }}, ReputationMalicious{{ forloop.counter }}, ReputationUndetected{{ forloop.counter }}];
+
         var endpoint{{ forloop.counter }} = window.location.href;
-        $.ajax({ 
-            method: "GET", 
-            url: endpoint{{ forloop.counter }}, 
-            success: function(data) {  
+        $.ajax({
+            method: "GET",
+            url: endpoint{{ forloop.counter }},
+            success: function(data) {
                 drawBarGraph{{ forloop.counter }}(data, 'myChartBar-{{ forloop.counter }}');
-            }, 
-            error: function(error_data) { 
-                console.log(error_data); 
-            } 
+            },
+            error: function(error_data) {
+                console.log(error_data);
+            }
         })
-    
-        function drawBarGraph{{ forloop.counter }}(data, id) { 
-            var labels = data.labels; 
-            var chartLabel = data.chartLabel; 
+
+        function drawBarGraph{{ forloop.counter }}(data, id) {
+            var labels = data.labels;
+            var chartLabel = data.chartLabel;
             var ctx = document.getElementById(id).getContext('2d');
             var myChart{{ forloop.counter }} = new Chart(ctx, {
                 type: 'bar',
-                data: { 
+                data: {
                     labels: ['Total', 'Clean', 'Malicious', 'Undetected'],
                     datasets: [{
                         label: '# of reputations',
                         data: RepData{{ forloop.counter }},
                               borderColor: [
-                               '#afc7d7', 
+                               '#afc7d7',
                                '#ffde83',
                                '#f6143f',
                                '#ffde83'
                               ],
                               backgroundColor: [
-                               '#afc7d7', 
+                               '#afc7d7',
                                '#ffde83',
                                '#f6143f',
                                '#ffde83'
@@ -210,9 +210,9 @@ and limitations under the License.
                     responsive: true,
                     offset: false
                 }
-            }); 
+            });
         }
-    </script>     
+    </script>
     {% endfor %}
 </div>
 {% endblock %}

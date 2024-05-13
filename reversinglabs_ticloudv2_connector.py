@@ -19,6 +19,7 @@ from __future__ import print_function, unicode_literals
 import json
 import os
 import re
+from urllib.parse import urlparse
 
 # Phantom App imports
 import phantom.app as phantom
@@ -27,8 +28,9 @@ from phantom import vault
 from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 from phantom.vault import Vault
-from ReversingLabs.SDK.ticloud import (AdvancedSearch, AnalyzeURL, AVScanners, DynamicAnalysis, FileAnalysis, FileDownload, FileReputation,
-                                       ImpHashSimilarity, NetworkReputation, NetworkReputationUserOverride, ReanalyzeFile,
+from ReversingLabs.SDK.ticloud import (AdvancedSearch, AnalyzeURL, AVScanners, CustomerUsage, DomainThreatIntelligence, DynamicAnalysis,
+                                       FileAnalysis, FileDownload, FileReputation, FileReputationUserOverride, ImpHashSimilarity,
+                                       IPThreatIntelligence, NetworkReputation, NetworkReputationUserOverride, ReanalyzeFile,
                                        RHA1FunctionalSimilarity, URIIndex, URIStatistics, URLThreatIntelligence, YARAHunting, YARARetroHunting)
 
 # Our helper lib reversinglabs-sdk-py3 internally utilizes pypi requests (with named parameters) which is shadowed by Phantom
@@ -61,7 +63,7 @@ phantom.requests.delete = new_delete
 
 class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ticloud_spex_url = "/api/spex/upload/"
-    USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloudv2 v1.3.0"
+    USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloudv2 v1.4.0"
 
     # The actions supported by this connector
     ACTION_ID_TEST_CONNECTIVITY = "test_connectivity"
@@ -99,6 +101,23 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_GET_LIST_USER_OVERRIDES = "get_list_user_overrides"
     ACTION_ID_GET_LIST_USER_OVERRIDES_AGGREGATED = "get_list_user_overrides_aggregated"
     ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE = "network_reputation_user_override"
+    ACTION_ID_FILE_REPUTATION_USER_OVERRIDE = "file_reputation_user_override"
+    ACTION_ID_LIST_ACTIVE_FILE_REPUTATION_USER_OVERRIDE = "list_active_file_reputation_user_overrides"
+    ACTION_ID_CUSTOMER_DAILY_USAGE = "customer_daily_usage"
+    ACTION_ID_CUSTOMER_MONTHLY_USAGE = "customer_monthly_usage"
+    ACTION_ID_CUSTOMER_MONTHRANGE_USAGE = "customer_monthrange_usage"
+    ACTION_ID_CUSTOMER_DAYRANGE_USAGE = "customer_dayrange_usage"
+    ACTION_ID_CUSTOMER_YARA_API_USAGE = "customer_yara_api_usage"
+    ACTION_ID_CUSTOMER_QUOTA_LIMITS = "customer_quota_limits"
+    ACTION_ID_GET_DOMAIN_REPORT = "get_domain_report"
+    ACTION_ID_GET_DOMAIN_DOWNLOADED_FILES = "get_domain_downloaded_files"
+    ACTION_ID_GET_URLS_FROM_DOMAIN = "get_urls_from_domain"
+    ACTION_ID_GET_RESOLUTIONS_FROM_DOMAIN = "get_resolutions_from_domain"
+    ACTION_ID_GET_RELATED_DOMAINS = "get_related_domains"
+    ACTION_ID_GET_IP_REPORT = "get_ip_report"
+    ACTION_ID_GET_IP_DOWNLOADED_FILES = "get_ip_downloaded_files"
+    ACTION_ID_GET_URLS_FROM_IP = "get_urls_from_ip"
+    ACTION_ID_GET_RESOLUTIONS_FROM_IP = "get_resolutions_from_ip"
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -139,7 +158,24 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             self.ACTION_ID_GET_NETWORK_REPUTATION: self._handle_get_network_reputation,
             self.ACTION_ID_GET_LIST_USER_OVERRIDES: self._handle_get_list_user_overrides,
             self.ACTION_ID_GET_LIST_USER_OVERRIDES_AGGREGATED: self._handle_get_list_user_overrides_aggregated,
-            self.ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE: self._handle_network_reputation_user_override
+            self.ACTION_ID_NETWORK_REPUTATION_USER_OVERRIDE: self._handle_network_reputation_user_override,
+            self.ACTION_ID_FILE_REPUTATION_USER_OVERRIDE: self._handle_file_reputation_user_override,
+            self.ACTION_ID_LIST_ACTIVE_FILE_REPUTATION_USER_OVERRIDE: self._handle_list_active_file_reputation_user_overrides,
+            self.ACTION_ID_CUSTOMER_DAILY_USAGE: self._handle_customer_daily_usage,
+            self.ACTION_ID_CUSTOMER_MONTHLY_USAGE: self._handle_customer_monthly_usage,
+            self.ACTION_ID_CUSTOMER_MONTHRANGE_USAGE: self._handle_customer_monthrange_usage,
+            self.ACTION_ID_CUSTOMER_DAYRANGE_USAGE: self._handle_customer_dayrange_usage,
+            self.ACTION_ID_CUSTOMER_YARA_API_USAGE: self._handle_customer_yara_api_usage,
+            self.ACTION_ID_CUSTOMER_QUOTA_LIMITS: self._handle_customer_quota_limits,
+            self.ACTION_ID_GET_DOMAIN_REPORT: self._handle_get_domain_report,
+            self.ACTION_ID_GET_DOMAIN_DOWNLOADED_FILES: self._handle_get_domain_downloaded_files,
+            self.ACTION_ID_GET_URLS_FROM_DOMAIN: self._handle_get_urls_from_domain,
+            self.ACTION_ID_GET_RESOLUTIONS_FROM_DOMAIN: self._handle_get_resolutions_from_domain,
+            self.ACTION_ID_GET_RELATED_DOMAINS: self._handle_get_related_domains,
+            self.ACTION_ID_GET_IP_REPORT: self._handle_get_ip_report,
+            self.ACTION_ID_GET_IP_DOWNLOADED_FILES: self._handle_get_ip_downloaded_files,
+            self.ACTION_ID_GET_URLS_FROM_IP: self._handle_get_urls_from_ip,
+            self.ACTION_ID_GET_RESOLUTIONS_FROM_IP: self._handle_get_resolutions_from_ip
         }
 
         self._state = None
@@ -178,6 +214,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
+    # TCA-0101
     def _handle_file_reputation(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -194,10 +231,17 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             show_hashes_in_results=True
         )
 
-        self.debug_print("Executed", self.get_action_identifier())
+        # Using appname+unique_id from config
+        app_config = self.get_config()
 
+        # pass values into summary to extract from view
+        extra_data = {'directory': app_config["directory"]}
+        action_result.set_summary(extra_data)
+
+        self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
 
+    # TCA-0320
     def _handle_advanced_search(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -218,6 +262,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for result in response:
             action_result.add_data(result)
 
+    # TCA-0402
     def _handle_uri_statistics(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -236,6 +281,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0103
     def _handle_av_scanners(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -251,6 +297,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0104
     def _handle_file_analysis(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -266,6 +313,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0301
     def _handle_functional_similarity(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -284,6 +332,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for result in response:
             action_result.add_data(result)
 
+    # TCA-0403
     def _handle_url_reputation(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -295,10 +344,18 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         )
         response = url_intelligence.get_url_report(url_input=param.get("url"))
 
+        # Using appname+unique_id from config
+        app_config = self.get_config()
+
+        # pass values into summary to extract from view
+        extra_data = {'directory': app_config["directory"]}
+        action_result.set_summary(extra_data)
+
         self.debug_print("Executed", self.get_action_identifier())
 
         action_result.add_data(response.json())
 
+    # TCA-0403
     def _handle_get_url_downloaded_files(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -322,6 +379,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for x in response:
             action_result.add_data(x)
 
+    # TCA-0403
     def _handle_get_latest_url_analysis_feed(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -342,6 +400,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         self.debug_print("ACTION RESULT DATA:", action_result)
 
+    # TCA-0403
     def _handle_get_url_analysis_feed_from_date(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -363,6 +422,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for x in response:
             action_result.add_data(x)
 
+    # TCA-0404
     def _handle_analyze_url(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -378,6 +438,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0401
     def _handle_uri_index(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -397,6 +458,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for result in response:
             action_result.add_data(result)
 
+    # TCA-0302
     def _handle_imphash_similarity(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -416,6 +478,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         for result in response:
             action_result.add_data(result)
 
+    # TCA-0106 and TCA-0207
     def _handle_submit_for_dynamic_analysis(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -434,6 +497,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0106 and TCA_0207
     def _handle_submit_url_for_dynamic_analysis(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -452,6 +516,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0207
     def _handle_get_report(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -470,6 +535,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
 
+    # TCA-0207
     def _handle_get_url_report(self, action_result, param):
 
         self.debug_print("Action handler", self.get_action_identifier())
@@ -500,6 +566,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
 
+    # TCA-0205
     def _handle_reanalyze_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -509,10 +576,11 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             password=self.ticloud_password,
             user_agent=self.USER_AGENT
         )
-        reanalyze.ranalyze_samples(sample_hashes=param.get("hash"))
+        reanalyze.renalyze_samples(sample_hashes=param.get("hash"))
 
         self.debug_print("Executed", self.get_action_identifier())
 
+    # TCA-0202
     def _handle_upload_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -528,9 +596,16 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         with open(file["path"], "rb") as file_handle:
             payload = file_handle.read()
 
+            parse_url = urlparse(self.ticloud_base_url)
+
+            if (parse_url.scheme):
+                base_url_with_schema = self.ticloud_base_url
+            else:
+                base_url_with_schema = "https://" + self.ticloud_base_url
+
             response = requests.post(
                 url="{base_url}{ticloud_spex_url}{file_sha1}".format(
-                    base_url=self.ticloud_base_url,
+                    base_url=base_url_with_schema,
                     ticloud_spex_url=self.ticloud_spex_url,
                     file_sha1=file["metadata"]["sha1"]
                 ),
@@ -555,7 +630,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
             response = requests.post(
                 url="{base_url}{ticloud_spex_url}{file_sha1}/meta".format(
-                    base_url=self.ticloud_base_url,
+                    base_url=base_url_with_schema,
                     ticloud_spex_url=self.ticloud_spex_url,
                     file_sha1=file["metadata"]["sha1"],
                 ),
@@ -570,6 +645,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             if response.status_code != 200:
                 raise Exception('Unable to upload file meta to TitaniumCloud. Status code: {0}'.format(response.status_code))
 
+    # TCA-0201
     def _handle_get_file(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -591,6 +667,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         if not success:
             raise Exception('Unable to store file in Vault. Error details: {0}'.format(msg))
 
+    # TCA-0303
     def _handle_yara_create_ruleset(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -606,6 +683,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0303
     def _handle_yara_delete_ruleset(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -619,6 +697,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         self.debug_print("Executed", self.get_action_identifier())
 
+    # TCA-0303
     def _handle_yara_get_ruleset_info(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -634,6 +713,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0303
     def _handle_yara_get_ruleset_text(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -649,6 +729,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0303
     def _handle_get_yara_matches(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -664,6 +745,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0319
     def _handle_yara_retro_enable_hunt(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -679,6 +761,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0319
     def _handle_yara_retro_start_hunt(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -694,6 +777,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0319
     def _handle_yara_retro_check_status(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -709,6 +793,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0319
     def _handle_yara_retro_cancel_hunt(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -724,6 +809,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0319
     def _handle_get_yara_retro_matches(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -739,6 +825,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         action_result.add_data(response.json())
 
+    # TCA-0407
     def _handle_get_network_reputation(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -767,6 +854,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.get_status()
 
+    # TCA-0408
     def _handle_get_list_user_overrides(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -786,6 +874,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         return action_result.get_status()
 
+    # TCA-0408
     def _handle_get_list_user_overrides_aggregated(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -803,6 +892,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response)
 
+    # TCA-0408
     def _handle_network_reputation_user_override(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
 
@@ -814,14 +904,408 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         )
 
         list_override = [json.loads(param.get("override_list"))]
+        remove_list_check = param.get("remove_overrides_list")
+
+        if remove_list_check is None:
+            remove_list = []
+        else:
+            remove_list = [json.loads(param.get("remove_overrides_list"))]
 
         response = override_list.reputation_override(
             override_list=list_override,
-            remove_overrides_list=[]
+            remove_overrides_list=remove_list
         )
 
         self.debug_print("Executed", self.get_action_identifier())
         action_result.add_data(response.json())
+
+    # TCA-0102
+    def _handle_file_reputation_user_override(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        overrides_list = FileReputationUserOverride(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        list_override_check = param.get("override_samples")
+        remove_list_check = param.get("remove_overrides")
+
+        if list_override_check is None:
+            list_override = []
+        else:
+            list_override = [json.loads(param.get("override_samples"))]
+
+        if remove_list_check is None:
+            remove_list = []
+        else:
+            remove_list = [json.loads(param.get("remove_overrides"))]
+
+        response = overrides_list.override_classification(
+            override_samples=list_override,
+            remove_override=remove_list
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json())
+
+    # TCA-0102
+    def _handle_list_active_file_reputation_user_overrides(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        list_user_override = FileReputationUserOverride(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = list_user_override.list_active_overrides(
+            hash_type=param.get("hash_type"),
+            start_hash=param.get("start_hash")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-9999
+    def _handle_customer_daily_usage(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        customer_usage = CustomerUsage(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = customer_usage.daily_usage(
+            single_date=param.get("date"),
+            whole_company=param.get("company")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-9999
+    def _handle_customer_dayrange_usage(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        customer_usage = CustomerUsage(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = customer_usage.daily_usage(
+            from_date=param.get("from_date"),
+            to_date=param.get("to_date"),
+            whole_company=param.get("company")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-9999
+    def _handle_customer_monthly_usage(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        customer_usage = CustomerUsage(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = customer_usage.monthly_usage(
+            single_month=param.get("month"),
+            whole_company=param.get("company")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-9999
+    def _handle_customer_monthrange_usage(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        customer_usage = CustomerUsage(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = customer_usage.monthly_usage(
+            from_month=param.get("from_month"),
+            to_month=param.get("to_month"),
+            whole_company=param.get("company")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-9999
+    def _handle_customer_yara_api_usage(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        customer_usage = CustomerUsage(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = customer_usage.active_yara_rulesets()
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-9999
+    def _handle_customer_quota_limits(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        customer_usage = CustomerUsage(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = customer_usage.quota_limits(
+            whole_company=param.get("company")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0405
+    def _handle_get_domain_report(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        domain_report = DomainThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = domain_report.get_domain_report(
+            domain=param.get("domain")
+        )
+
+        # Using appname+unique_id from config
+        app_config = self.get_config()
+
+        # pass valies into summary to extract from view
+        extra_data = {'directory': app_config["directory"]}
+        action_result.set_summary(extra_data)
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0405
+    def _handle_get_domain_downloaded_files(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        downloaded_files = DomainThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = downloaded_files.get_downloaded_files(
+            domain=param.get("domain"),
+            extended=param.get("extended"),
+            results_per_page=param.get("limit"),
+            classification=param.get("classification")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0405
+    def _handle_get_urls_from_domain(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        domain = DomainThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = domain.urls_from_domain(
+            domain=param.get("domain"),
+            page_string=param.get("page"),
+            results_per_page=param.get("limit")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0405
+    def _handle_get_resolutions_from_domain(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        resolutions = DomainThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = resolutions.domain_to_ip_resolutions(
+            domain=param.get("domain"),
+            page_string=param.get("page"),
+            results_per_page=param.get("limit")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0405
+    def _handle_get_related_domains(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        domains = DomainThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = domains.related_domains(
+            domain=param.get("domain"),
+            page_string=param.get("page"),
+            results_per_page=param.get("limit")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0406
+    def _handle_get_ip_report(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        ip_report = IPThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = ip_report.get_ip_report(
+            ip_address=param.get("ip_address")
+        )
+
+        # Using appname+unique_id from config
+        app_config = self.get_config()
+
+        # pass valies into summary to extract from view
+        extra_data = {'directory': app_config["directory"]}
+        action_result.set_summary(extra_data)
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0406
+    def _handle_get_ip_downloaded_files(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        downloaded_files = IPThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = downloaded_files.get_downloaded_files(
+            ip_address=param.get("ip_address"),
+            extended=param.get("extended"),
+            page_string=param.get("page"),
+            results_per_page=param.get("limit"),
+            classification=param.get("classification")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0406
+    def _handle_get_urls_from_ip(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        ip_urls = IPThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = ip_urls.urls_from_ip(
+            ip_address=param.get("ip_address"),
+            page_string=param.get("page"),
+            results_per_page=param.get("limit")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
+
+    # TCA-0406
+    def _handle_get_resolutions_from_ip(self, action_result, param):
+        self.debug_print("Action handler", self.get_action_identifier())
+
+        resolutions = IPThreatIntelligence(
+            host=self.ticloud_base_url,
+            username=self.ticloud_username,
+            password=self.ticloud_password,
+            user_agent=self.USER_AGENT
+        )
+
+        response = resolutions.ip_to_domain_resolutions(
+            ip_address=param.get("ip_address"),
+            page_string=param.get("page"),
+            results_per_page=param.get("limit")
+        )
+
+        self.debug_print("Executed", self.get_action_identifier())
+        action_result.add_data(response.json()["rl"])
+
+        return action_result.get_status()
 
     def _handle_test_connectivity(self, action_result, param):
         self.debug_print("Action handler", self.get_action_identifier())
