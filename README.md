@@ -85,6 +85,7 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [yara retro check status](#action-yara-retro-check-status) - TCA-0319 - Check the retro hunt status for the specified ruleset  
 [yara retro cancel hunt](#action-yara-retro-cancel-hunt) - TCA-0319 - Cancel the retro hunt for the specified ruleset  
 
+
 ## action: 'test connectivity'
 Validate the asset configuration for connectivity using supplied configuration
 
@@ -1545,8 +1546,6 @@ DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.parameter.ruleset_name | string |  |  
 action_result.data.\*.text | string |  |  
-action_result.parameter.ruleset_name | string |  |  
-action_result.data.\*.text | string |  |  
 action_result.status | string |  |   success  failed 
 action_result.data | string |  |  
 action_result.summary | string |  |  
@@ -1645,13 +1644,6 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.parameter.ruleset_name | string |  |  
-action_result.data.\*.retro_status | string |  |  
-action_result.data.\*.start_time | string |  |  
-action_result.data.\*.finish_time | string |  |  
-action_result.data.\*.reason | string |  |  
-action_result.data.\*.progress | string |  |  
-action_result.data.\*.estimated_finish_time | string |  |  
 action_result.parameter.ruleset_name | string |  |  
 action_result.data.\*.retro_status | string |  |  
 action_result.data.\*.start_time | string |  |  
