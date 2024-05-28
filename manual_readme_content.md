@@ -73,7 +73,6 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [yara retro check status](#action-yara-retro-check-status) - TCA-0319 - Check the retro hunt status for the specified ruleset  
 [yara retro cancel hunt](#action-yara-retro-cancel-hunt) - TCA-0319 - Cancel the retro hunt for the specified ruleset  
 
-
 ## action: 'test connectivity'
 Validate the asset configuration for connectivity using supplied configuration
 

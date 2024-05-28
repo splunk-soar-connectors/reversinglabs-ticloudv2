@@ -288,7 +288,19 @@
                     "param_name": "ruleset_name"
                 }
             },
-            "output": [
+            "output": [ 
+                {
+                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_type": "string",
+                    "column_name": "ruleset name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.text",
+                    "data_type": "string",
+                    "column_name": "text",
+                    "column_order": 1
+                },
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
@@ -564,7 +576,49 @@
                     "param_name": "ruleset_name"
                 }
             },
-            "output": [
+            "output": [ 
+                {
+                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_type": "string",
+                    "column_name": "ruleset name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.retro_status",
+                    "data_type": "string",
+                    "column_name": "retro status",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.data.*.start_time",
+                    "data_type": "string",
+                    "column_name": "start time",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.finish_time",
+                    "data_type": "string",
+                    "column_name": "finish time",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.data.*.reason",
+                    "data_type": "string",
+                    "column_name": "reason",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "action_result.data.*.progress",
+                    "data_type": "string",
+                    "column_name": "progress",
+                    "column_order": 5
+                },
+                {
+                    "data_path": "action_result.data.*.estimated_finish_time",
+                    "data_type": "string",
+                    "column_name": "estimated finish time",
+                    "column_order": 6
+                },
                 {
                     "data_path": "action_result.parameter.ruleset_name",
                     "data_type": "string",
@@ -2579,7 +2633,7 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status"
-                },
+                }, 
                 {
                     "data_path": "action_result.message",
                     "data_type": "string"
@@ -4080,7 +4134,7 @@
             },
             {
                 "module": "reversinglabs_sdk_py3",
-                "input_file": "wheels/py3/reversinglabs_sdk_py3-2.5.4-py3-none-any.whl"
+                "input_file": "wheels/py3/reversinglabs_sdk_py3-2.4.2-py3-none-any.whl"
             },
             {
                 "module": "urllib3",

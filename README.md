@@ -85,7 +85,6 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [yara retro check status](#action-yara-retro-check-status) - TCA-0319 - Check the retro hunt status for the specified ruleset  
 [yara retro cancel hunt](#action-yara-retro-cancel-hunt) - TCA-0319 - Cancel the retro hunt for the specified ruleset  
 
-
 ## action: 'test connectivity'
 Validate the asset configuration for connectivity using supplied configuration
 
@@ -421,7 +420,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'file reputation user override'
 TCA-0102 - File Reputation User Override
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0102 - The File Reputation User Override service enables File sample classification overrides.
@@ -952,7 +951,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'list active file reputation user overrides'
 TCA-0102 - List Active File Reputation User Overrides
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0102 - The File Reputation User Override service enables sample classification overrides. Any sample can be overridden to malicious, suspicious, or known.
@@ -995,6 +994,27 @@ action_result.parameter.remove_overrides_list | string |  | { "network_location"
 action_result.message | string |  | 
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  | 
+
+## action: 'dynamic url analysis results'
+TCA-0106 - Retrieve dynamic analysis results for url
+
+Type: **investigate**  
+Read only: **true**
+
+TCA-0106 - This service allows users to retrieve dynamic analysis results for an url that was submitted for dynamic analysis.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**url** |  required  | Provide one of the following: sha1, base64 or url | string | `sha1` `url` | 
+**analysis_id** |  optional  | Return only the results of this analysis | string | 
+**latest** |  optional  | Return only the latest analysis results | boolean | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.analysis_id | string |  |  
+action_result.parameter.data.0.requested_sha1_url | string |  |  
 
 ## action: 'reanalyze file'
 TCA-0205 - Reanalyze sample
@@ -1172,7 +1192,7 @@ summary.total_objects_successful | numeric |  |
 ## action: 'yara create ruleset'
 TCA-0304 - Create a new YARA ruleset
 
-Type: **generic**  
+Type: **investigate**  
 Read only: **False**
 
 TCA-0304 - Create a new YARA ruleset.
@@ -1190,7 +1210,6 @@ action_result.status | string |  |   success or failed
 action_result.parameter.ruleset_name | string |  |  
 action_result.parameter.ruleset_text | string |  |  
 action_result.data | string |  |  
-action_result.summary | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
@@ -1268,8 +1287,6 @@ action_result.data | string |  |
 action_result.summary | string |  |  
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
-summary.total_objects_successful | numeric |  |  
-
 ## action: 'yara retro cancel hunt'
 TCA-0319 - Cancel the retro hunt for the specified ruleset
 
@@ -1286,6 +1303,8 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
+action_result.data.*.user_override.network_locations.*.network_location | string | `url` `domain` `ip` |  
+action_result.data.*.user_override.network_locations.*.type | string | `url` `domain` `ip` |  
 action_result.status | string |  |   success or failed 
 action_result.parameter.ruleset_name | string |  |  
 action_result.data.*.ruleset_sha1 | string |  |  
@@ -2006,7 +2025,7 @@ TCA-0402 - Provides the number of MALICIOUS, SUSPICIOUS and KNOWN files associat
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**uri** |  required  | Uri | string | 
+**uri** |  required  | Uri | string |  `sha1` 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
