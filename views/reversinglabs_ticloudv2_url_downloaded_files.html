@@ -17,7 +17,7 @@ and limitations under the License.
 -->
 
 <style>
-    
+
     .widget-container {
         height: 600px;
     }
@@ -75,41 +75,41 @@ and limitations under the License.
     }
 </style>
 <div class="rl-content">
-    <table class="rl-table">
-        <thead>
-            <tr>
-                <th colspan="7">ReversingLabs TitaniumCloud Downloaded Files From Url<br/>
-                    <div id="rl-target" class="main-grid">{{param.url}}</div>
-                    <div class="rl-results" style="padding-top:0.5rem;">Results found: {{data|length}}</div>
-            </tr>
-            <tr>
-                <th> </th>
-                <th> SHA1</th>
-                <th> Sample type</th>
-                <th> Threat name</th>
-                <th> Malware type</th>
-                <th> Threat level</th>
-                <th> Trust factor</th>
-                <th> Classification</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for x in data %}
-            <tr>
-                <td>{{ forloop.counter}}.</td>
-                <td>{{ x.sha1}}</td>
-                <td>{{ x.sample_type }}</td>
-                <td>{{ x.threat_name }}</td>
-                <td>{{ x.malware_type }}</td>
-                <td>{{ x.threat_level }}</td>
-                <td>{{ x.trust_factor }}</td>
-                <td>
-                    <font color={{x.classification_color}}>{{ x.classification }}</font>
-                </td>
-            </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
+  <table class="rl-table">
+    <thead>
+      <tr>
+        <th colspan="7">ReversingLabs TitaniumCloud Downloaded Files From Url<br/>
+          <div id="rl-target" class="main-grid"><a href="javascript:;" onclick="context_menu(this, [{'contains': ['url'], 'value': '{{param.url}}' }], 0, {{ container.id }}, null, false);">{{param.url}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></div>
+          <div class="rl-results" style="padding-top:0.5rem;">Results found: {{data|length}}</div>
+        </th>
+      </tr>
+      <tr>
+        <th> </th>
+        <th> SHA1</th>
+        <th> Sample type</th>
+        <th> Threat name</th>
+        <th> Malware type</th>
+        <th> Threat level</th>
+        <th> Trust factor</th>
+        <th> Classification</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for x in data %}
+        <tr>
+          <td>{{ forloop.counter }}.</td>
+          <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ x.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ x.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
+          <td>{{ x.sample_type }}</td>
+          <td>{{ x.threat_name }}</td>
+          <td>{{ x.malware_type }}</td>
+          <td>{{ x.threat_level }}</td>
+          <td>{{ x.trust_factor }}</td>
+          <td>
+            <font color={{x.classification_color}}>{{ x.classification }}</font>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}

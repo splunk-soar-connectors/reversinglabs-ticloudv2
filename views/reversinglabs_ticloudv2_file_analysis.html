@@ -17,7 +17,7 @@ and limitations under the License.
 -->
 
 <style>
-    
+
     .widget-container {
         height: 600px;
     }
@@ -127,11 +127,11 @@ and limitations under the License.
             </tr>
             <tr>
                 <td>SHA-512 hash</td>
-                <td> {{data.sample.sha512}}</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha512'], 'value': '{{ data.sample.sha512 }}' }], 0, {{ container.id }}, null, false);">{{ data.sample.sha512 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             <tr>
                 <td>SHA-384 hash</td>
-                <td> {{data.sample.sha384}}</td>
+                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha384'], 'value': '{{ data.sample.sha384 }}' }], 0, {{ container.id }}, null, false);">{{ data.sample.sha384 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
             </tr>
             <tr>
                 <td>SSDEEP hash</td>

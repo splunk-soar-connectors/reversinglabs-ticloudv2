@@ -17,7 +17,7 @@ and limitations under the License.
 -->
 
 <style>
-    
+
     .widget-container {
         height: 600px;
     }
@@ -70,53 +70,53 @@ and limitations under the License.
     }
 </style>
 <div class="rl-content">
-    {% if data.uri_state == None %}
+  {% if data.uri_state == None %}
     There is no uri_state object in the response JSON.
-    {% else %}
-    <table class="rl-table">
-        <thead>
-            <tr>
-                <th colspan="2">ReversingLabs URI Statistics results for
-                    <div id="rl-target" class="main-grid">{{data.uri}}</div></th>
-            </tr>
-            <tr>
-                <td>SHA-1</td>
-                <td> {{data.uri_state.sha1}}</td>
-            </tr>
-            <tr>
-                <td>URI type</td>
-                <td> {{data.uri_type}}</td>
-            </tr>
-            <tr>
-                <td>{{data.uri_type}}</td>
-                <td> {{data.uri}}</td>
-            </tr>
-            <tr>
-                <th colspan="2">Sample counters</td>
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr>
-                <td>
-                    <span style="color:green;">KNOWN</span>
-                </td>
-                <td> {{data.uri_state.counters.known}}</td>
-            </tr>
-            <tr>
-                <td>
-                    <span style="color:red;">MALICIOUS</span>
-                </td>
-                <td>{{data.uri_state.counters.malicious}} </td>
-            </tr>
-            <tr>
-                <td>
-                    <span style="color:orange;">SUSPICIOUS</span>
-                </td>
-                <td>{{data.uri_state.counters.suspicious}} </td>
-            </tr>
-        </tbody>
-    </table>
-    {% endif %}
+  {% else %}
+  <table class="rl-table">
+    <thead>
+      <tr>
+        <th colspan="2">ReversingLabs URI Statistics results for
+          <div id="rl-target" class="main-grid"><a href="javascript:;" onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ data.uri }}' }], 0, {{ container.id }}, null, false);">{{ data.uri }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></div>
+        </th>
+      </tr>
+      <tr>
+        <td>SHA-1</td>
+        <td style="width: 60%;"><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.uri_state.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ data.uri_state.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
+      </tr>
+      <tr>
+        <td>URI type</td>
+        <td> {{data.uri_type}}</td>
+      </tr>
+      <tr>
+        <td>{{data.uri_type}}</td>
+        <td style="width: 60%;"><a href="javascript:;" onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ data.uri }}' }], 0, {{ container.id }}, null, false);">{{ data.uri }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
+      </tr>
+      <tr>
+        <th colspan="2">Sample counters</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <span style="color:green;">KNOWN</span>
+        </td>
+        <td> {{data.uri_state.counters.known}}</td>
+      </tr>
+      <tr>
+        <td>
+          <span style="color:red;">MALICIOUS</span>
+        </td>
+        <td>{{data.uri_state.counters.malicious}} </td>
+      </tr>
+      <tr>
+        <td>
+          <span style="color:orange;">SUSPICIOUS</span>
+        </td>
+        <td>{{data.uri_state.counters.suspicious}} </td>
+      </tr>
+    </tbody>
+  </table>
+  {% endif %}
 </div>
 {% endblock %}

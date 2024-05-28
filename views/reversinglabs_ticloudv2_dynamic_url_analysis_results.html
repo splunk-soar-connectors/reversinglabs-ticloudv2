@@ -17,7 +17,7 @@ and limitations under the License.
 -->
 
 <style>
-    
+
     .widget-container {
         height: 600px;
     }
@@ -45,12 +45,12 @@ and limitations under the License.
         display: flex;
         flex-direction: column;
     }
-    
+
     .rl-delimiter {
         background-color: #F6143F;
         padding: 1px !important;
     }
-    
+
     .rl-text-center {
         text-align: center;
     }
@@ -76,12 +76,12 @@ and limitations under the License.
         padding-right: 2rem;
         width: 11%;
     }
-    
+
     .rl-link {
         color: #7CA0F8 !important;
         text-decoration: underline;
     }
-    
+
     /* Style the tab */
     .tab {
         overflow: hidden;
@@ -98,7 +98,7 @@ and limitations under the License.
         transition: 0.3s;
         border: 1px solid;
     }
-    
+
     /* Change background color of buttons on hover */
     .tab button:hover {
         background-color: #ddd;
@@ -108,7 +108,7 @@ and limitations under the License.
     .tab button.active {
         background-color: #ccc;
     }
-    
+
     /* Style the tab content */
     .tabcontent {
         display: none;
@@ -125,14 +125,14 @@ and limitations under the License.
         <thead>
             {% if data.requested_sha1_url != None %}
             <tr>
-                <th colspan="2">ReversingLabs dynamic analysis for URL    
-                    <div id="rl-target" class="main-grid">{{data.requested_sha1_url}}</div></th>           
+                <th colspan="2">ReversingLabs dynamic analysis for URL
+                    <div id="rl-target" class="main-grid">{{data.requested_sha1_url}}</div></th>
             </tr>
             {% endif %}
             {% if data.requested_base64_url != None %}
             <tr>
-                <th colspan="2">ReversingLabs dynamic analysis for URL    
-                    <div id="rl-target" class="main-grid">{{data.requested_base64_url}}</div></th>           
+                <th colspan="2">ReversingLabs dynamic analysis for URL
+                    <div id="rl-target" class="main-grid">{{data.requested_base64_url}}</div></th>
             </tr>
             {% endif %}
         </thead>
@@ -236,8 +236,8 @@ and limitations under the License.
                 <td colspan="2">
                     <div class="tab">
                     {% for y in data.report.dropped_files %}
-                        <button class="tablinks" onclick="openPopup(event, '{{y.sha1}}')">{{y.file_name}}</button>    
-                    {% endfor %}  
+                        <button class="tablinks" onclick="openPopup(event, '{{y.sha1}}')">{{y.file_name}}</button>
+                    {% endfor %}
                     </div>
                 </td>
             </tr>
@@ -304,8 +304,8 @@ and limitations under the License.
                 <td colspan="2">
                     <div class="tab">
                     {% for y in data.report.snort_alerts %}
-                        <button class="tablinks" onclick="openPopup(event, '{{y.rule}}')">{{y.destination_ip}}</button>    
-                    {% endfor %}  
+                        <button class="tablinks" onclick="openPopup(event, '{{y.rule}}')">{{y.destination_ip}}</button>
+                    {% endfor %}
                     </div>
                 </td>
             </tr>
@@ -346,8 +346,8 @@ and limitations under the License.
                 <td colspan="2">
                     <div class="tab">
                     {% for y in data.report.signatures %}
-                        <button class="tablinks" onclick="openPopup(event, '{{y.sig_id}}')">{{y.sig_id}}</button>    
-                    {% endfor %}  
+                        <button class="tablinks" onclick="openPopup(event, '{{y.sig_id}}')">{{y.sig_id}}</button>
+                    {% endfor %}
                     </div>
                 </td>
             </tr>
@@ -392,8 +392,8 @@ and limitations under the License.
                 <td colspan="2">
                     <div class="tab">
                     {% for y in data.report.network.dns %}
-                        <button class="tablinks" onclick="openPopup(event, 'dns-{{ forloop.counter }}')">DNS {{ forloop.counter }}</button>    
-                    {% endfor %}  
+                        <button class="tablinks" onclick="openPopup(event, 'dns-{{ forloop.counter }}')">DNS {{ forloop.counter }}</button>
+                    {% endfor %}
                     </div>
                 </td>
             </tr>
@@ -439,8 +439,8 @@ and limitations under the License.
                 <td colspan="2">
                     <div class="tab">
                     {% for y in data.report.network.tcp %}
-                        <button class="tablinks" onclick="openPopup(event, 'tcp-{{ forloop.counter }}')">TCP {{ forloop.counter }}</button>    
-                    {% endfor %}  
+                        <button class="tablinks" onclick="openPopup(event, 'tcp-{{ forloop.counter }}')">TCP {{ forloop.counter }}</button>
+                    {% endfor %}
                     </div>
                 </td>
             </tr>
@@ -482,8 +482,8 @@ and limitations under the License.
                 <td colspan="2">
                     <div class="tab">
                     {% for y in data.report.network.udp %}
-                        <button class="tablinks" onclick="openPopup(event, 'udp-{{ forloop.counter }}')">UDP {{ forloop.counter }}</button>    
-                    {% endfor %}  
+                        <button class="tablinks" onclick="openPopup(event, 'udp-{{ forloop.counter }}')">UDP {{ forloop.counter }}</button>
+                    {% endfor %}
                     </div>
                 </td>
             </tr>
@@ -525,8 +525,8 @@ and limitations under the License.
                 <td colspan="2">
                     <div class="tab">
                     {% for y in data.report.network.url %}
-                        <button class="tablinks" onclick="openPopup(event, 'url-{{ forloop.counter }}')">URL {{ forloop.counter }}</button>    
-                    {% endfor %}  
+                        <button class="tablinks" onclick="openPopup(event, 'url-{{ forloop.counter }}')">URL {{ forloop.counter }}</button>
+                    {% endfor %}
                     </div>
                 </td>
             </tr>
@@ -564,8 +564,8 @@ and limitations under the License.
                 <td colspan="2">
                     <div class="tab">
                     {% for y in data.report.network.http %}
-                        <button class="tablinks" onclick="openPopup(event, 'http-{{ forloop.counter }}')">HTTP {{ forloop.counter }}</button>    
-                    {% endfor %}  
+                        <button class="tablinks" onclick="openPopup(event, 'http-{{ forloop.counter }}')">HTTP {{ forloop.counter }}</button>
+                    {% endfor %}
                     </div>
                 </td>
             </tr>

@@ -4,7 +4,7 @@
 background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
 {% block widget_content %}
 
-<!-- File: reversinglabs_ticloudv2_analyze_url.html
+<!-- File: reversinglabs_ticloudv2_customer_monthrange_usage.html
   Copyright (c) ReversingLabs, 2023
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -67,30 +67,52 @@ and limitations under the License.
         padding-right: 2rem;
         width: 11%;
     }
+
+    .padt35 {
+        padding-top: 35px;
+    }
+
+    .height250 {
+        height: 250px;
+    }
+
 </style>
 <div class="rl-content">
-    {% if data.report_base == None %}
-    There is no rl object in the response JSON.
-    {% else %}
+{% if data == None %}
+     There is no Usage reports for requested user in the response JSON.
+{% else %}
     <table class="rl-table">
         <thead>
-            <tr>
-                <th colspan="2">ReversingLabs TitaniumCloud Analyze URL for
-                    <div id="rl-target" class="main-grid">{{data.report_base.requested_url}}</div>
-                </th>
-            </tr>
+            <th colspan="2">ReversingLabs API Usage report</th>
         </thead>
         <tbody>
-            <tr>
-                <td>Status</td>
-                <td>{{data.report_base.status}}</td>
-            </tr>
-            <tr>
-                <td>Analysis ID</td>
-                <td>{{data.report_base.analysis_id}}</td>
-            </tr>
+            <!-- Usage report -->
+            {% for report in data %}
+                <tr>
+                    <td class="rl-sub-head" colspan="2">Usage report for {{report.month}}</td>
+                </tr>
+                {% for item in report.usage_report %}
+                <tr>
+                    <td>Product</td>
+                    <td>{{item.product}}</td>
+                </tr>
+                <tr>
+                    <td>Number of queries</td>
+                    <td>{{item.number_of_queries}}</td>
+                </tr>
+                {% if item.used_bytes != None %}
+                <tr>
+                    <td>Used bytes</td>
+                    <td>{{item.used_bytes}}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                <tr>
+                    <td class="rl-sub-head" colspan="2"></td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
-    {% endif %}
+{% endif %}
 </div>
 {% endblock %}
