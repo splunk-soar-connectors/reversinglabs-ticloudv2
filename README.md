@@ -2,11 +2,11 @@
 # Reversinglabs TitaniumCloud v2
 
 Publisher: ReversingLabs  
-Connector Version: 1.4.0  
+Connector Version: 1.4.1  
 Product Vendor: Reversinglabs  
 Product Name: TitaniumCloud  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 6.1.1  
+Minimum Product Version: 6.2.2  
 
 App integrates with ReversingLabs TitaniumCloud APIs delivering targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services
 
