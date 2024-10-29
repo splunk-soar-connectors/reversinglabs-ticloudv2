@@ -1,5 +1,4 @@
 # Gitlab CI/CD pipeline
-
 include:
   - project: 'integrations/ops/release-pipeline'
     ref: master
