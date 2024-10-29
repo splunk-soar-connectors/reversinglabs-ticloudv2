@@ -13,14 +13,20 @@
     "contributors": [
         {
             "name": "DinkoReversingLabs"
+        },
+        {
+            "name": "RLakukolja"
+        },
+        {
+            "name": "MislavReversingLabs"
         }
     ],
     "license": "Copyright (c) ReversingLabs, 2024",
-    "app_version": "1.4.0",
+    "app_version": "1.4.1",
     "utctime_updated": "2023-11-10T13:13:00.593313Z",
     "package_name": "phantom_reversinglabs_ticloudv2",
     "main_module": "reversinglabs_ticloudv2_connector.py",
-    "min_phantom_version": "6.1.1",
+    "min_phantom_version": "6.2.2",
     "fips_compliant": false,
     "app_wizard_version": "1.0.0",
     "configuration": {
@@ -4064,7 +4070,7 @@
         "wheel": [
             {
                 "module": "certifi",
-                "input_file": "wheels/py3/certifi-2022.12.7-py3-none-any.whl"
+                "input_file": "wheels/py3/certifi-2024.2.2-py3-none-any.whl"
             },
             {
                 "module": "charset_normalizer",
@@ -4072,19 +4078,19 @@
             },
             {
                 "module": "idna",
-                "input_file": "wheels/py3/idna-3.4-py3-none-any.whl"
+                "input_file": "wheels/py3/idna-3.7-py3-none-any.whl"
             },
             {
                 "module": "requests",
-                "input_file": "wheels/py3/requests-2.28.1-py3-none-any.whl"
+                "input_file": "wheels/py3/requests-2.32.2-py3-none-any.whl"
             },
             {
                 "module": "reversinglabs_sdk_py3",
-                "input_file": "wheels/py3/reversinglabs_sdk_py3-2.5.4-py3-none-any.whl"
+                "input_file": "wheels/py3/reversinglabs_sdk_py3-2.7.0-py3-none-any.whl"
             },
             {
                 "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.13-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/urllib3-2.2.1-py3-none-any.whl"
             }
         ]
     }

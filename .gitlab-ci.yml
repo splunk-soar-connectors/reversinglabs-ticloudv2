@@ -1,0 +1,5 @@
+# Gitlab CI/CD pipeline
+include:
+  - project: 'integrations/ops/release-pipeline'
+    ref: master
+    file: 'splunk-integrations/gitlab-ci.yml'
