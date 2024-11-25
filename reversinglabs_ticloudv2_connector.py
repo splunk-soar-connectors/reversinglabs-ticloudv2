@@ -20,7 +20,6 @@ import json
 import os
 import re
 from urllib.parse import urlparse
-from urllib.parse import urlparse
 
 # Phantom App imports
 import phantom.app as phantom
