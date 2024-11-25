@@ -178,7 +178,15 @@ def dynamic_url_analysis_results(provides, all_app_runs, context):
             if dropped_files is not None:
                 for df in dropped_files:
                     df["classification_color_dropped_files"] = color_code_classification(df.get("classification"))
+            if dropped_files is not None:
+                for df in dropped_files:
+                    df["classification_color_dropped_files"] = color_code_classification(df.get("classification"))
 
+                    # get color coding for entries in merged report
+                    if df.get("analysis_ids"):
+                        analysis_ids = df.get("analysis_ids")
+                        for an_id in analysis_ids:
+                            an_id["classification_color_dropped_files_merged"] = color_code_classification(an_id.get("classification"))
                     # get color coding for entries in merged report
                     if df.get("analysis_ids"):
                         analysis_ids = df.get("analysis_ids")
