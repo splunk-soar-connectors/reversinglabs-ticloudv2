@@ -1,11 +1,14 @@
 {% extends 'widgets/widget_template.html' %}
 {% load custom_template %}
-{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
-background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
+{% block custom_title_prop %}
+  {% if title_logo %}
+    style="background-size: auto 60%; background-position: 50%;
+    background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"
+  {% endif %}
+{% endblock %}
 {% block widget_content %}
-
-<!-- File: reversinglabs_ticloudv2_av_scanners.html
-  Copyright (c) ReversingLabs, 2023
+  <!-- File: reversinglabs_ticloudv2_av_scanners.html
+  Copyright (c) ReversingLabs, 2023-2025
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -15,9 +18,7 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
 either express or implied. See the License for the specific language governing permissions
 and limitations under the License.
 -->
-
-<style>
-
+  <style>
     .widget-container {
         height: 600px;
     }
@@ -67,84 +68,97 @@ and limitations under the License.
         padding-right: 2rem;
         width: 11%;
     }
-</style>
-<div class="rl-content">
+  </style>
+  <div class="rl-content">
     {% if data.sample == None %}
-    There is no sample object in the response JSON.
+      There is no sample object in the response JSON.
     {% else %}
-    <table class="rl-table">
+      <table class="rl-table">
         <thead>
-            <tr>
-                <th colspan="2">
-                    ReversingLabs TitaniumCloud AV Scanner results for
-                    <div id="rl-target" class="main-grid">{{data.sample.sha1}}</div>
-                </th>
-            </tr>
+          <tr>
+            <th colspan="2">
+              ReversingLabs TitaniumCloud AV Scanner results for
+              <div id="rl-target" class="main-grid">{{ data.sample.sha1 }}</div>
+            </th>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>First scanned on</td>
-                <td>{{data.sample.first_scanned_on}}</td>
-            </tr>
-            <tr>
-                <td>First seen on</td>
-                <td> {{data.sample.first_seen_on}}</td>
-            </tr>
-            <tr>
-                <td>Last scanned on</td>
-                <td>{{data.sample.last_scanned_on}} </td>
-            </tr>
-            <tr>
-                <td>Last seen on</td>
-                <td>{{data.sample.last_seen_on}} </td>
-            </tr>
-            <tr>
-                <td>Sample size</td>
-                <td>{{data.sample.sample_size}}</td>
-            </tr>
-            <tr>
-                <td>Sample type</td>
-                <td> {{data.sample.sample_type}}</td>
-            </tr>
-            <tr>
-                <td>MD5 hash</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['md5'], 'value': '{{ data.sample.md5 }}' }], 0, {{ container.id }}, null, false);">{{data.sample.md5}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
-            </tr>
-            <tr>
-                <td>SHA-1 hash</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.sample.sha1 }}' }], 0, {{ container.id }}, null, false);">{{data.sample.sha1}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
-            </tr>
-            <tr>
-                <td>SHA-256 hash</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ data.sample.sha256 }}' }], 0, {{ container.id }}, null, false);">{{data.sample.sha256}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
-            </tr>
-            <tr>
-                <td>SHA-512 hash</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha512'], 'value': '{{ data.sample.sha512 }}' }], 0, {{ container.id }}, null, false);">{{data.sample.sha512}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
-            </tr>
-            <tr>
-                <td>SHA-384 hash</td>
-                <td><a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha384'], 'value': '{{ data.sample.sha384 }}' }], 0, {{ container.id }}, null, false);">{{data.sample.sha384}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a></td>
-            </tr>
+          <tr>
+            <td>First scanned on</td>
+            <td>{{ data.sample.first_scanned_on }}</td>
+          </tr>
+          <tr>
+            <td>First seen on</td>
+            <td>{{ data.sample.first_seen_on }}</td>
+          </tr>
+          <tr>
+            <td>Last scanned on</td>
+            <td>{{ data.sample.last_scanned_on }}</td>
+          </tr>
+          <tr>
+            <td>Last seen on</td>
+            <td>{{ data.sample.last_seen_on }}</td>
+          </tr>
+          <tr>
+            <td>Sample size</td>
+            <td>{{ data.sample.sample_size }}</td>
+          </tr>
+          <tr>
+            <td>Sample type</td>
+            <td>{{ data.sample.sample_type }}</td>
+          </tr>
+          <tr>
+            <td>MD5 hash</td>
+            <td>
+              <a href="javascript:;"
+                 onclick="context_menu(this, [{'contains': ['md5'], 'value': '{{ data.sample.md5 }}' }], 0, {{ container.id }}, null, false);">{{ data.sample.md5 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+            </td>
+          </tr>
+          <tr>
+            <td>SHA-1 hash</td>
+            <td>
+              <a href="javascript:;"
+                 onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.sample.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ data.sample.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+            </td>
+          </tr>
+          <tr>
+            <td>SHA-256 hash</td>
+            <td>
+              <a href="javascript:;"
+                 onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ data.sample.sha256 }}' }], 0, {{ container.id }}, null, false);">{{ data.sample.sha256 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+            </td>
+          </tr>
+          <tr>
+            <td>SHA-512 hash</td>
+            <td>
+              <a href="javascript:;"
+                 onclick="context_menu(this, [{'contains': ['sha512'], 'value': '{{ data.sample.sha512 }}' }], 0, {{ container.id }}, null, false);">{{ data.sample.sha512 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+            </td>
+          </tr>
+          <tr>
+            <td>SHA-384 hash</td>
+            <td>
+              <a href="javascript:;"
+                 onclick="context_menu(this, [{'contains': ['sha384'], 'value': '{{ data.sample.sha384 }}' }], 0, {{ container.id }}, null, false);">{{ data.sample.sha384 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+            </td>
+          </tr>
         </tbody>
         {% if data.sample.xref != None %}
-        <thead>
+          <thead>
             <tr>
-                <th colspan="2"> Scanner results</th>
+              <th colspan="2">Scanner results</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             {% for x in data.sample.xref.0.results %}
-            <tr>
+              <tr>
                 <td>{{ x.scanner }}</td>
                 <td style="color: red;">{{ x.result }}</td>
-            </tr>
+              </tr>
             {% endfor %}
-        </tbody>
+          </tbody>
         {% endif %}
-    </table>
+      </table>
     {% endif %}
-
-</div>
-
+  </div>
 {% endblock %}

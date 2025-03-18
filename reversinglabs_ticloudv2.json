@@ -15,7 +15,7 @@
             "name": "DinkoReversingLabs"
         }
     ],
-    "license": "Copyright (c) ReversingLabs, 2024",
+    "license": "Copyright (c) ReversingLabs, 2024-2025",
     "app_version": "1.4.0",
     "utctime_updated": "2023-11-10T13:13:00.593313Z",
     "package_name": "phantom_reversinglabs_ticloudv2",
@@ -263,6 +263,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.ruleset_name",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -796,6 +800,14 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.time_format",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.time_value",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -817,7 +829,7 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                      "hash"
+                        "hash"
                     ],
                     "order": 0,
                     "name": "imphash",
@@ -849,7 +861,10 @@
                     "data_path": "action_result.parameter.imphash",
                     "data_type": "string",
                     "column_name": "imphash",
-                    "column_order": 0
+                    "column_order": 0,
+                    "contains": [
+                        "hash"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.limit",
@@ -981,9 +996,9 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                      "sha1",
-                      "sha256",
-                      "md5"
+                        "sha1",
+                        "sha256",
+                        "md5"
                     ],
                     "order": 0,
                     "name": "hash",
@@ -1006,7 +1021,12 @@
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
                     "column_name": "hash",
-                    "column_order": 0
+                    "column_order": 0,
+                    "contains": [
+                        "sha1",
+                        "sha256",
+                        "md5"
+                    ]
                 },
                 {
                     "data_path": "action_result.data",
@@ -1128,10 +1148,10 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                      "sha1",
-                      "sha256",
-                      "md5",
-                      "vauld id"
+                        "sha1",
+                        "sha256",
+                        "md5",
+                        "vauld id"
                     ],
                     "order": 0,
                     "name": "hash",
@@ -1154,7 +1174,13 @@
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
                     "column_name": "hash",
-                    "column_order": 0
+                    "column_order": 0,
+                    "contains": [
+                        "sha1",
+                        "sha256",
+                        "md5",
+                        "vauld id"
+                    ]
                 },
                 {
                     "data_path": "action_result.data",
@@ -1200,7 +1226,7 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                      "sha1"
+                        "sha1"
                     ],
                     "order": 0,
                     "name": "hash",
@@ -1232,7 +1258,10 @@
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
                     "column_name": "hash",
-                    "column_order": 0
+                    "column_order": 0,
+                    "contains": [
+                        "sha1"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.limit",
@@ -1354,7 +1383,7 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                      "url"
+                        "url"
                     ],
                     "value_list": [],
                     "default": "",
@@ -1731,7 +1760,7 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                      "url"
+                        "url"
                     ],
                     "order": 0,
                     "name": "url",
@@ -1754,7 +1783,10 @@
                     "data_path": "action_result.parameter.url",
                     "data_type": "string",
                     "column_name": "url",
-                    "column_order": 0
+                    "column_order": 0,
+                    "contains": [
+                        "url"
+                    ]
                 },
                 {
                     "data_path": "action_result.data",
@@ -1866,8 +1898,8 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                      "url",
-                      "domain"
+                        "url",
+                        "domain"
                     ],
                     "order": 0,
                     "name": "uri",
@@ -1905,7 +1937,11 @@
                     "data_path": "action_result.parameter.uri",
                     "data_type": "string",
                     "column_name": "uri",
-                    "column_order": 0
+                    "column_order": 0,
+                    "contains": [
+                        "url",
+                        "domain"
+                    ]
                 },
                 {
                     "data_path": "action_result.data",
@@ -1951,8 +1987,8 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                      "sha1",
-                      "vault id"
+                        "sha1",
+                        "vault id"
                     ],
                     "order": 0,
                     "name": "sha1",
@@ -1998,7 +2034,11 @@
                     "data_path": "action_result.parameter.sha1",
                     "data_type": "string",
                     "column_name": "sha1",
-                    "column_order": 0
+                    "column_order": 0,
+                    "contains": [
+                        "sha1",
+                        "vault id"
+                    ]
                 },
                 {
                     "data_path": "action_result.data",
@@ -2127,6 +2167,18 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.url",
+                    "data_type": "string",
+                    "contains": [
+                        "url",
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.platform",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -2148,7 +2200,7 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                      "sha1"
+                        "sha1"
                     ],
                     "order": 0,
                     "name": "sha1",
@@ -2200,7 +2252,10 @@
                     "data_path": "action_result.parameter.sha1",
                     "data_type": "string",
                     "column_name": "sha1",
-                    "column_order": 0
+                    "column_order": 0,
+                    "contains": [
+                        "sha1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data",
@@ -2305,6 +2360,18 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.url",
+                    "data_type": "string",
+                    "contains": [
+                        "sha1",
+                        "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.latest",
+                    "data_type": "boolean"
                 }
             ],
             "render": {
@@ -2330,9 +2397,9 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                      "md5",
-                      "sha1",
-                      "sha256"
+                        "md5",
+                        "sha1",
+                        "sha256"
                     ],
                     "order": 0,
                     "name": "hash"
@@ -2353,7 +2420,12 @@
                     "data_path": "action_result.parameter.hash",
                     "data_type": "string",
                     "column_name": "hash",
-                    "column_order": 0
+                    "column_order": 0,
+                    "contains": [
+                        "md5",
+                        "sha1",
+                        "sha256"
+                    ]
                 },
                 {
                     "data_path": "action_result.data",
@@ -2440,14 +2512,7 @@
                     "data_path": "action_result.parameter.vault_id",
                     "data_type": "string",
                     "contains": [
-                        "pe file",
-                        "pdf",
-                        "flash",
-                        "apk",
-                        "jar",
-                        "doc",
-                        "xls",
-                        "ppt"
+                        "vault id"
                     ],
                     "column_name": "vault_id",
                     "column_order": 0
@@ -2591,6 +2656,15 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.network_locations",
+                    "data_type": "string",
+                    "contains": [
+                        "domain",
+                        "url",
+                        "ip"
+                    ]
                 }
             ],
             "render": {
@@ -2663,6 +2737,13 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.next_page_sha1",
+                    "data_type": "string",
+                    "contains": [
+                        "sha1"
+                    ]
                 }
             ],
             "render": {
@@ -2728,6 +2809,10 @@
                 },
                 {
                     "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.max_results",
                     "data_type": "numeric"
                 }
             ],
@@ -2945,6 +3030,19 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.hash_type",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.start_hash",
+                    "data_type": "string",
+                    "contains": [
+                        "sha1",
+                        "sha256",
+                        "md5"
+                    ]
                 }
             ],
             "render": {
@@ -3023,6 +3121,14 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.date",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.company",
+                    "data_type": "boolean"
                 }
             ],
             "render": {
@@ -3081,6 +3187,18 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.from_date",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.to_date",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.company",
+                    "data_type": "boolean"
                 }
             ],
             "render": {
@@ -3159,6 +3277,14 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.month",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.company",
+                    "data_type": "boolean"
                 }
             ],
             "render": {
@@ -3217,6 +3343,18 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.from_month",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.to_month",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.company",
+                    "data_type": "boolean"
                 }
             ],
             "render": {
@@ -3278,6 +3416,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.format",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -3350,6 +3492,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.company",
+                    "data_type": "boolean"
                 }
             ],
             "render": {
@@ -3394,6 +3540,13 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.domain",
+                    "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ]
                 }
             ],
             "render": {
@@ -3477,6 +3630,25 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.domain",
+                    "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.extended",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.classification",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -3560,6 +3732,21 @@
                 },
                 {
                     "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.domain",
+                    "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.page",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
                     "data_type": "numeric"
                 }
             ],
@@ -3656,6 +3843,21 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.domain",
+                    "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.page",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
+                    "data_type": "numeric"
                 }
             ],
             "render": {
@@ -3736,6 +3938,21 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.domain",
+                    "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.page",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
+                    "data_type": "numeric"
                 }
             ],
             "render": {
@@ -3780,6 +3997,13 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.ip_address",
+                    "data_type": "string",
+                    "contains": [
+                        "ip"
+                    ]
                 }
             ],
             "render": {
@@ -3871,6 +4095,29 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.ip_address",
+                    "data_type": "string",
+                    "contains": [
+                        "ip"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.extended",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.parameter.page",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.classification",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -3954,6 +4201,21 @@
                 },
                 {
                     "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.ip_address",
+                    "data_type": "string",
+                    "contains": [
+                        "ip"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.page",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
                     "data_type": "numeric"
                 }
             ],
@@ -4046,6 +4308,21 @@
                 },
                 {
                     "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.ip_address",
+                    "data_type": "string",
+                    "contains": [
+                        "ip"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.page",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
                     "data_type": "numeric"
                 }
             ],
