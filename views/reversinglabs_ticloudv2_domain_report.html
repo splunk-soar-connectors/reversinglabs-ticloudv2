@@ -1,11 +1,14 @@
 {% extends 'widgets/widget_template.html' %}
 {% load custom_template %}
-{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
-background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
+{% block custom_title_prop %}
+  {% if title_logo %}
+    style="background-size: auto 60%; background-position: 50%;
+    background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"
+  {% endif %}
+{% endblock %}
 {% block widget_content %}
-
-<!-- File: reversinglabs_ticloudv2_domain_report.html
-  Copyright (c) ReversingLabs, 2023
+  <!-- File: reversinglabs_ticloudv2_domain_report.html
+  Copyright (c) ReversingLabs, 2023-2025
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -15,9 +18,7 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
 either express or implied. See the License for the specific language governing permissions
 and limitations under the License.
 -->
-
-<style>
-
+  <style>
     .widget-container {
         height: 600px;
     }
@@ -91,122 +92,128 @@ and limitations under the License.
         padding: 25px;
     }
 
-</style>
-
-<script src="/app_resource/{{ summary.directory }}/chart-4-2-1.js"></script>
-
-<div class="rl-content">
+  </style>
+  <script src="/app_resource/{{ summary.directory }}/chart-4-2-1.js"></script>
+  <div class="rl-content">
     {% if data.report_base == None %}
-    There is no report object in the response JSON.
+      There is no report object in the response JSON.
     {% else %}
-    <div class="charts">
+      <div class="charts">
         <div class="pad30 chartjs">
-            <canvas id="myChartBar-reputation"></canvas>
+          <canvas id="myChartBar-reputation"></canvas>
         </div>
         <div class="pad30 chartjs">
-            <canvas id="myChartBar-file-statistics"></canvas>
+          <canvas id="myChartBar-file-statistics"></canvas>
         </div>
-    </div>
-
-    <table class="rl-table">
+      </div>
+      <table class="rl-table">
         <thead>
-            <tr>
-              <th colspan="2">TitaniumCloud Get Domain Report for
-                <div id="rl-target" class="main-grid">
-                  <a href="javascript:;" onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{data.report_base.requested_domain}}' }], 0, {{ container.id }}, null, false);">{{data.report_base.requested_domain}}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-                  </a>
-                </div>
-              </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Last Seen</td>
-                <td>{{data.report_base.last_seen}}</td>
-            </tr>
-            <tr>
-                <td>Modified time</td>
-                <td>{{data.report_base.modified_time}}</td>
-            </tr>
-            <tr>
-                <td>Last DNS records time</td>
-                <td>{{data.report_base.last_dns_records_time}}</td>
-            </tr>
-            {% if data.report_base.top_threats %}
-            <tr><th class="rl-sub-division" colspan="2">Top Threats List</th></tr>
-            {% for item in data.report_base.top_threats %}
-            <tr>
-                <td>Threat name</td>
-                <td>{{item.threat_name}}</td>
-            </tr>
-            <tr>
-                <td>Threat level</td>
-                <td>{{item.threat_level}}</td>
-            </tr>
-            <tr>
-                <td>Files count</td>
-                <td>{{item.files_count}}</td>
-            </tr>
-            {% endfor %}
-            {% endif %}
-            {% if data.report_base.last_dns_records != None %}
-            <tr><th class="rl-sub-division" colspan="2">Last DNS Records</th></tr>
-            {% for item in data.report_base.last_dns_records %}
-            <tr>
-                <td>Type</td>
-                <td>{{item.type}}</td>
-            </tr>
-            <tr>
-                <td>Value</td>
-                <td>{{item.value}}</td>
-            </tr>
-            <tr>
-                <td>Provider</td>
-                <td>{{item.provider}}</td>
-            </tr>
-            {% endfor %}
-            {% endif %}
-            {% if data.report_base.third_party_reputations.statistics != None %}
-            <tr><th class="rl-sub-division" colspan="2">Third Party Reputations Statistics</th></tr>
-            <tr>
-                <td>Total</td>
-                <td>{{data.report_base.third_party_reputations.statistics.total}}</td>
-            </tr>
-            <tr>
-                <td>Clean</td>
-                <td>{{data.report_base.third_party_reputations.statistics.clean}}</td>
-            </tr>
-            <tr>
-                <td>Malicious</td>
-                <td>{{data.report_base.third_party_reputations.statistics.malicious}}</td>
-            </tr>
-            <tr>
-                <td>Undetected</td>
-                <td>{{data.report_base.third_party_reputations.statistics.undetected}}</td>
-            </tr>
-            {% endif %}
-            {% if data.report_base.third_party_reputations.sources != None %}
-            <tr><th class="rl-sub-division" colspan="2">Third Party Reputation Sources</th></tr>
-            {% for item in data.report_base.third_party_reputations.sources %}
-            <tr>
-                <td>Source</td>
-                <td>{{item.source}}</td>
-            </tr>
-            <tr>
-                <td>Detection</td>
-                <td style="color:{{item.classification_color}}">{{item.detection}}</td>
-            </tr>
-            <tr>
-                <td>Update Time</td>
-                <td>{{item.update_time}}</td>
-            </tr>
-            {% endfor %}
-            {% endif %}
-        </tbody>
-    </table>
-    {% endif %}
+          <tr>
+            <th colspan="2">
+              TitaniumCloud Get Domain Report for
+              <div id="rl-target" class="main-grid">
+              <a href="javascript:;"
+                 onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ data.report_base.requested_domain }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.requested_domain }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+            </a>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Last Seen</td>
+        <td>{{ data.report_base.last_seen }}</td>
+      </tr>
+      <tr>
+        <td>Modified time</td>
+        <td>{{ data.report_base.modified_time }}</td>
+      </tr>
+      <tr>
+        <td>Last DNS records time</td>
+        <td>{{ data.report_base.last_dns_records_time }}</td>
+      </tr>
+      {% if data.report_base.top_threats %}
+        <tr>
+          <th class="rl-sub-division" colspan="2">Top Threats List</th>
+        </tr>
+        {% for item in data.report_base.top_threats %}
+          <tr>
+            <td>Threat name</td>
+            <td>{{ item.threat_name }}</td>
+          </tr>
+          <tr>
+            <td>Threat level</td>
+            <td>{{ item.threat_level }}</td>
+          </tr>
+          <tr>
+            <td>Files count</td>
+            <td>{{ item.files_count }}</td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+      {% if data.report_base.last_dns_records != None %}
+        <tr>
+          <th class="rl-sub-division" colspan="2">Last DNS Records</th>
+        </tr>
+        {% for item in data.report_base.last_dns_records %}
+          <tr>
+            <td>Type</td>
+            <td>{{ item.type }}</td>
+          </tr>
+          <tr>
+            <td>Value</td>
+            <td>{{ item.value }}</td>
+          </tr>
+          <tr>
+            <td>Provider</td>
+            <td>{{ item.provider }}</td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+      {% if data.report_base.third_party_reputations.statistics != None %}
+        <tr>
+          <th class="rl-sub-division" colspan="2">Third Party Reputations Statistics</th>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>{{ data.report_base.third_party_reputations.statistics.total }}</td>
+        </tr>
+        <tr>
+          <td>Clean</td>
+          <td>{{ data.report_base.third_party_reputations.statistics.clean }}</td>
+        </tr>
+        <tr>
+          <td>Malicious</td>
+          <td>{{ data.report_base.third_party_reputations.statistics.malicious }}</td>
+        </tr>
+        <tr>
+          <td>Undetected</td>
+          <td>{{ data.report_base.third_party_reputations.statistics.undetected }}</td>
+        </tr>
+      {% endif %}
+      {% if data.report_base.third_party_reputations.sources != None %}
+        <tr>
+          <th class="rl-sub-division" colspan="2">Third Party Reputation Sources</th>
+        </tr>
+        {% for item in data.report_base.third_party_reputations.sources %}
+          <tr>
+            <td>Source</td>
+            <td>{{ item.source }}</td>
+          </tr>
+          <tr>
+            <td>Detection</td>
+            <td style="color:{{ item.classification_color }}">{{ item.detection }}</td>
+          </tr>
+          <tr>
+            <td>Update Time</td>
+            <td>{{ item.update_time }}</td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+{% endif %}
 </div>
-
 <script>
 
 var endpoint = window.location.href;
