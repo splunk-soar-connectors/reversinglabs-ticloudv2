@@ -4332,11 +4332,6 @@
             "versions": "EQ(*)"
         }
     ],
-    "custom_made": true,
-    "version": 1,
-    "appname": "-",
-    "executable": "spawn3",
-    "disabled": false,
     "pip39_dependencies": {
         "wheel": [
             {
