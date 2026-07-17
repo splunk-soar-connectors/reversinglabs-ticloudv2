@@ -159,7 +159,7 @@ and limitations under the License.
               <td>Requested SHA1 of url</td>
               <td>
                 <a href="javascript:;"
-                   onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.requested_sha1_url }}' }], 0, {{ container.id }}, null, false);">{{ data.requested_sha1_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                   onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.requested_sha1_url|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ data.requested_sha1_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
               </td>
             </tr>
           {% endif %}
@@ -168,7 +168,7 @@ and limitations under the License.
               <td>Requested Base64 of url</td>
               <td>
                 <a href="javascript:;"
-                   onclick="context_menu(this, [{'contains': ['base64'], 'value': '{{ data.requested_base64_url }}' }], 0, {{ container.id }}, null, false);">{{ data.requested_base64_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                   onclick="context_menu(this, [{'contains': ['base64'], 'value': '{{ data.requested_base64_url|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ data.requested_base64_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
               </td>
             </tr>
           {% endif %}
@@ -248,7 +248,7 @@ and limitations under the License.
               <td colspan="2">
                 <div class="tab">
                   {% for y in data.report.dropped_files %}
-                    <button class="tablinks" onclick="openPopup(event, '{{ y.sha1 }}')">{{ y.file_name }}</button>
+                    <button class="tablinks" onclick="openPopup(event, '{{ y.sha1|escapejs }}')">{{ y.file_name }}</button>
                   {% endfor %}
                 </div>
               </td>
@@ -263,28 +263,28 @@ and limitations under the License.
                           <td>md5</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['md5'], 'value': '{{ y.md5 }}' }], 0, {{ container.id }}, null, false);">{{ y.md5 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['md5'], 'value': '{{ y.md5|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.md5 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         <tr>
                           <td>sha1</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ y.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ y.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ y.sha1|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         <tr>
                           <td>sha256</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ y.sha256 }}' }], 0, {{ container.id }}, null, false);">{{ y.sha256 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ y.sha256|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.sha256 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         <tr>
                           <td>file name</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['file name'], 'value': '{{ y.file_name }}' }], 0, {{ container.id }}, null, false);">{{ y.file_name }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['file name'], 'value': '{{ y.file_name|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.file_name }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         {% if y.file_path %}
@@ -292,7 +292,7 @@ and limitations under the License.
                             <td>file path</td>
                             <td>
                               <a href="javascript:;"
-                                 onclick="context_menu(this, [{'contains': ['file path'], 'value': '{{ y.file_path }}' }], 0, {{ container.id }}, null, false);">{{ y.file_path }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                                 onclick="context_menu(this, [{'contains': ['file path'], 'value': '{{ y.file_path|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.file_path }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                             </td>
                           </tr>
                         {% endif %}
@@ -335,7 +335,7 @@ and limitations under the License.
               <td colspan="2">
                 <div class="tab">
                   {% for y in data.report.snort_alerts %}
-                    <button class="tablinks" onclick="openPopup(event, '{{ y.rule }}')">{{ y.destination_ip }}</button>
+                    <button class="tablinks" onclick="openPopup(event, '{{ y.rule|escapejs }}')">{{ y.destination_ip }}</button>
                   {% endfor %}
                 </div>
               </td>
@@ -358,7 +358,7 @@ and limitations under the License.
                           <td>destination ip</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ y.destination_ip }}' }], 0, {{ container.id }}, null, false);">{{ y.destination_ip }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ y.destination_ip|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.destination_ip }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         <tr>
@@ -380,7 +380,8 @@ and limitations under the License.
               <td colspan="2">
                 <div class="tab">
                   {% for y in data.report.signatures %}
-                    <button class="tablinks" onclick="openPopup(event, '{{ y.sig_id }}')">{{ y.sig_id }}</button>
+                    <button class="tablinks"
+                            onclick="openPopup(event, '{{ y.sig_id|escapejs }}')">{{ y.sig_id }}</button>
                   {% endfor %}
                 </div>
               </td>
@@ -425,7 +426,7 @@ and limitations under the License.
                 <div class="tab">
                   {% for y in data.report.network.dns %}
                     <button class="tablinks"
-                            onclick="openPopup(event, 'dns-{{ forloop.counter }}')">DNS {{ forloop.counter }}</button>
+                            onclick="openPopup(event, 'dns-{{ forloop.counter|escapejs }}')">DNS {{ forloop.counter }}</button>
                   {% endfor %}
                 </div>
               </td>
@@ -444,14 +445,14 @@ and limitations under the License.
                           <td>value</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ y.value }}' }], 0, {{ container.id }}, null, false);">{{ y.value }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ y.value|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.value }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         <tr>
                           <td>address</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ y.address }}' }], 0, {{ container.id }}, null, false);">{{ y.address }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ y.address|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.address }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         <tr>
@@ -479,7 +480,7 @@ and limitations under the License.
                 <div class="tab">
                   {% for y in data.report.network.tcp %}
                     <button class="tablinks"
-                            onclick="openPopup(event, 'tcp-{{ forloop.counter }}')">TCP {{ forloop.counter }}</button>
+                            onclick="openPopup(event, 'tcp-{{ forloop.counter|escapejs }}')">TCP {{ forloop.counter }}</button>
                   {% endfor %}
                 </div>
               </td>
@@ -498,7 +499,7 @@ and limitations under the License.
                           <td>destination ip</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ y.destination_ip }}' }], 0, {{ container.id }}, null, false);">{{ y.destination_ip }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ y.destination_ip|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.destination_ip }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         <tr>
@@ -526,7 +527,7 @@ and limitations under the License.
                 <div class="tab">
                   {% for y in data.report.network.udp %}
                     <button class="tablinks"
-                            onclick="openPopup(event, 'udp-{{ forloop.counter }}')">UDP {{ forloop.counter }}</button>
+                            onclick="openPopup(event, 'udp-{{ forloop.counter|escapejs }}')">UDP {{ forloop.counter }}</button>
                   {% endfor %}
                 </div>
               </td>
@@ -545,7 +546,7 @@ and limitations under the License.
                           <td>destination ip</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ y.destination_ip }}' }], 0, {{ container.id }}, null, false);">{{ y.destination_ip }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ y.destination_ip|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.destination_ip }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         <tr>
@@ -573,7 +574,7 @@ and limitations under the License.
                 <div class="tab">
                   {% for y in data.report.network.url %}
                     <button class="tablinks"
-                            onclick="openPopup(event, 'url-{{ forloop.counter }}')">URL {{ forloop.counter }}</button>
+                            onclick="openPopup(event, 'url-{{ forloop.counter|escapejs }}')">URL {{ forloop.counter }}</button>
                   {% endfor %}
                 </div>
               </td>
@@ -588,7 +589,7 @@ and limitations under the License.
                           <td>url</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ y.url }}' }], 0, {{ container.id }}, null, false);">{{ y.url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ y.url|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         <tr>
@@ -616,7 +617,7 @@ and limitations under the License.
                 <div class="tab">
                   {% for y in data.report.network.http %}
                     <button class="tablinks"
-                            onclick="openPopup(event, 'http-{{ forloop.counter }}')">
+                            onclick="openPopup(event, 'http-{{ forloop.counter|escapejs }}')">
                       HTTP {{ forloop.counter }}
                     </button>
                   {% endfor %}
@@ -633,7 +634,7 @@ and limitations under the License.
                           <td>url</td>
                           <td>
                             <a href="javascript:;"
-                               onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ y.url }}' }], 0, {{ container.id }}, null, false);">{{ y.url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                               onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ y.url|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ y.url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                           </td>
                         </tr>
                         <tr>

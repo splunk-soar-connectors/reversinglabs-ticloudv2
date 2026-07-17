@@ -112,7 +112,7 @@ and limitations under the License.
               ReversingLabs URL Threat Intelligence for
               <div id="rl-target" class="main-grid">
                 <a href="javascript:;"
-                   onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ data.report_base.requested_url }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.requested_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                   onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ data.report_base.requested_url|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ data.report_base.requested_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
               </div>
             </th>
           </tr>
@@ -128,7 +128,7 @@ and limitations under the License.
             <td>Sha1</td>
             <td>
               <a href="javascript:;"
-                 onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.report_base.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                 onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ data.report_base.sha1|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ data.report_base.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
             </td>
           </tr>
           <tr>
@@ -216,14 +216,14 @@ and limitations under the License.
               <td>Domain</td>
               <td>
                 <a href="javascript:;"
-                   onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ data.report_base.analysis.last_analysis.domain }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.analysis.last_analysis.domain }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                   onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ data.report_base.analysis.last_analysis.domain|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ data.report_base.analysis.last_analysis.domain }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
               </td>
             </tr>
             <tr>
               <td>Serving IP Address</td>
               <td>
                 <a href="javascript:;"
-                   onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ data.report_base.analysis.last_analysis.serving_ip_address }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.analysis.last_analysis.serving_ip_address }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                   onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ data.report_base.analysis.last_analysis.serving_ip_address|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ data.report_base.analysis.last_analysis.serving_ip_address }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
               </td>
             </tr>
           </tbody>
@@ -241,7 +241,7 @@ and limitations under the License.
                 <td>Domain</td>
                 <td>
                   <a href="javascript:;"
-                     onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ item.domain }}' }], 0, {{ container.id }}, null, false);">{{ item.domain }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                     onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ item.domain|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ item.domain }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                 </td>
               </tr>
               <tr>
@@ -260,7 +260,7 @@ and limitations under the License.
                 <td>Serving IP address</td>
                 <td>
                   <a href="javascript:;"
-                     onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ item.serving_ip_address }}' }], 0, {{ container.id }}, null, false);">{{ item.serving_ip_address }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                     onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ item.serving_ip_address|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ item.serving_ip_address }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                 </td>
               </tr>
               <tr>

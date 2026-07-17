@@ -71,7 +71,7 @@ and limitations under the License.
             ReversingLabs RHA1 Functional Similarity for
             <div id="rl-target" class="main-grid">
               <a href="javascript:;"
-                 onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ param.hash }}' }], 0, {{ container.id }}, null, false);">{{ param.hash }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                 onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ param.hash|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ param.hash }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
             </div>
             <div class="rl-results">{{ results_found }}</div>
           </th>
@@ -92,7 +92,7 @@ and limitations under the License.
             <td>{{ forloop.counter }}.</td>
             <td>
               <a href="javascript:;"
-                 onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ x.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ x.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                 onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ x.sha1|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ x.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
             </td>
             <td>{{ x.sample_type }}</td>
             <td>{{ x.threat_name }}</td>

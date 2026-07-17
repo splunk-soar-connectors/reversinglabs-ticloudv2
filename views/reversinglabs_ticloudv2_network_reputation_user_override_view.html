@@ -102,7 +102,7 @@ and limitations under the License.
               <td>Network location</td>
               <td>
                 <a href="javascript:;"
-                   onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ over.network_location }}' }], 0, {{ container.id }}, null, false);">{{ over.network_location }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                   onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ over.network_location|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ over.network_location }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
               </td>
             </tr>
             <tr>
@@ -131,7 +131,7 @@ and limitations under the License.
               <td>Network location</td>
               <td>
                 <a href="javascript:;"
-                   onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ over.network_location }}' }], 0, {{ container.id }}, null, false);">{{ over.network_location }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                   onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ over.network_location|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ over.network_location }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
               </td>
             </tr>
             <tr>
