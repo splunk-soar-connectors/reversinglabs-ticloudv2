@@ -19,6 +19,7 @@ import json
 import os
 import re
 from urllib.parse import urlparse
+from xml.sax.saxutils import escape as xml_escape
 
 # Phantom App imports
 import phantom.app as phantom
@@ -554,7 +555,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
                 sample_name = "sample"
 
             meta_xml = (
-                f"<rl><properties><property><name>file_name</name><value>{sample_name}</value></property>"
+                f"<rl><properties><property><name>file_name</name><value>{xml_escape(sample_name)}</value></property>"
                 f"</properties><domain>{None}</domain></rl>"
             )
 
