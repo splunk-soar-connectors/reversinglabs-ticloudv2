@@ -1,6 +1,6 @@
 # File: reversinglabs_ticloudv2_connector.py
 #
-# Copyright (c) ReversingLabs, 2024-2025
+# Copyright (c) ReversingLabs, 2024-2026
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -590,7 +590,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         with open(file_path, "wb") as file_obj:
             file_obj.write(response.content)
 
-        success, msg, vault_id = vault.vault_add(file_location=file_path, container=self.get_container_id(), file_name=param.get("hash"))
+        success, msg, _vault_id = vault.vault_add(file_location=file_path, container=self.get_container_id(), file_name=param.get("hash"))
         if not success:
             raise Exception(f"Unable to store file in Vault. Error details: {msg}")
 

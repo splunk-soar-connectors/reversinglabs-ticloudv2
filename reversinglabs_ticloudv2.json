@@ -15,7 +15,7 @@
             "name": "DinkoReversingLabs"
         }
     ],
-    "license": "Copyright (c) ReversingLabs, 2024-2025",
+    "license": "Copyright (c) ReversingLabs, 2024-2026",
     "app_version": "1.4.1",
     "utctime_updated": "2025-04-28T19:42:07.783283Z",
     "package_name": "phantom_reversinglabs_ticloudv2",
@@ -4333,6 +4333,14 @@
         }
     ],
     "pip39_dependencies": {
+        "wheel": [
+            {
+                "module": "reversinglabs_sdk_py3",
+                "input_file": "wheels/py3/reversinglabs_sdk_py3-2.5.4-py3-none-any.whl"
+            }
+        ]
+    },
+    "pip313_dependencies": {
         "wheel": [
             {
                 "module": "reversinglabs_sdk_py3",

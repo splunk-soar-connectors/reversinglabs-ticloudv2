@@ -1,9 +1,9 @@
 # Reversinglabs TitaniumCloud v2
 
-Publisher: ReversingLabs \
-Connector Version: 1.4.1 \
-Product Vendor: Reversinglabs \
-Product Name: TitaniumCloud \
+Publisher: ReversingLabs <br>
+Connector Version: 1.4.1 <br>
+Product Vendor: Reversinglabs <br>
+Product Name: TitaniumCloud <br>
 Minimum Product Version: 6.1.1
 
 App integrates with ReversingLabs TitaniumCloud APIs delivering targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services
@@ -1529,64 +1529,64 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration \
-[yara create ruleset](#action-yara-create-ruleset) - TCA-0303 - Create a new YARA ruleset \
-[yara delete ruleset](#action-yara-delete-ruleset) - TCA-0303 - Delete YARA ruleset \
-[yara get ruleset info](#action-yara-get-ruleset-info) - TCA-0303 - Get YARA ruleset info \
-[yara get ruleset text](#action-yara-get-ruleset-text) - TCA-0303 - Get YARA ruleset text \
-[get yara matches](#action-get-yara-matches) - TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range \
-[yara retro enable hunt](#action-yara-retro-enable-hunt) - TCA-0319 - Enable YARA retro hunt \
-[yara retro start hunt](#action-yara-retro-start-hunt) - TCA-0319 - Start YARA retro hunt for the specified ruleset \
-[yara retro check status](#action-yara-retro-check-status) - TCA-0319 - Check the retro hunt status for the specified ruleset \
-[yara retro cancel hunt](#action-yara-retro-cancel-hunt) - TCA-0319 - Cancel the retro hunt for the specified ruleset \
-[get yara retro matches](#action-get-yara-retro-matches) - TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range \
-[imphash similarity](#action-imphash-similarity) - TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash) \
-[advanced search](#action-advanced-search) - TCA-0320 - Search for hashes using multi-part search criteria \
-[av scanners](#action-av-scanners) - TCA-0103 - Retrieve AV Scanner data from TitaniumCloud \
-[file reputation](#action-file-reputation) - TCA-0101 - Queries for file reputation info \
-[file analysis](#action-file-analysis) - TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud \
-[functional similarity](#action-functional-similarity) - TCA-0301 - Retrieve a list of functionally similar hashes to the provided one \
-[url reputation](#action-url-reputation) - TCA-0403 - Queries URL Threat Intelligence \
-[get downloaded files](#action-get-downloaded-files) - TCA - 0403 - Get files downloaded from url \
-[get latest url analysis feed](#action-get-latest-url-analysis-feed) - TCA - 0403 - Get latest url analysis feed \
-[get url analysis feed from date](#action-get-url-analysis-feed-from-date) - TCA - 0403 - Get url analysis feed from date \
-[analyze url](#action-analyze-url) - TCA-0404 - Analyze a given URL \
-[uri statistics](#action-uri-statistics) - TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI \
-[uri index](#action-uri-index) - TCA-0401 - Retrieve a list of all available file hashes associated with a given URI \
-[submit for dynamic analysis](#action-submit-for-dynamic-analysis) - TCA-0207 - Submit an existing sample for dynamic analysis \
-[submit url for dynamic analysis](#action-submit-url-for-dynamic-analysis) - TCA-0207 - Submit an url sample for dynamic analysis \
-[dynamic analysis results](#action-dynamic-analysis-results) - TCA-0106 - Retrieve dynamic analysis results \
-[dynamic url analysis results](#action-dynamic-url-analysis-results) - TCA-0106 - Retrieve dynamic analysis results for url \
-[reanalyze file](#action-reanalyze-file) - TCA-0205 - Reanalyze sample \
-[upload file](#action-upload-file) - TCA-0202 - Upload file to TitaniumCloud \
-[get file](#action-get-file) - TCA-0201 - Download a sample from TitaniumCloud \
-[get network reputation](#action-get-network-reputation) - Network Reputation API \
-[get list user overrides](#action-get-list-user-overrides) - List User Overrides \
-[get list user overrides aggregated](#action-get-list-user-overrides-aggregated) - Returns a list of overrides that the user has made \
-[network reputation user override](#action-network-reputation-user-override) - Network Reputation User Override \
-[file reputation user override](#action-file-reputation-user-override) - File Reputation User Override \
-[list active file reputation user overrides](#action-list-active-file-reputation-user-overrides) - List Active File Reputation User Overrides \
-[customer daily usage](#action-customer-daily-usage) - Check daily usage of ReversingLabs API \
-[customer dayrange usage](#action-customer-dayrange-usage) - Check ReversingLabs API usage for specified time range (in days) \
-[customer monthly usage](#action-customer-monthly-usage) - Check Monthly usage of ReversingLabs API \
-[customer month range usage](#action-customer-month-range-usage) - Check ReversingLabs API usage for specified time range (in months) \
-[customer yara api usage](#action-customer-yara-api-usage) - Check Yara usage on ReversingLabs API \
-[customer quota limits](#action-customer-quota-limits) - Returns current quota limits for APIs accessible to the authenticated user or users belonging to the authenticated user's company \
-[get domain report](#action-get-domain-report) - API returns threat intelligence data for the submitted domain \
-[get domain downloaded files](#action-get-domain-downloaded-files) - Retrieve a list of files downloaded from the submitted domain \
-[get urls from domain](#action-get-urls-from-domain) - API provides a list of URLs associated with the requested domain \
-[get resolutions from domain](#action-get-resolutions-from-domain) - API provides a list of domain-to-IP mappings for the requested domain \
-[get related domains](#action-get-related-domains) - API provides a list of domains that have the same top parent domain as the requested domain \
-[get ip report](#action-get-ip-report) - API returns threat intelligence data for the submitted ip address \
-[get ip downloaded files](#action-get-ip-downloaded-files) - Retrieve a list of files downloaded from the submitted IP address \
-[get urls from ip](#action-get-urls-from-ip) - API provides a list of URLs associated with the requested IP address \
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration <br>
+[yara create ruleset](#action-yara-create-ruleset) - TCA-0303 - Create a new YARA ruleset <br>
+[yara delete ruleset](#action-yara-delete-ruleset) - TCA-0303 - Delete YARA ruleset <br>
+[yara get ruleset info](#action-yara-get-ruleset-info) - TCA-0303 - Get YARA ruleset info <br>
+[yara get ruleset text](#action-yara-get-ruleset-text) - TCA-0303 - Get YARA ruleset text <br>
+[get yara matches](#action-get-yara-matches) - TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range <br>
+[yara retro enable hunt](#action-yara-retro-enable-hunt) - TCA-0319 - Enable YARA retro hunt <br>
+[yara retro start hunt](#action-yara-retro-start-hunt) - TCA-0319 - Start YARA retro hunt for the specified ruleset <br>
+[yara retro check status](#action-yara-retro-check-status) - TCA-0319 - Check the retro hunt status for the specified ruleset <br>
+[yara retro cancel hunt](#action-yara-retro-cancel-hunt) - TCA-0319 - Cancel the retro hunt for the specified ruleset <br>
+[get yara retro matches](#action-get-yara-retro-matches) - TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range <br>
+[imphash similarity](#action-imphash-similarity) - TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash) <br>
+[advanced search](#action-advanced-search) - TCA-0320 - Search for hashes using multi-part search criteria <br>
+[av scanners](#action-av-scanners) - TCA-0103 - Retrieve AV Scanner data from TitaniumCloud <br>
+[file reputation](#action-file-reputation) - TCA-0101 - Queries for file reputation info <br>
+[file analysis](#action-file-analysis) - TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud <br>
+[functional similarity](#action-functional-similarity) - TCA-0301 - Retrieve a list of functionally similar hashes to the provided one <br>
+[url reputation](#action-url-reputation) - TCA-0403 - Queries URL Threat Intelligence <br>
+[get downloaded files](#action-get-downloaded-files) - TCA - 0403 - Get files downloaded from url <br>
+[get latest url analysis feed](#action-get-latest-url-analysis-feed) - TCA - 0403 - Get latest url analysis feed <br>
+[get url analysis feed from date](#action-get-url-analysis-feed-from-date) - TCA - 0403 - Get url analysis feed from date <br>
+[analyze url](#action-analyze-url) - TCA-0404 - Analyze a given URL <br>
+[uri statistics](#action-uri-statistics) - TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI <br>
+[uri index](#action-uri-index) - TCA-0401 - Retrieve a list of all available file hashes associated with a given URI <br>
+[submit for dynamic analysis](#action-submit-for-dynamic-analysis) - TCA-0207 - Submit an existing sample for dynamic analysis <br>
+[submit url for dynamic analysis](#action-submit-url-for-dynamic-analysis) - TCA-0207 - Submit an url sample for dynamic analysis <br>
+[dynamic analysis results](#action-dynamic-analysis-results) - TCA-0106 - Retrieve dynamic analysis results <br>
+[dynamic url analysis results](#action-dynamic-url-analysis-results) - TCA-0106 - Retrieve dynamic analysis results for url <br>
+[reanalyze file](#action-reanalyze-file) - TCA-0205 - Reanalyze sample <br>
+[upload file](#action-upload-file) - TCA-0202 - Upload file to TitaniumCloud <br>
+[get file](#action-get-file) - TCA-0201 - Download a sample from TitaniumCloud <br>
+[get network reputation](#action-get-network-reputation) - Network Reputation API <br>
+[get list user overrides](#action-get-list-user-overrides) - List User Overrides <br>
+[get list user overrides aggregated](#action-get-list-user-overrides-aggregated) - Returns a list of overrides that the user has made <br>
+[network reputation user override](#action-network-reputation-user-override) - Network Reputation User Override <br>
+[file reputation user override](#action-file-reputation-user-override) - File Reputation User Override <br>
+[list active file reputation user overrides](#action-list-active-file-reputation-user-overrides) - List Active File Reputation User Overrides <br>
+[customer daily usage](#action-customer-daily-usage) - Check daily usage of ReversingLabs API <br>
+[customer dayrange usage](#action-customer-dayrange-usage) - Check ReversingLabs API usage for specified time range (in days) <br>
+[customer monthly usage](#action-customer-monthly-usage) - Check Monthly usage of ReversingLabs API <br>
+[customer month range usage](#action-customer-month-range-usage) - Check ReversingLabs API usage for specified time range (in months) <br>
+[customer yara api usage](#action-customer-yara-api-usage) - Check Yara usage on ReversingLabs API <br>
+[customer quota limits](#action-customer-quota-limits) - Returns current quota limits for APIs accessible to the authenticated user or users belonging to the authenticated user's company <br>
+[get domain report](#action-get-domain-report) - API returns threat intelligence data for the submitted domain <br>
+[get domain downloaded files](#action-get-domain-downloaded-files) - Retrieve a list of files downloaded from the submitted domain <br>
+[get urls from domain](#action-get-urls-from-domain) - API provides a list of URLs associated with the requested domain <br>
+[get resolutions from domain](#action-get-resolutions-from-domain) - API provides a list of domain-to-IP mappings for the requested domain <br>
+[get related domains](#action-get-related-domains) - API provides a list of domains that have the same top parent domain as the requested domain <br>
+[get ip report](#action-get-ip-report) - API returns threat intelligence data for the submitted ip address <br>
+[get ip downloaded files](#action-get-ip-downloaded-files) - Retrieve a list of files downloaded from the submitted IP address <br>
+[get urls from ip](#action-get-urls-from-ip) - API provides a list of URLs associated with the requested IP address <br>
 [get resolutions from ip](#action-get-resolutions-from-ip) - API provides a list of IP-to-domain mappings for the requested IP address
 
 ## action: 'test connectivity'
 
 Validate the asset configuration for connectivity using supplied configuration
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 Validate the asset configuration for connectivity using supplied configuration.
@@ -1603,7 +1603,7 @@ No Output
 
 TCA-0303 - Create a new YARA ruleset
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 TCA-0303 - Create a new YARA ruleset.
@@ -1632,7 +1632,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0303 - Delete YARA ruleset
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 TCA-0303 - Delete YARA ruleset.
@@ -1659,7 +1659,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0303 - Get YARA ruleset info
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 TCA-0303 - Get information for a specific YARA ruleset or all YARA rulesets in the collection.
@@ -1689,7 +1689,7 @@ action_result.parameter.ruleset_name | string | | |
 
 TCA-0303 - Get YARA ruleset text
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 TCA-0303 - Get the text of a YARA ruleset.
@@ -1717,7 +1717,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0303 - Get a recordset of YARA ruleset matches in the specified time range.
@@ -1746,7 +1746,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0319 - Enable YARA retro hunt
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0319 - Enable the retro hunt for the specified ruleset that has been submitted to TitaniumCloud prior to deployment of YARA retro.
@@ -1773,7 +1773,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0319 - Start YARA retro hunt for the specified ruleset
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0319 - Start YARA retro hunt for the specified ruleset.
@@ -1801,7 +1801,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0319 - Check the retro hunt status for the specified ruleset
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 TCA-0319 - Check the retro hunt status for the specified ruleset.
@@ -1834,7 +1834,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0319 - Cancel the retro hunt for the specified ruleset
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 TCA-0319 - Cancel the retro hunt for the specified ruleset.
@@ -1862,7 +1862,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0319 - Get a recordset of YARA ruleset matches in the specified time range.
@@ -1895,7 +1895,7 @@ action_result.parameter.time_value | string | | |
 
 TCA-0302 - Get a a list of all available SHA1 hashes for files sharing the same import hash (imphash)
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 TCA-0302 - Imphash Index provides a list of all available SHA1 hashes for files sharing the same import hash (imphash). An imphash is a hash calculated from a string which contains the libraries imported by a Windows Portable Executable (PE) file.
@@ -1924,7 +1924,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0320 - Search for hashes using multi-part search criteria
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0320 - Search for hashes using multi-part search criteria. Supported criteria include more than 60 keywords, 35 antivirus vendors, 137 sample types and subtypes, and 283 tags that enable creating 510 unique search expressions with support for Boolean operators and case-insensitive wildcard matching. A number of search keywords support relational operators '\<=' and '>='.
@@ -1953,7 +1953,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0103 - Retrieve AV Scanner data from TitaniumCloud
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0103 - Provides AV vendor cross-reference data for a desired sample from multiple AV scanners.
@@ -1980,7 +1980,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0101 - Queries for file reputation info
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 TCA-0101 - Queries for file reputation info.
@@ -2007,7 +2007,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0104 - Retrieve File Analysis by hash data from TitaniumCloud
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0104 - Provides file analysis data on hashes. Metadata can include relevant portions of static analysis, AV scan information, file sources and any related IP/domain information.
@@ -2034,7 +2034,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0301 - Retrieve a list of functionally similar hashes to the provided one
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0301 - Provides a list of SHA1 hashes of files that are functionally similar to the provided file (SHA1 hash) at the selected precision level.
@@ -2063,7 +2063,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0403 - Queries URL Threat Intelligence
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 TCA-0403 - Queries URL Threat Intelligence.
@@ -2090,7 +2090,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA - 0403 - Get files downloaded from url
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 Accepts a URL string and returns a list of downloaded files aggregated through multiple pages of results.
@@ -2127,7 +2127,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA - 0403 - Get latest url analysis feed
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 Returns the latest URL analyses reports aggregated as list.
@@ -2154,7 +2154,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA - 0403 - Get url analysis feed from date
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 Accepts time format and a start time and returns URL analyses report from that defined time onward aggregated as a list.
@@ -2185,7 +2185,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0404 - Analyze a given URL
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0404 - This service allows users to submit a URL for analysis.
@@ -2212,7 +2212,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0402 - Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0402 - Provides the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI (domain, IP address, email or URL).
@@ -2239,7 +2239,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0401 - Retrieve a list of all available file hashes associated with a given URI
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0401 - Provides a list of all available file hashes associated with a given URI (domain, IP address, email or URL) regardless of file classification.
@@ -2268,7 +2268,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0207 - Submit an existing sample for dynamic analysis
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0207 - This service allows users to detonate a file in the ReversingLabs TitaniumCloud sandbox. To submit a file for analysis, it must exist in TitaniumCloud.
@@ -2297,7 +2297,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0207 - Submit an url sample for dynamic analysis
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0207 - This service allows users to analyze a url in the ReversingLabs TitaniumCloud sandbox. To submit an url for analysis, it must exist in TitaniumCloud.
@@ -2330,7 +2330,7 @@ action_result.parameter.platform | string | | |
 
 TCA-0106 - Retrieve dynamic analysis results
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0106 - This service allows users to retrieve dynamic analysis results for a file that was submitted for dynamic analysis.
@@ -2361,7 +2361,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0106 - Retrieve dynamic analysis results for url
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 TCA-0106 - This service allows users to retrieve dynamic analysis results for an url that was submitted for dynamic analysis.
@@ -2392,7 +2392,7 @@ action_result.parameter.latest | boolean | | |
 
 TCA-0205 - Reanalyze sample
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 TCA-0205 - This query sends a sample with the requested hash for rescanning.
@@ -2419,7 +2419,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0202 - Upload file to TitaniumCloud
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 TCA-0202 - Upload file to TitaniumCloud.
@@ -2448,7 +2448,7 @@ summary.total_objects_successful | numeric | | |
 
 TCA-0201 - Download a sample from TitaniumCloud
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 TCA-0201 - Download a sample from TitaniumCloud and add it to the vault.
@@ -2475,7 +2475,7 @@ summary.total_objects_successful | numeric | | |
 
 Network Reputation API
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 Service provides information regarding the reputation of a requested URL, domain, or IP address.
@@ -2500,7 +2500,7 @@ action_result.parameter.network_locations | string | `domain` `url` `ip` | |
 
 List User Overrides
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 The Network Reputation User Override service enables URL classification overrides. Any URL can be overridden to malicious, suspicious, or known.
@@ -2527,7 +2527,7 @@ action_result.parameter.next_page_sha1 | string | `sha1` | |
 
 Returns a list of overrides that the user has made
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 This API automatically handles paging and returns a list of results instead of a Response object.
@@ -2554,7 +2554,7 @@ action_result.parameter.max_results | numeric | | |
 
 Network Reputation User Override
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 The Network Reputation User Override service enables URL classification overrides.
@@ -2581,7 +2581,7 @@ summary.total_objects_successful | numeric | | |
 
 File Reputation User Override
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 The File Reputation User Override service enables File sample classification overrides.
@@ -2608,7 +2608,7 @@ summary.total_objects_successful | numeric | | |
 
 List Active File Reputation User Overrides
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 The File Reputation User Override service enables sample classification overrides. Any sample can be overridden to malicious, suspicious, or known.
@@ -2636,7 +2636,7 @@ action_result.parameter.start_hash | string | `sha1` `sha256` `md5` | |
 
 Check daily usage of ReversingLabs API
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company.
@@ -2667,7 +2667,7 @@ action_result.parameter.company | boolean | | |
 
 Check ReversingLabs API usage for specified time range (in days)
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company.
@@ -2696,7 +2696,7 @@ action_result.parameter.company | boolean | | |
 
 Check Monthly usage of ReversingLabs API
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company.
@@ -2727,7 +2727,7 @@ action_result.parameter.company | boolean | | |
 
 Check ReversingLabs API usage for specified time range (in months)
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 API allows ReversingLabs customers to track the usage of TitaniumCloud services provisioned to all accounts in a company.
@@ -2756,7 +2756,7 @@ action_result.parameter.company | boolean | | |
 
 Check Yara usage on ReversingLabs API
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 This query returns information about the number of active YARA rulesets for the TitaniumCloud account that sent the request.
@@ -2783,7 +2783,7 @@ action_result.parameter.format | string | | |
 
 Returns current quota limits for APIs accessible to the authenticated user or users belonging to the authenticated user's company
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 API allows ReversingLabs customers to track quota limits of TitaniumCloud services provisioned to all accounts in a company.
@@ -2813,7 +2813,7 @@ action_result.parameter.company | boolean | | |
 
 API returns threat intelligence data for the submitted domain
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 The report contains domain reputation from various reputation sources, classification statistics for files downloaded from the domain, the most common threats found on the domain DNS information about the domain, and parent domain information.
@@ -2838,7 +2838,7 @@ action_result.parameter.domain | string | `domain` | |
 
 Retrieve a list of files downloaded from the submitted domain
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 The response will contain metadata for files downloaded from the submitted domain. Empty fields are not included in the response.
@@ -2869,7 +2869,7 @@ action_result.parameter.classification | string | | |
 
 API provides a list of URLs associated with the requested domain
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 API provides a list of URLs associated with the requested domain.
@@ -2900,7 +2900,7 @@ action_result.parameter.limit | numeric | | |
 
 API provides a list of domain-to-IP mappings for the requested domain
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 API provides a list of domain-to-IP mappings for the requested domain.
@@ -2934,7 +2934,7 @@ action_result.parameter.limit | numeric | | |
 
 API provides a list of domains that have the same top parent domain as the requested domain
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 API provides a list of domains that have the same top parent domain as the requested domain. If the requested domain is a top parent domain, the API will return all subdomains.
@@ -2965,7 +2965,7 @@ action_result.parameter.limit | numeric | | |
 
 API returns threat intelligence data for the submitted ip address
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 The report contains IP reputation from various reputation sources, classification statistics for files downloaded from the IP, and the top threats hosted on the submitted IP.
@@ -2990,7 +2990,7 @@ action_result.parameter.ip_address | string | `ip` | |
 
 Retrieve a list of files downloaded from the submitted IP address
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 The response will contain metadata for files downloaded from the submitted IP address. Empty fields are not included in the response.
@@ -3023,7 +3023,7 @@ action_result.parameter.classification | string | | |
 
 API provides a list of URLs associated with the requested IP address
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 API provides a list of URLs associated with the requested IP address.
@@ -3054,7 +3054,7 @@ action_result.parameter.limit | numeric | | |
 
 API provides a list of IP-to-domain mappings for the requested IP address
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 API provides a list of IP-to-domain mappings for the requested IP address.
@@ -3087,7 +3087,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
