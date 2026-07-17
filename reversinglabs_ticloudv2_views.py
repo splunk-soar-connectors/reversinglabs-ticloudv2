@@ -12,6 +12,29 @@
 # under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 # CONDITIONS OF ANY KIND, either express or implied. See the License for the
 # specific language governing permissions and limitations under the License.
+from urllib.parse import urlparse
+
+
+_DOWNLOAD_URL_FIELDS = ("pcap", "screenshots", "memory_strings", "dropped_files_url")
+
+
+def _sanitize_download_urls(report):
+    """Return a report copy containing only absolute HTTP(S) download URLs."""
+    if not isinstance(report, dict):
+        return {}
+
+    sanitized_report = report.copy()
+    for field in _DOWNLOAD_URL_FIELDS:
+        value = sanitized_report.get(field)
+        if not isinstance(value, str):
+            sanitized_report[field] = None
+            continue
+
+        parsed_url = urlparse(value)
+        if parsed_url.scheme.lower() not in {"http", "https"} or not parsed_url.netloc:
+            sanitized_report[field] = None
+
+    return sanitized_report
 
 
 def file_reputation(provides, all_app_runs, context):
@@ -78,7 +101,8 @@ def url_reputation(provides, all_app_runs, context):
         for result in action_results:
             data = {}
 
-            report_base = result.get_data()[0].get("rl", {})
+            report_base = result.get_data()[0].get("rl", {}).copy()
+            report_base["report"] = _sanitize_download_urls(report_base.get("report"))
             data["report_base"] = report_base
 
             classification = report_base.get("classification", "UNAVAILABLE").upper()
@@ -165,7 +189,8 @@ def dynamic_analysis_results(provides, all_app_runs, context):
 def dynamic_url_analysis_results(provides, all_app_runs, context):
     for summary, action_results in all_app_runs:
         for result in action_results:
-            data = result.get_data()[0].get("rl", {})
+            data = result.get_data()[0].get("rl", {}).copy()
+            data["report"] = _sanitize_download_urls(data.get("report"))
 
             # Color code for general report
             data["classification_color"] = color_code_classification(data.get("report").get("classification"))
