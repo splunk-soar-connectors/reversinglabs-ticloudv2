@@ -8,7 +8,7 @@
 {% endblock %}
 {% block widget_content %}
   <!-- File: reversinglabs_ticloudv2_ip_downloaded_files.html
-  Copyright (c) ReversingLabs, 2023-2025
+  Copyright (c) ReversingLabs, 2023-2026
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -109,7 +109,7 @@ and limitations under the License.
               <br />
               <div id="rl-target" class="main-grid">
                 <a href="javascript:;"
-                   onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ data.report_base.requested_ip }}' }], 0, {{ container.id }}, null, false);">{{ data.report_base.requested_ip }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                   onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ data.report_base.requested_ip|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ data.report_base.requested_ip }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
               </div>
             </th>
           </tr>
@@ -124,21 +124,21 @@ and limitations under the License.
                 <td>md5</td>
                 <td>
                   <a href="javascript:;"
-                     onclick="context_menu(this, [{'contains': ['md5'], 'value': '{{ item.md5 }}' }], 0, {{ container.id }}, null, false);">{{ item.md5 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                     onclick="context_menu(this, [{'contains': ['md5'], 'value': '{{ item.md5|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ item.md5 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                 </td>
               </tr>
               <tr>
                 <td>sha1</td>
                 <td>
                   <a href="javascript:;"
-                     onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ item.sha1 }}' }], 0, {{ container.id }}, null, false);">{{ item.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                     onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ item.sha1|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ item.sha1 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                 </td>
               </tr>
               <tr>
                 <td>sha256</td>
                 <td>
                   <a href="javascript:;"
-                     onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ item.sha256 }}' }], 0, {{ container.id }}, null, false);">{{ item.sha256 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                     onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ item.sha256|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ item.sha256 }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                 </td>
               </tr>
               <tr>
@@ -215,7 +215,7 @@ and limitations under the License.
                 <td>Last Download Url</td>
                 <td>
                   <a href="javascript:;"
-                     onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ item.last_download_url }}' }], 0, {{ container.id }}, null, false);">{{ item.last_download_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                     onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ item.last_download_url|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ item.last_download_url }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
                 </td>
               </tr>
               <tr>

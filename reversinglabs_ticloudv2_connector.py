@@ -1,6 +1,6 @@
 # File: reversinglabs_ticloudv2_connector.py
 #
-# Copyright (c) ReversingLabs, 2024-2025
+# Copyright (c) ReversingLabs, 2024-2026
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import json
 import os
 import re
 from urllib.parse import urlparse
+from xml.sax.saxutils import escape as xml_escape
 
 # Phantom App imports
 import phantom.app as phantom
@@ -83,6 +84,7 @@ phantom.requests.delete = new_delete
 class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ticloud_spex_url = "/api/spex/upload/"
     USER_AGENT = "ReversingLabs Splunk SOAR TitaniumCloudv2 v1.4.0"
+    ANALYSIS_ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]{1,128}$")
 
     # The actions supported by this connector
     ACTION_ID_TEST_CONNECTIVITY = "test_connectivity"
@@ -137,6 +139,15 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
     ACTION_ID_GET_IP_DOWNLOADED_FILES = "get_ip_downloaded_files"
     ACTION_ID_GET_URLS_FROM_IP = "get_urls_from_ip"
     ACTION_ID_GET_RESOLUTIONS_FROM_IP = "get_resolutions_from_ip"
+
+    @classmethod
+    def _validated_analysis_id(cls, param):
+        analysis_id = param.get("analysis_id")
+        if analysis_id in (None, ""):
+            return None
+        if not isinstance(analysis_id, str) or not cls.ANALYSIS_ID_PATTERN.fullmatch(analysis_id):
+            raise ValueError("analysis_id must contain only letters, numbers, underscores, or hyphens and be at most 128 characters")
+        return analysis_id
 
     def __init__(self):
         # Call the BaseConnectors init first
@@ -352,7 +363,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             extended=param.get("extended"),
             classification=param.get("classification"),
             last_analysis=param.get("last_analysis"),
-            analysis_id=param.get("analysis_id"),
+            analysis_id=self._validated_analysis_id(param),
             results_per_page=param.get("results_per_page"),
             max_results=param.get("max_results"),
         )
@@ -472,7 +483,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
             host=self.ticloud_base_url, username=self.ticloud_username, password=self.ticloud_password, user_agent=self.USER_AGENT
         )
         response = sandbox.get_dynamic_analysis_results(
-            sample_hash=param.get("sha1"), latest=param.get("latest"), analysis_id=param.get("analysis_id")
+            sample_hash=param.get("sha1"), latest=param.get("latest"), analysis_id=self._validated_analysis_id(param)
         )
 
         self.debug_print("Executed", self.get_action_identifier())
@@ -490,10 +501,12 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
 
         # check if user provided sha1
         if re.match(r"^[a-fA-F0-9]*$", url_input):
-            response = sandbox.get_dynamic_analysis_results(url_sha1=url_input, latest=param.get("latest"), analysis_id=param.get("analysis_id"))
+            response = sandbox.get_dynamic_analysis_results(
+                url_sha1=url_input, latest=param.get("latest"), analysis_id=self._validated_analysis_id(param)
+            )
         else:
             response = sandbox.get_dynamic_analysis_results(
-                url=param.get("url"), latest=param.get("latest"), analysis_id=param.get("analysis_id")
+                url=param.get("url"), latest=param.get("latest"), analysis_id=self._validated_analysis_id(param)
             )
 
         self.debug_print("Executed", self.get_action_identifier())
@@ -554,7 +567,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
                 sample_name = "sample"
 
             meta_xml = (
-                f"<rl><properties><property><name>file_name</name><value>{sample_name}</value></property>"
+                f"<rl><properties><property><name>file_name</name><value>{xml_escape(sample_name)}</value></property>"
                 f"</properties><domain>{None}</domain></rl>"
             )
 
@@ -590,7 +603,7 @@ class ReversinglabsTitaniumCloudV2Connector(BaseConnector):
         with open(file_path, "wb") as file_obj:
             file_obj.write(response.content)
 
-        success, msg, vault_id = vault.vault_add(file_location=file_path, container=self.get_container_id(), file_name=param.get("hash"))
+        success, msg, _vault_id = vault.vault_add(file_location=file_path, container=self.get_container_id(), file_name=param.get("hash"))
         if not success:
             raise Exception(f"Unable to store file in Vault. Error details: {msg}")
 

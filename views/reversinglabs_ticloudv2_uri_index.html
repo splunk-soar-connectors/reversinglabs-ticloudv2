@@ -8,7 +8,7 @@
 {% endblock %}
 {% block widget_content %}
   <!-- File: reversinglabs_ticloudv2_uri_index.html
-  Copyright (c) ReversingLabs, 2023-2025
+  Copyright (c) ReversingLabs, 2023-2026
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -88,7 +88,7 @@ and limitations under the License.
             ReversingLabs URI Index for
             <div id="rl-target" class="main-grid">
               <a href="javascript:;"
-                 onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ param.uri }}' }], 0, {{ container.id }}, null, false);">{{ param.uri }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                 onclick="context_menu(this, [{'contains': ['url'], 'value': '{{ param.uri|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ param.uri }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
             </div>
             <div class="rl-results" style="padding-top:0.5rem;">{{ results_found }}</div>
           </th>
@@ -103,7 +103,7 @@ and limitations under the License.
             <td>{{ forloop.counter }}.</td>
             <td>
               <a href="javascript:;"
-                 onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ x }}' }], 0, {{ container.id }}, null, false);">{{ x }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
+                 onclick="context_menu(this, [{'contains': ['sha1'], 'value': '{{ x|escapejs }}' }], 0, {{ container.id|escapejs }}, null, false);">{{ x }}&nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span></a>
             </td>
           </tr>
         {% endfor %}
