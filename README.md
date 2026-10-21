@@ -1,7 +1,7 @@
 # Reversinglabs TitaniumCloud v2
 
 Publisher: ReversingLabs <br>
-Connector Version: 1.4.4 <br>
+Connector Version: 1.5.0 <br>
 Product Vendor: Reversinglabs <br>
 Product Name: TitaniumCloud <br>
 Minimum Product Version: 6.1.1

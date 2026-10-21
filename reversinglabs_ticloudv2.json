@@ -16,8 +16,8 @@
         }
     ],
     "license": "Copyright (c) ReversingLabs, 2024-2026",
-    "app_version": "1.4.4",
-    "utctime_updated": "2026-07-20T18:26:32.353565Z",
+    "app_version": "1.5.0",
+    "utctime_updated": "2026-10-21T16:49:58.880521Z",
     "package_name": "phantom_reversinglabs_ticloudv2",
     "main_module": "reversinglabs_ticloudv2_connector.py",
     "min_phantom_version": "6.1.1",
