@@ -7,7 +7,7 @@
     "logo": "logo_reversinglabs_ticloudv2.svg",
     "logo_dark": "logo_reversinglabs_ticloudv2_dark.svg",
     "product_name": "TitaniumCloud",
-    "python_version": "3",
+    "python_version": "3.9, 3.13",
     "product_version_regex": ".*",
     "publisher": "ReversingLabs",
     "contributors": [
@@ -16,7 +16,7 @@
         }
     ],
     "license": "Copyright (c) ReversingLabs, 2024-2026",
-    "app_version": "1.4.2",
+    "app_version": "1.4.4",
     "utctime_updated": "2026-07-20T18:26:32.353565Z",
     "package_name": "phantom_reversinglabs_ticloudv2",
     "main_module": "reversinglabs_ticloudv2_connector.py",
